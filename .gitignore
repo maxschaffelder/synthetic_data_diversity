@@ -1,0 +1,6 @@
+.DS_Store
+data_analysis/.ipynb_checkpoints/heaps_law-checkpoint.ipynb
+data_generation/.ipynb_checkpoints/data_gen_local-checkpoint.ipynb
+data_analysis/.ipynb_checkpoints/perplexity-checkpoint.ipynb
+data_analysis/.ipynb_checkpoints/sacre_bleu-checkpoint.ipynb
+data_analysis/.ipynb_checkpoints/sbert_embeddings-checkpoint.ipynb

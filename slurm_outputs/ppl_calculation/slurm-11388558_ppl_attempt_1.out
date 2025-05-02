@@ -1,0 +1,36 @@
+Fetching 30 files:   0%|          | 0/30 [00:00<?, ?it/s]Fetching 30 files:   3%|▎         | 1/30 [00:23<11:32, 23.88s/it]Fetching 30 files:  13%|█▎        | 4/30 [00:28<02:32,  5.86s/it]Fetching 30 files:  30%|███       | 9/30 [00:43<01:22,  3.91s/it]Fetching 30 files:  33%|███▎      | 10/30 [00:43<01:06,  3.32s/it]Fetching 30 files:  37%|███▋      | 11/30 [00:45<00:58,  3.06s/it]Fetching 30 files:  40%|████      | 12/30 [00:47<00:50,  2.81s/it]Fetching 30 files:  43%|████▎     | 13/30 [00:50<00:50,  2.99s/it]Fetching 30 files:  47%|████▋     | 14/30 [00:52<00:40,  2.55s/it]Fetching 30 files:  53%|█████▎    | 16/30 [00:53<00:25,  1.79s/it]Fetching 30 files:  57%|█████▋    | 17/30 [01:04<00:50,  3.86s/it]Fetching 30 files:  60%|██████    | 18/30 [01:08<00:48,  4.02s/it]Fetching 30 files:  63%|██████▎   | 19/30 [01:10<00:38,  3.49s/it]Fetching 30 files:  70%|███████   | 21/30 [01:11<00:18,  2.07s/it]Fetching 30 files:  73%|███████▎  | 22/30 [01:22<00:34,  4.34s/it]Fetching 30 files:  83%|████████▎ | 25/30 [01:23<00:10,  2.19s/it]Fetching 30 files:  87%|████████▋ | 26/30 [01:27<00:10,  2.66s/it]Fetching 30 files:  90%|█████████ | 27/30 [01:28<00:06,  2.22s/it]Fetching 30 files:  93%|█████████▎| 28/30 [01:40<00:09,  4.51s/it]Fetching 30 files: 100%|██████████| 30/30 [01:40<00:00,  3.34s/it]
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/code/data_analysis/perplexity.py", line 268, in <module>
+    main()
+  File "/gpfs/scratch1/shared/mschaffelder/code/data_analysis/perplexity.py", line 236, in main
+    model = AutoModelForCausalLM.from_pretrained(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4336, in from_pretrained
+    config = cls._autoset_attn_implementation(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 2109, in _autoset_attn_implementation
+    cls._check_and_enable_flash_attn_2(
+  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 2252, in _check_and_enable_flash_attn_2
+    raise ImportError(f"{preface} the package flash_attn seems to be not installed. {install_message}")
+ImportError: FlashAttention2 has been toggled on, but it cannot be used due to the following error: the package flash_attn seems to be not installed. Please refer to the documentation of https://huggingface.co/docs/transformers/perf_infer_gpu_one#flashattention-2 to install Flash Attention 2.
+
+JOB STATISTICS
+==============
+Job ID: 11388558
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: RUNNING
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:50:24 core-walltime
+Job Wall-clock time: 00:03:09
+Memory Utilized: 0.00 MB
+Memory Efficiency: 0.00% of 94.00 GB (94.00 GB/node)
+WARNING: Efficiency statistics can only be obtained after the job has ended as seff tool is based on the accounting database data.

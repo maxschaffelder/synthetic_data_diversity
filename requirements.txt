@@ -1,0 +1,17 @@
+# Python dependencies for the project
+numpy>=1.22.0
+pandas>=1.4.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+scikit-learn>=1.0.0
+torch>=2.0.0
+tqdm>=4.64.0
+transformers>=4.30.0
+accelerate>=0.20.0  
+sentence-transformers>=2.2.0
+
+
+# Optional dependencies
+# torchvision>=0.15.0  
+# nltk>=3.7
+# jupyter>=1.0.0

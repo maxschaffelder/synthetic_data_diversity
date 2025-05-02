@@ -1,0 +1,30 @@
+CUDA_VISIBLE_DEVICES: 0,1
+Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-31c03a3b-52de-edef-28a6-fa9bbe85082a)
+GPU 1: NVIDIA H100 (UUID: GPU-80e533c6-efc6-ad89-1a64-a4e74fd538ae)
+Number of available GPUs: 2
+Loading model with multi-GPU parallelism...
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/30 [00:04<02:22,  4.92s/it]Loading checkpoint shards:   7%|▋         | 2/30 [00:08<01:54,  4.09s/it]Loading checkpoint shards:  10%|█         | 3/30 [00:12<01:47,  4.00s/it]Loading checkpoint shards:  13%|█▎        | 4/30 [00:16<01:41,  3.90s/it]Loading checkpoint shards:  17%|█▋        | 5/30 [00:19<01:34,  3.77s/it]Loading checkpoint shards:  20%|██        | 6/30 [00:23<01:28,  3.71s/it]Loading checkpoint shards:  23%|██▎       | 7/30 [00:26<01:24,  3.65s/it]Loading checkpoint shards:  27%|██▋       | 8/30 [00:30<01:21,  3.69s/it]Loading checkpoint shards:  30%|███       | 9/30 [00:34<01:17,  3.71s/it]Loading checkpoint shards:  33%|███▎      | 10/30 [00:37<01:13,  3.65s/it]Loading checkpoint shards:  37%|███▋      | 11/30 [00:41<01:08,  3.61s/it]Loading checkpoint shards:  40%|████      | 12/30 [00:44<01:04,  3.59s/it]Loading checkpoint shards:  43%|████▎     | 13/30 [00:48<01:01,  3.65s/it]Loading checkpoint shards:  47%|████▋     | 14/30 [00:52<00:58,  3.68s/it]Loading checkpoint shards:  50%|█████     | 15/30 [00:55<00:54,  3.63s/it]Loading checkpoint shards:  53%|█████▎    | 16/30 [00:59<00:50,  3.60s/it]Loading checkpoint shards:  57%|█████▋    | 17/30 [01:02<00:46,  3.57s/it]Loading checkpoint shards:  60%|██████    | 18/30 [01:06<00:43,  3.63s/it]Loading checkpoint shards:  63%|██████▎   | 19/30 [01:10<00:40,  3.66s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [01:13<00:36,  3.62s/it]Loading checkpoint shards:  70%|███████   | 21/30 [01:17<00:32,  3.59s/it]Loading checkpoint shards:  73%|███████▎  | 22/30 [01:20<00:28,  3.57s/it]Loading checkpoint shards:  77%|███████▋  | 23/30 [01:24<00:25,  3.63s/it]Loading checkpoint shards:  80%|████████  | 24/30 [01:28<00:21,  3.67s/it]Loading checkpoint shards:  83%|████████▎ | 25/30 [01:32<00:18,  3.62s/it]Loading checkpoint shards:  87%|████████▋ | 26/30 [01:35<00:14,  3.59s/it]Loading checkpoint shards:  90%|█████████ | 27/30 [01:39<00:10,  3.58s/it]Loading checkpoint shards:  93%|█████████▎| 28/30 [01:42<00:07,  3.64s/it]Loading checkpoint shards:  97%|█████████▋| 29/30 [01:50<00:04,  4.94s/it]Loading checkpoint shards: 100%|██████████| 30/30 [01:52<00:00,  3.93s/it]Loading checkpoint shards: 100%|██████████| 30/30 [01:52<00:00,  3.75s/it]
+Model loaded and distributed across GPUs. Device map: {'model.embed_tokens': 0, 'model.layers.0': 0, 'model.layers.1': 0, 'model.layers.2': 0, 'model.layers.3': 0, 'model.layers.4': 0, 'model.layers.5': 0, 'model.layers.6': 0, 'model.layers.7': 0, 'model.layers.8': 0, 'model.layers.9': 0, 'model.layers.10': 0, 'model.layers.11': 0, 'model.layers.12': 0, 'model.layers.13': 0, 'model.layers.14': 0, 'model.layers.15': 0, 'model.layers.16': 0, 'model.layers.17': 0, 'model.layers.18': 0, 'model.layers.19': 0, 'model.layers.20': 0, 'model.layers.21': 0, 'model.layers.22': 0, 'model.layers.23': 0, 'model.layers.24': 0, 'model.layers.25': 0, 'model.layers.26': 0, 'model.layers.27': 0, 'model.layers.28': 0, 'model.layers.29': 0, 'model.layers.30': 0, 'model.layers.31': 0, 'model.layers.32': 0, 'model.layers.33': 0, 'model.layers.34': 0, 'model.layers.35': 0, 'model.layers.36': 0, 'model.layers.37': 0, 'model.layers.38': 0, 'model.layers.39': 0, 'model.layers.40': 1, 'model.layers.41': 1, 'model.layers.42': 1, 'model.layers.43': 1, 'model.layers.44': 1, 'model.layers.45': 1, 'model.layers.46': 1, 'model.layers.47': 1, 'model.layers.48': 1, 'model.layers.49': 1, 'model.layers.50': 1, 'model.layers.51': 1, 'model.layers.52': 1, 'model.layers.53': 1, 'model.layers.54': 1, 'model.layers.55': 1, 'model.layers.56': 1, 'model.layers.57': 1, 'model.layers.58': 1, 'model.layers.59': 1, 'model.layers.60': 1, 'model.layers.61': 1, 'model.layers.62': 1, 'model.layers.63': 1, 'model.layers.64': 1, 'model.layers.65': 1, 'model.layers.66': 1, 'model.layers.67': 1, 'model.layers.68': 1, 'model.layers.69': 1, 'model.layers.70': 1, 'model.layers.71': 1, 'model.layers.72': 1, 'model.layers.73': 1, 'model.layers.74': 1, 'model.layers.75': 1, 'model.layers.76': 1, 'model.layers.77': 1, 'model.layers.78': 1, 'model.layers.79': 1, 'model.norm': 1, 'model.rotary_emb': 1, 'lm_head': 1}
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/code/data_analysis/perplexity.py", line 296, in <module>
+    main()
+  File "/gpfs/scratch1/shared/mschaffelder/code/data_analysis/perplexity.py", line 286, in main
+    get_token_probabilities(model_name, model, input_path, output_path, tokenizer, temperature=temperature)
+  File "/gpfs/scratch1/shared/mschaffelder/code/data_analysis/perplexity.py", line 22, in get_token_probabilities
+    with open(input_path, "r", encoding="utf-8") as fin: # read input file
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '../../Data/Finetuning/Augmented/Medium/Llama/dolly_train_1_Llama.jsonl'
+
+JOB STATISTICS
+==============
+Job ID: 11467479
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:02:01
+CPU Efficiency: 3.01% of 01:06:56 core-walltime
+Job Wall-clock time: 00:04:11
+Memory Utilized: 3.84 GB
+Memory Efficiency: 3.00% of 128.00 GB (128.00 GB/node)
