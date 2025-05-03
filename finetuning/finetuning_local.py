@@ -1,13 +1,13 @@
 import os
-from transformers import LlamaForCausalLM, LlamaTokenizer, Trainer, TrainingArguments
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from datasets import load_dataset
-import torch
 
 # This script is written by ChatGPT
 
 # 1. Configuration
-MODEL_NAME = "meta-llama/Llama-3-8b-instruct"  # HF repo for Llama 3.1 8B
+MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"  
 DATASET_NAME = "../../Data/Finetuning/Augmented/Small/Llama/dolly_train_all_Llama.jsonl"  
 OUTPUT_DIR = "../../Data/ft_models/lora_llama3"
 
@@ -28,13 +28,13 @@ WARMUP_STEPS = 100
 
 # 2. Load tokenizer and model
 print("Loading tokenizer and model...")
-tokenizer = LlamaTokenizer.from_pretrained(MODEL_NAME)
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 # set padding side and token
 tokenizer.padding_side = "right"
 tokenizer.truncation_side = "right"
 
 # Load model in 8-bit to save memory
-model = LlamaForCausalLM.from_pretrained(
+model = AutoModelForCausalLM.from_pretrained(
     MODEL_NAME,
     load_in_8bit=True,
     device_map="auto"
