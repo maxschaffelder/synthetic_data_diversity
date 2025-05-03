@@ -54,7 +54,7 @@ lora_config = LoraConfig(
 )
 
 model = get_peft_model(model, lora_config)
-print("LoRA modules added. Trainable params: ", model.get_trainable_params())
+print("LoRA modules added. ")
 
 # 4. Load and preprocess dataset
 raw_dataset = load_dataset("json", data_files=DATASET_NAME)
