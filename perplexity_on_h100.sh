@@ -15,6 +15,9 @@ module load 2024
 # Activate virtual environment
 source /scratch-shared/mschaffelder/venv/bin/activate
 
+# Install required packages
+pip install -r requirements.txt
+
 # Run script
 cd $SLURM_SUBMIT_DIR
 # Make sure CUDA devices are visible
