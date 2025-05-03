@@ -1,7 +1,7 @@
 import os
 import torch
 from transformers import LlamaForCausalLM, LlamaTokenizer, Trainer, TrainingArguments
-from peft import LoraConfig, get_peft_model, prepare_model_for_int8_training
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from datasets import load_dataset
 
 # This script is written by ChatGPT
@@ -41,7 +41,7 @@ model = LlamaForCausalLM.from_pretrained(
 )
 
 # 3. Prepare model for int8 training and apply LoRA
-model = prepare_model_for_int8_training(model)
+model = prepare_model_for_kbit_training(model)
 
 lora_config = LoraConfig(
     r=LORA_R,
