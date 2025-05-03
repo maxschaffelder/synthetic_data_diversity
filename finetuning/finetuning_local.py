@@ -1,8 +1,8 @@
 import os
-import torch
 from transformers import LlamaForCausalLM, LlamaTokenizer, Trainer, TrainingArguments
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from datasets import load_dataset
+import torch
 
 # This script is written by ChatGPT
 
