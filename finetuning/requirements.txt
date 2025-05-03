@@ -4,3 +4,4 @@ transformers>=4.33.0
 datasets>=2.14.0
 sentencepiece>=0.1.99
 huggingface-cli>=0.1.0
+bitsandbytes
