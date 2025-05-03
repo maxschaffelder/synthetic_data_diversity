@@ -1,0 +1,93 @@
+Requirement already satisfied: torch in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 1)) (2.6.0)
+Requirement already satisfied: peft>=0.5.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 2)) (0.15.2)
+Requirement already satisfied: transformers>=4.33.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 3)) (4.51.3)
+Requirement already satisfied: datasets>=2.14.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 4)) (3.5.1)
+Requirement already satisfied: sentencepiece>=0.1.99 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 5)) (0.2.0)
+ERROR: Could not find a version that satisfies the requirement huggingface-cli>=0.1.0 (from versions: none)
+
+[notice] A new release of pip is available: 25.1 -> 25.1.1
+[notice] To update, run: pip install --upgrade pip
+ERROR: No matching distribution found for huggingface-cli>=0.1.0
+CUDA_VISIBLE_DEVICES: 0
+Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-d6640e2b-0f31-d55d-b34b-fd028f9ba121)
+The token has not been saved to the git credentials helper. Pass `add_to_git_credential=True` in this function directly or `--add-to-git-credential` if using via `huggingface-cli` if you want to set the git credential as well.
+Token is valid (permission: fineGrained).
+The token `MaxBook Air` has been saved to /home/mschaffelder/.cache/huggingface/stored_tokens
+Your token has been saved to /home/mschaffelder/.cache/huggingface/token
+Login successful.
+The current active token is: `MaxBook Air`
+Loading tokenizer and model...
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/huggingface_hub/utils/_http.py", line 409, in hf_raise_for_status
+    response.raise_for_status()
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://huggingface.co/meta-llama/Llama-3-8b-instruct/resolve/main/tokenizer_config.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/utils/hub.py", line 424, in cached_files
+    hf_hub_download(
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/huggingface_hub/file_download.py", line 961, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/huggingface_hub/file_download.py", line 1068, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/huggingface_hub/file_download.py", line 1596, in _raise_on_head_call_error
+    raise head_call_error
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/huggingface_hub/file_download.py", line 1484, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/huggingface_hub/file_download.py", line 1401, in get_hf_file_metadata
+    r = _request_wrapper(
+        ^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/huggingface_hub/file_download.py", line 285, in _request_wrapper
+    response = _request_wrapper(
+               ^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/huggingface_hub/file_download.py", line 309, in _request_wrapper
+    hf_raise_for_status(response)
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/huggingface_hub/utils/_http.py", line 459, in hf_raise_for_status
+    raise _format(RepositoryNotFoundError, message, response) from e
+huggingface_hub.errors.RepositoryNotFoundError: 404 Client Error. (Request ID: Root=1-6816656b-7485c17a5ae0a24c06624899;77fc8dcf-da28-4d8e-b5e6-56e151d6b2a1)
+
+Repository Not Found for url: https://huggingface.co/meta-llama/Llama-3-8b-instruct/resolve/main/tokenizer_config.json.
+Please make sure you specified the correct `repo_id` and `repo_type`.
+If you are trying to access a private or gated repo, make sure you are authenticated. For more details, see https://huggingface.co/docs/huggingface_hub/authentication
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/finetuning_local.py", line 31, in <module>
+    tokenizer = LlamaTokenizer.from_pretrained(MODEL_NAME)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/tokenization_utils_base.py", line 1988, in from_pretrained
+    resolved_config_file = cached_file(
+                           ^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/utils/hub.py", line 266, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/utils/hub.py", line 456, in cached_files
+    raise OSError(
+OSError: meta-llama/Llama-3-8b-instruct is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`
+
+JOB STATISTICS
+==============
+Job ID: 11549417
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:00:07
+CPU Efficiency: 0.64% of 00:18:08 core-walltime
+Job Wall-clock time: 00:01:08
+Memory Utilized: 288.00 MB
+Memory Efficiency: 0.31% of 90.00 GB (90.00 GB/node)

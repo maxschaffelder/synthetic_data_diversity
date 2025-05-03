@@ -281,7 +281,7 @@ def main():
 
     input_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Medium/Llama/dolly_train_{dolly_version}_Llama.jsonl"
     output_path = f"/scratch-shared/mschaffelder/Data/analysis/perplexity/FA3_test/dolly_train_{dolly_version}_Llama_medium_PPL.jsonl"
-
+    get_token_probabilities(model_name, model, input_path, output_path, tokenizer, temperature=temperature)
 
     # Calculate PPL scores and token probs for all data in one go
     for dolly_version in range(1, 5):

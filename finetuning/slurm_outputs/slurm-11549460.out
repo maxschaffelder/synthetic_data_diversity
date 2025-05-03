@@ -1,0 +1,49 @@
+Requirement already satisfied: torch in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 1)) (2.6.0)
+Requirement already satisfied: peft>=0.5.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 2)) (0.15.2)
+Requirement already satisfied: transformers>=4.33.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 3)) (4.51.3)
+Requirement already satisfied: datasets>=2.14.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 4)) (3.5.1)
+Requirement already satisfied: sentencepiece>=0.1.99 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 5)) (0.2.0)
+ERROR: Could not find a version that satisfies the requirement huggingface-cli>=0.1.0 (from versions: none)
+
+[notice] A new release of pip is available: 25.1 -> 25.1.1
+[notice] To update, run: pip install --upgrade pip
+ERROR: No matching distribution found for huggingface-cli>=0.1.0
+CUDA_VISIBLE_DEVICES: 0
+Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-3baeff41-7e0d-0a73-1bfe-cdf4e7b43834)
+The token has not been saved to the git credentials helper. Pass `add_to_git_credential=True` in this function directly or `--add-to-git-credential` if using via `huggingface-cli` if you want to set the git credential as well.
+Token is valid (permission: fineGrained).
+The token `MaxBook Air` has been saved to /home/mschaffelder/.cache/huggingface/stored_tokens
+Your token has been saved to /home/mschaffelder/.cache/huggingface/token
+Login successful.
+The current active token is: `MaxBook Air`
+The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
+Loading tokenizer and model...
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/finetuning_local.py", line 37, in <module>
+    model = AutoModelForCausalLM.from_pretrained(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 4228, in from_pretrained
+    hf_quantizer.validate_environment(
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/quantizers/quantizer_bnb_8bit.py", line 73, in validate_environment
+    raise ImportError(
+ImportError: Using `bitsandbytes` 8-bit quantization requires the latest version of bitsandbytes: `pip install -U bitsandbytes`
+
+JOB STATISTICS
+==============
+Job ID: 11549460
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:00:07
+CPU Efficiency: 0.44% of 00:26:40 core-walltime
+Job Wall-clock time: 00:01:40
+Memory Utilized: 599.93 MB
+Memory Efficiency: 0.65% of 90.00 GB (90.00 GB/node)
