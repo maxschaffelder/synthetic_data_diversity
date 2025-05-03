@@ -36,12 +36,13 @@ tokenizer.truncation_side = "right"
 # Load model in 8-bit to save memory
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_NAME,
-    load_in_8bit=True,
+    #load_in_8bit=True,
+    torch_dtype=torch.float16,
     device_map="auto"
 )
 
 # 3. Prepare model for int8 training and apply LoRA
-model = prepare_model_for_kbit_training(model)
+#model = prepare_model_for_kbit_training(model)
 
 lora_config = LoraConfig(
     r=LORA_R,
