@@ -13,7 +13,7 @@ module load 2024
 # module load Python/3.10.4-GCCcore-11.3.0
 
 # Activate virtual environment
-source /scratch-shared/mschaffelder/.venv/bin/activate
+source /scratch-shared/mschaffelder/venv/bin/activate
 
 # Run script
 cd $SLURM_SUBMIT_DIR

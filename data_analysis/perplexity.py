@@ -266,7 +266,8 @@ def main():
         use_safetensors=True,
         offload_folder="offload",  # Optional: offload to disk if needed
         offload_state_dict=True,  # Optional: offload parameters to CPU if needed
-        low_cpu_mem_usage=True
+        low_cpu_mem_usage=True,
+        attn_implementation="flash_attention_2" # flash attention 3 is used if available
     )
     
     print(f"Model loaded and distributed across GPUs. Device map: {model.hf_device_map}")
@@ -275,8 +276,12 @@ def main():
 
     # Calculate token probabilities & perplexity
 
-    #dolly_version = 1
+    dolly_version = 1
     temperature = 1.0
+
+    input_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Medium/Llama/dolly_train_{dolly_version}_Llama.jsonl"
+    output_path = f"/scratch-shared/mschaffelder/Data/analysis/perplexity/FA3_test/dolly_train_{dolly_version}_Llama_medium_PPL.jsonl"
+
 
     # Calculate PPL scores and token probs for all data in one go
     for dolly_version in range(1, 5):
@@ -284,8 +289,10 @@ def main():
         #output_path = f"../../Data/analysis/perplexity/llama_medium/dolly_train_{dolly_version}_Llama_medium_PPL.jsonl"
         input_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Medium/Llama/dolly_train_{dolly_version}_Llama.jsonl"
         output_path = f"/scratch-shared/mschaffelder/Data/analysis/perplexity/llama_medium/dolly_train_{dolly_version}_Llama_medium_PPL.jsonl"
+        output_path_human = f"/scratch-shared/mschaffelder/Data/analysis/perplexity/llama_medium/dolly_train_{dolly_version}_Llama_medium_PPL_on_human_data.jsonl"
 
-        get_token_probabilities(model_name, model, input_path, output_path, tokenizer, temperature=temperature)
+        #get_token_probabilities(model_name, model, input_path, output_path, tokenizer, temperature=temperature)
+        #get_token_probabilities_human(model_name, model, input_path, output_path_human, tokenizer, temperature=temperature)
 
     # Clearing memory 
     del model  
