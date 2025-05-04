@@ -32,6 +32,9 @@ tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 # set padding side and token
 tokenizer.padding_side = "right"
 tokenizer.truncation_side = "right"
+# Set padding token
+if tokenizer.pad_token is None:
+    tokenizer.pad_token = tokenizer.eos_token
 
 # Load model in 8-bit to save memory
 #quantization_config = BitsAndBytesConfig(
