@@ -266,8 +266,8 @@ def main():
         use_safetensors=True,
         offload_folder="offload",  # Optional: offload to disk if needed
         offload_state_dict=True,  # Optional: offload parameters to CPU if needed
-        low_cpu_mem_usage=True,
-        attn_implementation="flash_attention_2" # flash attention 3 is used if available
+        low_cpu_mem_usage=True#,
+        #attn_implementation="flash_attention_2" # flash attention 3 is used if available
     )
     
     print(f"Model loaded and distributed across GPUs. Device map: {model.hf_device_map}")
