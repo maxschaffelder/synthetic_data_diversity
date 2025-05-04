@@ -16,7 +16,7 @@ module load 2024
 source /scratch-shared/mschaffelder/.venv/bin/activate
 
 # Install required packages
-pip install -r requirements.txt
+pip install -r requirements.txt --upgrade
 
 # Run script
 cd $SLURM_SUBMIT_DIR
