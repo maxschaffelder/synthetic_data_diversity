@@ -1,6 +1,6 @@
 import os
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments, BitsAndBytesConfig
+from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments, BitsAndBytesConfig, DataCollatorForLanguageModeling
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from datasets import load_dataset
 
@@ -119,17 +119,19 @@ training_args = TrainingArguments(
     report_to="none"
 )
 
+# Use the proper data collator for language modeling
+data_collator = DataCollatorForLanguageModeling(
+    tokenizer=tokenizer,
+    mlm=False  # we're doing causal LM, not masked LM
+)
+
 trainer = Trainer(
     model=model,
     args=training_args,
     train_dataset=train_dataset,
     eval_dataset=eval_dataset,
     tokenizer=tokenizer,
-    data_collator=lambda data: {
-        'input_ids': torch.stack([f['input_ids'] for f in data]),
-        'attention_mask': torch.stack([f['attention_mask'] for f in data]),
-        'labels': torch.stack([f['labels'] for f in data])
-    }
+    data_collator=data_collator
 )
 
 # 6. Start training
