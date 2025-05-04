@@ -17,7 +17,6 @@ source /scratch-shared/mschaffelder/.venv/bin/activate
 
 # Install required packages
 pip install -r requirements.txt 
-pip install transformers --upgrade
 
 # Run script
 cd $SLURM_SUBMIT_DIR
