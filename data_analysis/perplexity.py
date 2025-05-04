@@ -276,11 +276,11 @@ def main():
 
     # Calculate token probabilities & perplexity
 
-    dolly_version = 1
+    dolly_version = 4
     temperature = 1.0
 
-    input_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Medium/Llama/dolly_train_{dolly_version}_Llama.jsonl"
-    output_path = f"/scratch-shared/mschaffelder/Data/analysis/perplexity/FA3_test/dolly_train_{dolly_version}_Llama_medium_PPL.jsonl"
+    input_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Medium/Other/dolly_train_{dolly_version}_Command.jsonl"
+    output_path = f"/scratch-shared/mschaffelder/Data/analysis/perplexity/llama_medium/dolly_train_{dolly_version}_Command_medium_PPL.jsonl"
     get_token_probabilities(model_name, model, input_path, output_path, tokenizer, temperature=temperature)
 
     # Calculate PPL scores and token probs for all data in one go
