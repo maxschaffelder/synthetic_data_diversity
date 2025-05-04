@@ -1,0 +1,71 @@
+Requirement already satisfied: torch in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 1)) (2.6.0)
+Requirement already satisfied: peft>=0.5.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 2)) (0.15.2)
+Requirement already satisfied: transformers>=4.33.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 3)) (4.51.3)
+Requirement already satisfied: datasets>=2.14.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 4)) (3.5.1)
+Requirement already satisfied: sentencepiece>=0.1.99 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 5)) (0.2.0)
+ERROR: Could not find a version that satisfies the requirement huggingface-cli>=0.1.0 (from versions: none)
+
+[notice] A new release of pip is available: 25.1 -> 25.1.1
+[notice] To update, run: pip install --upgrade pip
+ERROR: No matching distribution found for huggingface-cli>=0.1.0
+CUDA_VISIBLE_DEVICES: 0
+Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-5c6d82e0-3206-f070-988f-5f286874a926)
+The token has not been saved to the git credentials helper. Pass `add_to_git_credential=True` in this function directly or `--add-to-git-credential` if using via `huggingface-cli` if you want to set the git credential as well.
+Token is valid (permission: fineGrained).
+The token `MaxBook Air` has been saved to /home/mschaffelder/.cache/huggingface/stored_tokens
+Your token has been saved to /home/mschaffelder/.cache/huggingface/token
+Login successful.
+The current active token is: `MaxBook Air`
+Loading tokenizer and model...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:04<00:12,  4.01s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:07<00:07,  3.99s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:11<00:03,  3.89s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  2.71s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  3.16s/it]
+LoRA modules added. 
+Map:   0%|          | 0/13509 [00:00<?, ? examples/s]Map:   0%|          | 0/13509 [00:00<?, ? examples/s]
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/finetuning_local.py", line 90, in <module>
+    dataset = raw_dataset.map(
+              ^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/datasets/dataset_dict.py", line 941, in map
+    dataset_dict[split] = dataset.map(
+                          ^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/datasets/arrow_dataset.py", line 3079, in map
+    for rank, done, content in Dataset._map_single(**dataset_kwargs):
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/datasets/arrow_dataset.py", line 3525, in _map_single
+    for i, batch in iter_outputs(shard_iterable):
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/datasets/arrow_dataset.py", line 3475, in iter_outputs
+    yield i, apply_function(example, i, offset=offset)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/datasets/arrow_dataset.py", line 3398, in apply_function
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/finetuning_local.py", line 81, in preprocess_fn
+    tokenized = tokenizer(
+                ^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/tokenization_utils_base.py", line 2887, in __call__
+    encodings = self._call_one(text=text, text_pair=text_pair, **all_kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/tokenization_utils_base.py", line 2975, in _call_one
+    return self.batch_encode_plus(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/tokenization_utils_base.py", line 3168, in batch_encode_plus
+    padding_strategy, truncation_strategy, max_length, kwargs = self._get_padding_truncation_strategies(
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/tokenization_utils_base.py", line 2789, in _get_padding_truncation_strategies
+    raise ValueError(
+ValueError: Asking to pad but the tokenizer does not have a padding token. Please select a token to use as `pad_token` `(tokenizer.pad_token = tokenizer.eos_token e.g.)` or add a new pad token via `tokenizer.add_special_tokens({'pad_token': '[PAD]'})`.
+
+JOB STATISTICS
+==============
+Job ID: 11561422
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:00:20
+CPU Efficiency: 4.17% of 00:08:00 core-walltime
+Job Wall-clock time: 00:00:30
+Memory Utilized: 1.63 MB
+Memory Efficiency: 0.00% of 90.00 GB (90.00 GB/node)

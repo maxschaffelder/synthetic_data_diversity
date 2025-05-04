@@ -1,0 +1,61 @@
+Requirement already satisfied: torch in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 1)) (2.6.0)
+Requirement already satisfied: peft>=0.5.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 2)) (0.15.2)
+Requirement already satisfied: transformers>=4.36.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 3)) (4.51.3)
+Requirement already satisfied: datasets>=2.14.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 4)) (3.5.1)
+Requirement already satisfied: sentencepiece>=0.1.99 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 5)) (0.2.0)
+ERROR: Could not find a version that satisfies the requirement huggingface-cli>=0.1.0 (from versions: none)
+
+[notice] A new release of pip is available: 25.1 -> 25.1.1
+[notice] To update, run: pip install --upgrade pip
+ERROR: No matching distribution found for huggingface-cli>=0.1.0
+Requirement already satisfied: transformers in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (4.51.3)
+Requirement already satisfied: filelock in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from transformers) (3.18.0)
+Requirement already satisfied: huggingface-hub<1.0,>=0.30.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from transformers) (0.30.2)
+Requirement already satisfied: numpy>=1.17 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from transformers) (2.2.5)
+Requirement already satisfied: packaging>=20.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from transformers) (25.0)
+Requirement already satisfied: pyyaml>=5.1 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from transformers) (6.0.2)
+Requirement already satisfied: regex!=2019.12.17 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from transformers) (2024.11.6)
+Requirement already satisfied: requests in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from transformers) (2.32.3)
+Requirement already satisfied: tokenizers<0.22,>=0.21 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from transformers) (0.21.1)
+Requirement already satisfied: safetensors>=0.4.3 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from transformers) (0.5.3)
+Requirement already satisfied: tqdm>=4.27 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from transformers) (4.67.1)
+Requirement already satisfied: fsspec>=2023.5.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from huggingface-hub<1.0,>=0.30.0->transformers) (2025.3.0)
+Requirement already satisfied: typing-extensions>=3.7.4.3 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from huggingface-hub<1.0,>=0.30.0->transformers) (4.13.2)
+Requirement already satisfied: charset-normalizer<4,>=2 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from requests->transformers) (3.4.1)
+Requirement already satisfied: idna<4,>=2.5 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from requests->transformers) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from requests->transformers) (2.4.0)
+Requirement already satisfied: certifi>=2017.4.17 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from requests->transformers) (2025.1.31)
+
+[notice] A new release of pip is available: 25.1 -> 25.1.1
+[notice] To update, run: pip install --upgrade pip
+CUDA_VISIBLE_DEVICES: 0
+Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-2e2c9bc9-c23e-80e1-2737-c2756d6183ce)
+The token has not been saved to the git credentials helper. Pass `add_to_git_credential=True` in this function directly or `--add-to-git-credential` if using via `huggingface-cli` if you want to set the git credential as well.
+Token is valid (permission: fineGrained).
+The token `MaxBook Air` has been saved to /home/mschaffelder/.cache/huggingface/stored_tokens
+Your token has been saved to /home/mschaffelder/.cache/huggingface/token
+Login successful.
+The current active token is: `MaxBook Air`
+Loading tokenizer and model...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:04<00:12,  4.03s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:08<00:08,  4.03s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:11<00:03,  3.92s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  2.72s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  3.18s/it]
+LoRA modules added. 
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/finetuning_local.py", line 103, in <module>
+    training_args = TrainingArguments(
+                    ^^^^^^^^^^^^^^^^^^
+TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'
+
+JOB STATISTICS
+==============
+Job ID: 11561884
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: RUNNING
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:18:08 core-walltime
+Job Wall-clock time: 00:01:08
+Memory Utilized: 0.00 MB
+Memory Efficiency: 0.00% of 90.00 GB (90.00 GB/node)
+WARNING: Efficiency statistics can only be obtained after the job has ended as seff tool is based on the accounting database data.
