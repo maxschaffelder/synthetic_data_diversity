@@ -8,8 +8,11 @@ from datasets import load_dataset
 
 # 1. Configuration
 MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"  
-DATASET_NAME = "../../Data/Finetuning/Augmented/Small/Llama/dolly_train_all_Llama.jsonl"  
-OUTPUT_DIR = "../../Data/ft_models/lora_llama3"
+DATASET_NAME = "../../Data/Finetuning/Augmented/Small/Llama/dolly_train_all_Llama.jsonl"
+TEST_DATASET_NAME = "/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Small/Llama/dolly_test_Llama.jsonl"
+#DATASET_NAME = "../../Data/Finetuning/Augmented/Small/Other/dolly_train_all_multi.jsonl"  
+OUTPUT_DIR = "../../Data/ft_models/lora_llama_8b_single"
+#OUTPUT_DIR = "../../Data/ft_models/lora_llama_8b_multi"
 
 # LoRA hyperparameters
 LORA_R = 8
@@ -66,7 +69,10 @@ model = get_peft_model(model, lora_config)
 print("LoRA modules added. ")
 
 # 4. Load and preprocess dataset
-raw_dataset = load_dataset("json", data_files=DATASET_NAME)
+raw_dataset = load_dataset("json", data_files={
+    "train": DATASET_NAME,
+    "validation": TEST_DATASET_NAME
+})
 
 # system prompt for instruct mode
 SYSTEM_PROMPT = "You are a helpful assistant."
@@ -76,18 +82,48 @@ max_length = 2048
 
 def preprocess_fn(examples):
     # combine system prompt, instruction, and model answer (fallback to human answer)
-    answers = examples.get("response_llama-3.1-8b-instant", [])
+    # Find the first key that starts with "response_" but is not "response_human"
+    response_keys = [key for key in examples.keys() if key.startswith("response_") and key != "response_human"]
+    answers = examples.get(response_keys[0], [])
+
     prompts = [
         f"[INST] <<SYS>> {SYSTEM_PROMPT} <</SYS>>\n\n{ins} [/INST]\n\n{resp}"
         for ins, resp in zip(examples["instruction"], answers)
     ]
+    
+    # First, tokenize without truncation to check lengths
+    lengths = [len(tokenizer.encode(prompt)) for prompt in prompts]
+    
+    # Create mask for samples not exceeding max_length
+    valid_mask = [length <= max_length for length in lengths]
+    
+    # Filter prompts
+    filtered_prompts = [prompt for prompt, is_valid in zip(prompts, valid_mask) if is_valid]
+    
+    # If all samples were filtered out, return empty dict with same structure
+    if not filtered_prompts:
+        print("Warning: All samples in this batch exceeded max_length and were filtered out")
+        empty_result = {
+            "input_ids": [],
+            "attention_mask": [],
+            "labels": []
+        }
+        return empty_result
+    
+    # Tokenize valid prompts with padding
     tokenized = tokenizer(
-        prompts,
-        truncation=True,
+        filtered_prompts,
+        truncation=False,  # No truncation needed as we filtered
         max_length=max_length,
         padding="max_length"
     )
     tokenized["labels"] = tokenized["input_ids"].copy()
+    
+    # Print stats about filtered samples
+    filtered_count = len(prompts) - len(filtered_prompts)
+    if filtered_count > 0:
+        print(f"Filtered out {filtered_count} samples exceeding {max_length} tokens")
+    
     return tokenized
 
 dataset = raw_dataset.map(

@@ -3,7 +3,7 @@
 #SBATCH -t 12:00:00
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 4
-#SBATCH --mem=90G
+#SBATCH --mem=30G
 #SBATCH --gpus=1
 #SBATCH --partition=gpu_h100
 #SBATCH -N 1
