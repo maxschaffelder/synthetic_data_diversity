@@ -190,8 +190,8 @@ if __name__ == "__main__":
     # Create a model-specific output path
     model_short = "Llama"
     # output_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Small/Llama_with_perplexity/dolly_train_{dolly_version}_{model_short}.jsonl"
-    output_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Small/Llama/dolly_test_{model_short}.jsonl"
-    #output_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Medium/Llama/dolly_test_{model_short}.jsonl"
+    #output_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Small/Llama/dolly_test_{model_short}.jsonl"
+    output_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Medium/Llama/dolly_test_{model_short}.jsonl"
 
 
     print(f"Generating data with {model_name}")
