@@ -3,7 +3,6 @@ import torch
 import sys
 import os
 from transformers import AutoModelForCausalLM, AutoTokenizer
-import time
 import json
 from tqdm import tqdm
 import gc
@@ -182,13 +181,15 @@ if __name__ == "__main__":
 
 
     # Set up paths
-    input_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Dolly/dolly_train_{dolly_version}.jsonl"
+    #input_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Dolly/dolly_train_{dolly_version}.jsonl"
+    input_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Dolly/dolly_test.jsonl" # create synthetic test set
 
 
 
     # Create a model-specific output path
     model_short = model_name.split("/")[-1]
-    output_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Small/Llama_with_perplexity/dolly_train_{dolly_version}_{model_short}.jsonl"
+    # output_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Small/Llama_with_perplexity/dolly_train_{dolly_version}_{model_short}.jsonl"
+    output_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Small/Llama_with_perplexity/dolly_test_{model_short}.jsonl"
 
 
     print(f"Generating data with {model_name}")
