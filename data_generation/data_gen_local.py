@@ -155,6 +155,7 @@ if __name__ == "__main__":
     torch.set_grad_enabled(False) # turn off for inference
 
     model_name = "meta-llama/Llama-3.1-8B-Instruct"
+    #model_name = "meta-llama/Llama-3.1-70B-Instruct"
     
     # Explicitly set device_map to use the H100 if detected
     device_map = "cuda"  # Default behavior uses all available GPUs
@@ -187,9 +188,10 @@ if __name__ == "__main__":
 
 
     # Create a model-specific output path
-    model_short = model_name.split("/")[-1]
+    model_short = "Llama"
     # output_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Small/Llama_with_perplexity/dolly_train_{dolly_version}_{model_short}.jsonl"
     output_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Small/Llama/dolly_test_{model_short}.jsonl"
+    #output_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Medium/Llama/dolly_test_{model_short}.jsonl"
 
 
     print(f"Generating data with {model_name}")
