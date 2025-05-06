@@ -103,12 +103,7 @@ def preprocess_fn(examples):
     # If all samples were filtered out, return empty dict with same structure
     if not filtered_prompts:
         print("Warning: All samples in this batch exceeded max_length and were filtered out")
-        empty_result = {
-            "input_ids": [],
-            "attention_mask": [],
-            "labels": []
-        }
-        return empty_result
+        return {"input_ids": [], "attention_mask": [], "labels": []}
     
     # Tokenize valid prompts with padding
     tokenized = tokenizer(
@@ -117,13 +112,36 @@ def preprocess_fn(examples):
         max_length=max_length,
         padding="max_length"
     )
-    tokenized["labels"] = tokenized["input_ids"].copy()
     
     # Print stats about filtered samples
     filtered_count = len(prompts) - len(filtered_prompts)
     if filtered_count > 0:
         print(f"Filtered out {filtered_count} samples exceeding {max_length} tokens")
     
+    # Create labels with -100 for instruction part
+    labels = []
+    for i, input_ids in enumerate(tokenized["input_ids"]):
+        # Find where response begins (after [/INST])
+        inst_end_str = "[/INST]"
+        inst_end_ids = tokenizer.encode(inst_end_str, add_special_tokens=False)
+        
+        response_start_idx = None
+        # Find position of [/INST] token sequence
+        for j in range(len(input_ids) - len(inst_end_ids) + 1):
+            if input_ids[j:j+len(inst_end_ids)] == inst_end_ids:
+                response_start_idx = j + len(inst_end_ids) + 1  # +1 for the newline after [/INST]
+                break
+        
+        if response_start_idx is None:
+            print(f"Warning: Could not find [/INST] token in sample {i}, using full sequence for labels")
+            sample_labels = input_ids.copy()  # Use full sequence if [/INST] not found
+        else:
+            # Set labels to -100 for instruction part, actual token IDs for response part
+            sample_labels = [-100] * response_start_idx + input_ids[response_start_idx:]
+        
+        labels.append(sample_labels)
+    
+    tokenized["labels"] = labels
     return tokenized
 
 dataset = raw_dataset.map(
@@ -152,7 +170,8 @@ training_args = TrainingArguments(
     eval_strategy="steps" if eval_dataset else "no",
     eval_steps=500,
     load_best_model_at_end=True if eval_dataset else False,
-    report_to="none"
+    report_to="tensorboard",  # Enable TensorBoard logging
+    logging_dir=os.path.join(OUTPUT_DIR, "logs")  # Directory for TensorBoard logs
 )
 
 # Use the proper data collator for language modeling
