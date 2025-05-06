@@ -21,10 +21,10 @@ LORA_DROPOUT = 0.05
 LORA_TARGET_MODULES = ["q_proj", "v_proj"]  # typically attention proj modules
 
 # Training hyperparameters
-BATCH_SIZE = 8
-MICRO_BATCH_SIZE = 1  # actual per-GPU batch
+BATCH_SIZE = 128 # see if this works
+MICRO_BATCH_SIZE = 16  # actual per-GPU batch
 GRADIENT_ACCUMULATION_STEPS = BATCH_SIZE // MICRO_BATCH_SIZE
-EPOCHS = 3
+EPOCHS = 2.5
 LEARNING_RATE = 3e-4
 WEIGHT_DECAY = 0.01
 WARMUP_STEPS = 100
