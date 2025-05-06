@@ -4,3 +4,4 @@ transformers>=4.36.0
 datasets>=2.14.0
 sentencepiece>=0.1.99
 huggingface_hub>=0.17.0
+bitsandbytes
