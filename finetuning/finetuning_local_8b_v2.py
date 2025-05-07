@@ -60,7 +60,7 @@ model = AutoModelForCausalLM.from_pretrained(
     torch_dtype=torch.float16,
     device_map="auto"
 )
-model = prepare_model_for_kbit_training(model)
+#model = prepare_model_for_kbit_training(model)
 
 # 5. Apply LoRA adapters
 guru_config = LoraConfig(
