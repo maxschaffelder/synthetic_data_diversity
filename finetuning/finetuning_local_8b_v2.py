@@ -1,3 +1,4 @@
+print("Entered finetuning_local_8b_v2.py")
 import os
 import torch
 from transformers import (
@@ -12,6 +13,8 @@ from transformers import (
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from datasets import load_dataset
 from transformers import default_data_collator
+
+print("Imported modules")
 
 # 1. Configuration
 MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"
@@ -150,7 +153,7 @@ training_args = TrainingArguments(
     logging_steps=50,
     save_total_limit=3,
     save_strategy="epoch",
-    evaluation_strategy="steps" if eval_dataset else "no",
+    eval_strategy="steps" if eval_dataset else "no",
     eval_steps=500,
     load_best_model_at_end=True if eval_dataset else False,
     seed=SEED,
