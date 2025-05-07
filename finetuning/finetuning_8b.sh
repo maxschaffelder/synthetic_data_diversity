@@ -11,7 +11,7 @@
 # Load required modules 
 module load 2024
 # module load Python/3.10.4-GCCcore-11.3.0
-module load 2024 Python/3.11.5-GCCcore-13.2.0
+module load Python/3.11.3-GCCcore-12.3.0
 
 # Activate virtual environment
 source /scratch-shared/mschaffelder/.venv/bin/activate
