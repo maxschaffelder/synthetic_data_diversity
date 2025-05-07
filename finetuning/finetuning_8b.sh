@@ -9,7 +9,7 @@
 #SBATCH -N 1
 
 # Load required modules 
-module load 2024
+module load 2023
 # module load Python/3.10.4-GCCcore-11.3.0
 module load Python/3.11.3-GCCcore-12.3.0
 
