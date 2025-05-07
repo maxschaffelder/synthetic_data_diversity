@@ -1,0 +1,27 @@
+Lmod has detected the following error: The following module(s) are unknown:
+"Python/3.11.5-GCCcore-13.2.0"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "Python/3.11.5-GCCcore-13.2.0"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+slurmstepd: error: *** JOB 11617624 ON gcn118 CANCELLED AT 2025-05-07T14:41:48 ***
+
+JOB STATISTICS
+==============
+Job ID: 11617624
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:00:01
+CPU Efficiency: 0.12% of 00:14:08 core-walltime
+Job Wall-clock time: 00:00:53
+Memory Utilized: 26.92 MB
+Memory Efficiency: 0.09% of 30.00 GB (30.00 GB/node)
