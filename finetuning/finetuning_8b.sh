@@ -9,12 +9,12 @@
 #SBATCH -N 1
 
 # Load required modules 
-module load 2023
-# module load Python/3.10.4-GCCcore-11.3.0
-module load Python/3.11.3-GCCcore-12.3.0
+module load 2024 Python/3.12.3-GCCcore-13.3.0
+# module load 2023 Python/3.11.3-GCCcore-12.3.0
 
 # Activate virtual environment
-source /scratch-shared/mschaffelder/.venv/bin/activate
+# source /scratch-shared/mschaffelder/.venv/bin/activate
+source /scratch-shared/mschaffelder/venv/bin/activate
 
 # Install required packages
 pip install -r requirements.txt 
