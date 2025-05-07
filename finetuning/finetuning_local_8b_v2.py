@@ -126,10 +126,13 @@ def preprocess_fn(examples):
             keep_mask.append(True)
             labels.append(lbls)
 
-    # filter out invalid samples
-    filtered = {k: [v for v, keep in zip(vals, keep_mask) if keep] for k, vals in tokenized.items()}
-    filtered['labels'] = [lbl for lbl, keep in zip(labels, keep_mask) if keep]
-    return filtered
+    # filter out invalid samples and only keep required columns
+    result = {
+        "input_ids": [v for v, keep in zip(tokenized["input_ids"], keep_mask) if keep],
+        "attention_mask": [v for v, keep in zip(tokenized["attention_mask"], keep_mask) if keep],
+        "labels": [lbl for lbl, keep in zip(labels, keep_mask) if keep]
+    }
+    return result
 
 processed = raw_dataset.map(
     preprocess_fn,
