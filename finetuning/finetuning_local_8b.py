@@ -4,7 +4,6 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingA
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from datasets import load_dataset
 
-# This script is written by ChatGPT
 
 # 1. Configuration
 MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"  
@@ -86,6 +85,13 @@ def preprocess_fn(examples):
     response_keys = [key for key in examples.keys() if key.startswith("response_") and key != "response_human"]
     answers = examples.get(response_keys[0], [])
 
+    # Print the first few keys from examples to debug
+    if len(examples) > 0:
+        print(f"Available keys in dataset: {list(examples.keys())}")
+        if len(examples["instruction"]) > 0:
+            print(f"Sample instruction: {examples['instruction'][0][:50]}...")
+            print(f"Sample answer: {answers[0][:50]}..." if answers else "No answers found")
+
     prompts = [
         f"[INST] <<SYS>> {SYSTEM_PROMPT} <</SYS>>\n\n{ins} [/INST]\n\n{resp}"
         for ins, resp in zip(examples["instruction"], answers)
@@ -118,28 +124,48 @@ def preprocess_fn(examples):
     if filtered_count > 0:
         print(f"Filtered out {filtered_count} samples exceeding {max_length} tokens")
     
+    # Debug tokenization of [/INST]
+    inst_end_str = "[/INST]"
+    inst_end_ids = tokenizer.encode(inst_end_str, add_special_tokens=False)
+    print(f"[DEBUG] [/INST] token ids: {inst_end_ids}")
+    
     # Create labels with -100 for instruction part
     labels = []
+    skipped_count = 0
+    valid_samples_mask = []  # Track which samples to keep
+    
     for i, input_ids in enumerate(tokenized["input_ids"]):
-        # Find where response begins (after [/INST])
-        inst_end_str = "[/INST]"
-        inst_end_ids = tokenizer.encode(inst_end_str, add_special_tokens=False)
+        # Convert to string to find [/INST] substring position
+        text = tokenizer.decode(input_ids)
+        inst_pos = text.find("[/INST]")
         
-        response_start_idx = None
-        # Find position of [/INST] token sequence
-        for j in range(len(input_ids) - len(inst_end_ids) + 1):
-            if input_ids[j:j+len(inst_end_ids)] == inst_end_ids:
-                response_start_idx = j + len(inst_end_ids) + 1  # +1 for the newline after [/INST]
-                break
-        
-        if response_start_idx is None:
-            print(f"Warning: Could not find [/INST] token in sample {i}, using full sequence for labels")
-            sample_labels = input_ids.copy()  # Use full sequence if [/INST] not found
+        if inst_pos == -1:
+            skipped_count += 1
+            if skipped_count <= 5:  # Limit debug output
+                print(f"Warning: Could not find [/INST] token in sample {i}, skipping this sample")
+            valid_samples_mask.append(False)  # Mark this sample to be filtered out
+            labels.append([0])  # Placeholder, will be filtered out
         else:
+            # Decode up to the [/INST] position + length
+            end_pos = inst_pos + len("[/INST]")
+            prefix_text = text[:end_pos]
+            # Re-encode just this part to get accurate token count
+            prefix_tokens = tokenizer.encode(prefix_text, add_special_tokens=False)
+            response_start_idx = len(prefix_tokens)
+            
             # Set labels to -100 for instruction part, actual token IDs for response part
             sample_labels = [-100] * response_start_idx + input_ids[response_start_idx:]
-        
-        labels.append(sample_labels)
+            labels.append(sample_labels)
+            valid_samples_mask.append(True)  # Mark this sample to be kept
+    
+    if skipped_count > 0:
+        print(f"Skipped {skipped_count} out of {len(tokenized['input_ids'])} samples due to missing [/INST] token")
+    
+    # Filter out samples where [/INST] wasn't found
+    if not all(valid_samples_mask):
+        # Keep only samples that have [/INST]
+        for key in tokenized.keys():
+            tokenized[key] = [item for item, valid in zip(tokenized[key], valid_samples_mask) if valid]
     
     tokenized["labels"] = labels
     return tokenized
