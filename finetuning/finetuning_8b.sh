@@ -3,7 +3,7 @@
 #SBATCH -t 12:00:00
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 4
-#SBATCH --mem=30G
+#SBATCH --mem=80G
 #SBATCH --gpus=1
 #SBATCH --partition=gpu_h100
 #SBATCH -N 1
@@ -25,5 +25,5 @@ cd $SLURM_SUBMIT_DIR
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
 echo "Available GPUs: $(nvidia-smi -L)"
 
-huggingface-cli login --token "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"
+#huggingface-cli login --token "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"
 python finetuning_dr.py
