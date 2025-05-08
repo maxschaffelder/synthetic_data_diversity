@@ -1,9 +1,10 @@
+print("importing libraries")
 import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorWithPadding, Trainer, TrainingArguments
 from datasets import load_dataset
 from peft import LoraConfig, TaskType, get_peft_model
-
+print("done importing libraries")
 # (Optional) initialize Weights & Biases for experiment tracking
 # You can set WANDB_PROJECT and login separately as needed.
 #import wandb
@@ -13,13 +14,16 @@ from peft import LoraConfig, TaskType, get_peft_model
 
 # 1. Load the tokenizer and model
 # Use the LLaMA 3.1 8B Instruct model from Hugging Face (requires access)
+print("loading tokenizer")
 tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B-Instruct", use_fast=False)
+print("loading model")
 model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.1-8B-Instruct")
 
 # Ensure tokenizer has a padding token (LLaMA may not have one by default)
 if tokenizer.pad_token is None:
     tokenizer.add_special_tokens({'pad_token': '<pad>'})
     model.resize_token_embeddings(len(tokenizer))
+print("done loading tokenizer and model")
 
 # 2. Configure LoRA for parameter-efficient fine-tuning
 # Using Hugging Face PEFT LoRA (low-rank adaptation) example:contentReference[oaicite:1]{index=1}; 
@@ -33,15 +37,21 @@ lora_config = LoraConfig(
     bias="none",
     task_type=TaskType.CAUSAL_LM
 )
+
+print("getting peft model")
 model = get_peft_model(model, lora_config)
+model.to("cuda")
+print("done getting peft model")
 # Optional: verify the number of trainable parameters (should be much smaller than total)
 model.print_trainable_parameters()
 
 # 3. Load and preprocess the dataset
 # Data format: JSONL with 'instruction' and 'response_model' fields per line.
-data_path = "../../Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama_formatted.jsonl" # TODO: look into validation set
-dataset = load_dataset("json", data_files={"train": data_path})
+data_path = "../../Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama_formatted.jsonl" # TODO: look into validation se
 
+print("loading dataset")
+dataset = load_dataset("json", data_files={"train": data_path})
+print("done loading dataset")
 
 
 # Split into training and validation (90% train, 10% eval)
@@ -57,8 +67,10 @@ def filter_long(ex):
     combined = system_prompt + " " + ex["instruction"] + " " + ex["response_model"]
     return len(tokenizer(combined, truncation=False)["input_ids"]) <= 2048
 
+print("filtering long examples")
 train_dataset = train_dataset.filter(filter_long)
 val_dataset   = val_dataset.filter(filter_long)
+print("done filtering long examples")
 
 # Function to tokenize and prepare model inputs
 def tokenize_and_format(ex):
@@ -89,7 +101,8 @@ training_args = TrainingArguments(
     num_train_epochs=3,
     learning_rate=2e-5,
     weight_decay=0.01,
-    fp16=True,                        # enable mixed-precision training:contentReference[oaicite:3]{index=3}
+    fp16=False,                        # enable mixed-precision training:contentReference[oaicite:3]{index=3}
+    bf16=True,
     evaluation_strategy="steps",
     eval_steps=200,
     logging_steps=50,
@@ -108,5 +121,7 @@ trainer = Trainer(
     tokenizer=tokenizer
 )
 
+print("starting training")
 # 6. Start training
 trainer.train()
+print("finished training")
