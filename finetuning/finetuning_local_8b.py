@@ -8,7 +8,7 @@ from datasets import load_dataset
 # 1. Configuration
 MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"  
 DATASET_NAME = "../../Data/Finetuning/Augmented/Small/Llama/dolly_train_all_Llama.jsonl"
-TEST_DATASET_NAME = "/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Small/Llama/dolly_test_Llama.jsonl"
+TEST_DATASET_NAME = "../../Data/Finetuning/Augmented/Small/Llama/dolly_test_Llama.jsonl"
 #DATASET_NAME = "../../Data/Finetuning/Augmented/Small/Other/dolly_train_all_multi.jsonl"  
 OUTPUT_DIR = "../../Data/ft_models/lora_llama_8b_single"
 #OUTPUT_DIR = "../../Data/ft_models/lora_llama_8b_multi"
