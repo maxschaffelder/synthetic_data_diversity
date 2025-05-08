@@ -48,16 +48,17 @@ model.print_trainable_parameters()
 # 3. Load and preprocess the dataset
 # Data format: JSONL with 'instruction' and 'response_model' fields per line.
 data_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama_formatted.jsonl" # TODO: look into validation se
+val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_test_Llama_formatted.jsonl"
 
-print("loading dataset")
-dataset = load_dataset("json", data_files={"train": data_path})
-print("done loading dataset")
+print("loading datasets")
+train_dataset = load_dataset("json", data_files={"train": data_path})
+val_dataset = load_dataset("json", data_files={"test": val_path})
+print("done loading datasets")
 
 
 # Split into training and validation (90% train, 10% eval)
 #dataset = dataset["train"].train_test_split(test_size=0.1, seed=42)
-train_dataset = dataset["train"]
-val_dataset = dataset["test"]
+#train_dataset = dataset["train"]
 
 # System prompt to prepend to each instruction
 system_prompt = "You are a helpful assistant."
