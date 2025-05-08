@@ -6,9 +6,11 @@ from datasets import load_dataset
 
 # 1. Configuration
 MODEL_NAME = "gpt2"  # Much smaller model (124M parameters) for local testing
-DATASET_NAME = "/Users/maxschaffelder/Desktop/Thesis/Data/Finetuning/Augmented/Small/Llama/dolly_train_all_Llama.jsonl"
-TEST_DATASET_NAME = "/Users/maxschaffelder/Desktop/Thesis/Data/Finetuning/Augmented/Small/Llama/dolly_test_Llama.jsonl"
-OUTPUT_DIR = "/Users/maxschaffelder/Desktop/Thesis/Data/ft_models/lora_gpt2_debug"
+DATASET_NAME = "/home/mschaffeld/data/maxstorage/Data/Finetuning/Augmented/Small/Llama/dolly_train_all_Llama.jsonl"
+#TEST_DATASET_NAME = "/Users/maxschaffelder/Desktop/Thesis/Data/Finetuning/Augmented/Small/Llama/dolly_test_Llama.jsonl"
+TEST_DATASET_NAME = "/home/mschaffeld/data/maxstorage/Data/Finetuning/Augmented/Small/Llama/dolly_test_Llama.jsonl"
+#OUTPUT_DIR = "/Users/maxschaffelder/Desktop/Thesis/Data/ft_models/lora_gpt2_debug"
+OUTPUT_DIR = "/home/mschaffeld/data/maxstorage/Data/ft_models"
 
 # LoRA hyperparameters
 LORA_R = 4  # Reduced from 8
@@ -80,7 +82,7 @@ def preprocess_fn(examples):
     response_keys = [key for key in examples.keys() if key.startswith("response_") and key != "response_human"]
     answers = examples.get(response_keys[0], [])
 
-    # Print the first few keys from examples to debug
+    # Print the first few keys from dataset to debug
     if len(examples) > 0:
         print(f"Available keys in dataset: {list(examples.keys())}")
         if len(examples["instruction"]) > 0:
