@@ -47,7 +47,7 @@ model.print_trainable_parameters()
 
 # 3. Load and preprocess the dataset
 # Data format: JSONL with 'instruction' and 'response_model' fields per line.
-data_path = "../../Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama_formatted.jsonl" # TODO: look into validation se
+data_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama_formatted.jsonl" # TODO: look into validation se
 
 print("loading dataset")
 dataset = load_dataset("json", data_files={"train": data_path})
@@ -94,7 +94,7 @@ data_collator = DataCollatorWithPadding(tokenizer)
 
 # 5. Training configuration: use mixed precision (AMP) on A100/H100 (fp16)
 training_args = TrainingArguments(
-    output_dir="../../Data/ft_models/llama3_lora_output",
+    output_dir="/scratch-shared/mschaffelder/Data/ft_models/llama3_lora_output",
     per_device_train_batch_size=2,    # adjust to fit GPU memory
     per_device_eval_batch_size=2,
     gradient_accumulation_steps=8,    # for an effective larger batch size
@@ -110,7 +110,7 @@ training_args = TrainingArguments(
     save_total_limit=3,
     report_to="wandb",                # log metrics to Weights & Biases:contentReference[oaicite:4]{index=4}
     run_name="llama3-8b-lora",
-    logging_dir="../../Data/ft_models/logs"
+    logging_dir="/scratch-shared/mschaffelder/Data/ft_models/logs"
 )
 trainer = Trainer(
     model=model,
