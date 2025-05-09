@@ -54,7 +54,9 @@ data_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/
 val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_test_Llama.jsonl"
 print("loading datasets")
 train_dataset = load_dataset("json", data_files={"train": data_path})
+train_dataset = train_dataset["train"].shuffle(seed=42)
 val_dataset = load_dataset("json", data_files={"test": val_path})
+val_dataset = val_dataset["test"].shuffle(seed=42)
 print("done loading datasets")
 
 print("train dataset: ", train_dataset)
