@@ -109,7 +109,7 @@ training_args = TrainingArguments(
     weight_decay=0.01,
     fp16=False,                        # enable mixed-precision training:contentReference[oaicite:3]{index=3}
     bf16=True,
-    evaluation_strategy="steps",
+    eval_strategy="steps",
     eval_steps=200,
     logging_steps=50,
     save_steps=500,
