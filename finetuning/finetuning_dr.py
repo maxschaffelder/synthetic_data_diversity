@@ -92,8 +92,8 @@ def tokenize_and_format(ex):
     return {"input_ids": input_ids, "labels": labels}
 
 # Apply tokenization to the datasets
-train_dataset = train_dataset.map(tokenize_and_format, remove_columns=train_dataset.column_names)
-val_dataset = val_dataset.map(tokenize_and_format, remove_columns=val_dataset.column_names)
+train_dataset = train_dataset.map(tokenize_and_format, remove_columns=["response_human", "index", "model_name", "category", "response_model", "instruction", "index"])#, remove_columns=train_dataset.column_names)
+val_dataset = val_dataset.map(tokenize_and_format, remove_columns=["response_human", "index", "model_name", "category", "response_model", "instruction", "index"])#, remove_columns=val_dataset.column_names)
 
 # 4. Data collator: pad sequences dynamically
 data_collator = DataCollatorWithPadding(tokenizer)
