@@ -7,8 +7,8 @@ from peft import LoraConfig, TaskType, get_peft_model
 print("done importing libraries")
 # (Optional) initialize Weights & Biases for experiment tracking
 # You can set WANDB_PROJECT and login separately as needed.
-#import wandb
-#wandb.init(project="llama3_lora_finetuning", name="llama3-8b-run")
+import wandb
+wandb.init(project="llama3_lora_finetuning", name="llama3-8b-run")
 
 # Alternatively, one could use TRL's SFTTrainer for supervised fine-tuning:contentReference[oaicite:0]{index=0}.
 
