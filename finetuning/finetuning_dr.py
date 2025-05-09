@@ -47,13 +47,18 @@ model.print_trainable_parameters()
 
 # 3. Load and preprocess the dataset
 # Data format: JSONL with 'instruction' and 'response_model' fields per line.
-data_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama_formatted.jsonl" # TODO: look into validation se
-val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_test_Llama_formatted.jsonl"
+#data_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama_formatted.jsonl" 
+#val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_test_Llama_formatted.jsonl"
 
+data_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama.jsonl" 
+val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_test_Llama.jsonl"
 print("loading datasets")
 train_dataset = load_dataset("json", data_files={"train": data_path})
 val_dataset = load_dataset("json", data_files={"test": val_path})
 print("done loading datasets")
+
+print("train dataset: ", train_dataset)
+print("val dataset: ", val_dataset)
 
 
 # Split into training and validation (90% train, 10% eval)
