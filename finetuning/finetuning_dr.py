@@ -115,6 +115,7 @@ training_args = TrainingArguments(
     save_steps=500,
     save_total_limit=3,
     #report_to="wandb",                # log metrics to Weights & Biases:contentReference[oaicite:4]{index=4}
+    report_to="none",
     run_name="llama3-8b-lora",
     logging_dir="/scratch-shared/mschaffelder/Data/ft_models/logs"
 )
