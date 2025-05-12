@@ -33,6 +33,7 @@ lora_config = LoraConfig(
     lora_alpha=16,                # LoRA scaling factor
     target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
                     "gate_proj", "up_proj", "down_proj"],  # modules to apply LoRA
+    #target_modules=["q_proj", "v_proj", "o_proj"],
     lora_dropout=0.05,            # dropout for LoRA layers
     bias="none",
     task_type=TaskType.CAUSAL_LM
