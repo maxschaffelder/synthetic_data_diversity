@@ -4,6 +4,10 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorWithPadding, Trainer, TrainingArguments
 from datasets import load_dataset
 from peft import LoraConfig, TaskType, get_peft_model
+
+# Set environment variable to avoid tokenizers parallelism warning
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
 print("done importing libraries")
 # (Optional) initialize Weights & Biases for experiment tracking
 # You can set WANDB_PROJECT and login separately as needed.
@@ -17,7 +21,15 @@ print("done importing libraries")
 print("loading tokenizer")
 tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B-Instruct", use_fast=False)
 print("loading model")
-model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.1-8B-Instruct")
+model = AutoModelForCausalLM.from_pretrained(
+    "meta-llama/Llama-3.1-8B-Instruct",
+    device_map="auto",
+    torch_dtype=torch.bfloat16,
+    load_in_8bit=False,
+)
+
+# Enable gradient checkpointing to save memory
+model.gradient_checkpointing_enable()
 
 # Ensure tokenizer has a padding token (LLaMA may not have one by default)
 if tokenizer.pad_token is None:
@@ -106,26 +118,28 @@ data_collator = DataCollatorWithPadding(tokenizer)
 # 5. Training configuration: use mixed precision (AMP) on A100/H100 (fp16)
 training_args = TrainingArguments(
     output_dir="/scratch-shared/mschaffelder/Data/ft_models/llama3_lora_output",
-    per_device_train_batch_size=2,    # adjust to fit GPU memory
-    per_device_eval_batch_size=2,
-    gradient_accumulation_steps=8,    # for an effective larger batch size
+    per_device_train_batch_size=1,    # reduce batch size to save memory
+    per_device_eval_batch_size=1,     # reduce batch size to save memory
+    gradient_accumulation_steps=16,   # increased to compensate for smaller batch size
     num_train_epochs=3,
     learning_rate=2e-5,
     weight_decay=0.01,
-    fp16=False,                        # enable mixed-precision training:contentReference[oaicite:3]{index=3}
+    fp16=False,                     
     bf16=True,
     eval_strategy="steps",
     eval_steps=200,
     logging_steps=50,
     save_steps=500,
     save_total_limit=3,
-    #report_to="wandb",                # log metrics to Weights & Biases:contentReference[oaicite:4]{index=4}
+    #report_to="wandb",             
     report_to="none",
     run_name="llama3-8b-lora",
     logging_dir="/scratch-shared/mschaffelder/Data/ft_models/logs",
     # Added multi-GPU settings
     ddp_find_unused_parameters=False,
-    dataloader_num_workers=4
+    dataloader_num_workers=2,
+    gradient_checkpointing=True,
+    optim="adamw_torch"  # Use PyTorch's AdamW optimizer which is more memory efficient
 )
 trainer = Trainer(
     model=model,
@@ -133,7 +147,7 @@ trainer = Trainer(
     train_dataset=train_dataset,
     eval_dataset=val_dataset,
     data_collator=data_collator,
-    tokenizer=tokenizer
+    processing_class=tokenizer
 )
 
 print("starting training")

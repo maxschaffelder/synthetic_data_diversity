@@ -19,6 +19,9 @@ source /scratch-shared/mschaffelder/venv/bin/activate
 # Install required packages
 pip install -r requirements.txt 
 
+# Set PyTorch memory allocation settings to avoid fragmentation
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
 # Run script
 cd $SLURM_SUBMIT_DIR
 # Make sure CUDA devices are visible
