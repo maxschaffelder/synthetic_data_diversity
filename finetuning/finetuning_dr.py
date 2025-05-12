@@ -40,7 +40,7 @@ lora_config = LoraConfig(
 
 print("getting peft model")
 model = get_peft_model(model, lora_config)
-model.to("cuda")
+#model.to("cuda")
 print("done getting peft model")
 # Optional: verify the number of trainable parameters (should be much smaller than total)
 model.print_trainable_parameters()
@@ -121,7 +121,10 @@ training_args = TrainingArguments(
     #report_to="wandb",                # log metrics to Weights & Biases:contentReference[oaicite:4]{index=4}
     report_to="none",
     run_name="llama3-8b-lora",
-    logging_dir="/scratch-shared/mschaffelder/Data/ft_models/logs"
+    logging_dir="/scratch-shared/mschaffelder/Data/ft_models/logs",
+    # Added multi-GPU settings
+    ddp_find_unused_parameters=False,
+    dataloader_num_workers=4
 )
 trainer = Trainer(
     model=model,
@@ -136,3 +139,7 @@ print("starting training")
 # 6. Start training
 trainer.train()
 print("finished training")
+
+# If needed, save the model after training
+trainer.save_model()
+print("model saved")

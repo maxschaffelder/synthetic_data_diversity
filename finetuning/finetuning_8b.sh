@@ -4,7 +4,7 @@
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 4
 #SBATCH --mem=80G
-#SBATCH --gpus=1
+#SBATCH --gpus=2
 #SBATCH --partition=gpu_h100
 #SBATCH -N 1
 
@@ -26,4 +26,5 @@ echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
 echo "Available GPUs: $(nvidia-smi -L)"
 
 #huggingface-cli login --token "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"
-python finetuning_dr.py
+#python finetuning_dr.py
+torchrun --nproc_per_node=2 finetuning_dr.py
