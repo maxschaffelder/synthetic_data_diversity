@@ -21,6 +21,10 @@ pip install -r requirements.txt
 
 # Set PyTorch memory allocation settings to avoid fragmentation
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+# Add environment variable for distributed training
+export NCCL_DEBUG=INFO
+export NCCL_IB_DISABLE=0
+export NCCL_P2P_DISABLE=0
 
 # Run script
 cd $SLURM_SUBMIT_DIR
@@ -30,4 +34,4 @@ echo "Available GPUs: $(nvidia-smi -L)"
 
 #huggingface-cli login --token "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"
 #python finetuning_dr.py
-torchrun --nproc_per_node=2 finetuning_dr.py
+torchrun --nnodes=1 --nproc_per_node=2 --rdzv_backend=c10d --rdzv_endpoint=localhost:29500 finetuning_dr.py

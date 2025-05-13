@@ -21,11 +21,11 @@ print("done importing libraries")
 print("loading tokenizer")
 tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B-Instruct", use_fast=False)
 print("loading model")
+
+# Remove device_map="auto" as it can cause issues with distributed training
 model = AutoModelForCausalLM.from_pretrained(
     "meta-llama/Llama-3.1-8B-Instruct",
-    device_map="auto",
     torch_dtype=torch.bfloat16,
-    load_in_8bit=False,
 )
 
 # Enable gradient checkpointing to save memory
@@ -43,9 +43,7 @@ print("done loading tokenizer and model")
 lora_config = LoraConfig(
     r=32,                         # LoRA rank
     lora_alpha=16,                # LoRA scaling factor
-    target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
-                    "gate_proj", "up_proj", "down_proj"],  # modules to apply LoRA
-    #target_modules=["q_proj", "v_proj", "o_proj"],
+    target_modules=["q_proj", "v_proj", "o_proj"],  # Reduced set of modules to apply LoRA
     lora_dropout=0.05,            # dropout for LoRA layers
     bias="none",
     task_type=TaskType.CAUSAL_LM
@@ -135,11 +133,14 @@ training_args = TrainingArguments(
     report_to="none",
     run_name="llama3-8b-lora",
     logging_dir="/scratch-shared/mschaffelder/Data/ft_models/logs",
-    # Added multi-GPU settings
+    # DDP settings
     ddp_find_unused_parameters=False,
     dataloader_num_workers=2,
     gradient_checkpointing=True,
-    optim="adamw_torch"  # Use PyTorch's AdamW optimizer which is more memory efficient
+    optim="adamw_torch",  # Use PyTorch's AdamW optimizer which is more memory efficient
+    # Make DDP more stable
+    ddp_backend="nccl",
+    local_rank=-1,  # Let torch.distributed handle this
 )
 trainer = Trainer(
     model=model,
