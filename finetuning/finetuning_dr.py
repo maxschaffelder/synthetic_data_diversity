@@ -41,42 +41,38 @@ print("done loading tokenizer and model")
 # Using Hugging Face PEFT LoRA (low-rank adaptation) example:contentReference[oaicite:1]{index=1}; 
 # target LLaMA's attention and MLP layers as recommended:contentReference[oaicite:2]{index=2}.
 lora_config = LoraConfig(
-    r=32,                         # LoRA rank
-    lora_alpha=16,                # LoRA scaling factor
-    target_modules=["q_proj", "v_proj", "o_proj"],  # Reduced set of modules to apply LoRA
-    lora_dropout=0.05,            # dropout for LoRA layers
+    r=16,                         # LoRA rank
+    lora_alpha=16,                # LoRA scaling factor (same as rank for now)
+    target_modules=["q_proj", "v_proj"],  # Apply Lora only to the attention layers
+    lora_dropout=0.1,            # dropout for LoRA layers
     bias="none",
     task_type=TaskType.CAUSAL_LM
 )
 
 print("getting peft model")
 model = get_peft_model(model, lora_config)
-#model.to("cuda")
 print("done getting peft model")
-# Optional: verify the number of trainable parameters (should be much smaller than total)
+# Verify the number of trainable parameters (should be much smaller than total)
 model.print_trainable_parameters()
 
 # 3. Load and preprocess the dataset
-# Data format: JSONL with 'instruction' and 'response_model' fields per line.
-#data_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama_formatted.jsonl" 
-#val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_test_Llama_formatted.jsonl"
-
-data_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama.jsonl" 
+train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama.jsonl" 
 val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_test_Llama.jsonl"
+
 print("loading datasets")
-train_dataset = load_dataset("json", data_files={"train": data_path})
+train_dataset = load_dataset("json", data_files={"train": train_path})
 train_dataset = train_dataset["train"].shuffle(seed=42)
-val_dataset = load_dataset("json", data_files={"test": val_path})
+val_dataset = load_dataset("json", data_files={"test": val_path}) # TODO: can I use this data for validation?
 val_dataset = val_dataset["test"].shuffle(seed=42)
+
+
 print("done loading datasets")
 
 print("train dataset: ", train_dataset)
 print("val dataset: ", val_dataset)
 
 
-# Split into training and validation (90% train, 10% eval)
-#dataset = dataset["train"].train_test_split(test_size=0.1, seed=42)
-#train_dataset = dataset["train"]
+
 
 # System prompt to prepend to each instruction
 system_prompt = "You are a helpful assistant."
@@ -116,11 +112,11 @@ data_collator = DataCollatorWithPadding(tokenizer)
 # 5. Training configuration: use mixed precision (AMP) on A100/H100 (fp16)
 training_args = TrainingArguments(
     output_dir="/scratch-shared/mschaffelder/Data/ft_models/llama3_lora_output",
-    per_device_train_batch_size=1,    # reduce batch size to save memory
-    per_device_eval_batch_size=1,     # reduce batch size to save memory
+    per_device_train_batch_size=8,    # reduce batch size to save memory
+    per_device_eval_batch_size=8,     # reduce batch size to save memory
     gradient_accumulation_steps=16,   # increased to compensate for smaller batch size
-    num_train_epochs=3,
-    learning_rate=2e-5,
+    num_train_epochs=2,
+    learning_rate=1e-5,
     weight_decay=0.01,
     fp16=False,                     
     bf16=True,
@@ -133,6 +129,9 @@ training_args = TrainingArguments(
     report_to="none",
     run_name="llama3-8b-lora",
     logging_dir="/scratch-shared/mschaffelder/Data/ft_models/logs",
+    # Learning rate scheduler settings
+    lr_scheduler_type="cosine",     # Use cosine scheduler for smooth decay
+    warmup_ratio=0.1,               # Warm up for 10% of training steps
     # DDP settings
     ddp_find_unused_parameters=False,
     dataloader_num_workers=2,
@@ -157,5 +156,12 @@ trainer.train()
 print("finished training")
 
 # If needed, save the model after training
+print("saving model")
 trainer.save_model()
-print("model saved")
+print("model saved to /scratch-shared/mschaffelder/Data/ft_models/llama3_lora_output")
+
+# Clean up distributed process group to avoid resource leaks
+if torch.distributed.is_initialized():
+    print("Cleaning up distributed process group")
+    torch.distributed.destroy_process_group()
+    print("Process group destroyed successfully")
