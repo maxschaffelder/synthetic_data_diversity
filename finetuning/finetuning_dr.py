@@ -111,7 +111,7 @@ data_collator = DataCollatorWithPadding(tokenizer)
 
 # 5. Training configuration: use mixed precision (AMP) on A100/H100 (fp16)
 training_args = TrainingArguments(
-    output_dir="/scratch-shared/mschaffelder/Data/ft_models/llama3_lora_output",
+    output_dir="/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_single",
     per_device_train_batch_size=8,    # reduce batch size to save memory
     per_device_eval_batch_size=8,     # reduce batch size to save memory
     gradient_accumulation_steps=16,   # increased to compensate for smaller batch size
@@ -127,7 +127,7 @@ training_args = TrainingArguments(
     save_total_limit=3,
     #report_to="wandb",             
     report_to="none",
-    run_name="llama3-8b-lora",
+    run_name="lora_llama_8b_single",
     logging_dir="/scratch-shared/mschaffelder/Data/ft_models/logs",
     # Learning rate scheduler settings
     lr_scheduler_type="cosine",     # Use cosine scheduler for smooth decay
@@ -158,7 +158,7 @@ print("finished training")
 # If needed, save the model after training
 print("saving model")
 trainer.save_model()
-print("model saved to /scratch-shared/mschaffelder/Data/ft_models/llama3_lora_output")
+print("model saved to /scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_single")
 
 # Clean up distributed process group to avoid resource leaks
 if torch.distributed.is_initialized():
