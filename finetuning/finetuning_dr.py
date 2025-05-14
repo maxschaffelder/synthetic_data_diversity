@@ -26,6 +26,7 @@ print("loading model")
 model = AutoModelForCausalLM.from_pretrained(
     "meta-llama/Llama-3.1-8B-Instruct",
     torch_dtype=torch.bfloat16,
+    use_cache=False,
 )
 
 # Enable gradient checkpointing to save memory
@@ -112,9 +113,9 @@ data_collator = DataCollatorWithPadding(tokenizer)
 # 5. Training configuration: use mixed precision (AMP) on A100/H100 (fp16)
 training_args = TrainingArguments(
     output_dir="/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_single",
-    per_device_train_batch_size=8,    # reduce batch size to save memory
-    per_device_eval_batch_size=8,     # reduce batch size to save memory
-    gradient_accumulation_steps=16,   # increased to compensate for smaller batch size
+    per_device_train_batch_size=8,   
+    per_device_eval_batch_size=8,    
+    gradient_accumulation_steps=1,   
     num_train_epochs=2,
     learning_rate=1e-5,
     weight_decay=0.01,
