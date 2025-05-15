@@ -57,8 +57,11 @@ print("done getting peft model")
 model.print_trainable_parameters()
 
 # 3. Load and preprocess the dataset
-train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama.jsonl" 
-val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_test_Llama.jsonl"
+#train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama.jsonl" 
+#val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_test_Llama.jsonl"
+
+train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Other/dolly_train_all_multi.jsonl" 
+val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Other/dolly_test_multi.jsonl"
 
 print("loading datasets")
 train_dataset = load_dataset("json", data_files={"train": train_path})
@@ -112,7 +115,7 @@ data_collator = DataCollatorWithPadding(tokenizer)
 
 # 5. Training configuration: use mixed precision (AMP) on A100/H100 (fp16)
 training_args = TrainingArguments(
-    output_dir="/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_single",
+    output_dir="/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_multi",
     per_device_train_batch_size=4,   
     per_device_eval_batch_size=4,    
     gradient_accumulation_steps=2,   
@@ -128,7 +131,7 @@ training_args = TrainingArguments(
     save_total_limit=3,
     #report_to="wandb",             
     report_to="none",
-    run_name="lora_llama_8b_single",
+    run_name="lora_llama_8b_multi",
     logging_dir="/scratch-shared/mschaffelder/Data/ft_models/logs",
     # Learning rate scheduler settings
     lr_scheduler_type="cosine",     # Use cosine scheduler for smooth decay
@@ -141,6 +144,8 @@ training_args = TrainingArguments(
     # Make DDP more stable
     ddp_backend="nccl",
     local_rank=-1,  # Let torch.distributed handle this
+    load_best_model_at_end=True,
+    metric_for_best_model="eval_loss",
 )
 trainer = Trainer(
     model=model,
@@ -159,7 +164,7 @@ print("finished training")
 # If needed, save the model after training
 print("saving model")
 trainer.save_model()
-print("model saved to /scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_single")
+print("model saved to /scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_multi")
 
 # Clean up distributed process group to avoid resource leaks
 if torch.distributed.is_initialized():
