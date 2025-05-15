@@ -62,6 +62,8 @@ model.print_trainable_parameters()
 
 train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Other/dolly_train_all_multi.jsonl" 
 val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Other/dolly_test_multi.jsonl"
+RESPONSE_KEY = "response_human" # CHANGE THIS TO "response_model" FOR MODEL RESPONSE
+OUTPUT_DIR = "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_human"
 
 print("loading datasets")
 train_dataset = load_dataset("json", data_files={"train": train_path})
@@ -83,7 +85,7 @@ system_prompt = "You are a helpful assistant."
 
 # Function to filter out examples exceeding 2048 tokens (prompt + response)
 def filter_long(ex):
-    combined = system_prompt + " " + ex["instruction"] + " " + ex["response_model"]
+    combined = system_prompt + " " + ex["instruction"] + " " + ex[RESPONSE_KEY]
     return len(tokenizer(combined, truncation=False)["input_ids"]) <= 2048
 
 print("filtering long examples")
@@ -97,7 +99,7 @@ def tokenize_and_format(ex):
     prompt = system_prompt + " " + ex["instruction"]
     # Tokenize prompt and response separately
     prompt_ids = tokenizer(prompt, truncation=True, add_special_tokens=False, max_length=2048, padding="max_length").input_ids
-    response_ids = tokenizer(" " + ex["response_model"], truncation=True, add_special_tokens=False, max_length=2048, padding="max_length").input_ids
+    response_ids = tokenizer(" " + ex[RESPONSE_KEY], truncation=True, add_special_tokens=False, max_length=2048, padding="max_length").input_ids
     # Combine and add end-of-sequence token
     input_ids = prompt_ids + response_ids + [tokenizer.eos_token_id]
     # Labels: mask prompt part with -100 so loss is only computed on the response
@@ -115,7 +117,7 @@ data_collator = DataCollatorWithPadding(tokenizer)
 
 # 5. Training configuration: use mixed precision (AMP) on A100/H100 (fp16)
 training_args = TrainingArguments(
-    output_dir="/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_multi",
+    output_dir=OUTPUT_DIR,
     per_device_train_batch_size=4,   
     per_device_eval_batch_size=4,    
     gradient_accumulation_steps=2,   
@@ -163,8 +165,8 @@ print("finished training")
 
 # If needed, save the model after training
 print("saving model")
-trainer.save_model()
-print("model saved to /scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_multi")
+trainer.save_model(OUTPUT_DIR)
+print(f"model saved to {OUTPUT_DIR}")
 
 # Clean up distributed process group to avoid resource leaks
 if torch.distributed.is_initialized():
