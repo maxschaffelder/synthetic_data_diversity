@@ -23,17 +23,26 @@ model_name = "meta-llama/Llama-3.1-70B-Instruct"
 
 print("loading tokenizer")
 tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
+
 print("loading model")
 
+# Configure quantization - either use 4-bit or remove quantization for distributed training
+quantization_config = BitsAndBytesConfig(
+    load_in_4bit=True,  # Use 4-bit instead of 8-bit for more memory savings
+    bnb_4bit_quant_type="nf4",
+    bnb_4bit_use_double_quant=True,
+    bnb_4bit_compute_dtype=torch.bfloat16
+)
+
 quantization_config = BitsAndBytesConfig(load_in_8bit=True)
-# Remove device_map="auto" as it can cause issues with distributed training
+
+# Remove device_map="auto" for distributed training
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
     torch_dtype=torch.bfloat16,
     use_cache=False,
     attn_implementation="sdpa", 
     quantization_config=quantization_config, 
-    device_map="auto",
     trust_remote_code=True,  
 )
 
