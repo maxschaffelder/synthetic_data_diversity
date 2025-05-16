@@ -72,11 +72,24 @@ lora_config = LoraConfig(
     target_modules=["q_proj", "v_proj"],  # Apply Lora only to the attention layers
     lora_dropout=0.1,            # dropout for LoRA layers
     bias="none",
-    task_type=TaskType.CAUSAL_LM
+    task_type=TaskType.CAUSAL_LM,
+    inference_mode=False,
 )
 
 print("getting peft model")
+# Apply LoRA adapter and prepare the model
 model = get_peft_model(model, lora_config)
+
+# Make sure the adapter modules follow the model device locations
+for name, module in model.named_modules():
+    if any(adapter_name in name for adapter_name in ["lora", "adapter"]):
+        for param_name, param in module.named_parameters():
+            # Get device from parent module
+            device = next(module.parameters()).device
+            if param.device != device:
+                param.data = param.data.to(device)
+
+
 print("done getting peft model")
 # Verify the number of trainable parameters (should be much smaller than total)
 model.print_trainable_parameters()
@@ -180,7 +193,9 @@ trainer = Trainer(
     train_dataset=train_dataset,
     eval_dataset=val_dataset,
     data_collator=data_collator,
-    processing_class=tokenizer
+    processing_class=tokenizer,
+    # Configure the Trainer to handle models split across devices
+    place_model_on_device=False,  # Model is already placed with device_map
 )
 
 print("starting training")
