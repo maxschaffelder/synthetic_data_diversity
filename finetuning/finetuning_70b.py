@@ -4,7 +4,6 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorWithPadding, Trainer, TrainingArguments
 from datasets import load_dataset
 from peft import LoraConfig, TaskType, get_peft_model
-import flash_attn
 
 # Set environment variable to avoid tokenizers parallelism warning
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -21,8 +20,6 @@ print("done importing libraries")
 # Use the LLaMA 3.1 8B Instruct model from Hugging Face (requires access)
 
 model_name = "meta-llama/Llama-3.1-70B-Instruct"
-
-print("flash_attn.__version__: ", flash_attn.__version__)
 
 print("loading tokenizer")
 tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
@@ -67,9 +64,9 @@ model.print_trainable_parameters()
 #train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama.jsonl" 
 #val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_test_Llama.jsonl"
 
-train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Other/dolly_train_all_multi.jsonl" 
-val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Other/dolly_test_multi.jsonl"
-RESPONSE_KEY = "response_human" # CHANGE THIS TO "response_model" FOR MODEL RESPONSE
+train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl" 
+val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Medium/Llama/dolly_test_Llama.jsonl"
+RESPONSE_KEY = "response_model" # CHANGE THIS TO "response_model" FOR MODEL RESPONSE
 OUTPUT_DIR = "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_70b_single"
 
 print("loading datasets")
