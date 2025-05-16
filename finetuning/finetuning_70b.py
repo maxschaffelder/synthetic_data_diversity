@@ -1,7 +1,7 @@
 print("importing libraries")
 import os
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorWithPadding, Trainer, TrainingArguments
+from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorWithPadding, Trainer, TrainingArguments, BitsAndBytesConfig
 from datasets import load_dataset
 from peft import LoraConfig, TaskType, get_peft_model
 
@@ -25,12 +25,16 @@ print("loading tokenizer")
 tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
 print("loading model")
 
+quantization_config = BitsAndBytesConfig(load_in_8bit=True)
 # Remove device_map="auto" as it can cause issues with distributed training
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
     torch_dtype=torch.bfloat16,
     use_cache=False,
-    attn_implementation="sdpa"
+    attn_implementation="sdpa", 
+    quantization_config=quantization_config, 
+    device_map="auto",
+    trust_remote_code=True,  
 )
 
 # Enable gradient checkpointing to save memory
