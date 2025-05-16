@@ -10,11 +10,17 @@
 
 # Load required modules 
 module load 2024 Python/3.12.3-GCCcore-13.3.0
+module load 2024 CUDA/12.6.0
 # module load 2023 Python/3.11.3-GCCcore-12.3.0
 
 # Activate virtual environment
 # source /scratch-shared/mschaffelder/.venv/bin/activate
 source /scratch-shared/mschaffelder/venv/bin/activate
+
+# Set CUDA environment variables
+export CUDA_HOME=${EBROOTCUDA}
+export PATH=${CUDA_HOME}/bin:${PATH}
+export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
 
 # Install required packages
 pip install -r requirements.txt 
