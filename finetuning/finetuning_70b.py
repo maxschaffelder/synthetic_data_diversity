@@ -193,9 +193,7 @@ trainer = Trainer(
     train_dataset=train_dataset,
     eval_dataset=val_dataset,
     data_collator=data_collator,
-    processing_class=tokenizer,
-    # Configure the Trainer to handle models split across devices
-    place_model_on_device=False,  # Model is already placed with device_map
+    processing_class=tokenizer
 )
 
 print("starting training")
