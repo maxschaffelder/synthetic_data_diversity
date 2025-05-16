@@ -168,16 +168,17 @@ trainer = Trainer(
 
 print("starting training")
 # 6. Start training
-trainer.train()
-print("finished training")
+try:
+    trainer.train()
+    print("finished training")
 
-# If needed, save the model after training
-print("saving model")
-trainer.save_model(OUTPUT_DIR)
-print(f"model saved to {OUTPUT_DIR}")
-
-# Clean up distributed process group to avoid resource leaks
-if torch.distributed.is_initialized():
-    print("Cleaning up distributed process group")
-    torch.distributed.destroy_process_group()
-    print("Process group destroyed successfully")
+    # If needed, save the model after training
+    print("saving model")
+    trainer.save_model(OUTPUT_DIR)
+    print(f"model saved to {OUTPUT_DIR}")
+finally:
+    # Clean up distributed process group to avoid resource leaks
+    if torch.distributed.is_initialized():
+        print("Cleaning up distributed process group")
+        torch.distributed.destroy_process_group()
+        print("Process group destroyed successfully")
