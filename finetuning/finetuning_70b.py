@@ -26,15 +26,19 @@ tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
 
 print("loading model")
 
-# Configure quantization - either use 4-bit or remove quantization for distributed training
+# Configure quantization for more memory efficiency
 quantization_config = BitsAndBytesConfig(
-    load_in_4bit=True,  # Use 4-bit instead of 8-bit for more memory savings
+    load_in_4bit=True,
     bnb_4bit_quant_type="nf4",
     bnb_4bit_use_double_quant=True,
     bnb_4bit_compute_dtype=torch.bfloat16
 )
 
-quantization_config = BitsAndBytesConfig(load_in_8bit=True)
+#quantization_config = BitsAndBytesConfig(load_in_8bit=True)
+
+# Set up max memory for each GPU - allocate 60GB to each of the 4 H100 GPUs
+# This limits memory usage per GPU to prevent OOM while still using all GPUs
+max_memory_mapping = {0: "60GB", 1: "60GB", 2: "60GB", 3: "60GB"}
 
 # Remove device_map="auto" for distributed training
 model = AutoModelForCausalLM.from_pretrained(
@@ -42,8 +46,12 @@ model = AutoModelForCausalLM.from_pretrained(
     torch_dtype=torch.bfloat16,
     use_cache=False,
     attn_implementation="sdpa", 
-    quantization_config=quantization_config, 
-    trust_remote_code=True,  
+    quantization_config=quantization_config,
+    #low_cpu_mem_usage=True,
+    #device_map={"": int(os.environ.get("LOCAL_RANK", "0"))},  # Proper device mapping for DDP
+    device_map="auto",
+    max_memory=max_memory_mapping,
+    trust_remote_code=True,
 )
 
 # Enable gradient checkpointing to save memory
