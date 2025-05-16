@@ -4,6 +4,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorWithPadding, Trainer, TrainingArguments
 from datasets import load_dataset
 from peft import LoraConfig, TaskType, get_peft_model
+import flash_attn
 
 # Set environment variable to avoid tokenizers parallelism warning
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -20,6 +21,8 @@ print("done importing libraries")
 # Use the LLaMA 3.1 8B Instruct model from Hugging Face (requires access)
 
 model_name = "meta-llama/Llama-3.1-70B-Instruct"
+
+print("flash_attn.__version__: ", flash_attn.__version__)
 
 print("loading tokenizer")
 tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
