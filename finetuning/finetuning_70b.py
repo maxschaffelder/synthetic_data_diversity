@@ -163,14 +163,14 @@ training_args = TrainingArguments(
     # Learning rate scheduler settings
     lr_scheduler_type="cosine",     # Use cosine scheduler for smooth decay
     warmup_ratio=0.1,               # Warm up for 10% of training steps
-    # DDP settings
-    ddp_find_unused_parameters=False,
+    # Explicitly disable distributed training when using device_map="auto"
+    local_rank=-1,
     dataloader_num_workers=2,
     gradient_checkpointing=True,
     optim="adamw_torch",  # Use PyTorch's AdamW optimizer which is more memory efficient
     # Make DDP more stable
-    ddp_backend="nccl",
-    local_rank=-1,  # Let torch.distributed handle this
+    #ddp_backend="nccl",
+    #local_rank=-1,  # Let torch.distributed handle this
     load_best_model_at_end=True,
     metric_for_best_model="eval_loss",
 )
