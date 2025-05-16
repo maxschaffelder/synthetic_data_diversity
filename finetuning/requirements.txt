@@ -6,4 +6,5 @@ sentencepiece>=0.1.99
 huggingface_hub>=0.17.0
 bitsandbytes
 tensorboard
+flash-attn
 #wandb

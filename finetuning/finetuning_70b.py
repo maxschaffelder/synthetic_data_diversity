@@ -30,6 +30,7 @@ model = AutoModelForCausalLM.from_pretrained(
     model_name,
     torch_dtype=torch.bfloat16,
     use_cache=False,
+    attn_implementation="flash_attention_2"
 )
 
 # Enable gradient checkpointing to save memory
@@ -101,8 +102,8 @@ def tokenize_and_format(ex):
     # Combine system prompt and instruction as input prompt
     prompt = system_prompt + " " + ex["instruction"]
     # Tokenize prompt and response separately
-    prompt_ids = tokenizer(prompt, truncation=True, add_special_tokens=False, max_length=2048, padding="max_length").input_ids
-    response_ids = tokenizer(" " + ex[RESPONSE_KEY], truncation=True, add_special_tokens=False, max_length=2048, padding="max_length").input_ids
+    prompt_ids = tokenizer(prompt, truncation=True, add_special_tokens=False, max_length=2048, padding=False).input_ids
+    response_ids = tokenizer(" " + ex[RESPONSE_KEY], truncation=True, add_special_tokens=False, max_length=2048, padding=False).input_ids
     # Combine and add end-of-sequence token
     input_ids = prompt_ids + response_ids + [tokenizer.eos_token_id]
     # Labels: mask prompt part with -100 so loss is only computed on the response
