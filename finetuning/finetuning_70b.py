@@ -30,7 +30,7 @@ model = AutoModelForCausalLM.from_pretrained(
     model_name,
     torch_dtype=torch.bfloat16,
     use_cache=False,
-    attn_implementation="flash_attention_2"
+    attn_implementation="sdpa"
 )
 
 # Enable gradient checkpointing to save memory
