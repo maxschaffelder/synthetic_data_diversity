@@ -69,7 +69,7 @@ def main():
             results.append(result)
     
     # Save results
-    output_path = os.path.join(output_dir, 'generation_results.jsonl')
+    output_path = os.path.join(output_dir, 'generation_results_8b_single_v6.jsonl')
     with open(output_path, 'w') as f:
         for result in results:
             f.write(json.dumps(result) + '\n')
