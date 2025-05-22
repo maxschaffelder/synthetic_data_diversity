@@ -26,5 +26,6 @@ cd $SLURM_SUBMIT_DIR
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
 echo "Available GPUs: $(nvidia-smi -L)"
 
+print("hi")
 huggingface-cli login --token "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"
 python exp_1.py
