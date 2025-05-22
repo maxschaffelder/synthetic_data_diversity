@@ -135,22 +135,21 @@ def main():
     # Configuration
     BATCH_SIZE = 8 
     base_model_path = "meta-llama/Llama-3.1-8B-Instruct"
-    lora_model_path = "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_single_v6/checkpoint-1684"
+    lora_model_path = "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_multi_v1/checkpoint-1686"
     test_data_path = "/scratch-shared/mschaffelder/Data/Finetuning/Dolly/dolly_test.jsonl"
+    
+    output_dir = "/scratch-shared/mschaffelder/Data/exp_1"
+    os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(output_dir, 'generation_results_8b_multi_v1.jsonl')
     
     # Load model and tokenizer
     print("Loading model and tokenizer...")
     model, tokenizer = load_model_and_tokenizer(base_model_path, lora_model_path)
-    
-    # Create output directory if it doesn't exist
-    output_dir = "/scratch-shared/mschaffelder/Data/exp_1/results"
-    os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(output_dir, 'generation_results_8b_single_v6.jsonl')
+
 
     # Clear/Create the output file at the beginning of this run
     with open(output_path, 'w') as f:
         logging.info(f"Output file {output_path} created/cleared.")
-        # Optionally, write a header if your JSONL has a specific schema, but for simple line-by-line JSON, it's not needed.
     
     # Process test data
     logging.info("Starting to process test data...")
