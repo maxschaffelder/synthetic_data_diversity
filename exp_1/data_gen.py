@@ -94,9 +94,29 @@ def generate_response(model, tokenizer, prompts_batch, max_length=1024):
         logging.info("Batched model.generate() completed.")
     
     logging.info("Decoding batch of responses...")
-    responses = tokenizer.batch_decode(outputs, skip_special_tokens=True)
-    logging.info("Batch of responses decoded.")
-    return responses
+    raw_decoded_responses = tokenizer.batch_decode(outputs, skip_special_tokens=True)
+    logging.info("Batch of responses decoded (raw).")
+
+    # Remove the prompt from the beginning of each response
+    cleaned_responses = []
+    for prompt, raw_response in zip(prompts_batch, raw_decoded_responses):
+        # Check if the raw_response starts with the prompt. 
+        # Need to be a bit careful if tokenization differences make them not exactly match at string level,
+        # but usually for simple continuation it's fine.
+        # A more robust way might involve comparing token IDs if there are issues, 
+        # but string prefix removal is usually sufficient.
+        if raw_response.startswith(prompt):
+            cleaned_response = raw_response[len(prompt):].lstrip() # lstrip to remove leading whitespace
+            cleaned_responses.append(cleaned_response)
+            logging.debug(f"Cleaned response. Original: '{raw_response[:100]}...', Cleaned: '{cleaned_response[:100]}...'")
+        else:
+            # If the prompt isn't at the start (e.g., model generated something completely different or empty),
+            # keep the raw response but log a warning, as this might indicate an issue.
+            logging.warning(f"Prompt not found at the beginning of the raw response. Prompt: '{prompt[:50]}...', Raw Response: '{raw_response[:50]}...'")
+            cleaned_responses.append(raw_response) 
+    
+    logging.info("Prompts removed from responses.")
+    return cleaned_responses
 
 def main():
     # Configuration
