@@ -60,36 +60,50 @@ def load_model_and_tokenizer(base_model_path, lora_model_path):
         
     return model, tokenizer
 
+SYSTEM_PROMPT = "You are a helpful assistant."
+
 def generate_response(model, tokenizer, prompts_batch, max_length=1024):
     if not prompts_batch:
         return []
 
-    logging.info(f"Generating responses for batch of {len(prompts_batch)} prompts. First prompt (50 chars): '{prompts_batch[0][:50]}...'")
+    logging.info(f"Generating responses for batch of {len(prompts_batch)} prompts. System prompt: '{SYSTEM_PROMPT}'")
+
+    # Apply chat template to each prompt in the batch
+    formatted_prompts_for_tokenizer = []
+    for user_prompt in prompts_batch:
+        messages = [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": user_prompt}
+        ]
+        # tokenize=False to get the string, add_generation_prompt=True to prepare for assistant generation
+        formatted_prompt = tokenizer.apply_chat_template(
+            messages, 
+            tokenize=False, 
+            add_generation_prompt=True
+        )
+        formatted_prompts_for_tokenizer.append(formatted_prompt)
+    
+    logging.info(f"First formatted prompt for tokenizer (first 100 chars): '{formatted_prompts_for_tokenizer[0][:100]}...'")
     logging.info(f"Input device: {model.device}, preparing to move inputs to device.")
     
-    # Tokenize the batch of prompts.
-    # padding_side='left' was set when tokenizer was loaded.
-    # tokenizer.pad_token was also set (to eos_token if None) when tokenizer was loaded.
     inputs = tokenizer(
-        prompts_batch, 
+        formatted_prompts_for_tokenizer, # Tokenize the list of formatted strings 
         return_tensors="pt", 
-        padding=True, # Pad to the longest sequence in the batch
-        truncation=True, # Truncate sequences longer than model max length 
+        padding=True, 
+        truncation=True, 
         max_length=model.config.max_position_embeddings if hasattr(model.config, 'max_position_embeddings') else 2048 
     ).to(model.device)
     logging.info("Batch of inputs tokenized, padded, truncated, and moved to model device.")
     
     with torch.no_grad():
         logging.info("Starting batched model.generate()...")
-        # model.generate() will use model.config.pad_token_id
         outputs = model.generate(
             **inputs,
-            max_length=max_length, 
+            max_length=inputs.input_ids.shape[1] + max_length, # max_length is for *new* tokens
             num_return_sequences=1,
             temperature=0.7,
             top_p=0.9,
             do_sample=True,
-            # pad_token_id=tokenizer.eos_token_id # Use model.config.pad_token_id which should be aligned
         )
         logging.info("Batched model.generate() completed.")
     
@@ -97,25 +111,22 @@ def generate_response(model, tokenizer, prompts_batch, max_length=1024):
     raw_decoded_responses = tokenizer.batch_decode(outputs, skip_special_tokens=True)
     logging.info("Batch of responses decoded (raw).")
 
-    # Remove the prompt from the beginning of each response
     cleaned_responses = []
-    for prompt, raw_response in zip(prompts_batch, raw_decoded_responses):
-        # Check if the raw_response starts with the prompt. 
-        # Need to be a bit careful if tokenization differences make them not exactly match at string level,
-        # but usually for simple continuation it's fine.
-        # A more robust way might involve comparing token IDs if there are issues, 
-        # but string prefix removal is usually sufficient.
-        if raw_response.startswith(prompt):
-            cleaned_response = raw_response[len(prompt):].lstrip() # lstrip to remove leading whitespace
+    for formatted_prompt_sent_to_model, raw_response in zip(formatted_prompts_for_tokenizer, raw_decoded_responses):
+        # The raw_response will contain the formatted_prompt_sent_to_model if the model behaved as expected.
+        if raw_response.startswith(formatted_prompt_sent_to_model):
+            # Strip the formatted prompt (which includes system, user, and assistant headers)
+            cleaned_response = raw_response[len(formatted_prompt_sent_to_model):].lstrip()
             cleaned_responses.append(cleaned_response)
-            logging.debug(f"Cleaned response. Original: '{raw_response[:100]}...', Cleaned: '{cleaned_response[:100]}...'")
+            logging.debug(f"Cleaned response. Original: '{raw_response[:150]}...', Cleaned: '{cleaned_response[:100]}...'")
         else:
-            # If the prompt isn't at the start (e.g., model generated something completely different or empty),
-            # keep the raw response but log a warning, as this might indicate an issue.
-            logging.warning(f"Prompt not found at the beginning of the raw response. Prompt: '{prompt[:50]}...', Raw Response: '{raw_response[:50]}...'")
+            logging.warning(
+                f"Formatted prompt not found at the beginning of the raw response. \n"
+                f"Formatted Prompt (sent to model, first 100): '{formatted_prompt_sent_to_model[:100]}...'\n"
+                f"Raw Response (first 100): '{raw_response[:100]}...'")
             cleaned_responses.append(raw_response) 
     
-    logging.info("Prompts removed from responses.")
+    logging.info("Formatted prompts removed from responses.")
     return cleaned_responses
 
 def main():
