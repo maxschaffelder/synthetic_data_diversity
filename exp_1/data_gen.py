@@ -38,9 +38,13 @@ def load_model_and_tokenizer(base_model_path, lora_model_path):
     return model, tokenizer
 
 def generate_response(model, tokenizer, prompt, max_length=2048):
+    logging.info(f"Generating response for prompt (first 50 chars): '{prompt[:50]}...'")
+    logging.info(f"Input device: {model.device}, preparing to move inputs to device.")
     inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+    logging.info("Inputs tokenized and moved to model device.")
     
     with torch.no_grad():
+        logging.info("Starting model.generate()...")
         outputs = model.generate(
             **inputs,
             max_length=max_length,
@@ -50,8 +54,11 @@ def generate_response(model, tokenizer, prompt, max_length=2048):
             do_sample=True,
             pad_token_id=tokenizer.eos_token_id
         )
+        logging.info("model.generate() completed.")
     
+    logging.info("Decoding response...")
     response = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    logging.info("Response decoded.")
     return response
 
 def main():
@@ -69,16 +76,38 @@ def main():
     os.makedirs(output_dir, exist_ok=True)
     
     # Process test data
-    print("Processing test data...")
+    logging.info("Starting to process test data...")
     results = []
     
     with open(test_data_path, 'r') as f:
-        for line in f:
-            data = json.loads(line)
-            prompt = data['instruction']
+        logging.info(f"Opened test data file: {test_data_path}")
+        for i, line in enumerate(f):
+            logging.info(f"Processing line {i+1} from test data...")
+            try:
+                data = json.loads(line)
+                prompt = data['instruction']
+                logging.info(f"Instruction (prompt) extracted from line {i+1}.")
+            except json.JSONDecodeError as e:
+                logging.error(f"Error decoding JSON from line {i+1}: {e}")
+                continue # Skip to the next line
+            except KeyError as e:
+                logging.error(f"Missing key 'instruction' in line {i+1}: {e}")
+                continue # Skip to the next line
             
             # Generate response
-            response = generate_response(model, tokenizer, prompt)
+            logging.info(f"Calling generate_response for line {i+1}...")
+            try:
+                response = generate_response(model, tokenizer, prompt)
+                logging.info(f"Response generated for line {i+1}.")
+            except Exception as e:
+                logging.error(f"Error during generate_response for line {i+1}, prompt: '{prompt[:100]}...': {e}")
+                # Optionally, decide if you want to store a placeholder or skip
+                results.append({
+                    'instruction': prompt,
+                    'generated_response': f"ERROR: {e}",
+                    'ground_truth': data.get('response', '')
+                })
+                continue # Skip to next item
             
             # Store results
             result = {
