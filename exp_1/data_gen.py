@@ -107,26 +107,28 @@ def generate_response(model, tokenizer, prompts_batch, max_length=1024):
         )
         logging.info("Batched model.generate() completed.")
     
-    logging.info("Decoding batch of responses...")
-    raw_decoded_responses = tokenizer.batch_decode(outputs, skip_special_tokens=True)
-    logging.info("Batch of responses decoded (raw).")
-
+    logging.info("Decoding batch of responses by stripping input tokens...")
     cleaned_responses = []
-    for formatted_prompt_sent_to_model, raw_response in zip(formatted_prompts_for_tokenizer, raw_decoded_responses):
-        # The raw_response will contain the formatted_prompt_sent_to_model if the model behaved as expected.
-        if raw_response.startswith(formatted_prompt_sent_to_model):
-            # Strip the formatted prompt (which includes system, user, and assistant headers)
-            cleaned_response = raw_response[len(formatted_prompt_sent_to_model):].lstrip()
-            cleaned_responses.append(cleaned_response)
-            logging.debug(f"Cleaned response. Original: '{raw_response[:150]}...', Cleaned: '{cleaned_response[:100]}...'")
+    # `outputs` contains the full sequence (input_ids + generated_ids)
+    # `inputs.input_ids` are the tokenized inputs we sent to the model.
+    for i in range(len(prompts_batch)):
+        input_token_len = inputs.input_ids[i].shape[0]
+        # The output tokens for the i-th item in the batch
+        output_tokens_for_item = outputs[i]
+        
+        # Assuming the input prompt tokens are at the beginning of the output tokens:
+        generated_token_ids = output_tokens_for_item[input_token_len:]
+
+        if generated_token_ids.nelement() == 0:
+            logging.warning(f"No new tokens generated for prompt: '{prompts_batch[i][:50]}...'. Input length: {input_token_len}, Output length: {output_tokens_for_item.shape[0]}")
+            cleaned_responses.append("") # Append empty string for no new generation
         else:
-            logging.warning(
-                f"Formatted prompt not found at the beginning of the raw response. \n"
-                f"Formatted Prompt (sent to model, first 100): '{formatted_prompt_sent_to_model[:100]}...'\n"
-                f"Raw Response (first 100): '{raw_response[:100]}...'")
-            cleaned_responses.append(raw_response) 
-    
-    logging.info("Formatted prompts removed from responses.")
+            # Decode only the generated tokens
+            cleaned_response = tokenizer.decode(generated_token_ids, skip_special_tokens=True)
+            cleaned_responses.append(cleaned_response.lstrip()) # lstrip to remove leading whitespace from model's actual output
+            logging.debug(f"Cleaned response (token-based stripping). Prompt: '{prompts_batch[i][:50]}...', Generated: '{cleaned_response[:100]}...'")
+
+    logging.info("Input tokens stripped from responses.")
     return cleaned_responses
 
 def main():
