@@ -13,6 +13,10 @@ def load_model_and_tokenizer(base_model_path, lora_model_path):
         device_map="auto"
     )
     
+    # Resize token embeddings if necessary
+    if model.config.vocab_size < 128257:
+        model.resize_token_embeddings(128257)
+    
     # Load LoRA weights
     model = PeftModel.from_pretrained(model, lora_model_path)
     return model, tokenizer
