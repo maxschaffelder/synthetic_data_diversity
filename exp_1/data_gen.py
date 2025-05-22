@@ -184,7 +184,7 @@ def main():
                         result_item = {
                             'instruction': original_data['instruction'],
                             'response_model': gen_response,
-                            'response_human': original_data.get('response', '')
+                            'response_human': original_data.get('response_human', '')
                         }
                         # Append this single result to the file
                         with open(output_path, 'a') as f:
@@ -198,7 +198,7 @@ def main():
                             error_result_item = {
                                 'instruction': original_data['instruction'],
                                 'response_model': f"ERROR_BATCH: {e}",
-                                'response_human': original_data.get('response', '')
+                                'response_human': original_data.get('response_human', '')
                             }
                             f.write(json.dumps(error_result_item) + '\n')
                     logging.info(f"Appended {len(data_batch_info)} error results from batch to {output_path}")
@@ -216,7 +216,7 @@ def main():
                 result_item = {
                     'instruction': original_data['instruction'],
                     'response_model': gen_response,
-                    'response_human': original_data.get('response', '')
+                    'response_human': original_data.get('response_human', '')
                 }
                 # Append this single result to the file
                 with open(output_path, 'a') as f:
@@ -229,8 +229,8 @@ def main():
                 for original_data in data_batch_info:
                     error_result_item = {
                         'instruction': original_data['instruction'],
-                        'generated_response': f"ERROR_FINAL_BATCH: {e}",
-                        'ground_truth': original_data.get('response', '')
+                        'response_model': f"ERROR_FINAL_BATCH: {e}",
+                        'response_human': original_data.get('response_human', '')
                     }
                     f.write(json.dumps(error_result_item) + '\n')
             logging.info(f"Appended {len(data_batch_info)} error results from final batch to {output_path}")
