@@ -16,10 +16,19 @@ def load_model_and_tokenizer(base_model_path, lora_model_path):
     )
     logging.info("Tokenizer loaded.")
 
-    # Ensure tokenizer has a pad_token. For Llama, eos_token is often used as pad_token.
-    if tokenizer.pad_token is None:
-        logging.warning("Tokenizer does not have a pad_token. Using eos_token as pad_token.")
-        tokenizer.pad_token = tokenizer.eos_token # This also sets tokenizer.pad_token_id
+    # Ensure tokenizer uses eos_token as pad_token for consistency with Llama generation practices.
+    # This also sets tokenizer.pad_token_id to tokenizer.eos_token_id.
+    if tokenizer.pad_token_id != tokenizer.eos_token_id:
+        logging.warning(
+            f"Tokenizer.pad_token_id ({tokenizer.pad_token_id}) is not eos_token_id ({tokenizer.eos_token_id}). "
+            f"Forcing pad_token to eos_token for Llama consistency."
+        )
+        tokenizer.pad_token = tokenizer.eos_token
+    elif tokenizer.pad_token is None: # If pad_token is None, but pad_token_id might exist (less likely)
+        logging.warning("Tokenizer.pad_token is None. Setting to eos_token.")
+        tokenizer.pad_token = tokenizer.eos_token
+
+    logging.info(f"Tokenizer configured: pad_token_id={tokenizer.pad_token_id}, eos_token_id={tokenizer.eos_token_id}, padding_side='{tokenizer.padding_side}'")
 
     logging.info(f"Starting to load base model from: {base_model_path}")
     model = AutoModelForCausalLM.from_pretrained(
