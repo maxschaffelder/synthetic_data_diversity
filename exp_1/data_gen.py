@@ -112,10 +112,15 @@ def main():
     # Create output directory if it doesn't exist
     output_dir = "/scratch-shared/mschaffelder/Data/exp_1/results"
     os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(output_dir, 'generation_results_8b_single_v6.jsonl')
+
+    # Clear/Create the output file at the beginning of this run
+    with open(output_path, 'w') as f:
+        logging.info(f"Output file {output_path} created/cleared.")
+        # Optionally, write a header if your JSONL has a specific schema, but for simple line-by-line JSON, it's not needed.
     
     # Process test data
     logging.info("Starting to process test data...")
-    results = []
     prompts_batch = []
     data_batch_info = [] 
     
@@ -142,19 +147,28 @@ def main():
                     generated_responses_batch = generate_response(model, tokenizer, prompts_batch)
                     logging.info(f"Batch of responses generated.")
                     for idx, (original_data, gen_response) in enumerate(zip(data_batch_info, generated_responses_batch)):
-                        results.append({
+                        # Prepare result item for this entry
+                        result_item = {
                             'instruction': original_data['instruction'],
-                            'generated_response': gen_response,
-                            'ground_truth': original_data.get('response', '')
-                        })
+                            'response_model': gen_response,
+                            'response_human': original_data.get('response', '')
+                        }
+                        # Append this single result to the file
+                        with open(output_path, 'a') as f:
+                            f.write(json.dumps(result_item) + '\n')
+                    logging.info(f"Appended {len(generated_responses_batch)} results from batch to {output_path}")
                 except Exception as e:
                     logging.error(f"Error during batch generate_response (lines around {i+1}): {e}")
-                    for original_data in data_batch_info:
-                         results.append({
-                            'instruction': original_data['instruction'],
-                            'generated_response': f"ERROR_BATCH: {e}",
-                            'ground_truth': original_data.get('response', '')
-                        })
+                    # Store error for all items in this failed batch by writing them out
+                    with open(output_path, 'a') as f:
+                        for original_data in data_batch_info:
+                            error_result_item = {
+                                'instruction': original_data['instruction'],
+                                'response_model': f"ERROR_BATCH: {e}",
+                                'response_human': original_data.get('response', '')
+                            }
+                            f.write(json.dumps(error_result_item) + '\n')
+                    logging.info(f"Appended {len(data_batch_info)} error results from batch to {output_path}")
                 finally:
                     prompts_batch = [] 
                     data_batch_info = []
@@ -165,26 +179,31 @@ def main():
             generated_responses_batch = generate_response(model, tokenizer, prompts_batch)
             logging.info(f"Final batch of responses generated.")
             for idx, (original_data, gen_response) in enumerate(zip(data_batch_info, generated_responses_batch)):
-                results.append({
+                # Prepare result item for this entry
+                result_item = {
                     'instruction': original_data['instruction'],
-                    'generated_response': gen_response,
-                    'ground_truth': original_data.get('response', '')
-                })
+                    'response_model': gen_response,
+                    'response_human': original_data.get('response', '')
+                }
+                # Append this single result to the file
+                with open(output_path, 'a') as f:
+                    f.write(json.dumps(result_item) + '\n')
+            logging.info(f"Appended {len(generated_responses_batch)} results from final batch to {output_path}")
         except Exception as e:
             logging.error(f"Error during final batch generate_response: {e}")
-            for original_data in data_batch_info:
-                 results.append({
-                    'instruction': original_data['instruction'],
-                    'generated_response': f"ERROR_FINAL_BATCH: {e}",
-                    'ground_truth': original_data.get('response', '')
-                })
+            # Store error for all items in this failed batch by writing them out
+            with open(output_path, 'a') as f:
+                for original_data in data_batch_info:
+                    error_result_item = {
+                        'instruction': original_data['instruction'],
+                        'generated_response': f"ERROR_FINAL_BATCH: {e}",
+                        'ground_truth': original_data.get('response', '')
+                    }
+                    f.write(json.dumps(error_result_item) + '\n')
+            logging.info(f"Appended {len(data_batch_info)} error results from final batch to {output_path}")
             
-    output_path = os.path.join(output_dir, 'generation_results_8b_single_v6.jsonl')
-    with open(output_path, 'w') as f:
-        for result in results:
-            f.write(json.dumps(result) + '\n')
     
-    print(f"Results saved to {output_path}")
+    print(f"Processing complete. Results saved incrementally to {output_path}")
 
 if __name__ == "__main__":
     main()
