@@ -1,0 +1,111 @@
+Error processing line 1 of /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "<frozen site>", line 195, in addpackage
+    File "<string>", line 1, in <module>
+  AttributeError: module '_distutils_hack' has no attribute 'add_shim'
+
+Remainder of file ignored
+Error processing line 1 of /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "<frozen site>", line 195, in addpackage
+    File "<string>", line 1, in <module>
+  AttributeError: module '_distutils_hack' has no attribute 'add_shim'
+
+Remainder of file ignored
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/venv/bin/pip", line 5, in <module>
+    from pip._internal.cli.main import main
+ModuleNotFoundError: No module named 'pip._internal.cli.main'
+Error processing line 1 of /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "<frozen site>", line 195, in addpackage
+    File "<string>", line 1, in <module>
+  AttributeError: module '_distutils_hack' has no attribute 'add_shim'
+
+Remainder of file ignored
+Error processing line 1 of /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "<frozen site>", line 195, in addpackage
+    File "<string>", line 1, in <module>
+  AttributeError: module '_distutils_hack' has no attribute 'add_shim'
+
+Remainder of file ignored
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/venv/bin/pip", line 5, in <module>
+    from pip._internal.cli.main import main
+ModuleNotFoundError: No module named 'pip._internal.cli.main'
+CUDA_VISIBLE_DEVICES: 0
+Available GPUs: GPU 0: NVIDIA A100-SXM4-40GB (UUID: GPU-65773d0c-ee10-4911-8699-fecbb5feeae4)
+Error processing line 1 of /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "<frozen site>", line 195, in addpackage
+    File "<string>", line 1, in <module>
+  AttributeError: module '_distutils_hack' has no attribute 'add_shim'
+
+Remainder of file ignored
+Error processing line 1 of /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "<frozen site>", line 195, in addpackage
+    File "<string>", line 1, in <module>
+  AttributeError: module '_distutils_hack' has no attribute 'add_shim'
+
+Remainder of file ignored
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/venv/bin/huggingface-cli", line 5, in <module>
+    from huggingface_hub.commands.huggingface_cli import main
+  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/huggingface_hub/commands/huggingface_cli.py", line 17, in <module>
+    from huggingface_hub.commands.delete_cache import DeleteCacheCommand
+  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/huggingface_hub/commands/delete_cache.py", line 65, in <module>
+    from ..utils import CachedRepoInfo, CachedRevisionInfo, HFCacheInfo, scan_cache_dir
+  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/huggingface_hub/utils/__init__.py", line 18, in <module>
+    from huggingface_hub.errors import (
+  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/huggingface_hub/errors.py", line 6, in <module>
+    from requests import HTTPError, Response
+  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/requests/__init__.py", line 45, in <module>
+    from .exceptions import RequestsDependencyWarning
+  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/requests/exceptions.py", line 7, in <module>
+    from urllib3.exceptions import HTTPError as BaseHTTPError
+ModuleNotFoundError: No module named 'urllib3.exceptions'
+Error processing line 1 of /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "<frozen site>", line 195, in addpackage
+    File "<string>", line 1, in <module>
+  AttributeError: module '_distutils_hack' has no attribute 'add_shim'
+
+Remainder of file ignored
+Error processing line 1 of /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "<frozen site>", line 195, in addpackage
+    File "<string>", line 1, in <module>
+  AttributeError: module '_distutils_hack' has no attribute 'add_shim'
+
+Remainder of file ignored
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/code/experiments/exp_1.py", line 2, in <module>
+    import torch
+  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/__init__.py", line 34, in <module>
+    from typing_extensions import ParamSpec as _ParamSpec
+ModuleNotFoundError: No module named 'typing_extensions'
+
+JOB STATISTICS
+==============
+Job ID: 11964504
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:05:24 core-walltime
+Job Wall-clock time: 00:00:18
+Memory Utilized: 0.00 MB
+Memory Efficiency: 0.00% of 20.00 GB (20.00 GB/node)
+WARNING: Efficiency statistics can only be obtained after the job has ended as seff tool is based on the accounting database data.
