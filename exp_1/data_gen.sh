@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -J data-generation-llama-8b-finetuned
-#SBATCH -t 08:00:00
+#SBATCH -t 30:00:00
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 4
 #SBATCH --mem=20G
