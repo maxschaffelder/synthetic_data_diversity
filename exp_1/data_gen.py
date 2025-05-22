@@ -3,22 +3,38 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 import os
+import logging
+
+# Configure basic logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def load_model_and_tokenizer(base_model_path, lora_model_path):
-    # Load base model and tokenizer
+    logging.info(f"Starting to load tokenizer from: {base_model_path}")
     tokenizer = AutoTokenizer.from_pretrained(base_model_path)
+    logging.info("Tokenizer loaded.")
+
+    logging.info(f"Starting to load base model from: {base_model_path}")
     model = AutoModelForCausalLM.from_pretrained(
         base_model_path,
         torch_dtype=torch.float16,
         device_map="auto"
     )
+    logging.info(f"Base model loaded. Original vocab size: {model.config.vocab_size}")
     
     # Resize token embeddings if necessary
-    if model.config.vocab_size < 128257:
-        model.resize_token_embeddings(128257)
+    expected_vocab_size = 128257
+    if model.config.vocab_size < expected_vocab_size:
+        logging.info(f"Resizing token embeddings from {model.config.vocab_size} to {expected_vocab_size}...")
+        model.resize_token_embeddings(expected_vocab_size)
+        logging.info(f"Token embeddings resized. New vocab size: {model.config.vocab_size}")
+        # Note: The messages "The new embeddings will be initialized..." usually appear during the call above.
+    else:
+        logging.info("Token embeddings do not need resizing.")
     
+    logging.info(f"Starting to load LoRA weights from: {lora_model_path}")
     # Load LoRA weights
     model = PeftModel.from_pretrained(model, lora_model_path)
+    logging.info("LoRA weights loaded and merged with the base model.")
     return model, tokenizer
 
 def generate_response(model, tokenizer, prompt, max_length=2048):
