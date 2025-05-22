@@ -9,14 +9,22 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def load_model_and_tokenizer(base_model_path, lora_model_path):
-    logging.info(f"Starting to load tokenizer from: {base_model_path}")
-    tokenizer = AutoTokenizer.from_pretrained(base_model_path)
+    logging.info(f"Starting to load tokenizer from: {base_model_path} with padding_side='left'")
+    tokenizer = AutoTokenizer.from_pretrained(
+        base_model_path,
+        padding_side='left' # Set padding side to left for decoder-only models
+    )
     logging.info("Tokenizer loaded.")
+
+    # Ensure tokenizer has a pad_token. For Llama, eos_token is often used as pad_token.
+    if tokenizer.pad_token is None:
+        logging.warning("Tokenizer does not have a pad_token. Using eos_token as pad_token.")
+        tokenizer.pad_token = tokenizer.eos_token # This also sets tokenizer.pad_token_id
 
     logging.info(f"Starting to load base model from: {base_model_path}")
     model = AutoModelForCausalLM.from_pretrained(
         base_model_path,
-        torch_dtype=torch.bfloat16,
+        torch_dtype=torch.bfloat16, 
         device_map="auto"
     )
     logging.info(f"Base model loaded. Original vocab size: {model.config.vocab_size}")
@@ -34,6 +42,13 @@ def load_model_and_tokenizer(base_model_path, lora_model_path):
     # Load LoRA weights
     model = PeftModel.from_pretrained(model, lora_model_path)
     logging.info("LoRA weights loaded and merged with the base model.")
+    
+    # Align model's pad_token_id with tokenizer's pad_token_id if necessary
+    # This is important for the model.generate() method.
+    if model.config.pad_token_id is None or model.config.pad_token_id != tokenizer.pad_token_id:
+        logging.info(f"Aligning model.config.pad_token_id ({model.config.pad_token_id}) to tokenizer.pad_token_id ({tokenizer.pad_token_id}).")
+        model.config.pad_token_id = tokenizer.pad_token_id
+        
     return model, tokenizer
 
 def generate_response(model, tokenizer, prompts_batch, max_length=1024):
@@ -43,44 +58,40 @@ def generate_response(model, tokenizer, prompts_batch, max_length=1024):
     logging.info(f"Generating responses for batch of {len(prompts_batch)} prompts. First prompt (50 chars): '{prompts_batch[0][:50]}...'")
     logging.info(f"Input device: {model.device}, preparing to move inputs to device.")
     
-    # Tokenize the batch of prompts. Use padding to handle sequences of different lengths.
-    if tokenizer.pad_token is None:
-        logging.warning("Tokenizer does not have a pad_token_id. Using eos_token_id as pad_token_id.")
-        tokenizer.pad_token_id = tokenizer.eos_token_id
-        if model.config.pad_token_id is None:
-            model.config.pad_token_id = tokenizer.eos_token_id
-
+    # Tokenize the batch of prompts.
+    # padding_side='left' was set when tokenizer was loaded.
+    # tokenizer.pad_token was also set (to eos_token if None) when tokenizer was loaded.
     inputs = tokenizer(
         prompts_batch, 
         return_tensors="pt", 
         padding=True, # Pad to the longest sequence in the batch
         truncation=True, # Truncate sequences longer than model max length 
-        max_length=model.config.max_position_embeddings if hasattr(model.config, 'max_position_embeddings') else 2048 # Use model's max length for truncation
+        max_length=model.config.max_position_embeddings if hasattr(model.config, 'max_position_embeddings') else 2048 
     ).to(model.device)
     logging.info("Batch of inputs tokenized, padded, truncated, and moved to model device.")
     
     with torch.no_grad():
         logging.info("Starting batched model.generate()...")
+        # model.generate() will use model.config.pad_token_id
         outputs = model.generate(
             **inputs,
-            max_length=max_length, # This is the max_length for the *generation* part
+            max_length=max_length, 
             num_return_sequences=1,
             temperature=0.7,
             top_p=0.9,
             do_sample=True,
-            pad_token_id=tokenizer.eos_token_id # Important for generation to know when to stop/ignore padding
+            # pad_token_id=tokenizer.eos_token_id # Use model.config.pad_token_id which should be aligned
         )
         logging.info("Batched model.generate() completed.")
     
     logging.info("Decoding batch of responses...")
-    
     responses = tokenizer.batch_decode(outputs, skip_special_tokens=True)
     logging.info("Batch of responses decoded.")
     return responses
 
 def main():
     # Configuration
-    BATCH_SIZE = 8 # Define batch size, tune based on GPU memory
+    BATCH_SIZE = 8 
     base_model_path = "meta-llama/Llama-3.1-8B-Instruct"
     lora_model_path = "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_single_v6/checkpoint-1684"
     test_data_path = "/scratch-shared/mschaffelder/Data/Finetuning/Dolly/dolly_test.jsonl"
@@ -97,7 +108,7 @@ def main():
     logging.info("Starting to process test data...")
     results = []
     prompts_batch = []
-    data_batch_info = [] # To store original data items for associating responses
+    data_batch_info = [] 
     
     with open(test_data_path, 'r') as f:
         logging.info(f"Opened test data file: {test_data_path}")
@@ -107,7 +118,7 @@ def main():
                 data = json.loads(line)
                 prompt = data['instruction']
                 prompts_batch.append(prompt)
-                data_batch_info.append(data) # Store the whole data item
+                data_batch_info.append(data) 
                 logging.info(f"Added prompt from line {i+1} to batch.")
             except json.JSONDecodeError as e:
                 logging.error(f"Error decoding JSON from line {i+1}: {e}")
@@ -116,7 +127,6 @@ def main():
                 logging.error(f"Missing key 'instruction' in line {i+1}: {e}")
                 continue
             
-            # Process batch when it's full or it's the last line
             if len(prompts_batch) == BATCH_SIZE:
                 logging.info(f"Processing batch of {len(prompts_batch)} prompts (up to line {i+1})...")
                 try:
@@ -130,7 +140,6 @@ def main():
                         })
                 except Exception as e:
                     logging.error(f"Error during batch generate_response (lines around {i+1}): {e}")
-                    # Store error for all items in this failed batch
                     for original_data in data_batch_info:
                          results.append({
                             'instruction': original_data['instruction'],
@@ -138,11 +147,10 @@ def main():
                             'ground_truth': original_data.get('response', '')
                         })
                 finally:
-                    prompts_batch = [] # Clear batch
+                    prompts_batch = [] 
                     data_batch_info = []
 
-    # Process any remaining prompts in the last batch (if not perfectly divisible by BATCH_SIZE)
-    if prompts_batch: # Check if there are any prompts left
+    if prompts_batch: 
         logging.info(f"Processing final batch of {len(prompts_batch)} prompts...")
         try:
             generated_responses_batch = generate_response(model, tokenizer, prompts_batch)
@@ -161,9 +169,7 @@ def main():
                     'generated_response': f"ERROR_FINAL_BATCH: {e}",
                     'ground_truth': original_data.get('response', '')
                 })
-        # No finally needed to clear here as it's the end
             
-    # Save results
     output_path = os.path.join(output_dir, 'generation_results_8b_single_v6.jsonl')
     with open(output_path, 'w') as f:
         for result in results:
