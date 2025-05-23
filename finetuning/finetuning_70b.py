@@ -49,8 +49,8 @@ model = AutoModelForCausalLM.from_pretrained(
     quantization_config=quantization_config,
     #low_cpu_mem_usage=True,
     #device_map={"": int(os.environ.get("LOCAL_RANK", "0"))},  # Proper device mapping for DDP
-    device_map="auto",
-    max_memory=max_memory_mapping,
+    # device_map="auto", # Removed for torchrun
+    # max_memory=max_memory_mapping, # Removed for torchrun
     trust_remote_code=True,
 )
 
@@ -177,7 +177,7 @@ training_args = TrainingArguments(
     lr_scheduler_type="cosine",     # Use cosine scheduler for smooth decay
     warmup_ratio=0.1,               # Warm up for 10% of training steps
     # Explicitly disable distributed training when using device_map="auto"
-    local_rank=-1,
+    # local_rank=-1, # Removed, torchrun will set LOCAL_RANK env var
     dataloader_num_workers=2,
     gradient_checkpointing=True,
     optim="adamw_torch",  # Use PyTorch's AdamW optimizer which is more memory efficient
@@ -193,7 +193,7 @@ trainer = Trainer(
     train_dataset=train_dataset,
     eval_dataset=val_dataset,
     data_collator=data_collator,
-    processing_class=tokenizer
+    tokenizer=tokenizer
 )
 
 print("starting training")

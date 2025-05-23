@@ -40,5 +40,5 @@ echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
 echo "Available GPUs: $(nvidia-smi -L)"
 
 #huggingface-cli login --token "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"
-#torchrun --nnodes=1 --nproc_per_node=4 --rdzv_backend=c10d --rdzv_endpoint=localhost:29500 finetuning_70b.py
-python finetuning_70b.py
+torchrun --nnodes=1 --nproc_per_node=4 --rdzv_backend=c10d --rdzv_endpoint=localhost:29500 finetuning_70b.py
+#python finetuning_70b.py
