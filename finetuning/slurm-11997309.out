@@ -1,0 +1,61 @@
+Error processing line 1 of /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "<frozen site>", line 195, in addpackage
+    File "<string>", line 1, in <module>
+  AttributeError: module '_distutils_hack' has no attribute 'add_shim'
+
+Remainder of file ignored
+Error processing line 1 of /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "<frozen site>", line 195, in addpackage
+    File "<string>", line 1, in <module>
+  AttributeError: module '_distutils_hack' has no attribute 'add_shim'
+
+Remainder of file ignored
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/venv/bin/pip", line 5, in <module>
+    from pip._internal.cli.main import main
+ModuleNotFoundError: No module named 'pip._internal.cli.main'
+CUDA_VISIBLE_DEVICES: 0,1,2,3
+Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-11764365-ef13-fe5c-5f63-8d7d945fbcb5)
+GPU 1: NVIDIA H100 (UUID: GPU-e906b231-b215-914a-537f-6c2494cbf492)
+GPU 2: NVIDIA H100 (UUID: GPU-3824a31d-a9e6-f85d-f7df-83dc18deae02)
+GPU 3: NVIDIA H100 (UUID: GPU-a5d12a78-58c8-0ad1-8319-360d085be0cf)
+Error processing line 1 of /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "<frozen site>", line 195, in addpackage
+    File "<string>", line 1, in <module>
+  AttributeError: module '_distutils_hack' has no attribute 'add_shim'
+
+Remainder of file ignored
+Error processing line 1 of /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "<frozen site>", line 195, in addpackage
+    File "<string>", line 1, in <module>
+  AttributeError: module '_distutils_hack' has no attribute 'add_shim'
+
+Remainder of file ignored
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/venv/bin/torchrun", line 5, in <module>
+    from torch.distributed.run import main
+  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/__init__.py", line 34, in <module>
+    from typing_extensions import ParamSpec as _ParamSpec
+ModuleNotFoundError: No module named 'typing_extensions'
+
+JOB STATISTICS
+==============
+Job ID: 11997309
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 64
+CPU Utilized: 00:00:01
+CPU Efficiency: 0.08% of 00:20:16 core-walltime
+Job Wall-clock time: 00:00:19
+Memory Utilized: 1.73 MB
+Memory Efficiency: 0.00% of 50.00 GB (50.00 GB/node)
