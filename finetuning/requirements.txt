@@ -6,5 +6,7 @@ sentencepiece>=0.1.99
 huggingface_hub>=0.17.0
 bitsandbytes
 tensorboard
+accelerate>=0.21.0
+typing_extensions
 #flash-attn==2.7.2.post1
 #wandb
