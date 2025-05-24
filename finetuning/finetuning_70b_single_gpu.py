@@ -3,7 +3,7 @@ import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorWithPadding, Trainer, TrainingArguments, BitsAndBytesConfig
 from datasets import load_dataset
-from peft import LoraConfig, TaskType, get_peft_model
+from peft import LoraConfig, TaskType, get_peft_model, prepare_model_for_kbit_training
 
 # Set environment variable to avoid tokenizers parallelism warning
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -27,7 +27,9 @@ quantization_config = BitsAndBytesConfig(
     load_in_4bit=True,
     bnb_4bit_quant_type="nf4",
     bnb_4bit_use_double_quant=True,
-    bnb_4bit_compute_dtype=torch.bfloat16
+    bnb_4bit_compute_dtype=torch.bfloat16,
+    # Ensure compatibility with training
+    bnb_4bit_quant_storage=torch.bfloat16,
 )
 
 # Load model on single GPU
@@ -44,6 +46,9 @@ model = AutoModelForCausalLM.from_pretrained(
 
 # Enable gradient checkpointing to save memory
 model.gradient_checkpointing_enable()
+
+# Prepare model for k-bit training
+model = prepare_model_for_kbit_training(model)
 
 # Ensure tokenizer has a padding token
 if tokenizer.pad_token is None:
@@ -64,8 +69,31 @@ lora_config = LoraConfig(
 
 print("getting peft model")
 model = get_peft_model(model, lora_config)
+
+# Enable training mode
+model.train()
+
+# Explicitly enable gradients for all trainable parameters
+for name, param in model.named_parameters():
+    if param.requires_grad:
+        param.grad = None  # Clear any existing gradients
+        
 print("done getting peft model")
 model.print_trainable_parameters()
+
+# Debug: Check which parameters require gradients
+print("Parameters requiring gradients:")
+trainable_params = 0
+total_params = 0
+for name, param in model.named_parameters():
+    total_params += param.numel()
+    if param.requires_grad:
+        trainable_params += param.numel()
+        print(f"  {name}: {param.shape}")
+
+print(f"Trainable parameters: {trainable_params}")
+print(f"Total parameters: {total_params}")
+print(f"Percentage trainable: {100 * trainable_params / total_params:.2f}%")
 
 # 3. Load and preprocess the dataset
 train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama.jsonl" 
@@ -137,6 +165,9 @@ training_args = TrainingArguments(
     load_best_model_at_end=True,
     metric_for_best_model="eval_loss",
     dataloader_pin_memory=False,  # Disable pin memory to save RAM
+    # Additional optimizations for quantized training
+    remove_unused_columns=False,  # Keep all columns to avoid issues
+    max_grad_norm=1.0,  # Gradient clipping
 )
 
 trainer = Trainer(
