@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -J download_llama_70b
-#SBATCH -t 1:00:00 # 1 hour should be enough, adjust if needed
+#SBATCH -t 2:00:00 # Increased time just in case, 1 hour might still be fine
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 2
-#SBATCH --mem=10G
+#SBATCH --mem=200G # Increased memory significantly
 #SBATCH --partition=rome # Or any partition with internet
 #SBATCH -N 1
 

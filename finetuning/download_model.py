@@ -21,7 +21,11 @@ except Exception as e:
 
 print(f"Downloading and caching model {model_name} to {specific_model_cache_path}")
 try:
-    model = AutoModelForCausalLM.from_pretrained(model_name, cache_dir=cache_dir_base) # Download to general cache
+    model = AutoModelForCausalLM.from_pretrained(
+        model_name, 
+        cache_dir=cache_dir_base, 
+        low_cpu_mem_usage=True # Added to reduce RAM usage
+    ) 
     model.save_pretrained(specific_model_cache_path) # Save to specific model path
     print(f"Model saved to {specific_model_cache_path}")
 except Exception as e:
