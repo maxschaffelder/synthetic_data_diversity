@@ -96,7 +96,7 @@ print(f"Total parameters: {total_params}")
 print(f"Percentage trainable: {100 * trainable_params / total_params:.2f}%")
 
 # 3. Load and preprocess the dataset
-train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama.jsonl" 
+train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama.jsonl" # TODO: change to medium
 val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_test_Llama.jsonl"
 RESPONSE_KEY = "response_model"
 OUTPUT_DIR = "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_70b_single_gpu"
