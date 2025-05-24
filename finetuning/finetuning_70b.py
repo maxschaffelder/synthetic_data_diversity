@@ -39,11 +39,7 @@ quantization_config = BitsAndBytesConfig(
     bnb_4bit_compute_dtype=torch.bfloat16
 )
 
-# For 70B model on H100s, we need careful memory management
-# Each H100 has ~94GB, so we can allocate ~80GB per GPU to be safe
-max_memory_mapping = {0: "80GB", 1: "80GB", 2: "80GB", 3: "80GB"}
-
-# Load model with device mapping for distributed training
+# Load model without device mapping for DeepSpeed
 model = AutoModelForCausalLM.from_pretrained(
     specific_model_cache_path, # Load from the local cached path
     torch_dtype=torch.bfloat16,
@@ -51,8 +47,6 @@ model = AutoModelForCausalLM.from_pretrained(
     attn_implementation="sdpa", 
     quantization_config=quantization_config,
     low_cpu_mem_usage=True,
-    device_map="auto",  # Re-enable for proper GPU distribution
-    max_memory=max_memory_mapping,  # Limit memory per GPU
     trust_remote_code=True,
 )
 
@@ -155,7 +149,7 @@ val_dataset = val_dataset.map(tokenize_and_format, remove_columns=["response_hum
 # 4. Data collator: pad sequences dynamically
 data_collator = DataCollatorWithPadding(tokenizer)
 
-# 5. Training configuration: use mixed precision (AMP) on A100/H100 (fp16)
+# 5. Training configuration: use DeepSpeed ZeRO-3 for 70B model
 training_args = TrainingArguments(
     output_dir=OUTPUT_DIR,
     per_device_train_batch_size=1,   
@@ -171,19 +165,17 @@ training_args = TrainingArguments(
     logging_steps=50,
     save_steps=400,
     save_total_limit=3,
-    #report_to="wandb",             
     report_to="none",
-    run_name="lora_llama_70b_single",
+    run_name="lora_llama_70b_deepspeed",
     logging_dir="/scratch-shared/mschaffelder/Data/ft_models/logs",
     # Learning rate scheduler settings
     lr_scheduler_type="cosine",     # Use cosine scheduler for smooth decay
     warmup_ratio=0.1,               # Warm up for 10% of training steps
-    # Disable DDP when using device_map="auto"
-    local_rank=-1,  # Disable distributed training
+    # Enable DeepSpeed
+    deepspeed="deepspeed_config.json",
     dataloader_num_workers=2,
     gradient_checkpointing=True,
     optim="adamw_torch",  # Use PyTorch's AdamW optimizer which is more memory efficient
-    # Remove DDP settings since we're using device mapping
     load_best_model_at_end=True,
     metric_for_best_model="eval_loss",
 )
