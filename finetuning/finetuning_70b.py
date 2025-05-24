@@ -7,6 +7,8 @@ from peft import LoraConfig, TaskType, get_peft_model
 
 # Set environment variable to avoid tokenizers parallelism warning
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
+# Set CUDA memory allocation strategy for better memory management
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
 print("done importing libraries")
 # (Optional) initialize Weights & Biases for experiment tracking
@@ -37,23 +39,20 @@ quantization_config = BitsAndBytesConfig(
     bnb_4bit_compute_dtype=torch.bfloat16
 )
 
-#quantization_config = BitsAndBytesConfig(load_in_8bit=True)
+# For 70B model on H100s, we need careful memory management
+# Each H100 has ~94GB, so we can allocate ~80GB per GPU to be safe
+max_memory_mapping = {0: "80GB", 1: "80GB", 2: "80GB", 3: "80GB"}
 
-# Set up max memory for each GPU - allocate 60GB to each of the 4 H100 GPUs
-# This limits memory usage per GPU to prevent OOM while still using all GPUs
-max_memory_mapping = {0: "60GB", 1: "60GB", 2: "60GB", 3: "60GB"}
-
-# Remove device_map="auto" for distributed training
+# Load model with device mapping for distributed training
 model = AutoModelForCausalLM.from_pretrained(
     specific_model_cache_path, # Load from the local cached path
     torch_dtype=torch.bfloat16,
     use_cache=False,
     attn_implementation="sdpa", 
     quantization_config=quantization_config,
-    #low_cpu_mem_usage=True,
-    #device_map={"": int(os.environ.get("LOCAL_RANK", "0"))},  # Proper device mapping for DDP
-    # device_map="auto", # Removed for torchrun
-    # max_memory=max_memory_mapping, # Removed for torchrun
+    low_cpu_mem_usage=True,
+    device_map="auto",  # Re-enable for proper GPU distribution
+    max_memory=max_memory_mapping,  # Limit memory per GPU
     trust_remote_code=True,
 )
 
@@ -179,14 +178,12 @@ training_args = TrainingArguments(
     # Learning rate scheduler settings
     lr_scheduler_type="cosine",     # Use cosine scheduler for smooth decay
     warmup_ratio=0.1,               # Warm up for 10% of training steps
-    # Explicitly disable distributed training when using device_map="auto"
-    # local_rank=-1, # Removed, torchrun will set LOCAL_RANK env var
+    # Disable DDP when using device_map="auto"
+    local_rank=-1,  # Disable distributed training
     dataloader_num_workers=2,
     gradient_checkpointing=True,
     optim="adamw_torch",  # Use PyTorch's AdamW optimizer which is more memory efficient
-    # Make DDP more stable
-    #ddp_backend="nccl",
-    #local_rank=-1,  # Let torch.distributed handle this
+    # Remove DDP settings since we're using device mapping
     load_best_model_at_end=True,
     metric_for_best_model="eval_loss",
 )
@@ -201,17 +198,10 @@ trainer = Trainer(
 
 print("starting training")
 # 6. Start training
-try:
-    trainer.train()
-    print("finished training")
+trainer.train()
+print("finished training")
 
-    # If needed, save the model after training
-    print("saving model")
-    trainer.save_model(OUTPUT_DIR)
-    print(f"model saved to {OUTPUT_DIR}")
-finally:
-    # Clean up distributed process group to avoid resource leaks
-    if torch.distributed.is_initialized():
-        print("Cleaning up distributed process group")
-        torch.distributed.destroy_process_group()
-        print("Process group destroyed successfully")
+# If needed, save the model after training
+print("saving model")
+trainer.save_model(OUTPUT_DIR)
+print(f"model saved to {OUTPUT_DIR}")
