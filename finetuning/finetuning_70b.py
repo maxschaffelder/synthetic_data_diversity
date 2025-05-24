@@ -20,11 +20,14 @@ print("done importing libraries")
 # Use the LLaMA 3.1 8B Instruct model from Hugging Face (requires access)
 
 model_name = "meta-llama/Llama-3.1-70B-Instruct"
+# Define path to the local cache, matching the structure in download_model.py
+cache_dir_base = "/scratch-shared/mschaffelder/hf_cache"
+specific_model_cache_path = cache_dir_base + "/" + model_name.replace("/", "_")
 
-print("loading tokenizer")
-tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
+print(f"Attempting to load tokenizer from local path: {specific_model_cache_path}")
+tokenizer = AutoTokenizer.from_pretrained(specific_model_cache_path, use_fast=False)
 
-print("loading model")
+print(f"Attempting to load model from local path: {specific_model_cache_path}")
 
 # Configure quantization for more memory efficiency
 quantization_config = BitsAndBytesConfig(
@@ -42,7 +45,7 @@ max_memory_mapping = {0: "60GB", 1: "60GB", 2: "60GB", 3: "60GB"}
 
 # Remove device_map="auto" for distributed training
 model = AutoModelForCausalLM.from_pretrained(
-    model_name,
+    specific_model_cache_path, # Load from the local cached path
     torch_dtype=torch.bfloat16,
     use_cache=False,
     attn_implementation="sdpa", 
