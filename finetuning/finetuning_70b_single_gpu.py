@@ -87,7 +87,7 @@ system_prompt = "You are a helpful assistant."
 # Function to filter out examples exceeding 1024 tokens (smaller for memory)
 def filter_long(ex):
     combined = system_prompt + " " + ex["instruction"] + " " + ex[RESPONSE_KEY]
-    return len(tokenizer(combined, truncation=False)["input_ids"]) <= 1024
+    return len(tokenizer(combined, truncation=False)["input_ids"]) <= 2048
 
 print("filtering long examples")
 train_dataset = train_dataset.filter(filter_long)
@@ -97,7 +97,7 @@ print("done filtering long examples")
 # Function to tokenize and prepare model inputs
 def tokenize_and_format(ex):
     prompt = system_prompt + " " + ex["instruction"]
-    prompt_ids = tokenizer(prompt, truncation=True, add_special_tokens=False, max_length=1024, padding=False).input_ids
+    prompt_ids = tokenizer(prompt, truncation=True, add_special_tokens=False, max_length=2048, padding=False).input_ids
     response_ids = tokenizer(" " + ex[RESPONSE_KEY], truncation=True, add_special_tokens=False, max_length=1024, padding=False).input_ids
     input_ids = prompt_ids + response_ids + [tokenizer.eos_token_id]
     labels = [-100] * len(prompt_ids) + response_ids + [tokenizer.eos_token_id]
