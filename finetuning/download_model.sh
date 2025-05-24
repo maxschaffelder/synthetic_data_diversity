@@ -4,7 +4,7 @@
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 2
 #SBATCH --mem=10G
-#SBATCH --partition=cpu_shared # Or any partition with internet
+#SBATCH --partition=rome # Or any partition with internet
 #SBATCH -N 1
 
 # Load required modules
