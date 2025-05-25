@@ -41,7 +41,7 @@ huggingface-cli login --token "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"
 python finetuning_llama_lora.py \
     --train_path "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl" \
     --val_path "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Medium/Llama/dolly_test_Llama.jsonl" \
-    --output_dir "/scratch-shared/mschaffelder/Data/ft_models/llama_70b_medium_4bit" \
+    --output_dir "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_70b_single_medium_4bit" \
     --run_name "llama_70b_medium_4bit" \
     --model_name "meta-llama/Llama-3.1-70B-Instruct" \
     --max_length 2048 \

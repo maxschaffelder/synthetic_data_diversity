@@ -47,10 +47,10 @@ huggingface-cli login --token "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"
 python finetuning_llama_lora.py \
     --train_path "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama.jsonl" \
     --val_path "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_test_Llama.jsonl" \
-    --output_dir "/scratch-shared/mschaffelder/Data/ft_models/llama_70b_small_4bit" \
-    --run_name "llama_70b_small_4bit" \
+    --output_dir "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_70b_single_small_4bit" \
+    --run_name "lora_llama_70b_single_small_4bit" \
     --model_name "meta-llama/Llama-3.1-70B-Instruct" \
-    --max_length 1024 \
+    --max_length 2048 \
     --batch_size 1 \
     --gradient_accumulation_steps 16 \
     --learning_rate 1e-5 \
