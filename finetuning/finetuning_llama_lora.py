@@ -13,6 +13,15 @@ os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
 print("done importing libraries")
 
+# GPU Memory Logging Function
+def log_gpu_memory(stage="", device_idx=0):
+    if torch.cuda.is_available():
+        allocated = torch.cuda.memory_allocated(device_idx) / (1024 ** 2)
+        reserved = torch.cuda.memory_reserved(device_idx) / (1024 ** 2)
+        print(f"GPU Memory ({stage}): Allocated={allocated:.2f} MB, Reserved={reserved:.2f} MB")
+
+log_gpu_memory("Initial - After Imports")
+
 # Parse command line arguments
 def parse_args():
     parser = argparse.ArgumentParser(description="Fine-tune LLaMA model with LoRA")
@@ -38,7 +47,7 @@ def parse_args():
                         help="Key for response in dataset")
     parser.add_argument("--run_name", type=str, required=True,
                         help="Name for this training run")
-    parser.add_argument("--max_length", type=int, default=1024,
+    parser.add_argument("--max_length", type=int, default=2048,
                         help="Maximum sequence length")
     parser.add_argument("--batch_size", type=int, default=1,
                         help="Per-device batch size")
@@ -113,6 +122,8 @@ if tokenizer.pad_token is None:
     tokenizer.add_special_tokens({'pad_token': '<pad>'})
     model.resize_token_embeddings(len(tokenizer))
 print("done loading tokenizer and model")
+
+log_gpu_memory("After Model and Tokenizer Loaded")
 
 # 2. Configure LoRA for parameter-efficient fine-tuning
 lora_config = LoraConfig(
@@ -238,9 +249,18 @@ trainer = Trainer(
 )
 
 print("starting training")
+log_gpu_memory("Before Trainer.train()")
 trainer.train()
 print("finished training")
+log_gpu_memory("After Trainer.train()")
 
 print("saving model")
 trainer.save_model(OUTPUT_DIR)
 print(f"model saved to {OUTPUT_DIR}") 
+
+if torch.cuda.is_available():
+    max_allocated = torch.cuda.max_memory_allocated(0) / (1024 ** 2)
+    max_reserved = torch.cuda.max_memory_reserved(0) / (1024 ** 2)
+    print(f"Max GPU Memory during run: Max Allocated={max_allocated:.2f} MB, Max Reserved={max_reserved:.2f} MB")
+    # Reset peak stats for next potential runs in the same process (if any)
+    torch.cuda.reset_peak_memory_stats(0) 
