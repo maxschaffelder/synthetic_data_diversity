@@ -35,7 +35,7 @@ mkdir -p ${LOG_DIR} # Ensure log directory exists
 
 
 # Get the task ID for array jobs
-INPUT_FILE_NAME="generation_results_8b_multi_v1"
+INPUT_FILE_NAME="generation_results_8b_single_v6"
 INPUT_PATH="${BASE_DATA_PATH}/${INPUT_FILE_NAME}.jsonl"
 OUTPUT_PATH="${BASE_DATA_PATH}/${INPUT_FILE_NAME}_ppl.jsonl"
 
