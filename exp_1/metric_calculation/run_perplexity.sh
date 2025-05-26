@@ -14,7 +14,7 @@ module load 2024 Python/3.12.3-GCCcore-13.3.0
 module load 2024 CUDA/12.6.0      
 
 # Define the new virtual environment directory
-VENV_DIR="/scratch-shared/mschaffelder/venv_finetune_1"
+VENV_DIR="/scratch-shared/mschaffelder/venv_exp_1"
 
 # Activate virtual environment
 echo "Activating virtual environment from $VENV_DIR"
@@ -32,15 +32,10 @@ LOG_DIR="/scratch-shared/mschaffelder/logs"
 mkdir -p ${LOG_DIR} # Ensure log directory exists
 
 
-# Define an array of input file names (without the .jsonl extension)
-declare -a INPUT_FILES=(
-    "generation_results_8b_human_v1"
-    "generation_results_8b_multi_v1"
-    "generation_results_8b_single_v6"
-)
+
 
 # Get the task ID for array jobs
-INPUT_FILE_NAME=${INPUT_FILES[$SLURM_ARRAY_TASK_ID]}
+INPUT_FILE_NAME="generation_results_8b_multi_v1"
 INPUT_PATH="${BASE_DATA_PATH}/${INPUT_FILE_NAME}.jsonl"
 OUTPUT_PATH="${BASE_DATA_PATH}/${INPUT_FILE_NAME}_ppl.jsonl"
 
