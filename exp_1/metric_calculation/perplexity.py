@@ -1,17 +1,10 @@
-import numpy as np
 from transformers import AutoModelForCausalLM, AutoTokenizer
-import transformers
 import os
 import json
 from tqdm import tqdm
 import torch
 import torch.nn.functional as F
 import gc
-import pandas as pd
-import matplotlib.pyplot as plt
-import glob
-from accelerate import init_empty_weights
-import torch.multiprocessing as mp
 from accelerate.utils import get_max_memory
 import argparse
 
@@ -245,7 +238,6 @@ def main():
     parser.add_argument("--input_path", type=str, required=True, help="Path to the input JSONL file.")
     parser.add_argument("--output_path", type=str, required=True, help="Path to save the output JSONL file.")
     parser.add_argument("--temperature", type=float, default=1.0, help="Temperature for scaling logits.")
-    parser.add_argument("--is_human_response", action="store_true", help="Flag to indicate if the input file contains human responses. If set, uses 'response_human' key and outputs to a field with '_human' suffix.")
     
     args = parser.parse_args()
 
@@ -289,12 +281,8 @@ def main():
     print(f"Processing input file: {args.input_path}")
     print(f"Output will be saved to: {args.output_path}")
 
-    if args.is_human_response:
-        print("Calculating perplexity for human responses.")
-        get_token_probabilities_human(args.model_name, model, args.input_path, args.output_path, tokenizer, temperature=args.temperature)
-    else:
-        print("Calculating perplexity for model responses.")
-        get_token_probabilities(args.model_name, model, args.input_path, args.output_path, tokenizer, temperature=args.temperature)
+    print("Calculating perplexity for model responses.")
+    get_token_probabilities(args.model_name, model, args.input_path, args.output_path, tokenizer, temperature=args.temperature)
 
     # Clearing memory 
     del model  
