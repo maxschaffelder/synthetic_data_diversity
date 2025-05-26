@@ -13,6 +13,7 @@ import glob
 from accelerate import init_empty_weights
 import torch.multiprocessing as mp
 from accelerate.utils import get_max_memory
+import argparse
 
 def get_token_probabilities(model_name, model, input_path, output_path, tokenizer, temperature=1.0, split=None):
 
@@ -35,7 +36,7 @@ def get_token_probabilities(model_name, model, input_path, output_path, tokenize
             try:
 
                 data = json.loads(line)
-                response_key = [k for k in data if k.startswith('response_')][1] # to get model response
+                response_key = "response_model"
                 response = data[response_key] # get response
                 instruction = data["instruction"] # get instruction belonging to response
 
@@ -238,10 +239,18 @@ def get_token_probabilities_human(model_name, model, input_path, output_path, to
 
 
 def main(): 
+    # Setup argument parser
+    parser = argparse.ArgumentParser(description="Calculate token probabilities and perplexity for given inputs.")
+    parser.add_argument("--model_name", type=str, required=True, help="Name of the Hugging Face model to use.")
+    parser.add_argument("--input_path", type=str, required=True, help="Path to the input JSONL file.")
+    parser.add_argument("--output_path", type=str, required=True, help="Path to save the output JSONL file.")
+    parser.add_argument("--temperature", type=float, default=1.0, help="Temperature for scaling logits.")
+    parser.add_argument("--is_human_response", action="store_true", help="Flag to indicate if the input file contains human responses. If set, uses 'response_human' key and outputs to a field with '_human' suffix.")
+    
+    args = parser.parse_args()
+
     # Load model & tokenizer
     torch.set_grad_enabled(False)
-
-    model_name = "meta-llama/Llama-3.1-70B-Instruct"
     
     # Set environment variable to avoid CUDA memory fragmentation
     os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
@@ -253,13 +262,15 @@ def main():
     # Setup device map to distribute model across GPUs
     max_memory = get_max_memory()
     
-    if num_gpus < 2:
-        print("Warning: Less than 2 GPUs available. This might cause OOM errors.")
+    if num_gpus < 1: # Adjusted to allow single GPU operation
+        print("Warning: No GPUs available. This script requires at least one GPU.")
+        # Depending on the setup, might want to exit or force CPU, but for perplexity, GPU is highly recommended.
+        # For now, will proceed, but model loading might fail or be very slow.
     
     # Load model with explicit device map to distribute across GPUs
-    print("Loading model with multi-GPU parallelism...")
+    print(f"Loading model {args.model_name} with multi-GPU parallelism if available...")
     model = AutoModelForCausalLM.from_pretrained(
-        model_name,
+        args.model_name,
         torch_dtype=torch.bfloat16,  # use bfloat16 for better performance on H100s
         device_map="auto",  # Auto-distribute across available GPUs
         max_memory=max_memory,
@@ -270,35 +281,27 @@ def main():
         #attn_implementation="flash_attention_2" # flash attention 3 is used if available
     )
     
-    print(f"Model loaded and distributed across GPUs. Device map: {model.hf_device_map}")
+    print(f"Model loaded. Device map: {model.hf_device_map}")
 
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
     # Calculate token probabilities & perplexity
+    print(f"Processing input file: {args.input_path}")
+    print(f"Output will be saved to: {args.output_path}")
 
-    dolly_version = 4
-    temperature = 1.0
-
-    input_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Medium/Other/dolly_train_{dolly_version}_Command.jsonl"
-    output_path = f"/scratch-shared/mschaffelder/Data/analysis/perplexity/llama_medium/dolly_train_{dolly_version}_Command_medium_PPL.jsonl"
-    get_token_probabilities(model_name, model, input_path, output_path, tokenizer, temperature=temperature)
-
-    # Calculate PPL scores and token probs for all data in one go
-    for dolly_version in range(1, 5):
-        #input_path = f"../../Data/Finetuning/Augmented/Medium/Llama/dolly_train_{dolly_version}_Llama.jsonl"
-        #output_path = f"../../Data/analysis/perplexity/llama_medium/dolly_train_{dolly_version}_Llama_medium_PPL.jsonl"
-        input_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Medium/Llama/dolly_train_{dolly_version}_Llama.jsonl"
-        output_path = f"/scratch-shared/mschaffelder/Data/analysis/perplexity/llama_medium/dolly_train_{dolly_version}_Llama_medium_PPL.jsonl"
-        output_path_human = f"/scratch-shared/mschaffelder/Data/analysis/perplexity/llama_medium/dolly_train_{dolly_version}_Llama_medium_PPL_on_human_data.jsonl"
-
-        #get_token_probabilities(model_name, model, input_path, output_path, tokenizer, temperature=temperature)
-        #get_token_probabilities_human(model_name, model, input_path, output_path_human, tokenizer, temperature=temperature)
+    if args.is_human_response:
+        print("Calculating perplexity for human responses.")
+        get_token_probabilities_human(args.model_name, model, args.input_path, args.output_path, tokenizer, temperature=args.temperature)
+    else:
+        print("Calculating perplexity for model responses.")
+        get_token_probabilities(args.model_name, model, args.input_path, args.output_path, tokenizer, temperature=args.temperature)
 
     # Clearing memory 
     del model  
     gc.collect()
     torch.cuda.empty_cache()
     torch.cuda.ipc_collect()
+    print("Processing complete.")
 
 
 if __name__ == "__main__":
