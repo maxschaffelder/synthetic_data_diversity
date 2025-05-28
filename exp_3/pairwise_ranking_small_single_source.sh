@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=relative_ranking_small_vanilla
+#SBATCH --job-name=pairwise_ranking_small_single_source
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
 #SBATCH --time=03:00:00
@@ -57,6 +57,7 @@ fi
 
 python relative_ranking.py \
     --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
-    --use_lora False \
+    --lora_model_path "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_single_v6/checkpoint-1686" \
+    --use_lora True \
     --input_file "/scratch-shared/mschaffelder/Data/exp_3/generated/small/all_summaries_small.jsonl" \
-    --output_file "/scratch-shared/mschaffelder/Data/exp_3/relative_rankings/small_vanilla.jsonl"
+    --output_file "/scratch-shared/mschaffelder/Data/exp_3/pairwise_rankings/small_single_source.jsonl"

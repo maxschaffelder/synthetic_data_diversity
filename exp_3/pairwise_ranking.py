@@ -1,7 +1,7 @@
 import json
 import os
 import logging
-from helper_functions_judge import load_model_and_tokenizer, generate_relative_ranking_response
+from helper_functions_judge import load_model_and_tokenizer, generate_pairwise_ranking_response
 import argparse
 
 
@@ -10,7 +10,7 @@ def main():
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
     # Argument parsing
-    parser = argparse.ArgumentParser(description="Run relative ranking generation.")
+    parser = argparse.ArgumentParser(description="Run pairwise ranking generation.")
     parser.add_argument("--base_model_path", type=str, help="Path to the base model.")
     parser.add_argument("--lora_model_path", type=str, help="Path to the LoRA model.")
     parser.add_argument("--use_lora", type=bool, help="Whether to use the LoRA model.")
@@ -68,13 +68,14 @@ def main():
             if len(prompts_batch) == BATCH_SIZE:
                 logging.info(f"Processing batch of {len(prompts_batch)} prompts (up to line {i+1})...")
                 try:
-                    generated_responses_batch = generate_relative_ranking_response(model, tokenizer, prompts_batch)
+                    generated_responses_batch, token_probabilities_batch = generate_pairwise_ranking_response(model, tokenizer, prompts_batch)
                     logging.info(f"Batch of responses generated.")
-                    for idx, (original_data, gen_response) in enumerate(zip(data_batch_info, generated_responses_batch)):
+                    for idx, (original_data, gen_response, token_probabilities) in enumerate(zip(data_batch_info, generated_responses_batch, token_probabilities_batch)):
                         # Prepare result item for this entry
                         result_item = {
                             'summary': original_data['summary'],
-                            'winner': gen_response
+                            'ranking_output': gen_response,
+                            'token_probabilities': token_probabilities
                         }
                         # Append this single result to the file
                         with open(output_file, 'a') as f:
@@ -87,7 +88,8 @@ def main():
                         for original_data in data_batch_info:
                             error_result_item = {
                                 'summary': original_data['summary'],
-                                'winner': f"ERROR_BATCH: {e}"
+                                'ranking_output': f"ERROR_BATCH: {e}", 
+                                'token_probabilities': []
                             }
                             f.write(json.dumps(error_result_item) + '\n')
                     logging.info(f"Appended {len(data_batch_info)} error results from batch to {output_file}")
@@ -98,13 +100,14 @@ def main():
     if prompts_batch: 
         logging.info(f"Processing final batch of {len(prompts_batch)} prompts...")
         try:
-            generated_responses_batch = generate_relative_ranking_response(model, tokenizer, prompts_batch)
+            generated_responses_batch, token_probabilities_batch = generate_pairwise_ranking_response(model, tokenizer, prompts_batch)
             logging.info(f"Final batch of responses generated.")
-            for idx, (original_data, gen_response) in enumerate(zip(data_batch_info, generated_responses_batch)):
+            for idx, (original_data, gen_response, token_probabilities) in enumerate(zip(data_batch_info, generated_responses_batch, token_probabilities_batch)):
                 # Prepare result item for this entry
                 result_item = {
                     'summary': original_data['summary'],
-                    'winner': gen_response
+                    'ranking_output': gen_response,
+                    'token_probabilities': token_probabilities
                 }
                 # Append this single result to the file
                 with open(output_file, 'a') as f:
@@ -117,7 +120,8 @@ def main():
                 for original_data in data_batch_info:
                     error_result_item = {
                         'summary': original_data['summary'],
-                        'winner': f"ERROR_FINAL_BATCH: {e}"
+                        'ranking_output': f"ERROR_FINAL_BATCH: {e}",
+                        'token_probabilities': []
                     }
                     f.write(json.dumps(error_result_item) + '\n')
             logging.info(f"Appended {len(data_batch_info)} error results from final batch to {output_file}")
