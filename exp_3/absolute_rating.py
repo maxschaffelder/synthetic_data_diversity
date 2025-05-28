@@ -67,19 +67,22 @@ def main():
             
             if len(prompts_batch) == BATCH_SIZE:
                 logging.info(f"Processing batch of {len(prompts_batch)} prompts (up to line {i+1})...")
+
                 try:
-                    generated_responses_batch = generate_absolute_rating_response(model, tokenizer, prompts_batch)
+                    generated_responses_batch, token_probabilities_batch = generate_absolute_rating_response(model, tokenizer, prompts_batch)
                     logging.info(f"Batch of responses generated.")
-                    for idx, (original_data, gen_response) in enumerate(zip(data_batch_info, generated_responses_batch)):
+                    for idx, (original_data, gen_response, token_probabilities) in enumerate(zip(data_batch_info, generated_responses_batch, token_probabilities_batch)):
                         # Prepare result item for this entry
                         result_item = {
                             'summary': original_data['summary'],
-                            'absolute_rating': gen_response
+                            'absolute_rating': gen_response, 
+                            'token_probabilities': token_probabilities
                         }
                         # Append this single result to the file
                         with open(output_file, 'a') as f:
                             f.write(json.dumps(result_item) + '\n')
                     logging.info(f"Appended {len(generated_responses_batch)} results from batch to {output_file}")
+                    
                 except Exception as e:
                     logging.error(f"Error during batch generate_response (lines around {i+1}): {e}")
                     # Store error for all items in this failed batch by writing them out
@@ -87,7 +90,8 @@ def main():
                         for original_data in data_batch_info:
                             error_result_item = {
                                 'summary': original_data['summary'],
-                                'absolute_rating': f"ERROR_BATCH: {e}"
+                                'absolute_rating': f"ERROR_BATCH: {e}",
+                                'token_probabilities': []
                             }
                             f.write(json.dumps(error_result_item) + '\n')
                     logging.info(f"Appended {len(data_batch_info)} error results from batch to {output_file}")
@@ -98,18 +102,23 @@ def main():
     if prompts_batch: 
         logging.info(f"Processing final batch of {len(prompts_batch)} prompts...")
         try:
-            generated_responses_batch = generate_absolute_rating_response(model, tokenizer, prompts_batch)
+
+            generated_responses_batch, token_probabilities_batch = generate_absolute_rating_response(model, tokenizer, prompts_batch)
             logging.info(f"Final batch of responses generated.")
-            for idx, (original_data, gen_response) in enumerate(zip(data_batch_info, generated_responses_batch)):
+
+            for idx, (original_data, gen_response, token_probabilities) in enumerate(zip(data_batch_info, generated_responses_batch, token_probabilities_batch)):
                 # Prepare result item for this entry
                 result_item = {
                     'summary': original_data['summary'],
-                    'absolute_rating': gen_response
+                    'absolute_rating': gen_response,
+                    'token_probabilities': token_probabilities
                 }
                 # Append this single result to the file
                 with open(output_file, 'a') as f:
                     f.write(json.dumps(result_item) + '\n')
+
             logging.info(f"Appended {len(generated_responses_batch)} results from final batch to {output_file}")
+
         except Exception as e:
             logging.error(f"Error during final batch generate_response: {e}")
             # Store error for all items in this failed batch by writing them out
@@ -117,7 +126,8 @@ def main():
                 for original_data in data_batch_info:
                     error_result_item = {
                         'summary': original_data['summary'],
-                        'absolute_rating': f"ERROR_FINAL_BATCH: {e}"
+                        'absolute_rating': f"ERROR_FINAL_BATCH: {e}",
+                        'token_probabilities': []
                     }
                     f.write(json.dumps(error_result_item) + '\n')
             logging.info(f"Appended {len(data_batch_info)} error results from final batch to {output_file}")
