@@ -41,7 +41,19 @@ pip install -r requirements.txt
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
 echo "Available GPUs: $(nvidia-smi -L)"
 
-huggingface-cli login --token "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"
+# Login to Hugging Face using environment variable
+if [ -n "$HF_TOKEN" ]; then
+    echo "Logging in to Hugging Face using environment variable..."
+    huggingface-cli login --token "$HF_TOKEN"
+elif [ -f ~/.hf_token ]; then
+    echo "Loading Hugging Face token from ~/.hf_token..."
+    source ~/.hf_token
+    huggingface-cli login --token "$HF_TOKEN"
+elif [ -f ~/.cache/huggingface/token ]; then
+    echo "Using existing Hugging Face token from cache..."
+else
+    echo "Warning: No Hugging Face token found. Set HF_TOKEN environment variable or login manually."
+fi
 
 # Run the parameterized training script
 python finetuning_llama_lora.py \
