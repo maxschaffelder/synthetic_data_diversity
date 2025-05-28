@@ -13,6 +13,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run relative ranking generation.")
     parser.add_argument("--base_model_path", type=str, help="Path to the base model.")
     parser.add_argument("--lora_model_path", type=str, help="Path to the LoRA model.")
+    parser.add_argument("--use_lora", type=bool, help="Whether to use the LoRA model.")
     parser.add_argument("--input_file", type=str, help="Path to the input data.")
     parser.add_argument("--output_file", type=str, help="Path to the output file.")
     
@@ -21,6 +22,7 @@ def main():
     # Use parsed arguments
     base_model_path = args.base_model_path
     lora_model_path = args.lora_model_path
+    use_lora = args.use_lora
     input_file = args.input_file
     output_file = args.output_file
     
@@ -34,7 +36,7 @@ def main():
     
     # Load model and tokenizer
     print("Loading model and tokenizer...")
-    model, tokenizer = load_model_and_tokenizer(base_model_path, lora_model_path)
+    model, tokenizer = load_model_and_tokenizer(base_model_path, use_lora, lora_model_path)
 
 
     # Clear/Create the output file at the beginning of this run

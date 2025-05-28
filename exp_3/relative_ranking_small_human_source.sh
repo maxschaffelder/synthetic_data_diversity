@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=absolute_rating_small_single_source
+#SBATCH --job-name=relative_ranking_small_human_source
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
 #SBATCH --time=03:00:00
@@ -45,7 +45,7 @@ huggingface-cli login --token "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"
 
 python relative_ranking.py \
     --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
-    --lora_model_path "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_single_v6/checkpoint-1686" \
+    --lora_model_path "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_human_v1/checkpoint-1686" \
     --use_lora True \
     --input_file "/scratch-shared/mschaffelder/Data/exp_3/generated/small/all_summaries_small.jsonl" \
-    --output_file "/scratch-shared/mschaffelder/Data/exp_3/relative_rankings/small_single_source.jsonl"
+    --output_file "/scratch-shared/mschaffelder/Data/exp_3/relative_rankings/small_human_source.jsonl"
