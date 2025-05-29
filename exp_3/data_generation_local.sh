@@ -8,7 +8,9 @@
 #SBATCH --partition=gpu_h100
 #SBATCH -N 1
 
-VENV_BASE_DIR="/scratch-shared/mschaffelder" # Or any other persistent shared directory you prefer
+
+VENV_NAME="venv_exp_3"
+VENV_BASE_DIR="/scratch-shared/mschaffelder" 
 VENV_DIR="$VENV_BASE_DIR/$VENV_NAME"
 PYTHON_MODULE="Python/3.10.4-GCCcore-11.3.0"
 
