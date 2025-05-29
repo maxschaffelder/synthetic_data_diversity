@@ -5,7 +5,7 @@ from groq import Groq
 from openai import OpenAI
 from mistralai import Mistral
 
-SYSTEM_PROMPT_SUMMARY = "You are a helpful assistant. Your task is to summarize the provided text. The summary should be around 50 words long, and no longer than 100 words."
+SYSTEM_PROMPT_SUMMARY = "You are a helpful assistant. Your task is to summarize the provided text. The summary should be approximately 50 words long."
 
 # Data generation function using API
 
@@ -120,7 +120,7 @@ def create_synthetic_data(model, input_path, output_path, split=None):
                 else: 
                     chat_completion = client.chat.completions.create(
                         messages=[
-                            {"role": "system", "content": SYSTEM_PROMPT},
+                            {"role": "system", "content": SYSTEM_PROMPT_SUMMARY},
                             {"role": "user", "content": instruction}],
                         model=model,
                         temperature=0.7,
@@ -131,6 +131,7 @@ def create_synthetic_data(model, input_path, output_path, split=None):
 
                 data["response_model"] = generated_text
                 data[f"model_name"] = model
+                data["system_prompt"] = SYSTEM_PROMPT_SUMMARY
 
 
 
