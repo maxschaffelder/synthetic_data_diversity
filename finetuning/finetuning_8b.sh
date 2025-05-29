@@ -8,13 +8,24 @@
 #SBATCH --partition=gpu_h100
 #SBATCH -N 1
 
+# Define variables for script parameters (defaults provided)
+MODEL_NAME="meta-llama/Llama-3.1-8B-Instruct"
+TRAIN_PATH="/scratch-shared/mschaffelder/data/finetuning/synthetic/Small/Other/dolly_train_all_multi.jsonl"
+VAL_PATH="/scratch-shared/mschaffelder/data/finetuning/synthetic/Small/Other/dolly_test_multi.jsonl"
+RESPONSE_KEY="response_model"
+OUTPUT_DIR="/scratch-shared/mschaffelder/data/ft_models/lora_llama_8b_multi"
+
 # Load required modules 
 module load 2024 Python/3.12.3-GCCcore-13.3.0
-# module load 2023 Python/3.11.3-GCCcore-12.3.0
+module load 2024 CUDA/12.6.0
+
+# Define the new virtual environment directory
+VENV_DIR="/scratch-shared/mschaffelder/venv_finetune_1"
 
 # Activate virtual environment
-# source /scratch-shared/mschaffelder/.venv/bin/activate
-source /scratch-shared/mschaffelder/venv/bin/activate
+echo "Activating virtual environment from $VENV_DIR"
+source $VENV_DIR/bin/activate
+
 
 # Install required packages
 pip install -r requirements.txt 
@@ -47,4 +58,9 @@ else
 fi
 
 #python finetuning_dr.py
-torchrun --nnodes=1 --nproc_per_node=2 --rdzv_backend=c10d --rdzv_endpoint=localhost:29500 finetuning_dr.py
+torchrun --nnodes=1 --nproc_per_node=2 --rdzv_backend=c10d --rdzv_endpoint=localhost:29500 finetuning_8b.py \
+    --model_name "$MODEL_NAME" \
+    --train_path "$TRAIN_PATH" \
+    --val_path "$VAL_PATH" \
+    --response_key "$RESPONSE_KEY" \
+    --output_dir "$OUTPUT_DIR"

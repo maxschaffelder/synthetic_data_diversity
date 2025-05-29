@@ -4,6 +4,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorWithPadding, Trainer, TrainingArguments
 from datasets import load_dataset
 from peft import LoraConfig, TaskType, get_peft_model
+import argparse
 
 # Set environment variable to avoid tokenizers parallelism warning
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -16,15 +17,26 @@ print("done importing libraries")
 
 # Alternatively, one could use TRL's SFTTrainer for supervised fine-tuning:contentReference[oaicite:0]{index=0}.
 
+# 0. Parse command-line arguments
+print("parsing arguments")
+parser = argparse.ArgumentParser(description="Fine-tune a LLaMA model with LoRA.")
+parser.add_argument("--model_name", type=str, default="meta-llama/Llama-3.1-8B-Instruct", help="Name of the model to fine-tune.")
+parser.add_argument("--train_path", type=str, required=True, help="Path to the training data JSONL file.")
+parser.add_argument("--val_path", type=str, required=True, help="Path to the validation data JSONL file.")
+parser.add_argument("--response_key", type=str, default="response_human", help="The key in the JSONL file that contains the response.")
+parser.add_argument("--output_dir", type=str, required=True, help="Directory to save the fine-tuned model and logs.")
+args = parser.parse_args()
+print("done parsing arguments")
+
 # 1. Load the tokenizer and model
 # Use the LLaMA 3.1 8B Instruct model from Hugging Face (requires access)
 print("loading tokenizer")
-tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B-Instruct", use_fast=False)
+tokenizer = AutoTokenizer.from_pretrained(args.model_name, use_fast=False)
 print("loading model")
 
 # Remove device_map="auto" as it can cause issues with distributed training
 model = AutoModelForCausalLM.from_pretrained(
-    "meta-llama/Llama-3.1-8B-Instruct",
+    args.model_name,
     torch_dtype=torch.bfloat16,
     use_cache=False,
 )
@@ -44,7 +56,9 @@ print("done loading tokenizer and model")
 lora_config = LoraConfig(
     r=16,                         # LoRA rank
     lora_alpha=16,                # LoRA scaling factor (same as rank for now)
-    target_modules=["q_proj", "v_proj"],  # Apply Lora only to the attention layers
+    #target_modules=["q_proj", "v_proj"], 
+    target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
+                    "gate_proj", "up_proj", "down_proj"],
     lora_dropout=0.1,            # dropout for LoRA layers
     bias="none",
     task_type=TaskType.CAUSAL_LM
@@ -60,15 +74,15 @@ model.print_trainable_parameters()
 #train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama.jsonl" 
 #val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_test_Llama.jsonl"
 
-train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Other/dolly_train_all_multi.jsonl" 
-val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Other/dolly_test_multi.jsonl"
-RESPONSE_KEY = "response_human" # CHANGE THIS TO "response_model" FOR MODEL RESPONSE
-OUTPUT_DIR = "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_human"
+#train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Other/dolly_train_all_multi.jsonl" 
+#val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Other/dolly_test_multi.jsonl"
+#RESPONSE_KEY = "response_human" # CHANGE THIS TO "response_model" FOR MODEL RESPONSE
+#OUTPUT_DIR = "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_human"
 
 print("loading datasets")
-train_dataset = load_dataset("json", data_files={"train": train_path})
+train_dataset = load_dataset("json", data_files={"train": args.train_path})
 train_dataset = train_dataset["train"].shuffle(seed=42)
-val_dataset = load_dataset("json", data_files={"test": val_path}) # TODO: can I use this data for validation?
+val_dataset = load_dataset("json", data_files={"test": args.val_path}) # TODO: can I use this data for validation?
 val_dataset = val_dataset["test"].shuffle(seed=42)
 
 
@@ -85,7 +99,7 @@ system_prompt = "You are a helpful assistant."
 
 # Function to filter out examples exceeding 2048 tokens (prompt + response)
 def filter_long(ex):
-    combined = system_prompt + " " + ex["instruction"] + " " + ex[RESPONSE_KEY]
+    combined = system_prompt + " " + ex["instruction"] + " " + ex[args.response_key]
     return len(tokenizer(combined, truncation=False)["input_ids"]) <= 2048
 
 print("filtering long examples")
@@ -99,7 +113,7 @@ def tokenize_and_format(ex):
     prompt = system_prompt + " " + ex["instruction"]
     # Tokenize prompt and response separately
     prompt_ids = tokenizer(prompt, truncation=True, add_special_tokens=False, max_length=2048, padding="max_length").input_ids
-    response_ids = tokenizer(" " + ex[RESPONSE_KEY], truncation=True, add_special_tokens=False, max_length=2048, padding="max_length").input_ids
+    response_ids = tokenizer(" " + ex[args.response_key], truncation=True, add_special_tokens=False, max_length=2048, padding="max_length").input_ids
     # Combine and add end-of-sequence token
     input_ids = prompt_ids + response_ids + [tokenizer.eos_token_id]
     # Labels: mask prompt part with -100 so loss is only computed on the response
@@ -117,7 +131,7 @@ data_collator = DataCollatorWithPadding(tokenizer)
 
 # 5. Training configuration: use mixed precision (AMP) on A100/H100 (fp16)
 training_args = TrainingArguments(
-    output_dir=OUTPUT_DIR,
+    output_dir=args.output_dir,
     per_device_train_batch_size=4,   
     per_device_eval_batch_size=4,    
     gradient_accumulation_steps=2,   
@@ -165,8 +179,8 @@ print("finished training")
 
 # If needed, save the model after training
 print("saving model")
-trainer.save_model(OUTPUT_DIR)
-print(f"model saved to {OUTPUT_DIR}")
+trainer.save_model(args.output_dir)
+print(f"model saved to {args.output_dir}")
 
 # Clean up distributed process group to avoid resource leaks
 if torch.distributed.is_initialized():
