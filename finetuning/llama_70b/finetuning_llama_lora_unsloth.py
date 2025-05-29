@@ -1,10 +1,10 @@
+from unsloth import FastLanguageModel
 print("importing libraries")
 import os
 import argparse
 import torch
 from transformers import AutoTokenizer, DataCollatorWithPadding, Trainer, TrainingArguments
 from datasets import load_dataset
-from unsloth import FastLanguageModel
 
 # Set environment variable to avoid tokenizers parallelism warning
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
