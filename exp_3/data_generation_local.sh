@@ -56,9 +56,10 @@ else
 fi
 
 # Define variables for arguments
-MODEL_NAME="tiiuae/Falcon3-10B-Instruct"
+#MODEL_NAME="tiiuae/Falcon3-10B-Instruct"
+MODEL_NAME=""Qwen/Qwen2.5-7B-Instruct""
 INPUT_PATH="/scratch-shared/mschaffelder/data/exp_3/cnn_dailymail_sampled_100.jsonl"
-OUTPUT_PATH="/scratch-shared/mschaffelder/data/exp_3/generated/small/summaries_falcon.jsonl" # change name if needed
+OUTPUT_PATH="/scratch-shared/mschaffelder/data/exp_3/generated/small/summaries_qwen.jsonl" # change name if needed
 
 python data_generation_local.py \
     --model_name "$MODEL_NAME" \
