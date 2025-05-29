@@ -10,8 +10,8 @@
 
 # Define variables for script parameters (defaults provided)
 MODEL_NAME="meta-llama/Llama-3.1-8B-Instruct"
-TRAIN_PATH="/scratch-shared/mschaffelder/data/finetuning/dolly/dolly_train_all.jsonl"
-VAL_PATH="/scratch-shared/mschaffelder/data/finetuning/dolly/dolly_test.jsonl"
+TRAIN_PATH="/scratch-shared/mschaffelder/data/finetuning/synthetic/Small/Llama/dolly_train_all_Llama.jsonl"
+VAL_PATH="/scratch-shared/mschaffelder/data/finetuning/synthetic/Small/Llama/dolly_test_Llama.jsonl"
 RESPONSE_KEY="response_human"
 OUTPUT_DIR="/scratch-shared/mschaffelder/data/ft_models/lora_llama_8b_human"
 
