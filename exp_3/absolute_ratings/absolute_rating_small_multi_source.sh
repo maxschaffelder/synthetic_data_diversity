@@ -57,7 +57,7 @@ fi
 
 python /scratch-shared/mschaffelder/code/exp_3/absolute_ratings/absolute_rating.py \
     --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
-    --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/lora_llama_8b_multi_v3/checkpoint-843" \
+    --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/small/lora_llama_8b_multi_v3" \
     --use_lora True \
-    --input_file "/scratch-shared/mschaffelder/data/exp_3/generated/small/all_summaries_small.jsonl" \
+    --input_file "/scratch-shared/mschaffelder/data/exp_3/generated/small/summaries_all.jsonl" \
     --output_file "/scratch-shared/mschaffelder/data/exp_3/absolute_ratings/small_multi_source.jsonl"
