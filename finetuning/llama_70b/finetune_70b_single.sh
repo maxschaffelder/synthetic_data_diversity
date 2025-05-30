@@ -4,7 +4,7 @@
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task=8         # 8 CPU cores
 #SBATCH --mem=80G                 # 80 GB cpu RAM
-#SBATCH --t=12:00:00           # 12 hours wall time
+#SBATCH -t=12:00:00           # 12 hours wall time
 #SBATCH --gpus=2
 #SBATCH -N 1
 
