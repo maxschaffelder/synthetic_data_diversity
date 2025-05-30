@@ -4,6 +4,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 import os
 import logging
+import argparse
 
 # Configure basic logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -132,20 +133,33 @@ def generate_response(model, tokenizer, prompts_batch, max_length=1024):
     return cleaned_responses
 
 def main():
-    # Configuration
-    BATCH_SIZE = 8 
-    base_model_path = "meta-llama/Llama-3.1-8B-Instruct"
-    lora_model_path = "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_multi_v1/checkpoint-1686"
-    test_data_path = "/scratch-shared/mschaffelder/Data/Finetuning/Dolly/dolly_test.jsonl"
+    # --- Argument Parsing ---
+    parser = argparse.ArgumentParser(description="Generate responses using a finetuned Llama model.")
+    parser.add_argument("--lora_model_path", type=str, required=True, help="Path to the LoRA model checkpoint.")
+    parser.add_argument("--test_data_path", type=str, required=True, help="Path to the test data JSONL file.")
+    parser.add_argument("--output_dir", type=str, required=True, help="Directory to save the generation results.")
+    parser.add_argument("--base_model_path", type=str, default="meta-llama/Llama-3.1-8B-Instruct", help="Path or HuggingFace name of the base model.")
+    parser.add_argument("--batch_size", type=int, default=8, help="Batch size for generation.")
     
-    output_dir = "/scratch-shared/mschaffelder/Data/exp_1"
+    args = parser.parse_args()
+    # --- End Argument Parsing ---
+
+    # Configuration
+    BATCH_SIZE = args.batch_size
+    base_model_path = args.base_model_path
+    lora_model_path = args.lora_model_path
+    test_data_path = args.test_data_path
+    output_dir = args.output_dir
+    
+    # Ensure output directory exists
     os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(output_dir, 'generation_results_8b_multi_v1.jsonl')
+    # Construct output path using the output_dir and a fixed filename for now
+    output_filename = f"generation_results_{os.path.basename(lora_model_path)}.jsonl"
+    output_path = os.path.join(output_dir, output_filename)
     
     # Load model and tokenizer
     print("Loading model and tokenizer...")
     model, tokenizer = load_model_and_tokenizer(base_model_path, lora_model_path)
-
 
     # Clear/Create the output file at the beginning of this run
     with open(output_path, 'w') as f:

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J data-generation-llama-8b-finetuned
+#SBATCH -J data-generation-llama-8b-finetuned-multi
 #SBATCH -t 03:00:00
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 4
@@ -56,4 +56,13 @@ else
     echo "Warning: No Hugging Face token found. Set HF_TOKEN environment variable or login manually."
 fi
 
-python data_gen.py
+# --- Script Configuration ---
+LORA_MODEL_PATH="/scratch-shared/mschaffelder/data/ft_models/lora_llama_8b_multi_v3/checkpoint-843"
+TEST_DATA_PATH="/Users/maxschaffelder/Desktop/Thesis/data/finetuning/dolly/dolly_test.jsonl"
+OUTPUT_DIR="/scratch-shared/mschaffelder/data/exp_1/outputs"
+# --- End Script Configuration ---
+
+python data_gen.py \
+    --lora_model_path "$LORA_MODEL_PATH" \
+    --test_data_path "$TEST_DATA_PATH" \
+    --output_dir "$OUTPUT_DIR"
