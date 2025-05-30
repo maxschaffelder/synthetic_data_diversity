@@ -1,0 +1,56 @@
+Lmod has detected the following error: The following module(s) are unknown:
+"Python/3.10.4-GCCcore-11.3.0"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "Python/3.10.4-GCCcore-11.3.0"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+Virtual environment venv_exp_3 already exists at /scratch-shared/mschaffelder/venv_exp_3.
+Activating virtual environment: /scratch-shared/mschaffelder/venv_exp_3
+Requirement already satisfied: pip in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (25.1.1)
+ERROR: Could not open requirements file: [Errno 2] No such file or directory: 'requirements_exp_3.txt'
+CUDA_VISIBLE_DEVICES: 0
+Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-df3b8bd1-a113-0785-de9e-97f1a72a704e)
+Using existing Hugging Face token from cache...
+/scratch-shared/mschaffelder/venv_exp_3/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
+  backends.update(_get_backends("networkx.backends"))
+CUDA is available with 1 device(s)
+Device 0: NVIDIA H100
+H100 GPU detected! Using device 0
+Currently using device 0: NVIDIA H100
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:12<00:38, 12.75s/it]Fetching 4 files: 100%|██████████| 4/4 [00:12<00:00,  3.19s/it]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:10,  3.46s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.15s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:09<00:03,  3.25s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  3.16s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  3.19s/it]
+Model is on device: cuda:0
+Generating data with Qwen/Qwen2.5-7B-Instruct
+Generating responses:   0%|          | 0/100 [00:00<?, ?it/s]Generating responses:   1%|          | 1/100 [00:09<15:22,  9.31s/it]Generating responses:   2%|▏         | 2/100 [00:12<09:29,  5.81s/it]Generating responses:   3%|▎         | 3/100 [00:15<07:05,  4.38s/it]Generating responses:   4%|▍         | 4/100 [00:19<06:51,  4.28s/it]Generating responses:   5%|▌         | 5/100 [00:23<06:25,  4.05s/it]Generating responses:   6%|▌         | 6/100 [00:26<05:43,  3.65s/it]Generating responses:   7%|▋         | 7/100 [00:29<05:38,  3.64s/it]Generating responses:   8%|▊         | 8/100 [00:34<06:01,  3.93s/it]Generating responses:   9%|▉         | 9/100 [00:37<05:33,  3.67s/it]Generating responses:  10%|█         | 10/100 [00:41<05:46,  3.84s/it]Generating responses:  11%|█         | 11/100 [00:44<05:27,  3.68s/it]Generating responses:  12%|█▏        | 12/100 [00:47<05:07,  3.50s/it]Generating responses:  13%|█▎        | 13/100 [00:51<05:12,  3.59s/it]Generating responses:  14%|█▍        | 14/100 [00:54<04:41,  3.28s/it]Generating responses:  15%|█▌        | 15/100 [00:58<04:57,  3.50s/it]Generating responses:  16%|█▌        | 16/100 [01:01<04:52,  3.49s/it]Generating responses:  17%|█▋        | 17/100 [01:05<04:54,  3.55s/it]Generating responses:  18%|█▊        | 18/100 [01:08<04:37,  3.38s/it]Generating responses:  19%|█▉        | 19/100 [01:12<04:39,  3.45s/it]Generating responses:  20%|██        | 20/100 [01:15<04:27,  3.35s/it]Generating responses:  21%|██        | 21/100 [01:18<04:24,  3.35s/it]Generating responses:  22%|██▏       | 22/100 [01:21<04:13,  3.25s/it]Generating responses:  23%|██▎       | 23/100 [01:27<05:13,  4.08s/it]Generating responses:  24%|██▍       | 24/100 [01:29<04:27,  3.52s/it]Generating responses:  25%|██▌       | 25/100 [01:33<04:35,  3.67s/it]Generating responses:  26%|██▌       | 26/100 [01:36<04:12,  3.41s/it]Generating responses:  27%|██▋       | 27/100 [01:40<04:25,  3.64s/it]Generating responses:  28%|██▊       | 28/100 [01:43<04:11,  3.49s/it]Generating responses:  29%|██▉       | 29/100 [01:46<03:54,  3.31s/it]Generating responses:  30%|███       | 30/100 [01:50<03:58,  3.40s/it]Generating responses:  31%|███       | 31/100 [01:53<03:48,  3.31s/it]Generating responses:  32%|███▏      | 32/100 [01:57<04:02,  3.56s/it]Generating responses:  33%|███▎      | 33/100 [01:59<03:34,  3.20s/it]Generating responses:  34%|███▍      | 34/100 [02:03<03:45,  3.42s/it]Generating responses:  35%|███▌      | 35/100 [02:08<03:55,  3.63s/it]Generating responses:  36%|███▌      | 36/100 [02:11<03:57,  3.71s/it]Generating responses:  37%|███▋      | 37/100 [02:15<03:56,  3.76s/it]Generating responses:  38%|███▊      | 38/100 [02:19<03:51,  3.73s/it]Generating responses:  39%|███▉      | 39/100 [02:22<03:39,  3.60s/it]Generating responses:  40%|████      | 40/100 [02:28<04:14,  4.25s/it]Generating responses:  41%|████      | 41/100 [02:31<03:54,  3.98s/it]Generating responses:  42%|████▏     | 42/100 [02:34<03:27,  3.59s/it]Generating responses:  43%|████▎     | 43/100 [02:38<03:33,  3.75s/it]Generating responses:  44%|████▍     | 44/100 [02:41<03:08,  3.37s/it]Generating responses:  45%|████▌     | 45/100 [02:45<03:23,  3.70s/it]Generating responses:  46%|████▌     | 46/100 [02:49<03:19,  3.69s/it]Generating responses:  47%|████▋     | 47/100 [02:54<03:32,  4.02s/it]Generating responses:  48%|████▊     | 48/100 [02:57<03:25,  3.95s/it]Generating responses:  49%|████▉     | 49/100 [03:00<02:59,  3.52s/it]Generating responses:  50%|█████     | 50/100 [03:04<03:04,  3.70s/it]Generating responses:  51%|█████     | 51/100 [03:07<02:54,  3.56s/it]Generating responses:  52%|█████▏    | 52/100 [03:11<02:48,  3.50s/it]Generating responses:  53%|█████▎    | 53/100 [03:13<02:30,  3.20s/it]Generating responses:  54%|█████▍    | 54/100 [03:16<02:24,  3.13s/it]Generating responses:  55%|█████▌    | 55/100 [03:19<02:16,  3.03s/it]Generating responses:  56%|█████▌    | 56/100 [03:21<01:57,  2.67s/it]Generating responses:  57%|█████▋    | 57/100 [03:23<01:55,  2.69s/it]Generating responses:  58%|█████▊    | 58/100 [03:27<01:59,  2.85s/it]Generating responses:  59%|█████▉    | 59/100 [03:30<02:04,  3.04s/it]Generating responses:  60%|██████    | 60/100 [03:32<01:52,  2.82s/it]Generating responses:  61%|██████    | 61/100 [03:36<01:55,  2.97s/it]Generating responses:  62%|██████▏   | 62/100 [03:39<01:50,  2.92s/it]Generating responses:  63%|██████▎   | 63/100 [03:41<01:48,  2.93s/it]Generating responses:  64%|██████▍   | 64/100 [03:44<01:36,  2.67s/it]Generating responses:  65%|██████▌   | 65/100 [03:47<01:44,  2.98s/it]Generating responses:  66%|██████▌   | 66/100 [03:54<02:20,  4.14s/it]Generating responses:  67%|██████▋   | 67/100 [03:57<02:06,  3.82s/it]Generating responses:  68%|██████▊   | 68/100 [04:03<02:17,  4.30s/it]Generating responses:  69%|██████▉   | 69/100 [04:05<01:55,  3.74s/it]Generating responses:  70%|███████   | 70/100 [04:08<01:44,  3.48s/it]Generating responses:  71%|███████   | 71/100 [04:12<01:46,  3.66s/it]Generating responses:  72%|███████▏  | 72/100 [04:16<01:41,  3.64s/it]Generating responses:  73%|███████▎  | 73/100 [04:23<02:06,  4.68s/it]Generating responses:  74%|███████▍  | 74/100 [04:27<01:55,  4.43s/it]Generating responses:  75%|███████▌  | 75/100 [04:36<02:26,  5.84s/it]Generating responses:  76%|███████▌  | 76/100 [04:40<02:12,  5.51s/it]Generating responses:  77%|███████▋  | 77/100 [04:44<01:50,  4.80s/it]Generating responses:  78%|███████▊  | 78/100 [04:46<01:29,  4.06s/it]Generating responses:  79%|███████▉  | 79/100 [04:49<01:21,  3.88s/it]Generating responses:  80%|████████  | 80/100 [04:54<01:22,  4.10s/it]Generating responses:  81%|████████  | 81/100 [04:56<01:07,  3.56s/it]Generating responses:  82%|████████▏ | 82/100 [05:00<01:05,  3.61s/it]Generating responses:  83%|████████▎ | 83/100 [05:04<01:01,  3.63s/it]Generating responses:  84%|████████▍ | 84/100 [05:06<00:52,  3.30s/it]Generating responses:  85%|████████▌ | 85/100 [05:10<00:52,  3.52s/it]Generating responses:  86%|████████▌ | 86/100 [05:14<00:51,  3.68s/it]Generating responses:  87%|████████▋ | 87/100 [05:18<00:46,  3.59s/it]Generating responses:  88%|████████▊ | 88/100 [05:21<00:40,  3.36s/it]Generating responses:  89%|████████▉ | 89/100 [05:24<00:36,  3.31s/it]Generating responses:  90%|█████████ | 90/100 [05:27<00:32,  3.25s/it]Generating responses:  91%|█████████ | 91/100 [05:30<00:29,  3.25s/it]Generating responses:  92%|█████████▏| 92/100 [05:33<00:24,  3.09s/it]Generating responses:  93%|█████████▎| 93/100 [05:36<00:21,  3.10s/it]Generating responses:  94%|█████████▍| 94/100 [05:39<00:18,  3.05s/it]Generating responses:  95%|█████████▌| 95/100 [05:42<00:15,  3.06s/it]Generating responses:  96%|█████████▌| 96/100 [05:48<00:15,  3.92s/it]Generating responses:  97%|█████████▋| 97/100 [05:52<00:11,  3.99s/it]Generating responses:  98%|█████████▊| 98/100 [05:56<00:07,  3.91s/it]Generating responses:  99%|█████████▉| 99/100 [05:59<00:03,  3.64s/it]Generating responses: 100%|██████████| 100/100 [06:02<00:00,  3.51s/it]Generating responses: 100%|██████████| 100/100 [06:02<00:00,  3.62s/it]
+Processed 0/100 examples.
+Processed 10/100 examples.
+Processed 20/100 examples.
+Processed 30/100 examples.
+Processed 40/100 examples.
+Processed 50/100 examples.
+Processed 60/100 examples.
+Processed 70/100 examples.
+Processed 80/100 examples.
+Processed 90/100 examples.
+Done generating synthetic data.
+Completed generation with Qwen/Qwen2.5-7B-Instruct
+
+JOB STATISTICS
+==============
+Job ID: 12088683
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:07:30
+CPU Efficiency: 5.53% of 02:15:44 core-walltime
+Job Wall-clock time: 00:08:29
+Memory Utilized: 4.59 GB
+Memory Efficiency: 45.86% of 10.00 GB (10.00 GB/node)

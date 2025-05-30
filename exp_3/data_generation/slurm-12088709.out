@@ -1,0 +1,156 @@
+Lmod has detected the following error: The following module(s) are unknown:
+"Python/3.10.4-GCCcore-11.3.0"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "Python/3.10.4-GCCcore-11.3.0"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+Virtual environment venv_exp_3 already exists at /scratch-shared/mschaffelder/venv_exp_3.
+Activating virtual environment: /scratch-shared/mschaffelder/venv_exp_3
+Requirement already satisfied: pip in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (25.1.1)
+ERROR: Could not open requirements file: [Errno 2] No such file or directory: 'requirements_exp_3.txt'
+CUDA_VISIBLE_DEVICES: 0
+Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-e56ddc9d-18bc-9d17-8e59-3de0fd88d4bf)
+Using existing Hugging Face token from cache...
+/scratch-shared/mschaffelder/venv_exp_3/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
+  backends.update(_get_backends("networkx.backends"))
+CUDA is available with 1 device(s)
+Device 0: NVIDIA H100
+H100 GPU detected! Using device 0
+Currently using device 0: NVIDIA H100
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:  20%|██        | 1/5 [02:25<09:41, 145.33s/it]Fetching 5 files:  80%|████████  | 4/5 [02:41<00:31, 31.87s/it] Fetching 5 files: 100%|██████████| 5/5 [02:41<00:00, 32.31s/it]
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:04<00:18,  4.60s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:08<00:12,  4.22s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:12<00:08,  4.06s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:16<00:04,  4.18s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:17<00:00,  2.90s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:17<00:00,  3.49s/it]
+Model is on device: cuda:0
+Generating data with tiiuae/Falcon3-10B-Instruct
+Generating responses:   0%|          | 0/100 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:   1%|          | 1/100 [00:10<16:35, 10.06s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:   2%|▏         | 2/100 [00:15<11:36,  7.10s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:   3%|▎         | 3/100 [00:19<09:19,  5.77s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:   4%|▍         | 4/100 [00:23<08:17,  5.18s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:   5%|▌         | 5/100 [00:28<07:57,  5.02s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:   6%|▌         | 6/100 [00:32<07:12,  4.60s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:   7%|▋         | 7/100 [00:36<06:56,  4.48s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:   8%|▊         | 8/100 [00:42<07:34,  4.94s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:   9%|▉         | 9/100 [00:45<06:37,  4.37s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  10%|█         | 10/100 [00:48<06:09,  4.11s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  11%|█         | 11/100 [00:52<05:59,  4.04s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  12%|█▏        | 12/100 [00:56<05:40,  3.87s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  13%|█▎        | 13/100 [01:00<05:56,  4.10s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  14%|█▍        | 14/100 [01:04<05:37,  3.92s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  15%|█▌        | 15/100 [01:08<05:38,  3.98s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  16%|█▌        | 16/100 [01:12<05:45,  4.11s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  17%|█▋        | 17/100 [01:17<05:51,  4.24s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  18%|█▊        | 18/100 [01:20<05:13,  3.82s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  19%|█▉        | 19/100 [01:24<05:23,  4.00s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  20%|██        | 20/100 [01:28<05:18,  3.98s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  21%|██        | 21/100 [01:32<05:04,  3.85s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  22%|██▏       | 22/100 [01:37<05:35,  4.31s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  23%|██▎       | 23/100 [01:41<05:29,  4.27s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  24%|██▍       | 24/100 [01:46<05:30,  4.34s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  25%|██▌       | 25/100 [01:49<05:10,  4.14s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  26%|██▌       | 26/100 [01:53<04:57,  4.02s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  27%|██▋       | 27/100 [01:57<04:55,  4.05s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  28%|██▊       | 28/100 [02:03<05:37,  4.69s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  29%|██▉       | 29/100 [02:09<05:46,  4.88s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  30%|███       | 30/100 [02:16<06:20,  5.43s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  31%|███       | 31/100 [02:19<05:42,  4.97s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  32%|███▏      | 32/100 [02:24<05:37,  4.96s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  33%|███▎      | 33/100 [02:27<04:55,  4.41s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  34%|███▍      | 34/100 [02:32<04:51,  4.42s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  35%|███▌      | 35/100 [02:37<05:05,  4.70s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  36%|███▌      | 36/100 [02:43<05:14,  4.91s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  37%|███▋      | 37/100 [02:47<05:02,  4.80s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  38%|███▊      | 38/100 [02:52<04:50,  4.68s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  39%|███▉      | 39/100 [02:56<04:43,  4.66s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  40%|████      | 40/100 [03:03<05:09,  5.16s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  41%|████      | 41/100 [03:07<04:46,  4.86s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  42%|████▏     | 42/100 [03:10<04:14,  4.39s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  43%|████▎     | 43/100 [03:17<04:56,  5.21s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  44%|████▍     | 44/100 [03:21<04:30,  4.83s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  45%|████▌     | 45/100 [03:26<04:25,  4.83s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  46%|████▌     | 46/100 [03:29<04:01,  4.46s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  47%|████▋     | 47/100 [03:36<04:32,  5.15s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  48%|████▊     | 48/100 [03:42<04:41,  5.42s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  49%|████▉     | 49/100 [03:45<03:53,  4.57s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  50%|█████     | 50/100 [03:50<03:50,  4.62s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  51%|█████     | 51/100 [03:55<03:50,  4.71s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  52%|█████▏    | 52/100 [03:58<03:27,  4.31s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  53%|█████▎    | 53/100 [04:01<03:01,  3.87s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  54%|█████▍    | 54/100 [04:04<02:53,  3.77s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  55%|█████▌    | 55/100 [04:10<03:14,  4.33s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  56%|█████▌    | 56/100 [04:12<02:46,  3.78s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  57%|█████▋    | 57/100 [04:18<02:59,  4.19s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  58%|█████▊    | 58/100 [04:22<03:01,  4.32s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  59%|█████▉    | 59/100 [04:26<02:51,  4.18s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  60%|██████    | 60/100 [04:29<02:32,  3.80s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  61%|██████    | 61/100 [04:35<02:57,  4.56s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  62%|██████▏   | 62/100 [04:38<02:35,  4.10s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  63%|██████▎   | 63/100 [04:42<02:29,  4.03s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  64%|██████▍   | 64/100 [04:45<02:12,  3.67s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  65%|██████▌   | 65/100 [04:49<02:11,  3.75s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  66%|██████▌   | 66/100 [04:54<02:21,  4.15s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  67%|██████▋   | 67/100 [04:57<02:07,  3.85s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  68%|██████▊   | 68/100 [05:02<02:08,  4.02s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  69%|██████▉   | 69/100 [05:06<02:05,  4.04s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  70%|███████   | 70/100 [05:12<02:22,  4.76s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  71%|███████   | 71/100 [05:17<02:15,  4.67s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  72%|███████▏  | 72/100 [05:22<02:13,  4.75s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  73%|███████▎  | 73/100 [05:26<02:07,  4.71s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  74%|███████▍  | 74/100 [05:31<02:03,  4.74s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  75%|███████▌  | 75/100 [05:40<02:30,  6.04s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  76%|███████▌  | 76/100 [05:46<02:21,  5.89s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  77%|███████▋  | 77/100 [05:51<02:09,  5.64s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  78%|███████▊  | 78/100 [05:56<02:03,  5.60s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  79%|███████▉  | 79/100 [06:00<01:47,  5.13s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  80%|████████  | 80/100 [06:06<01:46,  5.33s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  81%|████████  | 81/100 [06:09<01:27,  4.59s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  82%|████████▏ | 82/100 [06:13<01:19,  4.42s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  83%|████████▎ | 83/100 [06:17<01:12,  4.25s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  84%|████████▍ | 84/100 [06:21<01:08,  4.30s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  85%|████████▌ | 85/100 [06:24<00:58,  3.89s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  86%|████████▌ | 86/100 [06:30<01:02,  4.46s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  87%|████████▋ | 87/100 [06:35<00:59,  4.59s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  88%|████████▊ | 88/100 [06:39<00:54,  4.55s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  89%|████████▉ | 89/100 [06:42<00:44,  4.05s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  90%|█████████ | 90/100 [06:46<00:40,  4.03s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  91%|█████████ | 91/100 [06:49<00:32,  3.66s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  92%|█████████▏| 92/100 [06:53<00:30,  3.81s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  93%|█████████▎| 93/100 [06:56<00:24,  3.49s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  94%|█████████▍| 94/100 [07:01<00:24,  4.03s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  95%|█████████▌| 95/100 [07:04<00:18,  3.79s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  96%|█████████▌| 96/100 [07:08<00:15,  3.85s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  97%|█████████▋| 97/100 [07:12<00:11,  3.78s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  98%|█████████▊| 98/100 [07:16<00:07,  3.78s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses:  99%|█████████▉| 99/100 [07:19<00:03,  3.59s/it]Setting `pad_token_id` to `eos_token_id`:11 for open-end generation.
+Generating responses: 100%|██████████| 100/100 [07:23<00:00,  3.83s/it]Generating responses: 100%|██████████| 100/100 [07:23<00:00,  4.44s/it]
+Processed 0/100 examples.
+Processed 10/100 examples.
+Processed 20/100 examples.
+Processed 30/100 examples.
+Processed 40/100 examples.
+Processed 50/100 examples.
+Processed 60/100 examples.
+Processed 70/100 examples.
+Processed 80/100 examples.
+Processed 90/100 examples.
+Done generating synthetic data.
+Completed generation with tiiuae/Falcon3-10B-Instruct
+
+JOB STATISTICS
+==============
+Job ID: 12088709
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:08:50
+CPU Efficiency: 4.77% of 03:05:20 core-walltime
+Job Wall-clock time: 00:11:35
+Memory Utilized: 1.15 GB
+Memory Efficiency: 11.53% of 10.00 GB (10.00 GB/node)
