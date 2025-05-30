@@ -27,7 +27,7 @@ MODEL_NAME="meta-llama/Llama-3.1-8B-Instruct" # Changed from Llama-8b-instruct a
 
 
 # Define base path for data
-BASE_DATA_PATH="/scratch-shared/mschaffelder/Data/exp_1/data/small"
+BASE_DATA_PATH="/scratch-shared/mschaffelder/data/exp_1/data/small"
 LOG_DIR="/scratch-shared/mschaffelder/logs"
 mkdir -p ${LOG_DIR} # Ensure log directory exists
 
