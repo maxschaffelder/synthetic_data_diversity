@@ -11,7 +11,7 @@ import argparse
 
 ########################################################
 
-SYSTEM_PROMPT_SUMMARY = "You are a helpful assistant. Your task is to summarize the provided text. The summary should be approximately 50 words long."
+SYSTEM_PROMPT_SUMMARY = "You are a helpful assistant. Your task is to summarize the provided text."
 
 def create_synthetic_data_local(model_name, model, tokenizer, input_path, output_path, split=None):
     """
