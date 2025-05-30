@@ -37,7 +37,7 @@ else
 fi
 
 # Run training with torchrun on 4 GPUs
-torchrun --nproc_per_node=4 train.py \
+torchrun --nproc_per_node=4 finetune_70b.py \
     --model_name meta-llama/Llama-3.1-70B-Instruct \
     --train_file /scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl \
     --val_file /scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_test_Llama.jsonl \
