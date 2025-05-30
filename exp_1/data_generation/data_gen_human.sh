@@ -57,7 +57,7 @@ else
 fi
 
 # --- Script Configuration ---
-LORA_MODEL_PATH="/scratch-shared/mschaffelder/data/ft_models/lora_llama_8b_human_v3/checkpoint-843"
+LORA_MODEL_PATH="/scratch-shared/mschaffelder/data/ft_models/small/lora_llama_8b_human_v3"
 TEST_DATA_PATH="/Users/maxschaffelder/Desktop/Thesis/data/finetuning/dolly/dolly_test.jsonl"
 OUTPUT_DIR="/scratch-shared/mschaffelder/data/exp_1/outputs"
 # --- End Script Configuration ---
