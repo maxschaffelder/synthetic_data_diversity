@@ -58,5 +58,5 @@ fi
 python /scratch-shared/mschaffelder/code/exp_3/pairwise_rankings/pairwise_ranking.py \
     --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
     --use_lora False \
-    --input_file "/scratch-shared/mschaffelder/data/exp_3/pairwise_rankings/pairwise_ranking_input_small.jsonl" \
+    --input_file "/scratch-shared/mschaffelder/data/exp_3/pairwise_data/pairwise_ranking_input_small.jsonl" \
     --output_file "/scratch-shared/mschaffelder/data/exp_3/pairwise_rankings/small_vanilla.jsonl"
