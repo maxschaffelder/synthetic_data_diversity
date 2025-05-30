@@ -1,9 +1,7 @@
 import json
 import os
 import logging
-import sys
-sys.path.append('/scratch-shared/mschaffelder')
-from code.exp_3.helper_functions_judge import load_model_and_tokenizer, generate_absolute_rating_response
+from helper_functions_judge import load_model_and_tokenizer, generate_absolute_rating_response
 import argparse
 
 
