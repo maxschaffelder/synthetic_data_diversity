@@ -1,0 +1,229 @@
+Activating virtual environment from /scratch-shared/mschaffelder/venv_finetune_1
+Requirement already satisfied: torch in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 1)) (2.7.0)
+Requirement already satisfied: peft>=0.5.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 2)) (0.15.2)
+Requirement already satisfied: transformers>=4.36.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 3)) (4.52.3)
+Requirement already satisfied: datasets>=2.14.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 4)) (3.6.0)
+Requirement already satisfied: sentencepiece>=0.1.99 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 5)) (0.2.0)
+Requirement already satisfied: huggingface_hub>=0.17.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 6)) (0.32.0)
+Requirement already satisfied: bitsandbytes in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 7)) (0.45.5)
+Requirement already satisfied: tensorboard in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 8)) (2.19.0)
+Requirement already satisfied: accelerate>=0.21.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 9)) (1.7.0)
+Requirement already satisfied: typing_extensions in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 10)) (4.13.2)
+Requirement already satisfied: deepspeed>=0.10.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 11)) (0.16.9)
+Requirement already satisfied: unsloth in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 12)) (2025.5.8)
+Requirement already satisfied: filelock in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.18.0)
+Requirement already satisfied: setuptools in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (80.8.0)
+Requirement already satisfied: sympy>=1.13.3 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (1.14.0)
+Requirement already satisfied: networkx in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.4.2)
+Requirement already satisfied: jinja2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.1.6)
+Requirement already satisfied: fsspec in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (2025.3.0)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.80)
+Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (9.5.1.17)
+Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.4.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (11.3.0.4)
+Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (10.3.7.77)
+Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (11.7.1.2)
+Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.5.4.2)
+Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (0.6.3)
+Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (2.26.2)
+Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.85)
+Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (1.11.1.6)
+Requirement already satisfied: triton==3.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.3.0)
+Requirement already satisfied: numpy>=1.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (2.2.6)
+Requirement already satisfied: packaging>=20.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (25.0)
+Requirement already satisfied: psutil in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (7.0.0)
+Requirement already satisfied: pyyaml in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (6.0.2)
+Requirement already satisfied: tqdm in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (4.67.1)
+Requirement already satisfied: safetensors in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (0.5.3)
+Requirement already satisfied: regex!=2019.12.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from transformers>=4.36.0->-r requirements.txt (line 3)) (2024.11.6)
+Requirement already satisfied: requests in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from transformers>=4.36.0->-r requirements.txt (line 3)) (2.32.3)
+Requirement already satisfied: tokenizers<0.22,>=0.21 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from transformers>=4.36.0->-r requirements.txt (line 3)) (0.21.1)
+Requirement already satisfied: pyarrow>=15.0.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (20.0.0)
+Requirement already satisfied: dill<0.3.9,>=0.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (0.3.8)
+Requirement already satisfied: pandas in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (2.2.3)
+Requirement already satisfied: xxhash in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (3.5.0)
+Requirement already satisfied: multiprocess<0.70.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (0.70.16)
+Requirement already satisfied: hf-xet<2.0.0,>=1.1.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from huggingface_hub>=0.17.0->-r requirements.txt (line 6)) (1.1.2)
+Requirement already satisfied: absl-py>=0.4 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (2.2.2)
+Requirement already satisfied: grpcio>=1.48.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (1.71.0)
+Requirement already satisfied: markdown>=2.6.8 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (3.8)
+Requirement already satisfied: protobuf!=4.24.0,>=3.19.6 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (3.20.3)
+Requirement already satisfied: six>1.9 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (1.17.0)
+Requirement already satisfied: tensorboard-data-server<0.8.0,>=0.7.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (0.7.2)
+Requirement already satisfied: werkzeug>=1.0.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (3.1.3)
+Requirement already satisfied: einops in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r requirements.txt (line 11)) (0.8.1)
+Requirement already satisfied: hjson in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r requirements.txt (line 11)) (3.1.0)
+Requirement already satisfied: msgpack in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r requirements.txt (line 11)) (1.1.0)
+Requirement already satisfied: ninja in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r requirements.txt (line 11)) (1.11.1.4)
+Requirement already satisfied: py-cpuinfo in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r requirements.txt (line 11)) (9.0.0)
+Requirement already satisfied: pydantic>=2.0.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r requirements.txt (line 11)) (2.11.5)
+Requirement already satisfied: unsloth_zoo>=2025.5.10 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from unsloth->-r requirements.txt (line 12)) (2025.5.10)
+Requirement already satisfied: xformers>=0.0.27.post2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from unsloth->-r requirements.txt (line 12)) (0.0.30)
+Requirement already satisfied: tyro in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from unsloth->-r requirements.txt (line 12)) (0.9.22)
+Requirement already satisfied: wheel>=0.42.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from unsloth->-r requirements.txt (line 12)) (0.45.1)
+Requirement already satisfied: trl!=0.15.0,!=0.9.0,!=0.9.1,!=0.9.2,!=0.9.3,>=0.7.9 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from unsloth->-r requirements.txt (line 12)) (0.18.0)
+Requirement already satisfied: hf_transfer in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from unsloth->-r requirements.txt (line 12)) (0.1.9)
+Requirement already satisfied: diffusers in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from unsloth->-r requirements.txt (line 12)) (0.33.1)
+Requirement already satisfied: torchvision in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from unsloth->-r requirements.txt (line 12)) (0.22.0)
+Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (3.11.18)
+Requirement already satisfied: annotated-types>=0.6.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pydantic>=2.0.0->deepspeed>=0.10.0->-r requirements.txt (line 11)) (0.7.0)
+Requirement already satisfied: pydantic-core==2.33.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pydantic>=2.0.0->deepspeed>=0.10.0->-r requirements.txt (line 11)) (2.33.2)
+Requirement already satisfied: typing-inspection>=0.4.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pydantic>=2.0.0->deepspeed>=0.10.0->-r requirements.txt (line 11)) (0.4.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (3.4.2)
+Requirement already satisfied: idna<4,>=2.5 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (2.4.0)
+Requirement already satisfied: certifi>=2017.4.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (2025.4.26)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from sympy>=1.13.3->torch->-r requirements.txt (line 1)) (1.3.0)
+Requirement already satisfied: cut_cross_entropy in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from unsloth_zoo>=2025.5.10->unsloth->-r requirements.txt (line 12)) (25.1.1)
+Requirement already satisfied: pillow in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from unsloth_zoo>=2025.5.10->unsloth->-r requirements.txt (line 12)) (11.2.1)
+Requirement already satisfied: msgspec in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from unsloth_zoo>=2025.5.10->unsloth->-r requirements.txt (line 12)) (0.19.0)
+Requirement already satisfied: MarkupSafe>=2.1.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from werkzeug>=1.0.1->tensorboard->-r requirements.txt (line 8)) (3.0.2)
+Requirement already satisfied: importlib-metadata in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from diffusers->unsloth->-r requirements.txt (line 12)) (8.7.0)
+Requirement already satisfied: python-dateutil>=2.8.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 4)) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 4)) (2025.2)
+Requirement already satisfied: tzdata>=2022.7 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 4)) (2025.2)
+Requirement already satisfied: docstring-parser>=0.15 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tyro->unsloth->-r requirements.txt (line 12)) (0.16)
+Requirement already satisfied: rich>=11.1.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tyro->unsloth->-r requirements.txt (line 12)) (14.0.0)
+Requirement already satisfied: shtab>=1.5.6 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tyro->unsloth->-r requirements.txt (line 12)) (1.7.2)
+Requirement already satisfied: typeguard>=4.0.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tyro->unsloth->-r requirements.txt (line 12)) (4.4.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (2.6.1)
+Requirement already satisfied: aiosignal>=1.1.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (1.3.2)
+Requirement already satisfied: attrs>=17.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (25.3.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (1.6.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (6.4.4)
+Requirement already satisfied: propcache>=0.2.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (0.3.1)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (1.20.0)
+Requirement already satisfied: markdown-it-py>=2.2.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from rich>=11.1.0->tyro->unsloth->-r requirements.txt (line 12)) (3.0.0)
+Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from rich>=11.1.0->tyro->unsloth->-r requirements.txt (line 12)) (2.19.1)
+Requirement already satisfied: zipp>=3.20 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from importlib-metadata->diffusers->unsloth->-r requirements.txt (line 12)) (3.22.0)
+Requirement already satisfied: mdurl~=0.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from markdown-it-py>=2.2.0->rich>=11.1.0->tyro->unsloth->-r requirements.txt (line 12)) (0.1.2)
+
+[notice] A new release of pip is available: 24.0 -> 25.1.1
+[notice] To update, run: pip install --upgrade pip
+CUDA_VISIBLE_DEVICES: 0,1
+Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-cb842ae5-40e0-c26e-b8b2-3f49d0b4a91c)
+GPU 1: NVIDIA H100 (UUID: GPU-24a382bb-aabc-0a31-6aae-f7a3482fa713)
+Using existing Hugging Face token from cache...
+importing librariesimporting libraries
+
+done importing libraries
+parsing arguments
+done importing libraries
+parsing arguments
+done parsing arguments
+loading tokenizer
+done parsing arguments
+loading tokenizer
+loading model
+loading model
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 17.69it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 18.22it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 21.81it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 21.42it/s]
+
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+done loading tokenizer and model
+getting peft model
+done loading tokenizer and model
+getting peft model
+done getting peft model
+done getting peft model
+trainable params: 41,943,040 || all params: 8,072,212,480 || trainable%: 0.5196
+loading datasets
+trainable params: 41,943,040 || all params: 8,072,212,480 || trainable%: 0.5196
+loading datasets
+done loading datasets
+train dataset:  Dataset({
+    features: ['instruction', 'response_human', 'category', 'index'],
+    num_rows: 13509
+})
+val dataset:  Dataset({
+    features: ['instruction', 'response_human', 'category', 'index'],
+    num_rows: 1502
+})
+filtering long examples
+done loading datasets
+train dataset:  Dataset({
+    features: ['instruction', 'response_human', 'category', 'index'],
+    num_rows: 13509
+})
+val dataset:  Dataset({
+    features: ['instruction', 'response_human', 'category', 'index'],
+    num_rows: 1502
+})
+filtering long examples
+done filtering long examples
+tokenizing and formatting train dataset
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/finetuning_8b.py", line 126, in <module>
+done filtering long examples
+tokenizing and formatting train dataset
+    train_dataset = train_dataset.map(tokenize_and_format, remove_columns=["response_human", "index", "model_name", "category", "response_model", "instruction", "index"])#, remove_columns=train_dataset.column_names)
+   Traceback (most recent call last):
+      File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/finetuning_8b.py", line 126, in <module>
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^    ^train_dataset = train_dataset.map(tokenize_and_format, remove_columns=["response_human", "index", "model_name", "category", "response_model", "instruction", "index"])#, remove_columns=train_dataset.column_names)^
+^^^^^^^^^^^^^^^^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/datasets/arrow_dataset.py", line 557, in wrapper
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/datasets/arrow_dataset.py", line 557, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+                                                                            ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/datasets/arrow_dataset.py", line 2999, in map
+^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/datasets/arrow_dataset.py", line 2999, in map
+    raise ValueError(
+ValueError: Column to remove ['response_model', 'model_name'] not in the dataset. Current columns in the dataset: ['instruction', 'response_human', 'category', 'index']
+    raise ValueError(
+ValueError: Column to remove ['model_name', 'response_model'] not in the dataset. Current columns in the dataset: ['instruction', 'response_human', 'category', 'index']
+W0529 17:01:04.473000 534702 /gpfs/scratch1/shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 534728 closing signal SIGTERM
+E0529 17:01:04.589000 534702 /gpfs/scratch1/shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 1 (pid: 534729) of binary: /scratch-shared/mschaffelder/venv_finetune_1/bin/python
+Traceback (most recent call last):
+  File "/scratch-shared/mschaffelder/venv_finetune_1/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/run.py", line 892, in main
+    run(args)
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+finetuning_8b.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-05-29_17:01:04
+  host      : gcn135.local.snellius.surf.nl
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 534729)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+
+JOB STATISTICS
+==============
+Job ID: 12076605
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:05:43
+CPU Efficiency: 21.88% of 00:26:08 core-walltime
+Job Wall-clock time: 00:01:38
+Memory Utilized: 4.53 GB
+Memory Efficiency: 15.08% of 30.00 GB (30.00 GB/node)
