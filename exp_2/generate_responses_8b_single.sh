@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=absolute_rating_small_human_source
+#SBATCH --job-name=refusalbench_responses_8b_single
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
 #SBATCH --time=03:00:00
@@ -9,7 +9,7 @@
 #SBATCH -N 1
 
 
-VENV_NAME="venv_exp_3"
+VENV_NAME="venv_exp_2"
 VENV_BASE_DIR="/scratch-shared/mschaffelder" # Or any other persistent shared directory you prefer
 VENV_DIR="$VENV_BASE_DIR/$VENV_NAME"
 PYTHON_MODULE="Python/3.10.4-GCCcore-11.3.0"
@@ -34,7 +34,8 @@ source $VENV_DIR/bin/activate
 pip install --upgrade pip
 pip install -r requirements_exp_3.txt
 
-
+# Run script
+cd $SLURM_SUBMIT_DIR
 # Make sure CUDA devices are visible
 
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
@@ -54,9 +55,9 @@ else
     echo "Warning: No Hugging Face token found. Set HF_TOKEN environment variable or login manually."
 fi
 
-python /scratch-shared/mschaffelder/code/exp_3/absolute_ratings/absolute_rating.py \
+python /scratch-shared/mschaffelder/code/exp_2/generate_responses.py \
     --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
-    --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/lora_llama_8b_human_v3/checkpoint-843" \
+    --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/lora_llama_8b_single_v8/checkpoint-843" \
     --use_lora True \
-    --input_file "/scratch-shared/mschaffelder/data/exp_3/generated/small/all_summaries_small.jsonl" \
-    --output_file "/scratch-shared/mschaffelder/data/exp_3/absolute_ratings/small_human_source.jsonl"
+    --input_file "/scratch-shared/mschaffelder/data/exp_2/refusalbench.jsonl" \
+    --output_file "/scratch-shared/mschaffelder/data/exp_2/outputs/refusalbench_8b_single_source.jsonl"
