@@ -9,6 +9,6 @@ tensorboard
 accelerate>=0.21.0
 typing_extensions
 deepspeed>=0.10.0
-unsloth
+#unsloth
 #flash-attn==2.7.2.post1
 #wandb
