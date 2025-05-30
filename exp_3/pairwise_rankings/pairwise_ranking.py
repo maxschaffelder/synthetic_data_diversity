@@ -76,8 +76,8 @@ def main():
                             'summary': original_data['summary'],
                             'ranking_output': gen_response,
                             'token_probabilities': token_probabilities,
-                            'model_a': original_data['model_a'],
-                            'model_b': original_data['model_b']
+                            'model_A': original_data['model_A'],
+                            'model_B': original_data['model_B']
                         }
                         # Append this single result to the file
                         with open(output_file, 'a') as f:
@@ -92,8 +92,8 @@ def main():
                                 'summary': original_data['summary'],
                                 'ranking_output': f"ERROR_BATCH: {e}", 
                                 'token_probabilities': [],
-                                'model_a': original_data['model_a'],
-                                'model_b': original_data['model_b']
+                                'model_A': original_data['model_A'],
+                                'model_B': original_data['model_B']
                             }
                             f.write(json.dumps(error_result_item) + '\n')
                     logging.info(f"Appended {len(data_batch_info)} error results from batch to {output_file}")
@@ -112,8 +112,8 @@ def main():
                     'summary': original_data['summary'],
                     'ranking_output': gen_response,
                     'token_probabilities': token_probabilities,
-                    'model_a': original_data['model_a'],
-                    'model_b': original_data['model_b']
+                    'model_A': original_data['model_A'],
+                    'model_B': original_data['model_B']
                 }
                 # Append this single result to the file
                 with open(output_file, 'a') as f:
@@ -128,8 +128,8 @@ def main():
                         'summary': original_data['summary'],
                         'ranking_output': f"ERROR_FINAL_BATCH: {e}",
                         'token_probabilities': [],
-                        'model_a': original_data['model_a'],
-                        'model_b': original_data['model_b']
+                        'model_A': original_data['model_A'],
+                        'model_B': original_data['model_B']
                     }
                     f.write(json.dumps(error_result_item) + '\n')
             logging.info(f"Appended {len(data_batch_info)} error results from final batch to {output_file}")
