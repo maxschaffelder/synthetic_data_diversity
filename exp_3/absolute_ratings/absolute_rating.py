@@ -13,7 +13,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run absolute rating generation.")
     parser.add_argument("--base_model_path", type=str, help="Path to the base model.")
     parser.add_argument("--lora_model_path", type=str, help="Path to the LoRA model.")
-    parser.add_argument("--use_lora", type=bool, help="Whether to use the LoRA model.")
+    parser.add_argument("--use_lora", action='store_true', help="Whether to use the LoRA model. If this flag is present, LoRA will be used.")
     parser.add_argument("--input_file", type=str, help="Path to the input data.")
     parser.add_argument("--output_file", type=str, help="Path to the output file.")
     

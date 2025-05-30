@@ -32,7 +32,7 @@ source $VENV_DIR/bin/activate
 
 # Install required packages
 pip install --upgrade pip
-pip install -r requirements_exp_3.txt
+pip install -r ../requirements_exp_3.txt
 
 # Run script
 cd $SLURM_SUBMIT_DIR
@@ -57,6 +57,5 @@ fi
 
 python /scratch-shared/mschaffelder/code/exp_3/absolute_ratings/absolute_rating.py \
     --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
-    --use_lora False \
     --input_file "/scratch-shared/mschaffelder/data/exp_3/generated/small/summaries_all.jsonl" \
     --output_file "/scratch-shared/mschaffelder/data/exp_3/absolute_ratings/small_vanilla.jsonl"
