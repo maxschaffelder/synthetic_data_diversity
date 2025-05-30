@@ -5,7 +5,7 @@
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task=8        
 #SBATCH --mem=80G
-#SBATCH --gpus=2
+#SBATCH --gpus=4
 #SBATCH -N 1
 
 # Load required modules 
