@@ -54,7 +54,7 @@ def main():
             logging.info(f"Reading line {i+1} from input file...")
             try:
                 data = json.loads(line)
-                prompt = data['summary']
+                prompt = data['response_model']
                 prompts_batch.append(prompt)
                 data_batch_info.append(data) 
                 logging.info(f"Added prompt from line {i+1} to batch.")
@@ -74,7 +74,7 @@ def main():
                     for idx, (original_data, gen_response, token_probabilities) in enumerate(zip(data_batch_info, generated_responses_batch, token_probabilities_batch)):
                         # Prepare result item for this entry
                         result_item = {
-                            'summary': original_data['summary'],
+                            'summary': original_data['response_model'],
                             'absolute_rating': gen_response, 
                             'token_probabilities': token_probabilities
                         }
@@ -89,7 +89,7 @@ def main():
                     with open(output_file, 'a') as f:
                         for original_data in data_batch_info:
                             error_result_item = {
-                                'summary': original_data['summary'],
+                                'summary': original_data['response_model'],
                                 'absolute_rating': f"ERROR_BATCH: {e}",
                                 'token_probabilities': []
                             }
@@ -109,7 +109,7 @@ def main():
             for idx, (original_data, gen_response, token_probabilities) in enumerate(zip(data_batch_info, generated_responses_batch, token_probabilities_batch)):
                 # Prepare result item for this entry
                 result_item = {
-                    'summary': original_data['summary'],
+                    'summary': original_data['response_model'],
                     'absolute_rating': gen_response,
                     'token_probabilities': token_probabilities
                 }
@@ -125,7 +125,7 @@ def main():
             with open(output_file, 'a') as f:
                 for original_data in data_batch_info:
                     error_result_item = {
-                        'summary': original_data['summary'],
+                        'summary': original_data['response_model'],
                         'absolute_rating': f"ERROR_FINAL_BATCH: {e}",
                         'token_probabilities': []
                     }
