@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=pairwise_ranking_small_vanilla
+#SBATCH --job-name=absolute_rating_small_vanilla
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
 #SBATCH --time=03:00:00
@@ -55,8 +55,8 @@ else
     echo "Warning: No Hugging Face token found. Set HF_TOKEN environment variable or login manually."
 fi
 
-python relative_ranking.py \
+python /scratch-shared/mschaffelder/code/exp_3/absolute_ratings/absolute_rating.py \
     --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
     --use_lora False \
-    --input_file "/scratch-shared/mschaffelder/Data/exp_3/generated/small/all_summaries_small.jsonl" \
-    --output_file "/scratch-shared/mschaffelder/Data/exp_3/pairwise_rankings/small_vanilla.jsonl"
+    --input_file "/scratch-shared/mschaffelder/data/exp_3/generated/small/all_summaries_small.jsonl" \
+    --output_file "/scratch-shared/mschaffelder/data/exp_3/absolute_ratings/small_vanilla.jsonl"

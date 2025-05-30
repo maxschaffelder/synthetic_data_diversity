@@ -55,9 +55,9 @@ else
     echo "Warning: No Hugging Face token found. Set HF_TOKEN environment variable or login manually."
 fi
 
-python absolute_rating.py \
+python /scratch-shared/mschaffelder/code/exp_3/absolute_ratings/absolute_rating.py \
     --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
-    --lora_model_path "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_multi_v1/checkpoint-1686" \
+    --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/lora_llama_8b_multi_v3/checkpoint-1686" \
     --use_lora True \
-    --input_file "/scratch-shared/mschaffelder/Data/exp_3/generated/small/all_summaries_small.jsonl" \
-    --output_file "/scratch-shared/mschaffelder/Data/exp_3/absolute_ratings/small_multi_source.jsonl"
+    --input_file "/scratch-shared/mschaffelder/data/exp_3/generated/small/all_summaries_small.jsonl" \
+    --output_file "/scratch-shared/mschaffelder/data/exp_3/absolute_ratings/small_multi_source.jsonl"
