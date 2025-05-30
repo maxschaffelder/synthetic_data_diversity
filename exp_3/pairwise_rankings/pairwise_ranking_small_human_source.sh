@@ -32,7 +32,7 @@ source $VENV_DIR/bin/activate
 
 # Install required packages
 pip install --upgrade pip
-pip install -r requirements_exp_3.txt
+pip install -r ../requirements_exp_3.txt
 
 # Run script
 cd $SLURM_SUBMIT_DIR
@@ -60,4 +60,4 @@ python /scratch-shared/mschaffelder/code/exp_3/pairwise_rankings/pairwise_rankin
     --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/small/lora_llama_8b_human_v3" \
     --use_lora True \
     --input_file "/scratch-shared/mschaffelder/data/exp_3/pairwise_data/pairwise_ranking_input_small.jsonl" \
-    --output_file "/scratch-shared/mschaffelder/data/exp_3/relative_rankings/small_human_source.jsonl"
+    --output_file "/scratch-shared/mschaffelder/data/exp_3/pairwise_rankings/small_human_source.jsonl"
