@@ -1,10 +1,10 @@
 #!/bin/bash
 #SBATCH -J finetune_70b_single
+#SBATCH -t 12:00:00
 #SBATCH --partition=gpu_h100
 #SBATCH --ntasks 1
-#SBATCH --cpus-per-task=8         # 8 CPU cores
-#SBATCH --mem=80G                 # 80 GB cpu RAM
-#SBATCH -t=12:00:00           # 12 hours wall time
+#SBATCH --cpus-per-task=8        
+#SBATCH --mem=80G
 #SBATCH --gpus=2
 #SBATCH -N 1
 
