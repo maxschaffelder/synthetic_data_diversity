@@ -5,7 +5,7 @@ from groq import Groq
 from openai import OpenAI
 from mistralai import Mistral
 
-SYSTEM_PROMPT_SUMMARY = "You are a helpful assistant. Your task is to summarize the provided text. The summary should be approximately 50 words long."
+SYSTEM_PROMPT_SUMMARY = "You are a helpful assistant. Your task is to summarize the provided text."
 
 # Data generation function using API
 
@@ -13,7 +13,7 @@ def create_synthetic_data(model, input_path, output_path, split=None):
 
     if model == "gemini-2.0-flash":
         # Gemini API
-        with open("../../Keys/gemini_key.txt", "r") as f:
+        with open("../../..Keys/gemini_key.txt", "r") as f:
             key = f.read().strip()
 
         # Configure Gemini API
@@ -21,14 +21,14 @@ def create_synthetic_data(model, input_path, output_path, split=None):
 
     elif model == "llama-3.1-8b-instant" or model == "gemma2-9b-it":
         # Groq API
-        with open("../../Keys/groq_key.txt", "r") as f:
+        with open("/Users/maxschaffelder/Desktop/Thesis/Keys/groq_key.txt", "r") as f:
             key = f.read().strip()
 
         client = Groq(api_key=key)
 
     elif model == "meta-llama/Meta-Llama-3.1-70B-Instruct" or model == "Qwen/Qwen2.5-72B-Instruct" or model == "deepseek-ai/DeepSeek-V3" or model == "meta-llama/Meta-Llama-3.1-405B-Instruct":
         # Deepinfra API
-        with open("../../Keys/deepinfra_key.txt", "r") as f:
+        with open("../../..Keys/deepinfra_key.txt", "r") as f:
             key = f.read().strip()
 
         client = OpenAI(
@@ -38,21 +38,21 @@ def create_synthetic_data(model, input_path, output_path, split=None):
 
     elif model == "command-r-plus":
         # Cohere API
-        with open("../../Keys/cohere_key_paid.txt", "r") as f:
+        with open("../../..Keys/cohere_key_paid.txt", "r") as f:
             key = f.read().strip()
         
         client = cohere.ClientV2(key)
 
     elif model == "mistral-large-latest":
         # Mistral API
-        with open("../../Keys/mistral_key.txt", "r") as f:
+        with open("../../..Keys/mistral_key.txt", "r") as f:
             key = f.read().strip()
 
         client = Mistral(api_key=key)
 
     elif model == "gpt-4o":
         # OpenAI API
-        with open("../../Keys/openai_key.txt", "r") as f:
+        with open("../../..Keys/openai_key.txt", "r") as f:
             key = f.read().strip()
 
         client = OpenAI(
