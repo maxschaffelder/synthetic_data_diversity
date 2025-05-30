@@ -4,7 +4,8 @@ from peft import PeftModel
 import logging
 
 #SYSTEM_PROMPT_PAIRWISE_RANKING = "You are a helpful assistant. Your task is to rank the two provided texts, which are marked with 'A' and 'B'. Please explicitly write which of the two texts is of higher quality by writing 'A' or 'B' in the output, and nothing else."
-SYSTEM_PROMPT_PAIRWISE_RANKING = "You are a helpful assistant. Your task is to rank the two provided texts. Please explicitly write which of the two texts is of higher quality by writing the corresponding number in the output, and nothing else."
+#SYSTEM_PROMPT_PAIRWISE_RANKING = "You are a helpful assistant. Your task is to rank the two provided texts. Please explicitly write which of the two texts is of higher quality by writing the corresponding number in the output, and nothing else."
+SYSTEM_PROMPT_PAIRWISE_RANKING = "You are a helpful assistant. Your task is to rank the two provided texts. Please explicitly write which of the two texts is of higher quality by writing the corresponding letter in the output, and nothing else."
 SYSTEM_PROMPT_ABSOLUTE_RATING = "You are a helpful assistant. Your task is to rate the provided text in terms of overall quality. The rating should be from one to five, with 'one' being the lowest quality and 'five' being the highest quality. Please write the number only, and nothing else."
 
 # Load model and tokenizer
