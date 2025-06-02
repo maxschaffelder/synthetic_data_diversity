@@ -72,14 +72,15 @@ def main():
             if len(prompts_batch) == BATCH_SIZE:
                 logging.info(f"Processing batch of {len(prompts_batch)} prompts (up to line {i+1})...")
                 try:
-                    generated_responses_batch, token_probabilities_batch = generate_pairwise_ranking_response(model, tokenizer, prompts_batch, system_prompt)
+                    generated_responses_batch, token_probabilities_batch, marker_choice_probs_batch = generate_pairwise_ranking_response(model, tokenizer, prompts_batch, system_prompt, ranking_markers_list=ranking_markers)
                     logging.info(f"Batch of responses generated.")
-                    for idx, (original_data, gen_response, token_probabilities) in enumerate(zip(data_batch_info, generated_responses_batch, token_probabilities_batch)):
+                    for idx, (original_data, gen_response, token_probabilities, marker_choice_probs) in enumerate(zip(data_batch_info, generated_responses_batch, token_probabilities_batch, marker_choice_probs_batch)):
                         # Prepare result item for this entry
                         result_item = {
                             'summary': original_data['summary'],
                             'ranking_output': gen_response,
                             'token_probabilities': token_probabilities,
+                            'marker_choice_probabilities': marker_choice_probs,
                             f'model_{ranking_markers[0]}': original_data[f'model_{ranking_markers[0]}'],
                             f'model_{ranking_markers[1]}': original_data[f'model_{ranking_markers[1]}']
                         }
@@ -96,6 +97,7 @@ def main():
                                 'summary': original_data['summary'],
                                 'ranking_output': f"ERROR_BATCH: {e}", 
                                 'token_probabilities': [],
+                                'marker_choice_probabilities': {ranking_markers[0]: None, ranking_markers[1]: None}, # Add placeholder for error cases
                                 f'model_{ranking_markers[0]}': original_data[f'model_{ranking_markers[0]}'],
                                 f'model_{ranking_markers[1]}': original_data[f'model_{ranking_markers[1]}']
                             }
@@ -108,14 +110,15 @@ def main():
     if prompts_batch: 
         logging.info(f"Processing final batch of {len(prompts_batch)} prompts...")
         try:
-            generated_responses_batch, token_probabilities_batch = generate_pairwise_ranking_response(model, tokenizer, prompts_batch, system_prompt)
+            generated_responses_batch, token_probabilities_batch, marker_choice_probs_batch = generate_pairwise_ranking_response(model, tokenizer, prompts_batch, system_prompt, ranking_markers_list=ranking_markers)
             logging.info(f"Final batch of responses generated.")
-            for idx, (original_data, gen_response, token_probabilities) in enumerate(zip(data_batch_info, generated_responses_batch, token_probabilities_batch)):
+            for idx, (original_data, gen_response, token_probabilities, marker_choice_probs) in enumerate(zip(data_batch_info, generated_responses_batch, token_probabilities_batch, marker_choice_probs_batch)):
                 # Prepare result item for this entry
                 result_item = {
                     'summary': original_data['summary'],
                     'ranking_output': gen_response,
                     'token_probabilities': token_probabilities,
+                    'marker_choice_probabilities': marker_choice_probs,
                     f'model_{ranking_markers[0]}': original_data[f'model_{ranking_markers[0]}'],
                     f'model_{ranking_markers[1]}': original_data[f'model_{ranking_markers[1]}']
                 }
@@ -132,6 +135,7 @@ def main():
                         'summary': original_data['summary'],
                         'ranking_output': f"ERROR_FINAL_BATCH: {e}",
                         'token_probabilities': [],
+                        'marker_choice_probabilities': {ranking_markers[0]: None, ranking_markers[1]: None}, # Add placeholder for error cases
                         f'model_{ranking_markers[0]}': original_data[f'model_{ranking_markers[0]}'],
                         f'model_{ranking_markers[1]}': original_data[f'model_{ranking_markers[1]}']
                     }

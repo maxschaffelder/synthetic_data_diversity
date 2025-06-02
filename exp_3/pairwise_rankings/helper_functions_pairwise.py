@@ -65,11 +65,29 @@ def load_model_and_tokenizer(base_model_path, use_lora=False, lora_model_path=No
 
 
 # Generate pairwise ranking response
-def generate_pairwise_ranking_response(model, tokenizer, prompts_batch, system_prompt, max_length=1024):
+def generate_pairwise_ranking_response(model, tokenizer, prompts_batch, system_prompt, ranking_markers_list, max_length=1024):
     if not prompts_batch:
-        return []
+        return [], [], []
 
     logging.info(f"Generating rankings for batch of {len(prompts_batch)} pairs of prompts. System prompt: '{system_prompt}'")
+
+    # Tokenize markers once, assuming they are single tokens
+    marker1_str = ranking_markers_list[0].upper()
+    marker2_str = ranking_markers_list[1].upper()
+    actual_token_id_marker1 = -1
+    actual_token_id_marker2 = -1
+
+    token_ids_marker1 = tokenizer.encode(marker1_str, add_special_tokens=False)
+    if len(token_ids_marker1) == 1:
+        actual_token_id_marker1 = token_ids_marker1[0]
+    else:
+        logging.warning(f"Marker '{marker1_str}' is not a single token (token IDs: {token_ids_marker1}). Cannot reliably calculate its choice probability.")
+
+    token_ids_marker2 = tokenizer.encode(marker2_str, add_special_tokens=False)
+    if len(token_ids_marker2) == 1:
+        actual_token_id_marker2 = token_ids_marker2[0]
+    else:
+        logging.warning(f"Marker '{marker2_str}' is not a single token (token IDs: {token_ids_marker2}). Cannot reliably calculate its choice probability.")
 
     # Apply chat template to each prompt in the batch
     formatted_prompts_for_tokenizer = []
@@ -117,7 +135,8 @@ def generate_pairwise_ranking_response(model, tokenizer, prompts_batch, system_p
     
     logging.info("Decoding batch of responses and extracting token probabilities...")
     cleaned_responses = []
-    all_token_probabilities = [] # ADDED: To store lists of token probabilities
+    all_token_probabilities = [] # Stores probabilities of the chosen tokens in the generated sequence
+    marker_choice_probabilities = [] # Stores probabilities of the predefined markers at the first step
 
     # outputs.sequences contains the full sequence (input_ids + generated_ids) of shape (batch_size, sequence_length)
     # outputs.scores is a tuple of tensors of logits for each generated token. Len is num_generated_tokens.
@@ -128,6 +147,22 @@ def generate_pairwise_ranking_response(model, tokenizer, prompts_batch, system_p
         
         # Get generated token IDs for the current item from outputs.sequences
         generated_token_ids = outputs.sequences[i][input_token_len:]
+
+        # Calculate probabilities for the specified markers at the first decision point
+        current_item_marker_choice_probs = {marker1_str: None, marker2_str: None}
+        if outputs.scores and actual_token_id_marker1 != -1 and actual_token_id_marker2 != -1:
+            # scores[0] corresponds to the logits of the first generated token
+            first_token_logits = outputs.scores[0][i, :]
+            first_token_softmax_probs = torch.softmax(first_token_logits, dim=-1)
+            
+            prob_marker1 = first_token_softmax_probs[actual_token_id_marker1].item()
+            prob_marker2 = first_token_softmax_probs[actual_token_id_marker2].item()
+            current_item_marker_choice_probs = {marker1_str: prob_marker1, marker2_str: prob_marker2}
+        elif not outputs.scores:
+            logging.warning(f"No scores available for item {i}, cannot calculate marker choice probabilities.")
+        else: # One or both markers were not single tokens
+            logging.warning(f"Cannot calculate marker choice probabilities for item {i} due to multi-token marker(s).")
+        marker_choice_probabilities.append(current_item_marker_choice_probs)
 
         if generated_token_ids.nelement() == 0:
             logging.warning(f"No new tokens generated for prompt: '{prompts_batch[i][:50]}...'. Input length: {input_token_len}, Output length: {outputs.sequences[i].shape[0]}")
@@ -151,4 +186,4 @@ def generate_pairwise_ranking_response(model, tokenizer, prompts_batch, system_p
             all_token_probabilities.append(current_response_token_probs)
 
     logging.info("Input tokens stripped from responses and probabilities extracted.")
-    return cleaned_responses, all_token_probabilities
+    return cleaned_responses, all_token_probabilities, marker_choice_probabilities
