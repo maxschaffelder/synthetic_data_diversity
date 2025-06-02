@@ -57,5 +57,7 @@ fi
 
 python /scratch-shared/mschaffelder/code/exp_3/pairwise_rankings/pairwise_ranking.py \
     --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
-    --input_file "/scratch-shared/mschaffelder/data/exp_3/pairwise_data/pairwise_ranking_input_small.jsonl" \
-    --output_file "/scratch-shared/mschaffelder/data/exp_3/pairwise_rankings/small_vanilla.jsonl"
+    --input_file "/scratch-shared/mschaffelder/data/exp_3/pairwise_data/pairwise_ranking_input_small_ba.jsonl" \
+    --output_file "/scratch-shared/mschaffelder/data/exp_3/pairwise_rankings/small_vanilla.jsonl" \
+    --ranking_markers "b a" \
+    --system_prompt "You are a helpful assistant. Your task is to rank the two provided texts. Please explicitly write which of the two texts is of higher quality by writing the corresponding letter in the output, and nothing else."

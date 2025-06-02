@@ -1,7 +1,7 @@
 import json
 import os
 import logging
-from helper_functions_judge import load_model_and_tokenizer, generate_pairwise_ranking_response
+from helper_functions_pairwise import load_model_and_tokenizer, generate_pairwise_ranking_response
 import argparse
 
 
@@ -16,6 +16,8 @@ def main():
     parser.add_argument("--use_lora", action='store_true', help="Whether to use the LoRA model. If this flag is present, LoRA will be used.")
     parser.add_argument("--input_file", type=str, help="Path to the input data.")
     parser.add_argument("--output_file", type=str, help="Path to the output file.")
+    parser.add_argument("--ranking_markers", type=str, default="A B", help='Markers for the two options in the ranking, e.g., "A B", "1 2".')
+    parser.add_argument("--system_prompt", type=str, default="You are a helpful assistant. Your task is to rank the two provided texts. Please explicitly write which of the two texts is of higher quality by writing the corresponding letter in the output, and nothing else.", help='System prompt for the model.')
     
     args = parser.parse_args() 
 
@@ -25,6 +27,8 @@ def main():
     use_lora = args.use_lora
     input_file = args.input_file
     output_file = args.output_file
+    ranking_markers = args.ranking_markers.split()
+    system_prompt = args.system_prompt
     
     logging.info(f"Starting script with output file: {output_file}")
 
@@ -68,7 +72,7 @@ def main():
             if len(prompts_batch) == BATCH_SIZE:
                 logging.info(f"Processing batch of {len(prompts_batch)} prompts (up to line {i+1})...")
                 try:
-                    generated_responses_batch, token_probabilities_batch = generate_pairwise_ranking_response(model, tokenizer, prompts_batch)
+                    generated_responses_batch, token_probabilities_batch = generate_pairwise_ranking_response(model, tokenizer, prompts_batch, system_prompt)
                     logging.info(f"Batch of responses generated.")
                     for idx, (original_data, gen_response, token_probabilities) in enumerate(zip(data_batch_info, generated_responses_batch, token_probabilities_batch)):
                         # Prepare result item for this entry
@@ -76,8 +80,8 @@ def main():
                             'summary': original_data['summary'],
                             'ranking_output': gen_response,
                             'token_probabilities': token_probabilities,
-                            'model_g': original_data['model_g'],
-                            'model_h': original_data['model_h']
+                            f'model_{ranking_markers[0]}': original_data[f'model_{ranking_markers[0]}'],
+                            f'model_{ranking_markers[1]}': original_data[f'model_{ranking_markers[1]}']
                         }
                         # Append this single result to the file
                         with open(output_file, 'a') as f:
@@ -92,8 +96,8 @@ def main():
                                 'summary': original_data['summary'],
                                 'ranking_output': f"ERROR_BATCH: {e}", 
                                 'token_probabilities': [],
-                                'model_g': original_data['model_g'],
-                                'model_h': original_data['model_h']
+                                f'model_{ranking_markers[0]}': original_data[f'model_{ranking_markers[0]}'],
+                                f'model_{ranking_markers[1]}': original_data[f'model_{ranking_markers[1]}']
                             }
                             f.write(json.dumps(error_result_item) + '\n')
                     logging.info(f"Appended {len(data_batch_info)} error results from batch to {output_file}")
@@ -104,7 +108,7 @@ def main():
     if prompts_batch: 
         logging.info(f"Processing final batch of {len(prompts_batch)} prompts...")
         try:
-            generated_responses_batch, token_probabilities_batch = generate_pairwise_ranking_response(model, tokenizer, prompts_batch)
+            generated_responses_batch, token_probabilities_batch = generate_pairwise_ranking_response(model, tokenizer, prompts_batch, system_prompt)
             logging.info(f"Final batch of responses generated.")
             for idx, (original_data, gen_response, token_probabilities) in enumerate(zip(data_batch_info, generated_responses_batch, token_probabilities_batch)):
                 # Prepare result item for this entry
@@ -112,8 +116,8 @@ def main():
                     'summary': original_data['summary'],
                     'ranking_output': gen_response,
                     'token_probabilities': token_probabilities,
-                    'model_g': original_data['model_g'],
-                    'model_h': original_data['model_h']
+                    f'model_{ranking_markers[0]}': original_data[f'model_{ranking_markers[0]}'],
+                    f'model_{ranking_markers[1]}': original_data[f'model_{ranking_markers[1]}']
                 }
                 # Append this single result to the file
                 with open(output_file, 'a') as f:
@@ -128,8 +132,8 @@ def main():
                         'summary': original_data['summary'],
                         'ranking_output': f"ERROR_FINAL_BATCH: {e}",
                         'token_probabilities': [],
-                        'model_g': original_data['model_g'],
-                        'model_h': original_data['model_h']
+                        f'model_{ranking_markers[0]}': original_data[f'model_{ranking_markers[0]}'],
+                        f'model_{ranking_markers[1]}': original_data[f'model_{ranking_markers[1]}']
                     }
                     f.write(json.dumps(error_result_item) + '\n')
             logging.info(f"Appended {len(data_batch_info)} error results from final batch to {output_file}")
