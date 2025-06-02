@@ -1,7 +1,7 @@
 import json
 import os
 import logging
-from helper_functions_judge import load_model_and_tokenizer, generate_absolute_rating_response
+from helper_functions_absolute import load_model_and_tokenizer, generate_absolute_rating_response
 import argparse
 
 
@@ -16,6 +16,7 @@ def main():
     parser.add_argument("--use_lora", action='store_true', help="Whether to use the LoRA model. If this flag is present, LoRA will be used.")
     parser.add_argument("--input_file", type=str, help="Path to the input data.")
     parser.add_argument("--output_file", type=str, help="Path to the output file.")
+    parser.add_argument("--system_prompt", type=str, help="Path to the system prompt.")
     
     args = parser.parse_args()
 
@@ -25,7 +26,7 @@ def main():
     use_lora = args.use_lora
     input_file = args.input_file
     output_file = args.output_file
-    
+    system_prompt = args.system_prompt
     logging.info(f"Starting script with output file: {output_file}")
 
     # Create output directory if it doesn't exist
@@ -69,7 +70,7 @@ def main():
                 logging.info(f"Processing batch of {len(prompts_batch)} prompts (up to line {i+1})...")
 
                 try:
-                    generated_responses_batch, token_probabilities_batch = generate_absolute_rating_response(model, tokenizer, prompts_batch)
+                    generated_responses_batch, token_probabilities_batch = generate_absolute_rating_response(model, tokenizer, prompts_batch, system_prompt=system_prompt)
                     logging.info(f"Batch of responses generated.")
                     for idx, (original_data, gen_response, token_probabilities) in enumerate(zip(data_batch_info, generated_responses_batch, token_probabilities_batch)):
                         # Prepare result item for this entry
@@ -103,7 +104,7 @@ def main():
         logging.info(f"Processing final batch of {len(prompts_batch)} prompts...")
         try:
 
-            generated_responses_batch, token_probabilities_batch = generate_absolute_rating_response(model, tokenizer, prompts_batch)
+            generated_responses_batch, token_probabilities_batch = generate_absolute_rating_response(model, tokenizer, prompts_batch, system_prompt=system_prompt)
             logging.info(f"Final batch of responses generated.")
 
             for idx, (original_data, gen_response, token_probabilities) in enumerate(zip(data_batch_info, generated_responses_batch, token_probabilities_batch)):
