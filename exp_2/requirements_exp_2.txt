@@ -1,0 +1,22 @@
+# Core ML and NLP libraries
+torch>=2.0.0
+transformers>=4.35.0
+datasets>=2.14.0
+
+# Parameter Efficient Fine-tuning
+peft>=0.6.0
+
+# Data processing and utilities
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Additional utilities that might be needed
+tqdm>=4.65.0
+scipy>=1.10.0
+
+# For better performance with transformers
+accelerate>=0.21.0
+bitsandbytes>=0.41.0
+
+# Authentication for Hugging Face models
+huggingface_hub>=0.17.0 
