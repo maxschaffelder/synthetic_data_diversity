@@ -59,5 +59,5 @@ python generate_responses.py \
     --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
     --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/lora_llama_8b_multi_v3" \
     --use_lora \
-    --input_file "/scratch-shared/mschaffelder/data/exp_2/refusalbench.jsonl" \
+    --input_file "/scratch-shared/mschaffelder/data/exp_2/inputs/refusalbench.jsonl" \
     --output_file "/scratch-shared/mschaffelder/data/exp_2/outputs/refusalbench_8b_multi_source.jsonl"
