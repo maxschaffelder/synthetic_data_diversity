@@ -70,14 +70,6 @@ print("done getting peft model")
 # Verify the number of trainable parameters (should be much smaller than total)
 model.print_trainable_parameters()
 
-# 3. Load and preprocess the dataset
-#train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_train_all_Llama.jsonl" 
-#val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Llama/dolly_test_Llama.jsonl"
-
-#train_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Other/dolly_train_all_multi.jsonl" 
-#val_path = "/scratch-shared/mschaffelder/Data/Finetuning/synthetic/Small/Other/dolly_test_multi.jsonl"
-#RESPONSE_KEY = "response_human" # CHANGE THIS TO "response_model" FOR MODEL RESPONSE
-#OUTPUT_DIR = "/scratch-shared/mschaffelder/Data/ft_models/lora_llama_8b_human"
 
 print("loading datasets")
 train_dataset = load_dataset("json", data_files={"train": args.train_path})
