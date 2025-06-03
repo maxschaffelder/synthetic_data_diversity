@@ -75,7 +75,8 @@ def main():
                         # Prepare result item for this entry
                         result_item = {
                             'instruction': original_data['instruction'],
-                            'response_model': gen_response
+                            'response_model': gen_response,
+                            'category': original_data['category']
                         }
                         # Append this single result to the file
                         with open(output_file, 'a') as f:
@@ -89,7 +90,8 @@ def main():
                         for original_data in data_batch_info:
                             error_result_item = {
                                 'instruction': original_data['instruction'],
-                                'response_model': f"ERROR_BATCH: {e}"
+                                'response_model': f"ERROR_BATCH: {e}",
+                                'category': original_data['category']
                             }
                             f.write(json.dumps(error_result_item) + '\n')
                     logging.info(f"Appended {len(data_batch_info)} error results from batch to {output_file}")
@@ -108,7 +110,8 @@ def main():
                 # Prepare result item for this entry
                 result_item = {
                     'instruction': original_data['instruction'],
-                    'response_model': gen_response
+                    'response_model': gen_response,
+                    'category': original_data['category']
                 }
                 # Append this single result to the file
                 with open(output_file, 'a') as f:
@@ -123,7 +126,8 @@ def main():
                 for original_data in data_batch_info:
                     error_result_item = {
                         'instruction': original_data['instruction'],
-                        'response_model': f"ERROR_FINAL_BATCH: {e}"
+                        'response_model': f"ERROR_FINAL_BATCH: {e}",
+                        'category': original_data['category']
                     }
                     f.write(json.dumps(error_result_item) + '\n')
             logging.info(f"Appended {len(data_batch_info)} error results from final batch to {output_file}")
