@@ -55,9 +55,9 @@ else
     echo "Warning: No Hugging Face token found. Set HF_TOKEN environment variable or login manually."
 fi
 
-python /scratch-shared/mschaffelder/code/exp_2/generate_responses.py \
+python generate_responses.py \
     --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
     --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/lora_llama_8b_human_v3/checkpoint-843" \
-    --use_lora True \
+    --use_lora \
     --input_file "/scratch-shared/mschaffelder/data/exp_2/refusalbench.jsonl" \
     --output_file "/scratch-shared/mschaffelder/data/exp_2/outputs/refusalbench_8b_human_source.jsonl"
