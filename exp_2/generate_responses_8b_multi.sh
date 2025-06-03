@@ -10,7 +10,7 @@
 
 
 VENV_NAME="venv_exp_2"
-VENV_BASE_DIR="/scratch-shared/mschaffelder" # Or any other persistent shared directory you prefer
+VENV_BASE_DIR="/scratch-shared/mschaffelder" 
 VENV_DIR="$VENV_BASE_DIR/$VENV_NAME"
 PYTHON_MODULE="Python/3.10.4-GCCcore-11.3.0"
 
