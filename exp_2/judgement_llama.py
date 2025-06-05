@@ -1,7 +1,6 @@
 import json
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from peft import PeftModel
 import os
 import logging
 import argparse
@@ -38,15 +37,6 @@ def load_model_and_tokenizer(base_model_path):
         device_map="auto"
     )
     logging.info(f"Base model loaded. Original vocab size: {model.config.vocab_size}")
-    
-    # Resize token embeddings if necessary
-    expected_vocab_size = 128257
-    if model.config.vocab_size < expected_vocab_size:
-        logging.info(f"Resizing token embeddings from {model.config.vocab_size} to {expected_vocab_size}...")
-        model.resize_token_embeddings(expected_vocab_size)
-        logging.info(f"Token embeddings resized. New vocab size: {model.config.vocab_size}")
-    else:
-        logging.info("Token embeddings do not need resizing.")
     
     # Align model's pad_token_id with tokenizer's pad_token_id if necessary
     # This is important for the model.generate() method.
