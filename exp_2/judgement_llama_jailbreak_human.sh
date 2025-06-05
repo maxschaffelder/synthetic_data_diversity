@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J judgement-jailbreak-multi
+#SBATCH -J judgement-jailbreak-human
 #SBATCH -t 12:00:00
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 4
@@ -58,9 +58,9 @@ fi
 
 # --- Script Configuration ---
 BASE_MODEL_PATH="meta-llama/Llama-3.1-70B-Instruct"
-INPUT_DATA_PATH="/scratch-shared/mschaffelder/data/exp_2/judge/inputs/refusalbench_jailbreak/judge_input_refusalbench_jailbreak_8b_multi_source.jsonl"
+INPUT_DATA_PATH="/scratch-shared/mschaffelder/data/exp_2/judge/inputs/refusalbench_jailbreak/judge_input_refusalbench_jailbreak_8b_human_source.jsonl"
 OUTPUT_PATH="/scratch-shared/mschaffelder/data/exp_2/judge/outputs/refusalbench_jailbreak"
-OUTPUT_FILENAME="refusalbench_jailbreak_8b_multi_source_judged.jsonl"
+OUTPUT_FILENAME="refusalbench_jailbreak_8b_human_source_judged.jsonl"
 # --- End Script Configuration ---
 
 python judgement_llama.py \
