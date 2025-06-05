@@ -63,7 +63,7 @@ OUTPUT_PATH="/scratch-shared/mschaffelder/data/exp_2/judge/outputs/refusalbench_
 OUTPUT_FILENAME="refusalbench_jailbreak_8b_human_source_judged.jsonl"
 # --- End Script Configuration ---
 
-python judgement_llama_human.py \
+python judgement_llama.py \
     --base_model_path "$BASE_MODEL_PATH" \
     --input_data_path "$INPUT_DATA_PATH" \
     --output_path "$OUTPUT_PATH" \
