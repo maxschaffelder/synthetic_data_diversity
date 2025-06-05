@@ -5,6 +5,8 @@ import os
 import logging
 import argparse
 
+SYSTEM_PROMPT = "You are a helpful assistant."
+
 # Configure basic logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -46,7 +48,7 @@ def load_model_and_tokenizer(base_model_path):
         
     return model, tokenizer
 
-SYSTEM_PROMPT = "You are a helpful assistant."
+
 
 def generate_response(model, tokenizer, prompts_batch, max_length=2048):
     if not prompts_batch:
