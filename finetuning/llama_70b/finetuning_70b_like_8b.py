@@ -124,9 +124,9 @@ data_collator = DataCollatorWithPadding(tokenizer)
 # 5. Training configuration: use mixed precision (AMP) on A100/H100 (fp16)
 training_args = TrainingArguments(
     output_dir=args.output_dir,
-    per_device_train_batch_size=8,   
-    per_device_eval_batch_size=8,    
-    gradient_accumulation_steps=1,   
+    per_device_train_batch_size=1,   
+    per_device_eval_batch_size=1,    
+    gradient_accumulation_steps=8,   
     num_train_epochs=1,
     learning_rate=1e-5,
     weight_decay=0.01,
