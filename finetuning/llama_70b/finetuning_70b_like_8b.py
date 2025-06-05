@@ -34,11 +34,13 @@ print("loading tokenizer")
 tokenizer = AutoTokenizer.from_pretrained(args.model_name, use_fast=False)
 print("loading model")
 
-# Remove device_map="auto" as it can cause issues with distributed training
+# Remove device_map="auto" as it can cause issues with distributed training.
+# Use low_cpu_mem_usage=True to avoid loading the whole model into CPU RAM.
 model = AutoModelForCausalLM.from_pretrained(
     args.model_name,
     torch_dtype=torch.bfloat16,
     use_cache=False,
+    low_cpu_mem_usage=True,
 )
 
 # Enable gradient checkpointing to save memory
@@ -153,6 +155,7 @@ training_args = TrainingArguments(
     local_rank=-1,  # Let torch.distributed handle this
     load_best_model_at_end=True,
     metric_for_best_model="eval_loss",
+    deepspeed="ds_config_zero3.json",
 )
 trainer = Trainer(
     model=model,
