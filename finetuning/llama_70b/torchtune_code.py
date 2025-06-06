@@ -36,7 +36,6 @@ from torchtune.recipe_interfaces import FTRecipeInterface
 from torchtune.training import (
     DummyProfiler,
     PROFILER_KEY,
-    VALID_BACKENDS_FOR_MEMORY_STATS,
 )
 from torchtune.training.checkpointing._checkpoint_client import (
     CheckpointClient,
@@ -159,12 +158,14 @@ class LoRAFinetuneRecipeDistributed(FTRecipeInterface):
         self._log_peak_memory_stats = cfg.get("log_peak_memory_stats", False)
         self._logger = utils.get_logger(cfg.log_level)
 
+        # Hard-coded since VALID_BACKENDS_FOR_MEMORY_STATS is not in this version
+        valid_backends_for_memory_stats = ["cuda"]
         if (
             self._log_peak_memory_stats
-            and self._device.type not in VALID_BACKENDS_FOR_MEMORY_STATS
+            and self._device.type not in valid_backends_for_memory_stats
         ):
             self._logger.info(
-                f"log_peak_memory_stats was set to True; however, training device is not in {VALID_BACKENDS_FOR_MEMORY_STATS}."
+                f"log_peak_memory_stats was set to True; however, training device is not in {valid_backends_for_memory_stats}."
                 "Setting log_peak_memory_stats=False."
             )
             self._log_peak_memory_stats = False
