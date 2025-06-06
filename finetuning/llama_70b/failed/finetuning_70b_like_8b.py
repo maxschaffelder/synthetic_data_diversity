@@ -5,6 +5,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorWithPa
 from datasets import load_dataset
 from peft import LoraConfig, TaskType, get_peft_model
 import argparse
+from unsloth.chat_templates import get_chat_template
+from unsloth import FastLanguageModel, is_bfloat16_supported
 
 # Set environment variable to avoid tokenizers parallelism warning
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
