@@ -25,7 +25,6 @@ from torchtune import config, modules, training, utils
 from torchtune.config._utils import _get_component_from_path
 from torchtune.data import padded_collate_packed
 from torchtune.datasets import ConcatDataset
-from torchtune.modules.loss import LinearCrossEntropyLoss
 from torchtune.modules.peft import (
     AdapterModule,
     get_adapter_params,
@@ -339,8 +338,6 @@ class LoRAFinetuneRecipeDistributed(FTRecipeInterface):
 
         # initialize loss
         self._loss_fn = config.instantiate(cfg.loss)
-        if isinstance(self._loss_fn, LinearCrossEntropyLoss):
-            self._loss_fn.set_model_output(self._model)
 
         if self._compile:
             training.compile_loss(self._loss_fn, verbose=self._is_rank_zero)
@@ -805,25 +802,19 @@ class LoRAFinetuneRecipeDistributed(FTRecipeInterface):
         self._profiler.stop()
 
     def _loss_step(self, batch: dict[str, torch.Tensor]) -> torch.Tensor:
-        # Shape [b, s], needed for the loss not the model
-        labels = batch.pop("labels")
-
-        with self.activations_handling_ctx:
-            outputs = self._model(**batch)
+        # Shape [b, s, v]
+        logits = self._model(**batch)
+        # Shift assets to align predictions and labels
+        # Shape [b, s]
+        labels = batch["labels"]
+        logits = logits[..., :-1, :].contiguous()
+        labels = labels[..., 1:].contiguous()
 
         # post process for third party loss functions
-        if not isinstance(self._loss_fn, LinearCrossEntropyLoss):
-            labels = labels.reshape(-1)
-            outputs = outputs.reshape(-1, outputs.size(-1))
-            if isinstance(outputs, DTensor):
-                outputs = outputs.full_tensor()
+        labels = labels.reshape(-1)
+        logits = logits.reshape(-1, logits.size(-1))
 
-        # Compute loss
-        loss = self._loss_fn(outputs, labels)
-
-        # free logits otherwise it peaks backward memory
-        del outputs
-
+        loss = self._loss_fn(logits, labels)
         return loss
 
     def validate(self) -> dict[str, float]:

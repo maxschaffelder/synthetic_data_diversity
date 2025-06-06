@@ -77,7 +77,7 @@ lr_scheduler:
   num_warmup_steps: 100
 
 loss:
-  _component_: torchtune.modules.loss.LinearCrossEntropyLoss
+  _component_: torch.nn.CrossEntropyLoss
 
 # Training
 epochs: 1
