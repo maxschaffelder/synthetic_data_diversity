@@ -58,13 +58,10 @@ fi
 # Set a longer timeout for Hugging Face downloads to prevent read errors on large models
 export HF_HUB_DOWNLOAD_TIMEOUT=600
 
-# Download the model if it doesn't exist
-MODEL_DIR="/scratch-shared/mschaffelder/hf_cache/Meta-Llama-3.1-70B-Instruct"
-if [ ! -d "$MODEL_DIR" ]; then
-    echo "Model not found at $MODEL_DIR. Downloading..."
-    tune download meta-llama/Meta-Llama-3.1-70B-Instruct --output-dir $MODEL_DIR --ignore-patterns "original/consolidated*"
-else
-    echo "Model already exists at $MODEL_DIR. Skipping download."
-fi
+# Download the model. This command is resumable and will verify existing files.
+echo "Ensuring model is downloaded and up-to-date..."
+tune download meta-llama/Meta-Llama-3.1-70B-Instruct \
+    --output-dir /scratch-shared/mschaffelder/hf_cache/Meta-Llama-3.1-70B-Instruct \
+    --ignore-patterns "original/consolidated*"
 
 tune run torchtune_code.py --nproc_per_node 4 --config 70b_lora.yaml
