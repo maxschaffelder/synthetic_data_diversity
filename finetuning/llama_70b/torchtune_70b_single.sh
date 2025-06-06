@@ -55,6 +55,9 @@ else
     echo "Warning: No Hugging Face token found. Set HF_TOKEN environment variable or login manually."
 fi
 
+# Set a longer timeout for Hugging Face downloads to prevent read errors on large models
+export HF_HUB_DOWNLOAD_TIMEOUT=600
+
 # Download the model if it doesn't exist
 MODEL_DIR="/scratch-shared/mschaffelder/hf_cache/Meta-Llama-3.1-70B-Instruct"
 if [ ! -d "$MODEL_DIR" ]; then
@@ -64,4 +67,4 @@ else
     echo "Model already exists at $MODEL_DIR. Skipping download."
 fi
 
-tune run torchtune.py --nproc_per_node 4 --config 70b_lora.yaml
+tune run torchtune_code.py --nproc_per_node 4 --config 70b_lora.yaml
