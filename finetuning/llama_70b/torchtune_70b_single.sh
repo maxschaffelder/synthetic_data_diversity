@@ -64,4 +64,4 @@ tune download meta-llama/Meta-Llama-3.1-70B-Instruct \
     --output-dir /scratch-shared/mschaffelder/hf_cache/Meta-Llama-3.1-70B-Instruct \
     --ignore-patterns "original/consolidated*"
 
-tune run torchtune_code.py --nproc_per_node 4 --config 70b_lora.yaml
+tune run --nproc_per_node 4 lora_finetune_distributed --config 70b_lora.yaml
