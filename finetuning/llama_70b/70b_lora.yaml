@@ -42,6 +42,7 @@ dataset:
   _component_: torchtune.datasets.instruct_dataset
   source: "json"
   data_files: "/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl"
+  split: "train"  # Required for local datasets
   template: torchtune.data.AlpacaInstructTemplate
   # Although the data is for chat, the format with "instruction" and "response_model" keys
   # fits the instruct_dataset builder better.
@@ -60,6 +61,7 @@ dataset_val:
   _component_: torchtune.datasets.instruct_dataset
   source: "json"
   data_files: "/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_test_Llama.jsonl"
+  split: "train"  # Required for local datasets
   template: torchtune.data.AlpacaInstructTemplate
   column_map:
     instruction: "instruction"
