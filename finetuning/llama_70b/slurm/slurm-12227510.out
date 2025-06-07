@@ -1,0 +1,255 @@
+Activating virtual environment from /scratch-shared/mschaffelder/venv_finetune_1
+Requirement already satisfied: torch in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 1)) (2.7.0)
+Requirement already satisfied: peft>=0.5.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 2)) (0.15.2)
+Requirement already satisfied: transformers>=4.36.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 3)) (4.52.3)
+Requirement already satisfied: datasets>=2.14.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 4)) (3.6.0)
+Requirement already satisfied: sentencepiece>=0.1.99 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 5)) (0.2.0)
+Requirement already satisfied: huggingface_hub>=0.17.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 6)) (0.32.0)
+Requirement already satisfied: bitsandbytes in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 7)) (0.45.5)
+Requirement already satisfied: tensorboard in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 8)) (2.19.0)
+Requirement already satisfied: accelerate>=0.21.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 9)) (1.7.0)
+Requirement already satisfied: typing_extensions in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 10)) (4.13.2)
+Requirement already satisfied: deepspeed>=0.10.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 11)) (0.16.9)
+Requirement already satisfied: torchtune in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 12)) (0.6.1)
+Requirement already satisfied: omegaconf in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 13)) (2.3.0)
+Requirement already satisfied: torchdata in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 14)) (0.11.0)
+Requirement already satisfied: tqdm in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 15)) (4.67.1)
+Collecting torchao (from -r ../requirements.txt (line 16))
+  Downloading torchao-0.11.0-cp39-abi3-manylinux_2_28_x86_64.manylinux_2_24_x86_64.whl.metadata (16 kB)
+Requirement already satisfied: filelock in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (3.18.0)
+Requirement already satisfied: setuptools in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (80.8.0)
+Requirement already satisfied: sympy>=1.13.3 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (1.14.0)
+Requirement already satisfied: networkx in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (3.4.2)
+Requirement already satisfied: jinja2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (3.1.6)
+Requirement already satisfied: fsspec in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (2025.3.0)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (12.6.80)
+Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (9.5.1.17)
+Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (12.6.4.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (11.3.0.4)
+Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (10.3.7.77)
+Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (11.7.1.2)
+Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (12.5.4.2)
+Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (0.6.3)
+Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (2.26.2)
+Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (12.6.85)
+Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (1.11.1.6)
+Requirement already satisfied: triton==3.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (3.3.0)
+Requirement already satisfied: numpy>=1.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r ../requirements.txt (line 2)) (2.2.6)
+Requirement already satisfied: packaging>=20.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r ../requirements.txt (line 2)) (25.0)
+Requirement already satisfied: psutil in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r ../requirements.txt (line 2)) (7.0.0)
+Requirement already satisfied: pyyaml in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r ../requirements.txt (line 2)) (6.0.2)
+Requirement already satisfied: safetensors in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r ../requirements.txt (line 2)) (0.5.3)
+Requirement already satisfied: regex!=2019.12.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from transformers>=4.36.0->-r ../requirements.txt (line 3)) (2024.11.6)
+Requirement already satisfied: requests in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from transformers>=4.36.0->-r ../requirements.txt (line 3)) (2.32.3)
+Requirement already satisfied: tokenizers<0.22,>=0.21 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from transformers>=4.36.0->-r ../requirements.txt (line 3)) (0.21.1)
+Requirement already satisfied: pyarrow>=15.0.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r ../requirements.txt (line 4)) (20.0.0)
+Requirement already satisfied: dill<0.3.9,>=0.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r ../requirements.txt (line 4)) (0.3.8)
+Requirement already satisfied: pandas in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r ../requirements.txt (line 4)) (2.2.3)
+Requirement already satisfied: xxhash in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r ../requirements.txt (line 4)) (3.5.0)
+Requirement already satisfied: multiprocess<0.70.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r ../requirements.txt (line 4)) (0.70.16)
+Requirement already satisfied: hf-xet<2.0.0,>=1.1.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from huggingface_hub>=0.17.0->-r ../requirements.txt (line 6)) (1.1.2)
+Requirement already satisfied: absl-py>=0.4 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r ../requirements.txt (line 8)) (2.2.2)
+Requirement already satisfied: grpcio>=1.48.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r ../requirements.txt (line 8)) (1.71.0)
+Requirement already satisfied: markdown>=2.6.8 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r ../requirements.txt (line 8)) (3.8)
+Requirement already satisfied: protobuf!=4.24.0,>=3.19.6 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r ../requirements.txt (line 8)) (3.20.3)
+Requirement already satisfied: six>1.9 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r ../requirements.txt (line 8)) (1.17.0)
+Requirement already satisfied: tensorboard-data-server<0.8.0,>=0.7.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r ../requirements.txt (line 8)) (0.7.2)
+Requirement already satisfied: werkzeug>=1.0.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r ../requirements.txt (line 8)) (3.1.3)
+Requirement already satisfied: einops in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (0.8.1)
+Requirement already satisfied: hjson in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (3.1.0)
+Requirement already satisfied: msgpack in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (1.1.0)
+Requirement already satisfied: ninja in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (1.11.1.4)
+Requirement already satisfied: py-cpuinfo in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (9.0.0)
+Requirement already satisfied: pydantic>=2.0.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (2.11.5)
+Requirement already satisfied: kagglehub in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torchtune->-r ../requirements.txt (line 12)) (0.3.12)
+Requirement already satisfied: tiktoken in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torchtune->-r ../requirements.txt (line 12)) (0.9.0)
+Requirement already satisfied: blobfile>=2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torchtune->-r ../requirements.txt (line 12)) (3.0.0)
+Requirement already satisfied: Pillow>=9.4.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torchtune->-r ../requirements.txt (line 12)) (11.2.1)
+Requirement already satisfied: urllib3>=1.25 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torchdata->-r ../requirements.txt (line 14)) (2.4.0)
+Requirement already satisfied: antlr4-python3-runtime==4.9.* in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from omegaconf->-r ../requirements.txt (line 13)) (4.9.3)
+Requirement already satisfied: pycryptodomex>=3.8 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from blobfile>=2->torchtune->-r ../requirements.txt (line 12)) (3.23.0)
+Requirement already satisfied: lxml>=4.9 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from blobfile>=2->torchtune->-r ../requirements.txt (line 12)) (5.4.0)
+Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (3.11.18)
+Requirement already satisfied: annotated-types>=0.6.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pydantic>=2.0.0->deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (0.7.0)
+Requirement already satisfied: pydantic-core==2.33.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pydantic>=2.0.0->deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (2.33.2)
+Requirement already satisfied: typing-inspection>=0.4.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pydantic>=2.0.0->deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (0.4.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r ../requirements.txt (line 3)) (3.4.2)
+Requirement already satisfied: idna<4,>=2.5 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r ../requirements.txt (line 3)) (3.10)
+Requirement already satisfied: certifi>=2017.4.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r ../requirements.txt (line 3)) (2025.4.26)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from sympy>=1.13.3->torch->-r ../requirements.txt (line 1)) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.1.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from werkzeug>=1.0.1->tensorboard->-r ../requirements.txt (line 8)) (3.0.2)
+Requirement already satisfied: hf-transfer>=0.1.4 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from huggingface_hub[hf_transfer]->torchtune->-r ../requirements.txt (line 12)) (0.1.9)
+Requirement already satisfied: python-dateutil>=2.8.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r ../requirements.txt (line 4)) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r ../requirements.txt (line 4)) (2025.2)
+Requirement already satisfied: tzdata>=2022.7 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r ../requirements.txt (line 4)) (2025.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (2.6.1)
+Requirement already satisfied: aiosignal>=1.1.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (1.3.2)
+Requirement already satisfied: attrs>=17.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (25.3.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (1.6.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (6.4.4)
+Requirement already satisfied: propcache>=0.2.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (0.3.1)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (1.20.0)
+Downloading torchao-0.11.0-cp39-abi3-manylinux_2_28_x86_64.manylinux_2_24_x86_64.whl (5.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.5/5.5 MB 92.2 MB/s eta 0:00:00
+Installing collected packages: torchao
+Successfully installed torchao-0.11.0
+
+[notice] A new release of pip is available: 24.0 -> 25.1.1
+[notice] To update, run: pip install --upgrade pip
+CUDA_VISIBLE_DEVICES: 0,1,2,3
+Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-d0f39c7c-76e7-2c25-1053-5e7fab11b8e0)
+GPU 1: NVIDIA H100 (UUID: GPU-a9285a8e-271c-001d-9f16-41e03a54f26c)
+GPU 2: NVIDIA H100 (UUID: GPU-ed52b69f-a713-cb5d-3dc6-73dc7855f8f4)
+GPU 3: NVIDIA H100 (UUID: GPU-a68b98b7-771a-fbab-1306-dec17535e1ad)
+Using existing Hugging Face token from cache...
+Model not found at /scratch-shared/mschaffelder/hf_cache/Meta-Llama-3.1-70B-Instruct. Downloading...
+usage: tune download <repo-id> [OPTIONS]
+tune download: error: Failed to download meta-llama/Meta-Llama-3.1-70B-Instruct with error: 'An error happened while trying to locate the file on the Hub and we cannot find the requested files in the local cache. Please check your connection and try again or make sure your Internet connection is on.' and traceback: Traceback (most recent call last):
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/urllib3/connection.py", line 516, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL9/EB_production/2024/software/Python/3.12.3-GCCcore-13.3.0/lib/python3.12/http/client.py", line 1428, in getresponse
+    response.begin()
+  File "/sw/arch/RHEL9/EB_production/2024/software/Python/3.12.3-GCCcore-13.3.0/lib/python3.12/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL9/EB_production/2024/software/Python/3.12.3-GCCcore-13.3.0/lib/python3.12/http/client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL9/EB_production/2024/software/Python/3.12.3-GCCcore-13.3.0/lib/python3.12/socket.py", line 707, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL9/EB_production/2024/software/Python/3.12.3-GCCcore-13.3.0/lib/python3.12/ssl.py", line 1252, in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/arch/RHEL9/EB_production/2024/software/Python/3.12.3-GCCcore-13.3.0/lib/python3.12/ssl.py", line 1104, in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TimeoutError: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/urllib3/util/retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/urllib3/connectionpool.py", line 536, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/urllib3/connectionpool.py", line 367, in _raise_timeout
+    raise ReadTimeoutError(
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1533, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1450, in get_hf_file_metadata
+    r = _request_wrapper(
+        ^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 286, in _request_wrapper
+    response = _request_wrapper(
+               ^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 309, in _request_wrapper
+    response = http_backoff(method=method, url=url, **params, retry_on_exceptions=(), retry_on_status_codes=(429,))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 310, in http_backoff
+    response = session.request(method=method, url=url, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 96, in send
+    return super().send(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/requests/adapters.py", line 713, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: (ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 2ee24c82-aebb-4b21-8902-ff9ce3e722c9)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torchtune/_cli/download.py", line 145, in _download_from_huggingface
+    true_output_dir = snapshot_download(
+                      ^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/huggingface_hub/_snapshot_download.py", line 303, in snapshot_download
+    _inner_hf_hub_download(file)
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/huggingface_hub/_snapshot_download.py", line 279, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 988, in hf_hub_download
+    return _hf_hub_download_to_local_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1243, in _hf_hub_download_to_local_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1648, in _raise_on_head_call_error
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: An error happened while trying to locate the file on the Hub and we cannot find the requested files in the local cache. Please check your connection and try again or make sure your Internet connection is on.
+
+Ignoring files matching the following patterns: original/consolidated*
+Traceback (most recent call last):
+  File "<frozen runpy>", line 148, in _get_module_details
+  File "<frozen runpy>", line 142, in _get_module_details
+ImportError: No module named torchtune.__main__
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/scratch-shared/mschaffelder/venv_finetune_1/bin/tune", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torchtune/_cli/tune.py", line 52, in main
+    parser.run(args)
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torchtune/_cli/tune.py", line 46, in run
+    args.func(args)
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torchtune/_cli/run.py", line 214, in _run_cmd
+    self._run_single_device(args, is_builtin=is_builtin)
+  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torchtune/_cli/run.py", line 111, in _run_single_device
+    runpy.run_module(str(args.recipe), run_name="__main__")
+  File "<frozen runpy>", line 222, in run_module
+  File "<frozen runpy>", line 152, in _get_module_details
+ImportError: No module named torchtune.__main__; 'torchtune' is a package and cannot be directly executed
+
+JOB STATISTICS
+==============
+Job ID: 12227510
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 64
+CPU Utilized: 00:00:37
+CPU Efficiency: 0.20% of 05:06:08 core-walltime
+Job Wall-clock time: 00:04:47
+Memory Utilized: 928.51 MB
+Memory Efficiency: 0.91% of 100.00 GB (100.00 GB/node)
