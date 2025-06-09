@@ -39,35 +39,37 @@ save_adapter_weights_only: True # Set to false to save the whole model + adapter
 
 # Dataset and Sampler
 dataset:
-  _component_: torchtune.datasets.instruct_dataset
+  _component_: torchtune.datasets.SFTDataset
   source: "json"
   data_files: "/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl"
-  split: "train"  # Required for local datasets
-  template: torchtune.data.AlpacaInstructTemplate
-  # Although the data is for chat, the format with "instruction" and "response_model" keys
-  # fits the instruct_dataset builder better.
-  column_map:
-    instruction: "instruction"
-    input: ""  # No input field in the data, so use empty string
-    output: "response_model"
-  train_on_input: True # In Alpaca, both instruction and input are used for training
-  packed: False  # True increases speed
+  split: "train"
+  message_transform:
+    _component_: torchtune.data.InputOutputToMessages
+    column_map:
+      instruction: "instruction" 
+      input: ""
+      output: "response_model"
+    template: torchtune.data.AlpacaInstructTemplate
+    train_on_input: True
+  packed: False
 seed: null
 shuffle: True
 
 # Validation
-run_val_every_n_steps: 100  # Change to an integer to enable validation every N steps, or null to disable
+run_val_every_n_steps: 100
 dataset_val:
-  _component_: torchtune.datasets.instruct_dataset
-  source: "json"
+  _component_: torchtune.datasets.SFTDataset
+  source: "json"  
   data_files: "/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_test_Llama.jsonl"
-  split: "train"  # Required for local datasets
-  template: torchtune.data.AlpacaInstructTemplate
-  column_map:
-    instruction: "instruction"
-    input: ""  # No input field in the data, so use empty string
-    output: "response_model"
-  train_on_input: True
+  split: "train"
+  message_transform:
+    _component_: torchtune.data.InputOutputToMessages
+    column_map:
+      instruction: "instruction"
+      input: ""
+      output: "response_model"
+    template: torchtune.data.AlpacaInstructTemplate
+    train_on_input: True
 batch_size_val: ${batch_size}
 
 # Optimizer and Scheduler
