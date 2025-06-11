@@ -23,7 +23,7 @@ source $VENV_DIR/bin/activate
 
 
 # Define the model to use for perplexity calculation
-MODEL_NAME="meta-llama/Llama-3.1-8B-Instruct" # Changed from Llama-8b-instruct as it's not on HF
+MODEL_NAME="meta-llama/Llama-3.1-8B-Instruct" 
 
 
 # Define base path for data
