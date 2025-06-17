@@ -79,35 +79,27 @@ def load_and_preprocess_data(train_file, validation_file, system_prompt):
 
 
 def initialize_model_and_tokenizer(model_id):
-    """Initialize model and tokenizer without quantization"""
-    print(f"Loading model: {model_id}")
-    
-    try:
-        model = AutoModelForCausalLM.from_pretrained(
-            model_id,
-            torch_dtype=torch.bfloat16,
-            device_map="auto", # Automatically distribute model layers across GPUs
-            #attn_implementation="flash_attention_2", # Use Flash Attention 2 for speed and memory
-            trust_remote_code=True
-        )
-    except Exception as e:
-        print(f"Failed to load with flash_attention_2, falling back to default attention: {e}")
-        model = AutoModelForCausalLM.from_pretrained(
-            model_id,
-            torch_dtype=torch.bfloat16,
-            device_map="auto",
-            trust_remote_code=True
-        )
-    
-    model.config.use_cache = False # Disable cache during training
-    model.config.pretraining_tp = 1 # Required for Llama 3.1
+    """Initialize model and tokenizer, letting Accelerate handle device placement."""
+    print(f"Loading model: {model_id} (device placement will be handled by Accelerate)")
+
+    model = AutoModelForCausalLM.from_pretrained(
+        model_id,
+        torch_dtype=torch.bfloat16,
+        trust_remote_code=True
+        # NOTE: device_map="auto" is intentionally removed.
+        # Accelerate will handle placing the model on the correct GPUs.
+        # Using device_map="auto" here conflicts with Accelerate's DDP.
+    )
+
+    model.config.use_cache = False  # Disable cache during training
+    model.config.pretraining_tp = 1  # Required for Llama 3.1
 
     # Enable gradient checkpointing for memory optimization
     model.gradient_checkpointing_enable()
-    
+
     tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
     tokenizer.pad_token = tokenizer.eos_token
-    tokenizer.padding_side = "right" # Important for Llama 3.1 and batching
+    tokenizer.padding_side = "right"  # Important for Llama 3.1 and batching
 
     return model, tokenizer
 
