@@ -92,7 +92,7 @@ compute_environment: LOCAL_MACHINE
 debug: false
 distributed_type: MULTI_GPU
 downcast_bf16: 'no'
-gpu_ids: all
+fsdp_config: {}
 machine_rank: 0
 main_training_function: main
 mixed_precision: bf16
@@ -108,12 +108,18 @@ EOF
     echo "Accelerate config created at $ACCELERATE_CONFIG_FILE"
 fi
 
+# Also try running accelerate config to ensure proper setup
+echo "Configuring accelerate for multi-GPU setup..."
+export CUDA_VISIBLE_DEVICES=0,1,2,3
+
 # Execute the Python fine-tuning script using accelerate launch
-# --num_processes=4 corresponds to the 4 requested GPUs, launching one process per GPU.
-# For single-node, multi-GPU setups, accelerate typically handles main_process_ip and main_process_port automatically.
+# Use explicit configuration to avoid DeviceMesh issues
 accelerate launch \
+    --config_file="$ACCELERATE_CONFIG_FILE" \
     --num_processes=4 \
-    --mixed_precision=bf16 \
+    --num_machines=1 \
+    --machine_rank=0 \
+    --main_process_port=29500 \
     finetune_llama.py \
     --train_file $TRAIN_FILE \
     --validation_file $VALIDATION_FILE \
