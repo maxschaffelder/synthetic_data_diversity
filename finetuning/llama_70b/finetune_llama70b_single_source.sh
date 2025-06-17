@@ -82,17 +82,14 @@ else
     echo "Warning: No Hugging Face token found. Set HF_TOKEN environment variable or login manually."
 fi
 
-# Create accelerate config if it doesn't exist
+# Create a clean accelerate config for DDP
 ACCELERATE_CONFIG_FILE="$HOME/.cache/huggingface/accelerate/default_config.yaml"
-if [ ! -f "$ACCELERATE_CONFIG_FILE" ]; then
-    echo "Creating accelerate config..."
-    mkdir -p "$(dirname "$ACCELERATE_CONFIG_FILE")"
-    cat > "$ACCELERATE_CONFIG_FILE" << EOF
+echo "Creating a fresh accelerate config for DDP..."
+mkdir -p "$(dirname "$ACCELERATE_CONFIG_FILE")"
+cat > "$ACCELERATE_CONFIG_FILE" << EOF
 compute_environment: LOCAL_MACHINE
-debug: false
-distributed_type: MULTI_GPU
+distributed_type: DDP
 downcast_bf16: 'no'
-fsdp_config: {}
 machine_rank: 0
 main_training_function: main
 mixed_precision: bf16
@@ -100,27 +97,14 @@ num_machines: 1
 num_processes: 4
 rdzv_backend: static
 same_network: true
-tpu_env: []
-tpu_use_cluster: false
-tpu_use_sudo: false
 use_cpu: false
 EOF
-    echo "Accelerate config created at $ACCELERATE_CONFIG_FILE"
-fi
-
-# Also try running accelerate config to ensure proper setup
-echo "Configuring accelerate for multi-GPU setup..."
-export CUDA_VISIBLE_DEVICES=0,1,2,3
+echo "Accelerate config created at $ACCELERATE_CONFIG_FILE"
 
 # Execute the Python fine-tuning script using accelerate launch
-# Use explicit configuration to avoid DeviceMesh issues
-accelerate launch \
-    --config_file="$ACCELERATE_CONFIG_FILE" \
-    --num_processes=4 \
-    --num_machines=1 \
-    --machine_rank=0 \
-    --main_process_port=29500 \
-    finetune_llama.py \
+# We rely on the config file for settings and let SLURM manage CUDA devices.
+echo "CUDA_VISIBLE_DEVICES as set by SLURM: $CUDA_VISIBLE_DEVICES"
+accelerate launch finetune_llama.py \
     --train_file $TRAIN_FILE \
     --validation_file $VALIDATION_FILE \
     --output_dir $OUTPUT_DIR \
