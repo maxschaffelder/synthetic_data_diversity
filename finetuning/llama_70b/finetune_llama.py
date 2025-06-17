@@ -1,6 +1,7 @@
 import argparse
 import os
 import torch
+import torch.distributed as dist
 from datasets import load_dataset
 from transformers import (
     AutoModelForCausalLM,
@@ -9,6 +10,7 @@ from transformers import (
 )
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from trl import SFTTrainer # SFTTrainer is useful for instruction fine-tuning
+import atexit
 
 # Define command-line arguments
 def parse_args():
@@ -158,6 +160,13 @@ def setup_training_arguments(args):
     )
 
 
+def cleanup_distributed():
+    """Clean up distributed training resources"""
+    if dist.is_initialized():
+        dist.destroy_process_group()
+
+# Register cleanup function
+atexit.register(cleanup_distributed)
 
 def main():
     args = parse_args()
@@ -202,7 +211,13 @@ def main():
         
     except Exception as e:
         print(f"Training failed with error: {e}")
+        # Ensure cleanup happens even on error
+        cleanup_distributed()
         raise
+    finally:
+        # Additional cleanup
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
 if __name__ == "__main__":
     main()
