@@ -44,20 +44,26 @@ source $VENV_DIR/bin/activate
 # Install required packages
 echo "--- Ensuring a clean install of accelerate ---"
 pip uninstall -y accelerate
-pip install --upgrade pip
 pip install -r requirements.txt
 
-# --- Environment Debugging ---
-echo "--- ACCELERATE ENVIRONMENT DIAGNOSTICS ---"
-echo "1. Which accelerate executable is being used?"
-which accelerate
-echo
-echo "2. What version does pip think is installed?"
-pip show accelerate
-echo
-echo "3. What version does Python actually import?"
-python -c "import accelerate; print(f'Version: {accelerate.__version__}'); print(f'Path: {accelerate.__file__}')"
-echo "--- END DIAGNOSTICS ---"
+# Create a clean accelerate config for Multi-GPU (DDP)
+ACCELERATE_CONFIG_FILE="$HOME/.cache/huggingface/accelerate/default_config.yaml"
+echo "Creating a fresh accelerate config for MULTI_GPU..."
+mkdir -p "$(dirname "$ACCELERATE_CONFIG_FILE")"
+cat > "$ACCELERATE_CONFIG_FILE" << EOF
+compute_environment: LOCAL_MACHINE
+distributed_type: MULTI_GPU
+downcast_bf16: 'no'
+machine_rank: 0
+main_training_function: main
+mixed_precision: bf16
+num_machines: 1
+num_processes: 4
+rdzv_backend: static
+same_network: true
+use_cpu: false
+EOF
+echo "Accelerate config created at $ACCELERATE_CONFIG_FILE"
 
 # Define paths for data and output (adjust these as per your setup)
 TRAIN_FILE="/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl" # Path to your training data
@@ -95,25 +101,6 @@ elif [ -f ~/.cache/huggingface/token ]; then
 else
     echo "Warning: No Hugging Face token found. Set HF_TOKEN environment variable or login manually."
 fi
-
-# Create a clean accelerate config for DDP
-ACCELERATE_CONFIG_FILE="$HOME/.cache/huggingface/accelerate/default_config.yaml"
-echo "Creating a fresh accelerate config for DDP..."
-mkdir -p "$(dirname "$ACCELERATE_CONFIG_FILE")"
-cat > "$ACCELERATE_CONFIG_FILE" << EOF
-compute_environment: LOCAL_MACHINE
-distributed_type: DDP
-downcast_bf16: 'no'
-machine_rank: 0
-main_training_function: main
-mixed_precision: bf16
-num_machines: 1
-num_processes: 4
-rdzv_backend: static
-same_network: true
-use_cpu: false
-EOF
-echo "Accelerate config created at $ACCELERATE_CONFIG_FILE"
 
 # Execute the Python fine-tuning script using accelerate launch
 # We rely on the config file for settings and let SLURM manage CUDA devices.
