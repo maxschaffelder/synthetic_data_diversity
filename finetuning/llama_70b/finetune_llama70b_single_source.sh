@@ -42,8 +42,22 @@ echo "Activating virtual environment: $VENV_DIR"
 source $VENV_DIR/bin/activate
 
 # Install required packages
+echo "--- Ensuring a clean install of accelerate ---"
+pip uninstall -y accelerate
 pip install --upgrade pip
-pip install -r requirements.txt --force-reinstall
+pip install -r requirements.txt
+
+# --- Environment Debugging ---
+echo "--- ACCELERATE ENVIRONMENT DIAGNOSTICS ---"
+echo "1. Which accelerate executable is being used?"
+which accelerate
+echo
+echo "2. What version does pip think is installed?"
+pip show accelerate
+echo
+echo "3. What version does Python actually import?"
+python -c "import accelerate; print(f'Version: {accelerate.__version__}'); print(f'Path: {accelerate.__file__}')"
+echo "--- END DIAGNOSTICS ---"
 
 # Define paths for data and output (adjust these as per your setup)
 TRAIN_FILE="/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl" # Path to your training data
