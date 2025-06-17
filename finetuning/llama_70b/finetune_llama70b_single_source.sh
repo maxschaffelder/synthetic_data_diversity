@@ -43,7 +43,7 @@ source $VENV_DIR/bin/activate
 
 # Install required packages
 pip install --upgrade pip
-pip install -r requirements.txt --force-reinstall
+pip install -r requirements.txt 
 
 # Define paths for data and output (adjust these as per your setup)
 TRAIN_FILE="/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl" # Path to your training data
