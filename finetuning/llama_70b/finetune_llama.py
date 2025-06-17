@@ -140,7 +140,7 @@ def setup_training_arguments(args):
         learning_rate=args.learning_rate,
         logging_strategy="steps",
         logging_steps=10,
-        evaluation_strategy="steps",
+        eval_strategy="steps",
         eval_steps=100,
         save_strategy="steps",
         save_steps=100,
