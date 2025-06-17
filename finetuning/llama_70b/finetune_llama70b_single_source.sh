@@ -10,17 +10,24 @@
 #SBATCH --time=24:00:00                      # Set the maximum wall clock time for the job (e.g., 24 hours). The gpu_h100 partition allows up to 120 hours (5 days).[8]
 
 # Load necessary environment modules
-module purge                                                        
-module load CUDA/12.1.1                      # Load the CUDA toolkit version compatible with PyTorch and H100 GPUs
+module purge
+
+# Try to load available modules - check what's available on the system
+module load 2024
+
+# Check available CUDA modules
+module avail CUDA 2>/dev/null || echo "CUDA modules not found, will use conda/pip CUDA"
+
+# Check available Python modules  
+module avail Python 2>/dev/null || echo "Python modules not found, will use system Python"
+
+# Try to load common modules if they exist
+module load CUDA/12.1.1 2>/dev/null || module load CUDA 2>/dev/null || echo "No CUDA module loaded"
+module load Python/3.10.4-GCCcore-11.3.0 2>/dev/null || module load Python 2>/dev/null || echo "No Python module loaded"
 
 VENV_NAME="venv_finetune_llama_70b"
 VENV_BASE_DIR="/scratch-shared/mschaffelder" # Or any other persistent shared directory you prefer
 VENV_DIR="$VENV_BASE_DIR/$VENV_NAME"
-PYTHON_MODULE="Python/3.10.4-GCCcore-11.3.0"
-
-# Load required modules
-module load 2024
-module load $PYTHON_MODULE
 
 # Create virtual environment if it doesn't exist
 if [ ! -d "$VENV_DIR/bin" ]; then

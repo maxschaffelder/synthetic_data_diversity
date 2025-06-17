@@ -192,7 +192,6 @@ def main():
             args=training_args,
             train_dataset=train_dataset,
             eval_dataset=eval_dataset,
-            tokenizer=tokenizer,
             max_seq_length=args.max_seq_length,
             dataset_text_field="text", # Use text field for SFTTrainer
             packing=False, # Disable packing for better control
