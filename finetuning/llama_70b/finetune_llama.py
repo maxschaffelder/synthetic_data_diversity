@@ -6,10 +6,9 @@ from datasets import load_dataset
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
-    TrainingArguments,
 )
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
-from trl import SFTTrainer # SFTTrainer is useful for instruction fine-tuning
+from trl import SFTTrainer, SFTConfig # Use SFTConfig instead of TrainingArguments
 import atexit
 
 # Define command-line arguments
@@ -132,14 +131,17 @@ def configure_lora(model, lora_r, lora_alpha):
 
 
 def setup_training_arguments(args):
-    """Setup training arguments with conservative settings"""
-    return TrainingArguments(
+    """Setup SFT training arguments with conservative settings"""
+    return SFTConfig(
+        # Basic training parameters
         output_dir=args.output_dir,
         num_train_epochs=args.num_train_epochs,
         per_device_train_batch_size=args.per_device_train_batch_size,
         per_device_eval_batch_size=args.per_device_train_batch_size,
         gradient_accumulation_steps=args.gradient_accumulation_steps,
         learning_rate=args.learning_rate,
+        
+        # Logging and evaluation
         logging_strategy="steps",
         logging_steps=10,
         eval_strategy="steps",
@@ -147,6 +149,8 @@ def setup_training_arguments(args):
         save_strategy="steps",
         save_steps=100,
         save_total_limit=3, # Keep only 3 checkpoints to save disk space
+        
+        # Precision and optimization
         bf16=True, # Enable bfloat16 precision
         tf32=True, # Enable TF32 for faster matmul on Ampere+ GPUs
         optim="paged_adamw_8bit", # Recommended optimizer for LoRA
@@ -156,6 +160,11 @@ def setup_training_arguments(args):
         seed=42,
         dataloader_pin_memory=False, # Reduce memory usage
         gradient_checkpointing=True,
+        
+        # SFT-specific parameters
+        max_length=args.max_seq_length, # Maximum sequence length
+        dataset_text_field="text", # Field containing the text data
+        packing=False, # Disable packing for better control
         # report_to="wandb", # Uncomment to enable Weights & Biases logging
     )
 
@@ -192,9 +201,6 @@ def main():
             args=training_args,
             train_dataset=train_dataset,
             eval_dataset=eval_dataset,
-            max_length=args.max_seq_length,
-            dataset_text_field="text", # Use text field for SFTTrainer
-            packing=False, # Disable packing for better control
         )
 
         # Start training
