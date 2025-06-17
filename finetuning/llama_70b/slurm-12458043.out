@@ -1,0 +1,202 @@
+No CUDA module loaded
+No Python module loaded
+Virtual environment venv_finetune_llama_70b already exists at /scratch-shared/mschaffelder/venv_finetune_llama_70b.
+Activating virtual environment: /scratch-shared/mschaffelder/venv_finetune_llama_70b
+Requirement already satisfied: pip in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (25.1.1)
+Requirement already satisfied: torch==2.7.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from -r requirements.txt (line 1)) (2.7.0)
+Requirement already satisfied: transformers>=4.42.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from -r requirements.txt (line 2)) (4.52.4)
+Requirement already satisfied: peft>=0.11.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from -r requirements.txt (line 3)) (0.15.2)
+Requirement already satisfied: bitsandbytes>=0.43.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from -r requirements.txt (line 4)) (0.46.0)
+Requirement already satisfied: accelerate>=0.30.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from -r requirements.txt (line 5)) (1.7.0)
+Requirement already satisfied: trl<0.20.0,>=0.8.6 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from -r requirements.txt (line 6)) (0.18.2)
+Requirement already satisfied: datasets>=2.19.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from -r requirements.txt (line 7)) (3.6.0)
+Requirement already satisfied: importlib_metadata>=4.0.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from -r requirements.txt (line 8)) (8.7.0)
+Requirement already satisfied: filelock in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (3.18.0)
+Requirement already satisfied: typing-extensions>=4.10.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (4.14.0)
+Requirement already satisfied: sympy>=1.13.3 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (1.14.0)
+Requirement already satisfied: networkx in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (3.2.1)
+Requirement already satisfied: jinja2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (3.1.6)
+Requirement already satisfied: fsspec in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (2025.3.0)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (12.6.80)
+Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (9.5.1.17)
+Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (12.6.4.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (11.3.0.4)
+Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (10.3.7.77)
+Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (11.7.1.2)
+Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (12.5.4.2)
+Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (0.6.3)
+Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (2.26.2)
+Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (12.6.85)
+Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (1.11.1.6)
+Requirement already satisfied: triton==3.3.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (3.3.0)
+Requirement already satisfied: setuptools>=40.8.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from triton==3.3.0->torch==2.7.0->-r requirements.txt (line 1)) (80.9.0)
+Requirement already satisfied: huggingface-hub<1.0,>=0.30.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from transformers>=4.42.0->-r requirements.txt (line 2)) (0.33.0)
+Requirement already satisfied: numpy>=1.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from transformers>=4.42.0->-r requirements.txt (line 2)) (2.0.2)
+Requirement already satisfied: packaging>=20.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from transformers>=4.42.0->-r requirements.txt (line 2)) (25.0)
+Requirement already satisfied: pyyaml>=5.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from transformers>=4.42.0->-r requirements.txt (line 2)) (6.0.2)
+Requirement already satisfied: regex!=2019.12.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from transformers>=4.42.0->-r requirements.txt (line 2)) (2024.11.6)
+Requirement already satisfied: requests in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from transformers>=4.42.0->-r requirements.txt (line 2)) (2.32.4)
+Requirement already satisfied: tokenizers<0.22,>=0.21 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from transformers>=4.42.0->-r requirements.txt (line 2)) (0.21.1)
+Requirement already satisfied: safetensors>=0.4.3 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from transformers>=4.42.0->-r requirements.txt (line 2)) (0.5.3)
+Requirement already satisfied: tqdm>=4.27 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from transformers>=4.42.0->-r requirements.txt (line 2)) (4.67.1)
+Requirement already satisfied: hf-xet<2.0.0,>=1.1.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from huggingface-hub<1.0,>=0.30.0->transformers>=4.42.0->-r requirements.txt (line 2)) (1.1.4)
+Requirement already satisfied: psutil in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from peft>=0.11.1->-r requirements.txt (line 3)) (7.0.0)
+Requirement already satisfied: pyarrow>=15.0.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from datasets>=2.19.1->-r requirements.txt (line 7)) (20.0.0)
+Requirement already satisfied: dill<0.3.9,>=0.3.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from datasets>=2.19.1->-r requirements.txt (line 7)) (0.3.8)
+Requirement already satisfied: pandas in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from datasets>=2.19.1->-r requirements.txt (line 7)) (2.3.0)
+Requirement already satisfied: xxhash in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from datasets>=2.19.1->-r requirements.txt (line 7)) (3.5.0)
+Requirement already satisfied: multiprocess<0.70.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from datasets>=2.19.1->-r requirements.txt (line 7)) (0.70.16)
+Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (3.12.13)
+Requirement already satisfied: zipp>=3.20 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from importlib_metadata>=4.0.0->-r requirements.txt (line 8)) (3.23.0)
+Requirement already satisfied: aiohappyeyeballs>=2.5.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (2.6.1)
+Requirement already satisfied: aiosignal>=1.1.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (1.3.2)
+Requirement already satisfied: async-timeout<6.0,>=4.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (5.0.1)
+Requirement already satisfied: attrs>=17.3.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (25.3.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (1.7.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (6.4.4)
+Requirement already satisfied: propcache>=0.2.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (0.3.2)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (1.20.1)
+Requirement already satisfied: idna>=2.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from yarl<2.0,>=1.17.0->aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (3.10)
+Requirement already satisfied: charset_normalizer<4,>=2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from requests->transformers>=4.42.0->-r requirements.txt (line 2)) (3.4.2)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from requests->transformers>=4.42.0->-r requirements.txt (line 2)) (2.4.0)
+Requirement already satisfied: certifi>=2017.4.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from requests->transformers>=4.42.0->-r requirements.txt (line 2)) (2025.6.15)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from sympy>=1.13.3->torch==2.7.0->-r requirements.txt (line 1)) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from jinja2->torch==2.7.0->-r requirements.txt (line 1)) (3.0.2)
+Requirement already satisfied: python-dateutil>=2.8.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from pandas->datasets>=2.19.1->-r requirements.txt (line 7)) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from pandas->datasets>=2.19.1->-r requirements.txt (line 7)) (2025.2)
+Requirement already satisfied: tzdata>=2022.7 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from pandas->datasets>=2.19.1->-r requirements.txt (line 7)) (2025.2)
+Requirement already satisfied: six>=1.5 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from python-dateutil>=2.8.2->pandas->datasets>=2.19.1->-r requirements.txt (line 7)) (1.17.0)
+CUDA_VISIBLE_DEVICES: 0,1,2,3
+Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-23e98416-aec0-1ccd-ef06-a80950336951)
+GPU 1: NVIDIA H100 (UUID: GPU-0fbe5b06-4409-a9de-e89f-304faaa129ac)
+GPU 2: NVIDIA H100 (UUID: GPU-34059cf0-0860-6417-8cb3-07b239763ddf)
+GPU 3: NVIDIA H100 (UUID: GPU-99b6c749-c016-bc00-36be-2ceecf0005e1)
+Using existing Hugging Face token from cache...
+/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
+  backends.update(_get_backends("networkx.backends"))
+/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
+  backends.update(_get_backends("networkx.backends"))
+/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
+  backends.update(_get_backends("networkx.backends"))
+/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
+  backends.update(_get_backends("networkx.backends"))
+Loading model: meta-llama/Llama-3.1-70B-Instruct
+Loading model: meta-llama/Llama-3.1-70B-Instruct
+Loading model: meta-llama/Llama-3.1-70B-Instruct
+Loading model: meta-llama/Llama-3.1-70B-Instruct
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/30 [00:08<04:12,  8.71s/it]Loading checkpoint shards:   7%|▋         | 2/30 [00:11<02:23,  5.11s/it]Loading checkpoint shards:  10%|█         | 3/30 [00:13<01:46,  3.93s/it]Loading checkpoint shards:  13%|█▎        | 4/30 [00:16<01:29,  3.44s/it]Loading checkpoint shards:  17%|█▋        | 5/30 [00:19<01:18,  3.13s/it]Loading checkpoint shards:  20%|██        | 6/30 [00:21<01:10,  2.92s/it]Loading checkpoint shards:  23%|██▎       | 7/30 [00:24<01:05,  2.84s/it]Loading checkpoint shards:  27%|██▋       | 8/30 [00:27<01:02,  2.86s/it]Loading checkpoint shards:  30%|███       | 9/30 [00:29<00:58,  2.80s/it]Loading checkpoint shards:  33%|███▎      | 10/30 [00:32<00:54,  2.70s/it]Loading checkpoint shards:  37%|███▋      | 11/30 [00:34<00:50,  2.64s/it]Loading checkpoint shards:  40%|████      | 12/30 [00:37<00:46,  2.59s/it]Loading checkpoint shards:  43%|████▎     | 13/30 [00:40<00:45,  2.65s/it]Loading checkpoint shards:  47%|████▋     | 14/30 [00:42<00:42,  2.67s/it]Loading checkpoint shards:  50%|█████     | 15/30 [00:45<00:40,  2.69s/it]Loading checkpoint shards:  53%|█████▎    | 16/30 [00:48<00:37,  2.69s/it]Loading checkpoint shards:  57%|█████▋    | 17/30 [00:50<00:34,  2.67s/it]Loading checkpoint shards:  60%|██████    | 18/30 [00:53<00:31,  2.65s/it]Loading checkpoint shards:  63%|██████▎   | 19/30 [00:56<00:29,  2.69s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [00:59<00:27,  2.76s/it]Loading checkpoint shards:  70%|███████   | 21/30 [01:01<00:23,  2.66s/it]Loading checkpoint shards:  73%|███████▎  | 22/30 [01:04<00:20,  2.60s/it]Loading checkpoint shards:  77%|███████▋  | 23/30 [01:06<00:18,  2.62s/it]Loading checkpoint shards:  80%|████████  | 24/30 [01:09<00:15,  2.63s/it]Loading checkpoint shards:  83%|████████▎ | 25/30 [01:11<00:12,  2.60s/it]Loading checkpoint shards:  87%|████████▋ | 26/30 [01:14<00:10,  2.61s/it]Loading checkpoint shards:  90%|█████████ | 27/30 [01:17<00:07,  2.58s/it]Loading checkpoint shards:  93%|█████████▎| 28/30 [01:19<00:05,  2.59s/it]Loading checkpoint shards:  97%|█████████▋| 29/30 [01:22<00:02,  2.67s/it]Loading checkpoint shards: 100%|██████████| 30/30 [01:28<00:00,  3.63s/it]Loading checkpoint shards: 100%|██████████| 30/30 [01:28<00:00,  2.95s/it]
+trainable params: 207,093,760 || all params: 70,760,800,256 || trainable%: 0.2927
+Loading training data from: /scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl
+Loading validation data from: /scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_test_Llama.jsonl
+[rank2]:[W617 15:44:17.050895233 ProcessGroupNCCL.cpp:4715] [PG ID 0 PG GUID 0 Rank 2]  using GPU 2 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
+Training dataset size: 13509
+Validation dataset size: 1502
+Converting train dataset to ChatML:   0%|          | 0/13509 [00:00<?, ? examples/s]Converting train dataset to ChatML:  28%|██▊       | 3794/13509 [00:00<00:00, 33800.03 examples/s]Converting train dataset to ChatML:  67%|██████▋   | 9000/13509 [00:00<00:00, 43617.50 examples/s]Converting train dataset to ChatML: 100%|██████████| 13509/13509 [00:00<00:00, 44644.02 examples/s]
+Adding EOS to train dataset:   0%|          | 0/13509 [00:00<?, ? examples/s]Adding EOS to train dataset:  29%|██▉       | 3906/13509 [00:00<00:00, 38891.28 examples/s]Adding EOS to train dataset:  58%|█████▊    | 7837/13509 [00:00<00:00, 39129.77 examples/s]Adding EOS to train dataset:  87%|████████▋ | 11777/13509 [00:00<00:00, 39251.64 examples/s]Adding EOS to train dataset: 100%|██████████| 13509/13509 [00:00<00:00, 38867.13 examples/s]
+[rank3]:[W617 15:44:19.905116475 ProcessGroupNCCL.cpp:4715] [PG ID 0 PG GUID 0 Rank 3]  using GPU 3 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
+[rank1]:[W617 15:44:19.908096420 ProcessGroupNCCL.cpp:4715] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
+Tokenizing train dataset:   0%|          | 0/13509 [00:00<?, ? examples/s]Tokenizing train dataset:   1%|          | 125/13509 [00:00<00:10, 1234.56 examples/s]Tokenizing train dataset:   2%|▏         | 254/13509 [00:00<00:10, 1255.70 examples/s]Tokenizing train dataset:   3%|▎         | 438/13509 [00:00<00:10, 1228.36 examples/s]Tokenizing train dataset:   4%|▍         | 567/13509 [00:00<00:10, 1246.12 examples/s]Tokenizing train dataset:   5%|▌         | 742/13509 [00:00<00:10, 1205.21 examples/s]Tokenizing train dataset:   7%|▋         | 879/13509 [00:00<00:10, 1248.29 examples/s]Tokenizing train dataset:   8%|▊         | 1060/13509 [00:01<00:13, 896.91 examples/s]Tokenizing train dataset:   9%|▉         | 1196/13509 [00:01<00:12, 991.96 examples/s]Tokenizing train dataset:  10%|▉         | 1349/13509 [00:01<00:16, 752.03 examples/s]Tokenizing train dataset:  11%|█         | 1474/13509 [00:01<00:14, 840.62 examples/s]Tokenizing train dataset:  12%|█▏        | 1587/13509 [00:01<00:13, 898.37 examples/s]Tokenizing train dataset:  13%|█▎        | 1709/13509 [00:01<00:12, 970.04 examples/s]Tokenizing train dataset:  14%|█▎        | 1852/13509 [00:01<00:10, 1079.42 examples/s]Tokenizing train dataset:  15%|█▍        | 1978/13509 [00:01<00:10, 1121.63 examples/s]Tokenizing train dataset:  16%|█▌        | 2137/13509 [00:02<00:11, 999.57 examples/s] Tokenizing train dataset:  17%|█▋        | 2271/13509 [00:02<00:10, 1075.52 examples/s]Tokenizing train dataset:  18%|█▊        | 2403/13509 [00:02<00:09, 1130.87 examples/s]Tokenizing train dataset:  19%|█▊        | 2530/13509 [00:02<00:09, 1163.94 examples/s]Tokenizing train dataset:  20%|██        | 2709/13509 [00:02<00:09, 1170.96 examples/s]Tokenizing train dataset:  21%|██        | 2847/13509 [00:02<00:08, 1222.76 examples/s]Tokenizing train dataset:  22%|██▏       | 2974/13509 [00:02<00:08, 1230.08 examples/s]Tokenizing train dataset:  23%|██▎       | 3128/13509 [00:02<00:10, 1027.81 examples/s]Tokenizing train dataset:  24%|██▍       | 3264/13509 [00:03<00:09, 1103.85 examples/s]Tokenizing train dataset:  25%|██▌       | 3407/13509 [00:03<00:08, 1181.31 examples/s]Tokenizing train dataset:  27%|██▋       | 3598/13509 [00:03<00:08, 1212.35 examples/s]Tokenizing train dataset:  28%|██▊       | 3727/13509 [00:03<00:08, 1217.11 examples/s]Tokenizing train dataset:  29%|██▊       | 3856/13509 [00:03<00:07, 1233.05 examples/s]Tokenizing train dataset:  30%|██▉       | 3987/13509 [00:03<00:07, 1249.41 examples/s]Tokenizing train dataset:  31%|███       | 4127/13509 [00:03<00:09, 1037.79 examples/s]Tokenizing train dataset:  31%|███▏      | 4239/13509 [00:03<00:08, 1055.39 examples/s]Tokenizing train dataset:  32%|███▏      | 4374/13509 [00:04<00:08, 1127.17 examples/s]Tokenizing train dataset:  33%|███▎      | 4513/13509 [00:04<00:07, 1195.16 examples/s]Tokenizing train dataset:  34%|███▍      | 4642/13509 [00:04<00:07, 1220.73 examples/s]Tokenizing train dataset:  35%|███▌      | 4769/13509 [00:04<00:07, 1224.24 examples/s]Tokenizing train dataset:  36%|███▋      | 4913/13509 [00:04<00:06, 1283.09 examples/s]Tokenizing train dataset:  37%|███▋      | 5061/13509 [00:04<00:07, 1060.24 examples/s]Tokenizing train dataset:  38%|███▊      | 5191/13509 [00:04<00:07, 1115.90 examples/s]Tokenizing train dataset:  39%|███▉      | 5330/13509 [00:04<00:06, 1184.19 examples/s]Tokenizing train dataset:  40%|████      | 5467/13509 [00:04<00:06, 1232.09 examples/s]Tokenizing train dataset:  41%|████▏     | 5599/13509 [00:05<00:06, 1249.40 examples/s]Tokenizing train dataset:  43%|████▎     | 5742/13509 [00:05<00:05, 1297.02 examples/s]Tokenizing train dataset:  43%|████▎     | 5876/13509 [00:05<00:05, 1307.63 examples/s]Tokenizing train dataset:  45%|████▍     | 6069/13509 [00:05<00:06, 1109.61 examples/s]Tokenizing train dataset:  46%|████▌     | 6206/13509 [00:05<00:06, 1164.38 examples/s]Tokenizing train dataset:  47%|████▋     | 6335/13509 [00:05<00:06, 1194.95 examples/s]Tokenizing train dataset:  48%|████▊     | 6464/13509 [00:05<00:05, 1199.41 examples/s]Tokenizing train dataset:  49%|████▉     | 6646/13509 [00:05<00:05, 1202.29 examples/s]Tokenizing train dataset:  50%|█████     | 6777/13509 [00:06<00:05, 1225.94 examples/s]Tokenizing train dataset:  51%|█████     | 6913/13509 [00:06<00:05, 1258.74 examples/s]Tokenizing train dataset:  52%|█████▏    | 7059/13509 [00:06<00:06, 1029.72 examples/s]Tokenizing train dataset:  53%|█████▎    | 7186/13509 [00:06<00:05, 1083.94 examples/s]Tokenizing train dataset:  54%|█████▍    | 7320/13509 [00:06<00:05, 1147.66 examples/s]Tokenizing train dataset:  55%|█████▌    | 7453/13509 [00:06<00:05, 1194.05 examples/s]Tokenizing train dataset:  57%|█████▋    | 7647/13509 [00:06<00:04, 1227.06 examples/s]Tokenizing train dataset:  58%|█████▊    | 7831/13509 [00:06<00:04, 1225.31 examples/s]Tokenizing train dataset:  59%|█████▉    | 7958/13509 [00:07<00:04, 1235.15 examples/s]Tokenizing train dataset:  60%|██████    | 8118/13509 [00:07<00:05, 1022.32 examples/s]Tokenizing train dataset:  61%|██████    | 8246/13509 [00:07<00:04, 1077.11 examples/s]Tokenizing train dataset:  62%|██████▏   | 8372/13509 [00:07<00:04, 1119.02 examples/s]Tokenizing train dataset:  63%|██████▎   | 8491/13509 [00:07<00:04, 1135.35 examples/s]Tokenizing train dataset:  64%|██████▍   | 8625/13509 [00:07<00:04, 1189.41 examples/s]Tokenizing train dataset:  65%|██████▍   | 8763/13509 [00:07<00:03, 1238.12 examples/s]Tokenizing train dataset:  66%|██████▌   | 8895/13509 [00:07<00:03, 1255.35 examples/s]Tokenizing train dataset:  67%|██████▋   | 9060/13509 [00:08<00:04, 1033.70 examples/s]Tokenizing train dataset:  68%|██████▊   | 9207/13509 [00:08<00:03, 1132.99 examples/s]Tokenizing train dataset:  69%|██████▉   | 9342/13509 [00:08<00:03, 1180.03 examples/s]Tokenizing train dataset:  70%|███████   | 9486/13509 [00:08<00:03, 1247.20 examples/s]Tokenizing train dataset:  71%|███████   | 9625/13509 [00:08<00:03, 1278.69 examples/s]Tokenizing train dataset:  73%|███████▎  | 9820/13509 [00:08<00:02, 1276.61 examples/s]Tokenizing train dataset:  74%|███████▎  | 9959/13509 [00:08<00:02, 1303.30 examples/s]Tokenizing train dataset:  75%|███████▌  | 10133/13509 [00:08<00:03, 1106.77 examples/s]Tokenizing train dataset:  76%|███████▋  | 10301/13509 [00:09<00:02, 1107.62 examples/s]Tokenizing train dataset:  77%|███████▋  | 10439/13509 [00:09<00:02, 1168.67 examples/s]Tokenizing train dataset:  79%|███████▊  | 10621/13509 [00:09<00:02, 1177.64 examples/s]Tokenizing train dataset:  80%|███████▉  | 10758/13509 [00:09<00:02, 1218.47 examples/s]Tokenizing train dataset:  81%|████████  | 10885/13509 [00:09<00:02, 1228.02 examples/s]Tokenizing train dataset:  82%|████████▏ | 11065/13509 [00:09<00:02, 1046.29 examples/s]Tokenizing train dataset:  83%|████████▎ | 11195/13509 [00:09<00:02, 1101.85 examples/s]Tokenizing train dataset:  84%|████████▍ | 11339/13509 [00:09<00:01, 1180.67 examples/s]Tokenizing train dataset:  85%|████████▍ | 11476/13509 [00:10<00:01, 1225.08 examples/s]Tokenizing train dataset:  86%|████████▌ | 11620/13509 [00:10<00:01, 1123.90 examples/s]Tokenizing train dataset:  87%|████████▋ | 11746/13509 [00:10<00:01, 1155.03 examples/s]Tokenizing train dataset:  88%|████████▊ | 11885/13509 [00:10<00:01, 1214.46 examples/s]Tokenizing train dataset:  89%|████████▉ | 12064/13509 [00:10<00:01, 1036.05 examples/s]Tokenizing train dataset:  90%|█████████ | 12206/13509 [00:10<00:01, 1120.33 examples/s]Tokenizing train dataset:  91%|█████████▏| 12343/13509 [00:10<00:00, 1180.44 examples/s]Tokenizing train dataset:  92%|█████████▏| 12480/13509 [00:10<00:00, 1225.56 examples/s]Tokenizing train dataset:  93%|█████████▎| 12616/13509 [00:11<00:00, 1258.90 examples/s]Tokenizing train dataset:  94%|█████████▍| 12754/13509 [00:11<00:00, 1288.22 examples/s]Tokenizing train dataset:  95%|█████████▌| 12891/13509 [00:11<00:00, 1307.78 examples/s]Tokenizing train dataset:  97%|█████████▋| 13068/13509 [00:11<00:00, 1100.98 examples/s]Tokenizing train dataset:  98%|█████████▊| 13240/13509 [00:11<00:00, 1113.16 examples/s]Tokenizing train dataset:  99%|█████████▉| 13365/13509 [00:11<00:00, 1142.71 examples/s]Tokenizing train dataset: 100%|█████████▉| 13493/13509 [00:11<00:00, 1169.28 examples/s]Tokenizing train dataset: 100%|██████████| 13509/13509 [00:11<00:00, 1140.96 examples/s]
+Truncating train dataset:   0%|          | 0/13509 [00:00<?, ? examples/s]Truncating train dataset: 100%|██████████| 13509/13509 [00:00<00:00, 224594.21 examples/s]
+[rank0]:[W617 15:44:31.833642782 ProcessGroupNCCL.cpp:4715] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
+Converting eval dataset to ChatML:   0%|          | 0/1502 [00:00<?, ? examples/s]Converting eval dataset to ChatML: 100%|██████████| 1502/1502 [00:00<00:00, 42495.02 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/1502 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 1502/1502 [00:00<00:00, 34945.94 examples/s]
+Tokenizing eval dataset:   0%|          | 0/1502 [00:00<?, ? examples/s]Tokenizing eval dataset:   9%|▉         | 138/1502 [00:00<00:00, 1364.64 examples/s]Tokenizing eval dataset:  22%|██▏       | 329/1502 [00:00<00:00, 1289.73 examples/s]Tokenizing eval dataset:  35%|███▍      | 522/1502 [00:00<00:00, 1286.16 examples/s]Tokenizing eval dataset:  44%|████▎     | 654/1502 [00:00<00:00, 1292.87 examples/s]Tokenizing eval dataset:  53%|█████▎    | 795/1502 [00:00<00:00, 1323.85 examples/s]Tokenizing eval dataset:  66%|██████▌   | 992/1502 [00:00<00:00, 1313.10 examples/s]Tokenizing eval dataset:  75%|███████▌  | 1128/1502 [00:00<00:00, 1071.82 examples/s]Tokenizing eval dataset:  83%|████████▎ | 1246/1502 [00:01<00:00, 1096.48 examples/s]Tokenizing eval dataset:  92%|█████████▏| 1386/1502 [00:01<00:00, 1172.98 examples/s]Tokenizing eval dataset: 100%|██████████| 1502/1502 [00:02<00:00, 670.79 examples/s] 
+Truncating eval dataset:   0%|          | 0/1502 [00:00<?, ? examples/s]Truncating eval dataset: 100%|██████████| 1502/1502 [00:00<00:00, 135102.82 examples/s]
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+Starting training...
+Training failed with error: found no DeviceMesh from dtensor args for c10d.broadcast_.default!
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_70b/finetune_llama.py", line 228, in <module>
+[rank0]:     main()
+[rank0]:   File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_70b/finetune_llama.py", line 208, in main
+[rank0]:     trainer.train()
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/transformers/trainer.py", line 2240, in train
+[rank0]:     return inner_training_loop(
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/transformers/trainer.py", line 2369, in _inner_training_loop
+[rank0]:     model, self.optimizer = self.accelerator.prepare(self.model, self.optimizer)
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/accelerate/accelerator.py", line 1438, in prepare
+[rank0]:     result = tuple(
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/accelerate/accelerator.py", line 1439, in <genexpr>
+[rank0]:     self._prepare_one(obj, first_pass=True, device_placement=d) for obj, d in zip(args, device_placement)
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/accelerate/accelerator.py", line 1281, in _prepare_one
+[rank0]:     return self.prepare_model(obj, device_placement=device_placement)
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/accelerate/accelerator.py", line 1585, in prepare_model
+[rank0]:     model = torch.nn.parallel.DistributedDataParallel(
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/nn/parallel/distributed.py", line 837, in __init__
+[rank0]:     _sync_module_states(
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/utils.py", line 311, in _sync_module_states
+[rank0]:     _sync_params_and_buffers(process_group, module_states, broadcast_bucket_size, src)
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/utils.py", line 322, in _sync_params_and_buffers
+[rank0]:     dist._broadcast_coalesced(
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/_compile.py", line 51, in inner
+[rank0]:     return disable_fn(*args, **kwargs)
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/_dynamo/eval_frame.py", line 838, in _fn
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/tensor/_api.py", line 344, in __torch_dispatch__
+[rank0]:     return DTensor._op_dispatcher.dispatch(
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/tensor/_dispatch.py", line 167, in dispatch
+[rank0]:     op_info = self.unwrap_to_op_info(op_call, args, kwargs)
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/tensor/_dispatch.py", line 393, in unwrap_to_op_info
+[rank0]:     assert compute_mesh is not None, (
+[rank0]: AssertionError: found no DeviceMesh from dtensor args for c10d.broadcast_.default!
+W0617 15:44:46.172223 2532345 /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 2532472 closing signal SIGTERM
+W0617 15:44:46.174060 2532345 /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 2532473 closing signal SIGTERM
+E0617 15:44:46.338143 2532345 /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 2532471) of binary: /scratch-shared/mschaffelder/venv_finetune_llama_70b/bin/python
+Traceback (most recent call last):
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/accelerate/commands/launch.py", line 1189, in launch_command
+    multi_gpu_launcher(args)
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/accelerate/commands/launch.py", line 815, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+finetune_llama.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2025-06-17_15:44:46
+  host      : gcn149.local.snellius.surf.nl
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 2532474)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-06-17_15:44:46
+  host      : gcn149.local.snellius.surf.nl
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2532471)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+Fine-tuning job completed.
+
+JOB STATISTICS
+==============
+Job ID: 12458043
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 64
+CPU Utilized: 01:39:54
+CPU Efficiency: 32.41% of 05:08:16 core-walltime
+Job Wall-clock time: 00:04:49
+Memory Utilized: 5.32 GB
+Memory Efficiency: 0.76% of 700.00 GB (700.00 GB/node)
