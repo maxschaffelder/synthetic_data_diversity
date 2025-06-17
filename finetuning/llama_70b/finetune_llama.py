@@ -86,7 +86,7 @@ def initialize_model_and_tokenizer(model_id):
             model_id,
             torch_dtype=torch.bfloat16,
             device_map="auto", # Automatically distribute model layers across GPUs
-            attn_implementation="flash_attention_2", # Use Flash Attention 2 for speed and memory
+            #attn_implementation="flash_attention_2", # Use Flash Attention 2 for speed and memory
             trust_remote_code=True
         )
     except Exception as e:
