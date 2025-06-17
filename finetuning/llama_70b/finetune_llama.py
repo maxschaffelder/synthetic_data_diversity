@@ -156,6 +156,7 @@ def setup_training_arguments(args):
         seed=42,
         dataloader_pin_memory=False, # Reduce memory usage
         gradient_checkpointing=True,
+        max_length=args.max_seq_length, # Control sequence length through training args
         # report_to="wandb", # Uncomment to enable Weights & Biases logging
     )
 
@@ -192,7 +193,7 @@ def main():
             args=training_args,
             train_dataset=train_dataset,
             eval_dataset=eval_dataset,
-            max_seq_length=args.max_seq_length,
+            max_length=args.max_seq_length,
             dataset_text_field="text", # Use text field for SFTTrainer
             packing=False, # Disable packing for better control
         )
