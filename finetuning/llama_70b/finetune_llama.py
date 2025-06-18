@@ -201,6 +201,11 @@ def main():
 
         # Save the final adapter model
         print(f"Saving model to {args.output_dir}")
+
+        if trainer.is_fsdp_enabled:
+            from accelerate.utils import FSDP_STATE_DICT_TYPE
+            trainer.accelerator.state.fsdp_plugin.set_state_dict_type(FSDP_STATE_DICT_TYPE.FULL_STATE_DICT)
+
         trainer.save_model(args.output_dir)
         tokenizer.save_pretrained(args.output_dir) # Save tokenizer as well
         

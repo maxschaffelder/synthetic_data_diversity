@@ -46,14 +46,21 @@ echo "--- Ensuring a clean install of accelerate ---"
 pip uninstall -y accelerate
 pip install -r requirements.txt
 
-# Create a clean accelerate config for Multi-GPU (DDP)
+# Create a clean accelerate config for FSDP
 ACCELERATE_CONFIG_FILE="$HOME/.cache/huggingface/accelerate/default_config.yaml"
-echo "Creating a fresh accelerate config for MULTI_GPU..."
+echo "Creating a fresh accelerate config for FSDP..."
 mkdir -p "$(dirname "$ACCELERATE_CONFIG_FILE")"
 cat > "$ACCELERATE_CONFIG_FILE" << EOF
 compute_environment: LOCAL_MACHINE
-distributed_type: MULTI_GPU
+distributed_type: FSDP
 downcast_bf16: 'no'
+fsdp_config:
+  fsdp_auto_wrap_policy: TRANSFORMER_BASED_WRAP
+  fsdp_backward_prefetch: BACKWARD_PRE
+  fsdp_offload_params: true
+  fsdp_sharding_strategy: 1 # 1 for FULL_SHARD
+  fsdp_state_dict_type: SHARDED_STATE_DICT
+  fsdp_transformer_layer_cls_to_wrap: 'LlamaDecoderLayer'
 machine_rank: 0
 main_training_function: main
 mixed_precision: bf16
@@ -101,6 +108,9 @@ elif [ -f ~/.cache/huggingface/token ]; then
 else
     echo "Warning: No Hugging Face token found. Set HF_TOKEN environment variable or login manually."
 fi
+
+# Set PyTorch CUDA allocation configuration to prevent fragmentation, as suggested in the error log
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 # Execute the Python fine-tuning script using accelerate launch
 # We rely on the config file for settings and let SLURM manage CUDA devices.
