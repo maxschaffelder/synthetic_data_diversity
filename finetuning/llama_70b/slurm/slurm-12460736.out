@@ -97,8 +97,33 @@ Loading model: meta-llama/Llama-3.1-70B-Instruct (device placement will be handl
 Loading model: meta-llama/Llama-3.1-70B-Instruct (device placement will be handled by Accelerate)
 Loading model: meta-llama/Llama-3.1-70B-Instruct (device placement will be handled by Accelerate)
 Loading model: meta-llama/Llama-3.1-70B-Instruct (device placement will be handled by Accelerate)
-Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 6/30 [00:00<00:00, 50.31it/s]Loading checkpoint shards:  20%|██        | 6/30 [00:00<00:00, 55.71it/s]Loading checkpoint shards:  20%|██        | 6/30 [00:00<00:00, 54.80it/s]Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:  40%|████      | 12/30 [00:00<00:00, 51.10it/s]Loading checkpoint shards:  40%|████      | 12/30 [00:00<00:00, 51.41it/s]Loading checkpoint shards:  40%|████      | 12/30 [00:00<00:00, 112.54it/s]Loading checkpoint shards:  40%|████      | 12/30 [00:00<00:00, 49.38it/s]Loading checkpoint shards:  57%|█████▋    | 17/30 [00:00<00:00, 47.10it/s]Loading checkpoint shards:  60%|██████    | 18/30 [00:00<00:00, 48.55it/s]Loading checkpoint shards:  60%|██████    | 18/30 [00:00<00:00, 48.39it/s]Loading checkpoint shards:  73%|███████▎  | 22/30 [00:00<00:00, 47.90it/s]Loading checkpoint shards:  77%|███████▋  | 23/30 [00:00<00:00, 47.90it/s]Loading checkpoint shards:  77%|███████▋  | 23/30 [00:00<00:00, 47.80it/s]Loading checkpoint shards:  80%|████████  | 24/30 [00:00<00:00, 61.14it/s] Loading checkpoint shards:  90%|█████████ | 27/30 [00:00<00:00, 46.47it/s]Loading checkpoint shards:  93%|█████████▎| 28/30 [00:00<00:00, 47.16it/s]Loading checkpoint shards:  93%|█████████▎| 28/30 [00:00<00:00, 47.09it/s]Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 50.06it/s]
-Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 49.11it/s]Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 49.91it/s]Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 63.14it/s]
+
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]
+Loading checkpoint shards:  20%|██        | 6/30 [00:00<00:00, 50.31it/s]
+Loading checkpoint shards:  20%|██        | 6/30 [00:00<00:00, 55.71it/s]
+Loading checkpoint shards:  20%|██        | 6/30 [00:00<00:00, 54.80it/s]
+Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]
+Loading checkpoint shards:  40%|████      | 12/30 [00:00<00:00, 51.10it/s]
+Loading checkpoint shards:  40%|████      | 12/30 [00:00<00:00, 51.41it/s]
+Loading checkpoint shards:  40%|████      | 12/30 [00:00<00:00, 112.54it/s]
+Loading checkpoint shards:  40%|████      | 12/30 [00:00<00:00, 49.38it/s]
+Loading checkpoint shards:  57%|█████▋    | 17/30 [00:00<00:00, 47.10it/s]
+Loading checkpoint shards:  60%|██████    | 18/30 [00:00<00:00, 48.55it/s]
+Loading checkpoint shards:  60%|██████    | 18/30 [00:00<00:00, 48.39it/s]
+Loading checkpoint shards:  73%|███████▎  | 22/30 [00:00<00:00, 47.90it/s]
+Loading checkpoint shards:  77%|███████▋  | 23/30 [00:00<00:00, 47.90it/s]
+Loading checkpoint shards:  77%|███████▋  | 23/30 [00:00<00:00, 47.80it/s]
+Loading checkpoint shards:  80%|████████  | 24/30 [00:00<00:00, 61.14it/s] 
+Loading checkpoint shards:  90%|█████████ | 27/30 [00:00<00:00, 46.47it/s]
+Loading checkpoint shards:  93%|█████████▎| 28/30 [00:00<00:00, 47.16it/s]
+Loading checkpoint shards:  93%|█████████▎| 28/30 [00:00<00:00, 47.09it/s]
+Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 50.06it/s]
+
+Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 49.11it/s]
+Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 49.91it/s]
+Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 63.14it/s]
 
 
 trainable params: 207,093,760 || all params: 70,760,800,256 || trainable%: 0.2927
@@ -125,7 +150,8 @@ Validation dataset size: 1502
 [rank0]:[W617 17:08:43.959760032 ProcessGroupNCCL.cpp:4715] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
 [rank2]:[W617 17:08:44.380082221 ProcessGroupNCCL.cpp:4715] [PG ID 0 PG GUID 0 Rank 2]  using GPU 2 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
 [rank3]:[W617 17:08:44.387363767 ProcessGroupNCCL.cpp:4715] [PG ID 0 PG GUID 0 Rank 3]  using GPU 3 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
-Training failed with error: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 3 has a total capacity of 93.11 GiB of which 357.81 MiB is free. Including non-PyTorch memory, this process has 92.75 GiB memory in use. Of the allocated memory 91.33 GiB is allocated by PyTorch, and 18.28 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)Training failed with error: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 357.81 MiB is free. Including non-PyTorch memory, this process has 92.75 GiB memory in use. Of the allocated memory 91.33 GiB is allocated by PyTorch, and 18.28 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Training failed with error: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 3 has a total capacity of 93.11 GiB of which 357.81 MiB is free. Including non-PyTorch memory, this process has 92.75 GiB memory in use. Of the allocated memory 91.33 GiB is allocated by PyTorch, and 18.28 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Training failed with error: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 357.81 MiB is free. Including non-PyTorch memory, this process has 92.75 GiB memory in use. Of the allocated memory 91.33 GiB is allocated by PyTorch, and 18.28 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
 Training failed with error: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 1 has a total capacity of 93.11 GiB of which 357.81 MiB is free. Including non-PyTorch memory, this process has 92.75 GiB memory in use. Of the allocated memory 91.33 GiB is allocated by PyTorch, and 18.28 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
 Training failed with error: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 2 has a total capacity of 93.11 GiB of which 357.81 MiB is free. Including non-PyTorch memory, this process has 92.75 GiB memory in use. Of the allocated memory 91.33 GiB is allocated by PyTorch, and 18.28 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
 
