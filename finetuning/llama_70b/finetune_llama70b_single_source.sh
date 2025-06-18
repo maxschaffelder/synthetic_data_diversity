@@ -57,7 +57,7 @@ downcast_bf16: 'no'
 fsdp_config:
   fsdp_auto_wrap_policy: TRANSFORMER_BASED_WRAP
   fsdp_backward_prefetch: BACKWARD_PRE
-  fsdp_offload_params: true
+  fsdp_offload_params: false
   fsdp_sharding_strategy: 1 # 1 for FULL_SHARD
   fsdp_state_dict_type: SHARDED_STATE_DICT
   fsdp_transformer_layer_cls_to_wrap: 'LlamaDecoderLayer'

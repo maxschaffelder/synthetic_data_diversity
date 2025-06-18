@@ -145,7 +145,7 @@ def setup_training_arguments(args):
         # Precision and optimization
         bf16=True, # Enable bfloat16 precision
         tf32=True, # Enable TF32 for faster matmul on Ampere+ GPUs
-        optim="paged_adamw_8bit", # Recommended optimizer for LoRA
+        optim="adamw_torch", # Use a standard torch optimizer
         lr_scheduler_type="cosine",
         warmup_ratio=0.03,
         weight_decay=0.01,
