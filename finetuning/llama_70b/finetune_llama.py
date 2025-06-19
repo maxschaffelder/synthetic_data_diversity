@@ -3,19 +3,16 @@ import os
 import torch
 import torch.distributed as dist
 from datasets import load_dataset
-from transformers import (
-    AutoModelForCausalLM,
-    AutoTokenizer,
-)
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
-from trl import SFTTrainer, SFTConfig # Use SFTConfig instead of TrainingArguments
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from peft import LoraConfig, get_peft_model
+from trl import SFTTrainer, SFTConfig 
 import atexit
 
 # Define command-line arguments
 def parse_args():
     parser = argparse.ArgumentParser(description="Fine-tune Llama 3.1-70B-Instruct with LoRA.")
-    parser.add_argument("--train_file", type=str, required=True, help="Path to the training.jsonl file.")
-    parser.add_argument("--validation_file", type=str, required=True, help="Path to the validation.jsonl file.")
+    parser.add_argument("--train_file", type=str, required=True, help="Path to the training file.")
+    parser.add_argument("--validation_file", type=str, required=True, help="Path to the validation file.")
     parser.add_argument("--output_dir", type=str, default="./output", help="Directory to save the model and logs.")
     parser.add_argument("--num_train_epochs", type=int, default=3, help="Number of training epochs.")
     parser.add_argument("--learning_rate", type=float, default=5e-5, help="Learning rate for training.")
@@ -25,18 +22,17 @@ def parse_args():
     parser.add_argument("--lora_alpha", type=int, default=32, help="LoRA alpha parameter.")
     parser.add_argument("--max_seq_length", type=int, default=1024, help="Maximum sequence length for tokenization.")
     parser.add_argument("--system_prompt", type=str, default="You are a helpful AI assistant.", help="Optional system prompt for the chat template.")
+    parser.add_argument("--response_key", type=str, default="response_model", help="Key for the response in the dataset.")
     return parser.parse_args()
 
 
-def format_dataset_for_sft(examples, system_prompt):
+def format_dataset_for_sft(examples, system_prompt, response_key):
     """Format dataset for SFTTrainer - returns raw text, not tokenized"""
     formatted_texts = []
     for i in range(len(examples['instruction'])):
         instruction = examples['instruction'][i]
-        response = examples['response_model'][i]
+        response = examples[response_key][i]
 
-        # Construct the conversation in a simple format that SFTTrainer can handle
-        # We'll let SFTTrainer handle the chat template application
         if system_prompt:
             text = f"<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{instruction}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n{response}<|eot_id|>"
         else:
@@ -46,8 +42,9 @@ def format_dataset_for_sft(examples, system_prompt):
     
     return {"text": formatted_texts}
 
-def load_and_preprocess_data(train_file, validation_file, system_prompt):
+def load_and_preprocess_data(train_file, validation_file, system_prompt, response_key):
     """Load and preprocess data for SFTTrainer"""
+
     # Check if files exist
     if not os.path.exists(train_file):
         raise FileNotFoundError(f"Training file not found: {train_file}")
@@ -65,12 +62,12 @@ def load_and_preprocess_data(train_file, validation_file, system_prompt):
 
     # Apply formatting - convert to text format for SFTTrainer
     train_dataset = train_dataset.map(
-        lambda examples: format_dataset_for_sft(examples, system_prompt),
+        lambda examples: format_dataset_for_sft(examples, system_prompt, response_key),
         batched=True,
         remove_columns=train_dataset.column_names
     )
     eval_dataset = eval_dataset.map(
-        lambda examples: format_dataset_for_sft(examples, system_prompt),
+        lambda examples: format_dataset_for_sft(examples, system_prompt, response_key),
         batched=True,
         remove_columns=eval_dataset.column_names
     )
@@ -86,9 +83,6 @@ def initialize_model_and_tokenizer(model_id):
         model_id,
         torch_dtype=torch.bfloat16,
         trust_remote_code=True
-        # NOTE: device_map="auto" is intentionally removed.
-        # Accelerate will handle placing the model on the correct GPUs.
-        # Using device_map="auto" here conflicts with Accelerate's DDP.
     )
 
     model.config.use_cache = False  # Disable cache during training
@@ -117,6 +111,7 @@ def configure_lora(model, lora_r, lora_alpha):
         task_type="CAUSAL_LM",
         target_modules=target_modules,
     )
+
     model = get_peft_model(model, peft_config)
     model.print_trainable_parameters()
     return model
@@ -183,7 +178,7 @@ def main():
         model = configure_lora(model, args.lora_r, args.lora_alpha)
 
         train_dataset, eval_dataset = load_and_preprocess_data(
-            args.train_file, args.validation_file, args.system_prompt
+            args.train_file, args.validation_file, args.system_prompt, args.response_key
         )
 
         training_args = setup_training_arguments(args)
@@ -201,10 +196,6 @@ def main():
 
         # Save the final adapter model
         print(f"Saving model to {args.output_dir}")
-
-        if trainer.is_fsdp_enabled:
-            from accelerate.utils import FSDP_STATE_DICT_TYPE
-            trainer.accelerator.state.fsdp_plugin.set_state_dict_type(FSDP_STATE_DICT_TYPE.FULL_STATE_DICT)
 
         trainer.save_model(args.output_dir)
         tokenizer.save_pretrained(args.output_dir) # Save tokenizer as well
