@@ -41,8 +41,8 @@ fi
 echo "Activating virtual environment: $VENV_DIR"
 source $VENV_DIR/bin/activate
 
-# Install required packages
-pip install -r requirements.txt
+# Install required packages (Assuming this is done once manually before submitting jobs)
+# pip install -r requirements.txt
 
 # Define paths for data and output (adjust these as per your setup)
 TRAIN_FILE="/scratch-shared/mschaffelder/data/finetuning/dolly/dolly_train_all.jsonl" # Path to your training data
