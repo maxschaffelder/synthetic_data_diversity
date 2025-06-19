@@ -42,8 +42,6 @@ echo "Activating virtual environment: $VENV_DIR"
 source $VENV_DIR/bin/activate
 
 # Install required packages
-echo "--- Ensuring a clean install of accelerate ---"
-pip uninstall -y accelerate
 pip install -r requirements.txt
 
 # Create a clean accelerate config for FSDP
