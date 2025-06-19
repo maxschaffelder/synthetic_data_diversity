@@ -139,6 +139,9 @@ atexit.register(cleanup_distributed)
 
 def main():
     args = parse_args()
+
+    print(f"Finetuning Llama 8B on {args.train_path}")
+
     os.makedirs(args.output_dir, exist_ok=True)
 
     model, tokenizer = initialize_model_and_tokenizer(args.model_name)
