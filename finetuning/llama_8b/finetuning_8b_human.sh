@@ -21,6 +21,8 @@ VENV_DIR="$VENV_BASE_DIR/$VENV_NAME"
 # Activate virtual environment
 source $VENV_DIR/bin/activate
 
+pip install -r requirements.txt 
+
 # Define paths for data and output
 TRAIN_PATH="/scratch-shared/mschaffelder/data/finetuning/dolly/dolly_train_all.jsonl"
 OUTPUT_DIR="/scratch-shared/mschaffelder/data/ft_models/lora_llama_8b_human"
