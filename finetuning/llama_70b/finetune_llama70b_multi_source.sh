@@ -74,17 +74,11 @@ echo "Accelerate config created at $ACCELERATE_CONFIG_FILE"
 
 # Define paths for data and output (adjust these as per your setup)
 TRAIN_FILE="/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Other/dolly_train_all_multi.jsonl" # Path to your training data
-VALIDATION_FILE="/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Other/dolly_test_multi.jsonl" # Path to your validation data
 OUTPUT_DIR="/scratch-shared/mschaffelder/data/ft_models/llama_70b_multi_source" # Output directory for model and logs
 
 # Validate that data files exist
 if [ ! -f "$TRAIN_FILE" ]; then
     echo "Error: Training file not found: $TRAIN_FILE"
-    exit 1
-fi
-
-if [ ! -f "$VALIDATION_FILE" ]; then
-    echo "Error: Validation file not found: $VALIDATION_FILE"
     exit 1
 fi
 
@@ -117,9 +111,13 @@ export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 echo "CUDA_VISIBLE_DEVICES as set by SLURM: $CUDA_VISIBLE_DEVICES"
 accelerate launch finetune_llama.py \
     --train_file $TRAIN_FILE \
-    --validation_file $VALIDATION_FILE \
     --output_dir $OUTPUT_DIR \
+    --validation_split_percentage 5 \
     --num_train_epochs 3 \
+    --logging_steps 10 \
+    --save_steps 100 \
+    --eval_steps 20 \
+    --early_stopping_patience 5 \
     --learning_rate 5e-5 \
     --per_device_train_batch_size 1 \
     --gradient_accumulation_steps 32 \

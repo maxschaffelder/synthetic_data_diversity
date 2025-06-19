@@ -12,7 +12,7 @@ import atexit
 def parse_args():
     parser = argparse.ArgumentParser(description="Fine-tune Llama 3.1-70B-Instruct with LoRA.")
     parser.add_argument("--train_file", type=str, required=True, help="Path to the training file.")
-    parser.add_argument("--validation_file", type=str, required=True, help="Path to the validation file.")
+    parser.add_argument("--validation_split_percentage", type=int, default=5, help="Percentage of the train file to use for validation.")
     parser.add_argument("--output_dir", type=str, default="./output", help="Directory to save the model and logs.")
     parser.add_argument("--num_train_epochs", type=int, default=3, help="Number of training epochs.")
     parser.add_argument("--learning_rate", type=float, default=5e-5, help="Learning rate for training.")
@@ -27,6 +27,8 @@ def parse_args():
     parser.add_argument("--max_steps", type=int, default=-1, help="If set, overrides num_train_epochs for a short test run.")
     parser.add_argument("--save_steps", type=int, default=100, help="Number of steps between checkpoints.")
     parser.add_argument("--logging_steps", type=int, default=10, help="Number of steps between logs.")
+    parser.add_argument("--eval_steps", type=int, default=20, help="Number of steps between evaluations.")
+    parser.add_argument("--early_stopping_patience", type=int, default=5, help="Patience for early stopping.")
     return parser.parse_args()
 
 
@@ -46,23 +48,26 @@ def format_dataset_for_sft(examples, system_prompt, response_key):
     
     return {"text": formatted_texts}
 
-def load_and_preprocess_data(train_file, validation_file, system_prompt, response_key):
-    """Load and preprocess data for SFTTrainer"""
+def load_and_preprocess_data(train_file, validation_split_percentage, system_prompt, response_key):
+    """Load and preprocess data for SFTTrainer, splitting the train file for validation."""
 
     # Check if files exist
     if not os.path.exists(train_file):
         raise FileNotFoundError(f"Training file not found: {train_file}")
-    if not os.path.exists(validation_file):
-        raise FileNotFoundError(f"Validation file not found: {validation_file}")
     
-    print(f"Loading training data from: {train_file}")
-    print(f"Loading validation data from: {validation_file}")
+    print(f"Loading data from: {train_file}")
     
-    train_dataset = load_dataset("json", data_files=train_file, split="train")
-    eval_dataset = load_dataset("json", data_files=validation_file, split="train")
+    # Load the full dataset
+    dataset = load_dataset("json", data_files=train_file, split="train")
 
-    print(f"Training dataset size: {len(train_dataset)}")
-    print(f"Validation dataset size: {len(eval_dataset)}")
+    # Split the dataset for training and validation
+    split_dataset = dataset.train_test_split(test_size=(validation_split_percentage / 100.0), shuffle=True, seed=42)
+    train_dataset = split_dataset['train']
+    eval_dataset = split_dataset['test']
+
+    print(f"Original dataset size: {len(dataset)}")
+    print(f"Training dataset size after split: {len(train_dataset)}")
+    print(f"Validation dataset size after split: {len(eval_dataset)}")
 
     # Apply formatting - convert to text format for SFTTrainer
     train_dataset = train_dataset.map(
@@ -137,10 +142,14 @@ def setup_training_arguments(args):
         logging_strategy="steps",
         logging_steps=args.logging_steps,
         eval_strategy="steps",
-        eval_steps=args.save_steps,
+        eval_steps=args.eval_steps,
         save_strategy="steps",
         save_steps=args.save_steps,
         save_total_limit=3, # Keep only 3 checkpoints to save disk space
+        load_best_model_at_end=True, # Enable loading the best model at the end
+        metric_for_best_model="eval_loss", # Metric to determine the best model
+        greater_is_better=False, # For loss, lower is better
+        early_stopping_patience=args.early_stopping_patience, # Enable early stopping
         
         # Precision and optimization
         bf16=True, # Enable bfloat16 precision
@@ -183,7 +192,7 @@ def main():
         model = configure_lora(model, args.lora_r, args.lora_alpha)
 
         train_dataset, eval_dataset = load_and_preprocess_data(
-            args.train_file, args.validation_file, args.system_prompt, args.response_key
+            args.train_file, args.validation_split_percentage, args.system_prompt, args.response_key
         )
 
         training_args = setup_training_arguments(args)
