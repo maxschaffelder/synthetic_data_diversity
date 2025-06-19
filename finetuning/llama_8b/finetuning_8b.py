@@ -129,6 +129,14 @@ def setup_training_arguments(args):
         ddp_find_unused_parameters=False,
     )
 
+def cleanup_distributed():
+    """Clean up distributed training resources to prevent resource leaks."""
+    if dist.is_initialized():
+        dist.destroy_process_group()
+
+# Register the cleanup function to be called on script exit
+atexit.register(cleanup_distributed)
+
 def main():
     args = parse_args()
     os.makedirs(args.output_dir, exist_ok=True)
