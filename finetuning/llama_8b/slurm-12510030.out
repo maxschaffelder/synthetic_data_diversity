@@ -1,0 +1,126 @@
+No CUDA module loaded
+No Python module loaded
+Virtual environment venv_finetune_llama_8b already exists at /scratch-shared/mschaffelder/venv_finetune_llama_8b.
+Activating virtual environment: /scratch-shared/mschaffelder/venv_finetune_llama_8b
+CUDA_VISIBLE_DEVICES: 0,1
+Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-795c951b-903f-d02c-f747-d0f57439730d)
+GPU 1: NVIDIA H100 (UUID: GPU-fb584839-a744-d57a-507d-f42512069363)
+Using existing Hugging Face token from cache...
+importing libraries
+importing libraries
+/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
+  backends.update(_get_backends("networkx.backends"))
+/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
+  backends.update(_get_backends("networkx.backends"))
+done importing librariesdone importing libraries
+
+parsing argumentsparsing arguments
+
+done parsing argumentsdone parsing arguments
+
+loading tokenizerloading tokenizer
+
+loading model
+loading model
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 17.97it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 17.91it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 23.09it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 23.14it/s]
+
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+done loading tokenizer and model
+getting peft model
+done loading tokenizer and model
+getting peft model
+done getting peft model
+trainable params: 41,943,040 || all params: 8,072,212,480 || trainable%: 0.5196
+loading datasets
+done getting peft model
+trainable params: 41,943,040 || all params: 8,072,212,480 || trainable%: 0.5196
+loading datasets
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_8b/finetuning_8b.py", line 75, in <module>
+  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_8b/finetuning_8b.py", line 75, in <module>
+        dataset = load_dataset("json", data_files=args.train_path, split="train")dataset = load_dataset("json", data_files=args.train_path, split="train")
+
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/datasets/load.py", line 2062, in load_dataset
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/datasets/load.py", line 2062, in load_dataset
+    builder_instance = load_dataset_builder(    
+builder_instance = load_dataset_builder(
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/datasets/load.py", line 1782, in load_dataset_builder
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/datasets/load.py", line 1782, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+      File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/datasets/load.py", line 1491, in dataset_module_factory
+dataset_module = dataset_module_factory(
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/datasets/load.py", line 1491, in dataset_module_factory
+    return PackagedDatasetModuleFactory(
+      File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/datasets/load.py", line 913, in get_module
+return PackagedDatasetModuleFactory(
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/datasets/load.py", line 913, in get_module
+    data_files = DataFilesDict.from_patterns(
+      File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/datasets/data_files.py", line 689, in from_patterns
+data_files = DataFilesDict.from_patterns(
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/datasets/data_files.py", line 689, in from_patterns
+    else DataFilesList.from_patterns(    
+else DataFilesList.from_patterns(  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/datasets/data_files.py", line 582, in from_patterns
+
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/datasets/data_files.py", line 582, in from_patterns
+    resolve_pattern(
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/datasets/data_files.py", line 383, in resolve_pattern
+    resolve_pattern(
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/datasets/data_files.py", line 383, in resolve_pattern
+    raise FileNotFoundError(error_msg)
+FileNotFoundError    : raise FileNotFoundError(error_msg)Unable to find '/scratch-shared/mschaffelder/data/finetuning/synthetic/Small/Llama/dolly_train_all_Llama.jsonl'
+
+FileNotFoundError: Unable to find '/scratch-shared/mschaffelder/data/finetuning/synthetic/Small/Llama/dolly_train_all_Llama.jsonl'
+E0619 19:25:53.219154 458870 /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 461448) of binary: /scratch-shared/mschaffelder/venv_finetune_llama_8b/bin/python
+Traceback (most recent call last):
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/distributed/run.py", line 892, in main
+    run(args)
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+finetuning_8b.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2025-06-19_19:25:53
+  host      : gcn148.local.snellius.surf.nl
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 461449)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-06-19_19:25:53
+  host      : gcn148.local.snellius.surf.nl
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 461448)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+
+JOB STATISTICS
+==============
+Job ID: 12510030
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:05:36
+CPU Efficiency: 10.88% of 00:51:28 core-walltime
+Job Wall-clock time: 00:03:13
+Memory Utilized: 11.57 GB
+Memory Efficiency: 38.58% of 30.00 GB (30.00 GB/node)

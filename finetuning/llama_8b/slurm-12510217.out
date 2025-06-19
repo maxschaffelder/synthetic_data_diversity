@@ -1,0 +1,147 @@
+No CUDA module loaded
+No Python module loaded
+Requirement already satisfied: torch>=2.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 1)) (2.7.1)
+Requirement already satisfied: transformers>=4.36.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 2)) (4.52.4)
+Requirement already satisfied: datasets>=2.14.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 3)) (3.6.0)
+Requirement already satisfied: peft>=0.5.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 4)) (0.15.2)
+Requirement already satisfied: accelerate>=1.7.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 5)) (1.8.0)
+Requirement already satisfied: sentencepiece in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 6)) (0.2.0)
+Requirement already satisfied: huggingface_hub in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 7)) (0.33.0)
+Requirement already satisfied: importlib-metadata in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 8)) (8.7.0)
+Collecting trl (from -r requirements.txt (line 9))
+  Using cached trl-0.18.2-py3-none-any.whl.metadata (11 kB)
+Requirement already satisfied: filelock in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (3.18.0)
+Requirement already satisfied: typing-extensions>=4.10.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (4.14.0)
+Requirement already satisfied: sympy>=1.13.3 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (1.14.0)
+Requirement already satisfied: networkx in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (3.2.1)
+Requirement already satisfied: jinja2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (3.1.6)
+Requirement already satisfied: fsspec in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (2025.3.0)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (12.6.80)
+Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (9.5.1.17)
+Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (12.6.4.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (11.3.0.4)
+Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (10.3.7.77)
+Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (11.7.1.2)
+Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (12.5.4.2)
+Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (0.6.3)
+Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (2.26.2)
+Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (12.6.77)
+Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (12.6.85)
+Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (1.11.1.6)
+Requirement already satisfied: triton==3.3.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch>=2.0->-r requirements.txt (line 1)) (3.3.1)
+Requirement already satisfied: setuptools>=40.8.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from triton==3.3.1->torch>=2.0->-r requirements.txt (line 1)) (53.0.0)
+Requirement already satisfied: numpy>=1.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from transformers>=4.36.0->-r requirements.txt (line 2)) (2.0.2)
+Requirement already satisfied: packaging>=20.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from transformers>=4.36.0->-r requirements.txt (line 2)) (25.0)
+Requirement already satisfied: pyyaml>=5.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from transformers>=4.36.0->-r requirements.txt (line 2)) (6.0.2)
+Requirement already satisfied: regex!=2019.12.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from transformers>=4.36.0->-r requirements.txt (line 2)) (2024.11.6)
+Requirement already satisfied: requests in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from transformers>=4.36.0->-r requirements.txt (line 2)) (2.32.4)
+Requirement already satisfied: tokenizers<0.22,>=0.21 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from transformers>=4.36.0->-r requirements.txt (line 2)) (0.21.1)
+Requirement already satisfied: safetensors>=0.4.3 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from transformers>=4.36.0->-r requirements.txt (line 2)) (0.5.3)
+Requirement already satisfied: tqdm>=4.27 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from transformers>=4.36.0->-r requirements.txt (line 2)) (4.67.1)
+Requirement already satisfied: hf-xet<2.0.0,>=1.1.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from huggingface_hub->-r requirements.txt (line 7)) (1.1.4)
+Requirement already satisfied: pyarrow>=15.0.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from datasets>=2.14.0->-r requirements.txt (line 3)) (20.0.0)
+Requirement already satisfied: dill<0.3.9,>=0.3.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from datasets>=2.14.0->-r requirements.txt (line 3)) (0.3.8)
+Requirement already satisfied: pandas in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from datasets>=2.14.0->-r requirements.txt (line 3)) (2.3.0)
+Requirement already satisfied: xxhash in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from datasets>=2.14.0->-r requirements.txt (line 3)) (3.5.0)
+Requirement already satisfied: multiprocess<0.70.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from datasets>=2.14.0->-r requirements.txt (line 3)) (0.70.16)
+Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 3)) (3.12.13)
+Requirement already satisfied: psutil in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from peft>=0.5.0->-r requirements.txt (line 4)) (7.0.0)
+Requirement already satisfied: zipp>=3.20 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from importlib-metadata->-r requirements.txt (line 8)) (3.23.0)
+Requirement already satisfied: aiohappyeyeballs>=2.5.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 3)) (2.6.1)
+Requirement already satisfied: aiosignal>=1.1.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 3)) (1.3.2)
+Requirement already satisfied: async-timeout<6.0,>=4.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 3)) (5.0.1)
+Requirement already satisfied: attrs>=17.3.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 3)) (25.3.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 3)) (1.7.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 3)) (6.5.0)
+Requirement already satisfied: propcache>=0.2.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 3)) (0.3.2)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 3)) (1.20.1)
+Requirement already satisfied: idna>=2.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from yarl<2.0,>=1.17.0->aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 3)) (3.10)
+Requirement already satisfied: charset_normalizer<4,>=2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 2)) (3.4.2)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 2)) (2.5.0)
+Requirement already satisfied: certifi>=2017.4.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 2)) (2025.6.15)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from sympy>=1.13.3->torch>=2.0->-r requirements.txt (line 1)) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from jinja2->torch>=2.0->-r requirements.txt (line 1)) (3.0.2)
+Requirement already satisfied: python-dateutil>=2.8.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 3)) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 3)) (2025.2)
+Requirement already satisfied: tzdata>=2022.7 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 3)) (2025.2)
+Requirement already satisfied: six>=1.5 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from python-dateutil>=2.8.2->pandas->datasets>=2.14.0->-r requirements.txt (line 3)) (1.17.0)
+Using cached trl-0.18.2-py3-none-any.whl (366 kB)
+Installing collected packages: trl
+Successfully installed trl-0.18.2
+ipex flag is deprecated, will be removed in Accelerate v1.10. From 2.7.0, PyTorch has all needed optimizations for Intel CPU and XPU.
+/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
+  backends.update(_get_backends("networkx.backends"))
+/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
+  backends.update(_get_backends("networkx.backends"))
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 13.18it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 13.18it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 17.03it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 17.03it/s]
+
+trainable params: 41,943,040 || all params: 8,072,204,288 || trainable%: 0.5196
+trainable params: 41,943,040 || all params: 8,072,204,288 || trainable%: 0.5196
+Original dataset size: 13509
+Original dataset size: 13509Training dataset size after split: 12833
+
+Training dataset size after split: 12833Validation dataset size after split: 676
+
+Validation dataset size after split: 676
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_8b/finetuning_8b.py", line 162, in <module>
+[rank0]:     main()
+[rank0]:   File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_8b/finetuning_8b.py", line 145, in main
+[rank0]:     trainer = SFTTrainer(
+[rank0]: TypeError: __init__() got an unexpected keyword argument 'tokenizer'
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_8b/finetuning_8b.py", line 162, in <module>
+[rank1]:     main()
+[rank1]:   File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_8b/finetuning_8b.py", line 145, in main
+[rank1]:     trainer = SFTTrainer(
+[rank1]: TypeError: __init__() got an unexpected keyword argument 'tokenizer'
+[rank0]:[W619 19:41:42.338654601 ProcessGroupNCCL.cpp:1479] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+W0619 19:41:50.954676 1400232 /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1408803 closing signal SIGTERM
+E0619 19:41:51.069951 1400232 /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 1408802) of binary: /scratch-shared/mschaffelder/venv_finetune_llama_8b/bin/python
+Traceback (most recent call last):
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/accelerate/commands/launch.py", line 1190, in launch_command
+    multi_gpu_launcher(args)
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/accelerate/commands/launch.py", line 815, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+finetuning_8b.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-06-19_19:41:50
+  host      : gcn97.local.snellius.surf.nl
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1408802)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+
+JOB STATISTICS
+==============
+Job ID: 12510217
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:00:33
+CPU Efficiency: 1.07% of 00:51:28 core-walltime
+Job Wall-clock time: 00:03:13
+Memory Utilized: 1.55 GB
+Memory Efficiency: 5.17% of 30.00 GB (30.00 GB/node)

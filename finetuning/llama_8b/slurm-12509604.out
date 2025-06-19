@@ -1,0 +1,224 @@
+No CUDA module loaded
+No Python module loaded
+Virtual environment venv_finetune_llama_8b already exists at /scratch-shared/mschaffelder/venv_finetune_llama_8b.
+Activating virtual environment: /scratch-shared/mschaffelder/venv_finetune_llama_8b
+Requirement already satisfied: torch in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 2)) (2.7.1)
+Requirement already satisfied: transformers>=4.36.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 3)) (4.52.4)
+Requirement already satisfied: datasets>=2.14.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 4)) (3.6.0)
+Requirement already satisfied: peft>=0.5.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 5)) (0.15.2)
+Requirement already satisfied: accelerate==1.7.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 6)) (1.7.0)
+Requirement already satisfied: trl in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 7)) (0.18.2)
+Requirement already satisfied: sentencepiece>=0.1.99 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 10)) (0.2.0)
+Requirement already satisfied: huggingface_hub>=0.17.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 11)) (0.33.0)
+Requirement already satisfied: tensorboard in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 12)) (2.19.0)
+Requirement already satisfied: tqdm in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from -r requirements.txt (line 13)) (4.67.1)
+Requirement already satisfied: packaging>=20.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from accelerate==1.7.0->-r requirements.txt (line 6)) (25.0)
+Requirement already satisfied: numpy<3.0.0,>=1.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from accelerate==1.7.0->-r requirements.txt (line 6)) (2.0.2)
+Requirement already satisfied: safetensors>=0.4.3 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from accelerate==1.7.0->-r requirements.txt (line 6)) (0.5.3)
+Requirement already satisfied: pyyaml in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from accelerate==1.7.0->-r requirements.txt (line 6)) (6.0.2)
+Requirement already satisfied: psutil in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from accelerate==1.7.0->-r requirements.txt (line 6)) (7.0.0)
+Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (12.6.85)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (12.6.80)
+Requirement already satisfied: networkx in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (3.2.1)
+Requirement already satisfied: triton==3.3.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (3.3.1)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (12.6.77)
+Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (10.3.7.77)
+Requirement already satisfied: sympy>=1.13.3 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (1.14.0)
+Requirement already satisfied: fsspec in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (2025.3.0)
+Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (1.11.1.6)
+Requirement already satisfied: jinja2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (3.1.6)
+Requirement already satisfied: filelock in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (3.18.0)
+Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (2.26.2)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (12.6.77)
+Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (0.6.3)
+Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (12.6.77)
+Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (12.5.4.2)
+Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (9.5.1.17)
+Requirement already satisfied: typing-extensions>=4.10.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (4.14.0)
+Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (11.7.1.2)
+Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (12.6.4.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from torch->-r requirements.txt (line 2)) (11.3.0.4)
+Requirement already satisfied: setuptools>=40.8.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from triton==3.3.1->torch->-r requirements.txt (line 2)) (53.0.0)
+Requirement already satisfied: tokenizers<0.22,>=0.21 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from transformers>=4.36.0->-r requirements.txt (line 3)) (0.21.1)
+Requirement already satisfied: requests in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from transformers>=4.36.0->-r requirements.txt (line 3)) (2.32.4)
+Requirement already satisfied: regex!=2019.12.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from transformers>=4.36.0->-r requirements.txt (line 3)) (2024.11.6)
+Requirement already satisfied: pandas in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (2.3.0)
+Requirement already satisfied: dill<0.3.9,>=0.3.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (0.3.8)
+Requirement already satisfied: multiprocess<0.70.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (0.70.16)
+Requirement already satisfied: xxhash in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (3.5.0)
+Requirement already satisfied: pyarrow>=15.0.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (20.0.0)
+Requirement already satisfied: hf-xet<2.0.0,>=1.1.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from huggingface_hub>=0.17.0->-r requirements.txt (line 11)) (1.1.4)
+Requirement already satisfied: tensorboard-data-server<0.8.0,>=0.7.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from tensorboard->-r requirements.txt (line 12)) (0.7.2)
+Requirement already satisfied: markdown>=2.6.8 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from tensorboard->-r requirements.txt (line 12)) (3.8.1)
+Requirement already satisfied: protobuf!=4.24.0,>=3.19.6 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from tensorboard->-r requirements.txt (line 12)) (6.31.1)
+Requirement already satisfied: werkzeug>=1.0.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from tensorboard->-r requirements.txt (line 12)) (3.1.3)
+Requirement already satisfied: absl-py>=0.4 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from tensorboard->-r requirements.txt (line 12)) (2.3.0)
+Requirement already satisfied: six>1.9 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from tensorboard->-r requirements.txt (line 12)) (1.17.0)
+Requirement already satisfied: grpcio>=1.48.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from tensorboard->-r requirements.txt (line 12)) (1.73.0)
+Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from fsspec->torch->-r requirements.txt (line 2)) (3.12.13)
+Requirement already satisfied: frozenlist>=1.1.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec->torch->-r requirements.txt (line 2)) (1.7.0)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec->torch->-r requirements.txt (line 2)) (1.20.1)
+Requirement already satisfied: aiosignal>=1.1.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec->torch->-r requirements.txt (line 2)) (1.3.2)
+Requirement already satisfied: multidict<7.0,>=4.5 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec->torch->-r requirements.txt (line 2)) (6.5.0)
+Requirement already satisfied: aiohappyeyeballs>=2.5.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec->torch->-r requirements.txt (line 2)) (2.6.1)
+Requirement already satisfied: async-timeout<6.0,>=4.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec->torch->-r requirements.txt (line 2)) (5.0.1)
+Requirement already satisfied: propcache>=0.2.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec->torch->-r requirements.txt (line 2)) (0.3.2)
+Requirement already satisfied: attrs>=17.3.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec->torch->-r requirements.txt (line 2)) (25.3.0)
+Requirement already satisfied: importlib-metadata>=4.4 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from markdown>=2.6.8->tensorboard->-r requirements.txt (line 12)) (8.7.0)
+Requirement already satisfied: zipp>=3.20 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from importlib-metadata>=4.4->markdown>=2.6.8->tensorboard->-r requirements.txt (line 12)) (3.23.0)
+Requirement already satisfied: certifi>=2017.4.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (2025.6.15)
+Requirement already satisfied: idna<4,>=2.5 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (2.5.0)
+Requirement already satisfied: charset_normalizer<4,>=2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (3.4.2)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from sympy>=1.13.3->torch->-r requirements.txt (line 2)) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.1.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from werkzeug>=1.0.1->tensorboard->-r requirements.txt (line 12)) (3.0.2)
+Requirement already satisfied: python-dateutil>=2.8.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 4)) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 4)) (2025.2)
+Requirement already satisfied: tzdata>=2022.7 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 4)) (2025.2)
+WARNING: You are using pip version 21.2.3; however, version 25.1.1 is available.
+You should consider upgrading via the '/scratch-shared/mschaffelder/venv_finetune_llama_8b/bin/python -m pip install --upgrade pip' command.
+/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
+  backends.update(_get_backends("networkx.backends"))
+/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
+  backends.update(_get_backends("networkx.backends"))
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:06<00:18,  6.04s/it]Fetching 4 files:  25%|██▌       | 1/4 [00:06<00:18,  6.13s/it]Fetching 4 files: 100%|██████████| 4/4 [00:06<00:00,  1.53s/it]
+Fetching 4 files: 100%|██████████| 4/4 [00:06<00:00,  1.54s/it]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.90it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.90it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  7.11it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  7.11it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  7.07it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  7.07it/s]
+
+trainable params: 41,943,040 || all params: 8,072,204,288 || trainable%: 0.5196
+trainable params: 41,943,040 || all params: 8,072,204,288 || trainable%: 0.5196
+Original dataset size: 13509
+Original dataset size: 13509Training dataset size after split: 12833
+
+Training dataset size after split: 12833Validation dataset size after split: 676
+
+Validation dataset size after split: 676
+Converting train dataset to ChatML:   0%|          | 0/12833 [00:00<?, ? examples/s]Converting train dataset to ChatML:  31%|███       | 3956/12833 [00:00<00:00, 27742.94 examples/s]Converting train dataset to ChatML:  73%|███████▎  | 9334/12833 [00:00<00:00, 40772.34 examples/s]Converting train dataset to ChatML: 100%|██████████| 12833/12833 [00:00<00:00, 40994.67 examples/s]
+Adding EOS to train dataset:   0%|          | 0/12833 [00:00<?, ? examples/s]Adding EOS to train dataset:  32%|███▏      | 4093/12833 [00:00<00:00, 40638.50 examples/s]Adding EOS to train dataset:  65%|██████▍   | 8284/12833 [00:00<00:00, 41376.39 examples/s]/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
+  warnings.warn(  # warn only once
+[rank1]:[W619 18:49:01.707773913 ProcessGroupNCCL.cpp:4718] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
+Adding EOS to train dataset:  97%|█████████▋| 12459/12833 [00:00<00:00, 41541.89 examples/s]Adding EOS to train dataset: 100%|██████████| 12833/12833 [00:00<00:00, 40787.59 examples/s]
+Tokenizing train dataset:   0%|          | 0/12833 [00:00<?, ? examples/s]Tokenizing train dataset:   2%|▏         | 217/12833 [00:00<00:05, 2120.29 examples/s]Tokenizing train dataset:   3%|▎         | 430/12833 [00:00<00:05, 2109.35 examples/s]Tokenizing train dataset:   5%|▌         | 648/12833 [00:00<00:05, 2137.35 examples/s]Tokenizing train dataset:   7%|▋         | 956/12833 [00:00<00:05, 2092.08 examples/s]Tokenizing train dataset:   9%|▉         | 1212/12833 [00:00<00:07, 1505.70 examples/s]Tokenizing train dataset:  11%|█         | 1430/12833 [00:00<00:06, 1658.22 examples/s]Tokenizing train dataset:  13%|█▎        | 1674/12833 [00:00<00:06, 1847.84 examples/s]Tokenizing train dataset:  15%|█▌        | 1925/12833 [00:01<00:06, 1780.79 examples/s]Tokenizing train dataset:  17%|█▋        | 2198/12833 [00:01<00:06, 1684.68 examples/s]Tokenizing train dataset:  19%|█▊        | 2397/12833 [00:01<00:05, 1751.90 examples/s]Tokenizing train dataset:  20%|██        | 2622/12833 [00:01<00:05, 1872.03 examples/s]Tokenizing train dataset:  22%|██▏       | 2850/12833 [00:01<00:05, 1931.56 examples/s]Tokenizing train dataset:  24%|██▍       | 3082/12833 [00:01<00:05, 1753.30 examples/s]Tokenizing train dataset:  26%|██▌       | 3320/12833 [00:01<00:04, 1907.13 examples/s]Tokenizing train dataset:  28%|██▊       | 3555/12833 [00:01<00:04, 2018.73 examples/s]Tokenizing train dataset:  30%|██▉       | 3788/12833 [00:02<00:04, 2098.95 examples/s]Tokenizing train dataset:  32%|███▏      | 4137/12833 [00:02<00:04, 1990.12 examples/s]Tokenizing train dataset:  34%|███▍      | 4365/12833 [00:02<00:04, 2057.10 examples/s]Tokenizing train dataset:  36%|███▌      | 4602/12833 [00:02<00:03, 2132.03 examples/s]Tokenizing train dataset:  38%|███▊      | 4858/12833 [00:02<00:03, 2245.21 examples/s]Tokenizing train dataset:  40%|███▉      | 5098/12833 [00:02<00:04, 1854.85 examples/s]Tokenizing train dataset:  41%|████▏     | 5306/12833 [00:02<00:03, 1904.11 examples/s]Tokenizing train dataset:  43%|████▎     | 5509/12833 [00:02<00:03, 1935.44 examples/s]Tokenizing train dataset:  45%|████▍     | 5730/12833 [00:02<00:03, 2005.94 examples/s]Tokenizing train dataset:  47%|████▋     | 6000/12833 [00:03<00:03, 1790.76 examples/s]Tokenizing train dataset:  49%|████▊     | 6239/12833 [00:03<00:03, 1935.55 examples/s]Tokenizing train dataset:  50%|█████     | 6475/12833 [00:03<00:03, 2043.67 examples/s]Tokenizing train dataset:  53%|█████▎    | 6799/12833 [00:03<00:02, 2078.92 examples/s]Tokenizing train dataset:  55%|█████▌    | 7120/12833 [00:03<00:02, 1991.17 examples/s]Tokenizing train dataset:  57%|█████▋    | 7366/12833 [00:03<00:02, 2097.96 examples/s]Tokenizing train dataset:  59%|█████▉    | 7593/12833 [00:03<00:02, 2138.85 examples/s]Tokenizing train dataset:  62%|██████▏   | 7931/12833 [00:04<00:02, 2167.09 examples/s]Tokenizing train dataset:  64%|██████▍   | 8218/12833 [00:04<00:02, 1991.18 examples/s]Tokenizing train dataset:  66%|██████▌   | 8424/12833 [00:04<00:02, 1980.05 examples/s]Tokenizing train dataset:  67%|██████▋   | 8638/12833 [00:04<00:02, 2017.16 examples/s]Tokenizing train dataset:  69%|██████▉   | 8858/12833 [00:04<00:01, 2063.81 examples/s]Tokenizing train dataset:  71%|███████   | 9097/12833 [00:04<00:01, 1882.80 examples/s]Tokenizing train dataset:  73%|███████▎  | 9314/12833 [00:04<00:01, 1950.65 examples/s]Tokenizing train dataset:  74%|███████▍  | 9514/12833 [00:04<00:01, 1947.02 examples/s]Tokenizing train dataset:  76%|███████▌  | 9741/12833 [00:04<00:01, 2031.74 examples/s]Tokenizing train dataset:  78%|███████▊  | 9983/12833 [00:05<00:01, 2138.43 examples/s]Tokenizing train dataset:  80%|███████▉  | 10228/12833 [00:05<00:01, 1935.05 examples/s]Tokenizing train dataset:  81%|████████▏ | 10439/12833 [00:05<00:01, 1978.54 examples/s]Tokenizing train dataset:  83%|████████▎ | 10650/12833 [00:05<00:01, 2005.61 examples/s]Tokenizing train dataset:  85%|████████▍ | 10879/12833 [00:05<00:00, 2082.38 examples/s]Tokenizing train dataset:  87%|████████▋ | 11113/12833 [00:05<00:00, 1884.50 examples/s]Tokenizing train dataset:  88%|████████▊ | 11339/12833 [00:05<00:00, 1973.52 examples/s]Tokenizing train dataset:  90%|█████████ | 11556/12833 [00:05<00:00, 1993.53 examples/s]Tokenizing train dataset:  92%|█████████▏| 11787/12833 [00:06<00:00, 2074.71 examples/s]Tokenizing train dataset:  94%|█████████▎| 12000/12833 [00:06<00:00, 1938.40 examples/s]Tokenizing train dataset:  95%|█████████▌| 12215/12833 [00:06<00:00, 1992.08 examples/s]Tokenizing train dataset:  97%|█████████▋| 12467/12833 [00:06<00:00, 2136.90 examples/s]Tokenizing train dataset:  99%|█████████▉| 12692/12833 [00:06<00:00, 2157.65 examples/s]Tokenizing train dataset: 100%|██████████| 12833/12833 [00:06<00:00, 1965.16 examples/s]
+Truncating train dataset:   0%|          | 0/12833 [00:00<?, ? examples/s]Truncating train dataset: 100%|██████████| 12833/12833 [00:00<00:00, 375611.50 examples/s]
+/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
+  warnings.warn(  # warn only once
+[rank0]:[W619 18:49:08.591999573 ProcessGroupNCCL.cpp:4718] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
+Converting eval dataset to ChatML:   0%|          | 0/676 [00:00<?, ? examples/s]Converting eval dataset to ChatML: 100%|██████████| 676/676 [00:00<00:00, 43700.77 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/676 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 676/676 [00:00<00:00, 35963.79 examples/s]
+Tokenizing eval dataset:   0%|          | 0/676 [00:00<?, ? examples/s]Tokenizing eval dataset:  36%|███▌      | 245/676 [00:00<00:00, 2362.78 examples/s]Tokenizing eval dataset:  89%|████████▉ | 605/676 [00:00<00:00, 2374.40 examples/s]Tokenizing eval dataset: 100%|██████████| 676/676 [00:00<00:00, 2142.89 examples/s]
+Truncating eval dataset:   0%|          | 0/676 [00:00<?, ? examples/s]Truncating eval dataset: 100%|██████████| 676/676 [00:00<00:00, 146582.72 examples/s]
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+Starting training...
+Starting training...
+  0%|          | 0/603 [00:00<?, ?it/s][rank0]: Traceback (most recent call last):
+[rank0]:   File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_8b/finetuning_8b.py", line 160, in <module>
+[rank0]:     main()
+[rank0]:   File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_8b/finetuning_8b.py", line 153, in main
+[rank0]:     trainer.train()
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/transformers/trainer.py", line 2240, in train
+[rank0]:     return inner_training_loop(
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/transformers/trainer.py", line 2555, in _inner_training_loop
+[rank0]:     tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/trl/trainer/sft_trainer.py", line 733, in training_step
+[rank0]:     return super().training_step(*args, **kwargs)
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/transformers/trainer.py", line 3791, in training_step
+[rank0]:     self.accelerator.backward(loss, **kwargs)
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/accelerate/accelerator.py", line 2473, in backward
+[rank0]:     loss.backward(**kwargs)
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/_tensor.py", line 648, in backward
+[rank0]:     torch.autograd.backward(
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/autograd/__init__.py", line 353, in backward
+[rank0]:     _engine_run_backward(
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/autograd/graph.py", line 824, in _engine_run_backward
+[rank0]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/autograd/function.py", line 307, in apply
+[rank0]:     return user_fn(self, *args)
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/utils/checkpoint.py", line 320, in backward
+[rank0]:     torch.autograd.backward(outputs_with_grad, args_with_grad)
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/autograd/__init__.py", line 353, in backward
+[rank0]:     _engine_run_backward(
+[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/autograd/graph.py", line 824, in _engine_run_backward
+[rank0]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank0]: RuntimeError: Expected to mark a variable ready only once. This error is caused by one of the following reasons: 1) Use of a module parameter outside the `forward` function. Please make sure model parameters are not shared across multiple concurrent forward-backward passes. or try to use _set_static_graph() as a workaround if this module graph does not change during training loop.2) Reused parameters in multiple reentrant backward passes. For example, if you use multiple `checkpoint` functions to wrap the same part of your model, it would result in the same set of parameters been used by different reentrant backward passes multiple times, and hence marking a variable ready multiple times. DDP does not support such use cases in default. You can try to use _set_static_graph() as a workaround if your module graph does not change over iterations.
+[rank0]: Parameter at index 447 with name base_model.model.model.layers.31.mlp.down_proj.lora_B.default.weight has been marked as ready twice. This means that multiple autograd engine  hooks have fired for this particular parameter during this iteration.
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_8b/finetuning_8b.py", line 160, in <module>
+[rank1]:     main()
+[rank1]:   File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_8b/finetuning_8b.py", line 153, in main
+[rank1]:     trainer.train()
+[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/transformers/trainer.py", line 2240, in train
+[rank1]:     return inner_training_loop(
+[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/transformers/trainer.py", line 2555, in _inner_training_loop
+[rank1]:     tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/trl/trainer/sft_trainer.py", line 733, in training_step
+[rank1]:     return super().training_step(*args, **kwargs)
+[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/transformers/trainer.py", line 3791, in training_step
+[rank1]:     self.accelerator.backward(loss, **kwargs)
+[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/accelerate/accelerator.py", line 2473, in backward
+[rank1]:     loss.backward(**kwargs)
+[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/_tensor.py", line 648, in backward
+[rank1]:     torch.autograd.backward(
+[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/autograd/__init__.py", line 353, in backward
+[rank1]:     _engine_run_backward(
+[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/autograd/graph.py", line 824, in _engine_run_backward
+[rank1]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/autograd/function.py", line 307, in apply
+[rank1]:     return user_fn(self, *args)
+[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/utils/checkpoint.py", line 320, in backward
+[rank1]:     torch.autograd.backward(outputs_with_grad, args_with_grad)
+[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/autograd/__init__.py", line 353, in backward
+[rank1]:     _engine_run_backward(
+[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/autograd/graph.py", line 824, in _engine_run_backward
+[rank1]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank1]: RuntimeError: Expected to mark a variable ready only once. This error is caused by one of the following reasons: 1) Use of a module parameter outside the `forward` function. Please make sure model parameters are not shared across multiple concurrent forward-backward passes. or try to use _set_static_graph() as a workaround if this module graph does not change during training loop.2) Reused parameters in multiple reentrant backward passes. For example, if you use multiple `checkpoint` functions to wrap the same part of your model, it would result in the same set of parameters been used by different reentrant backward passes multiple times, and hence marking a variable ready multiple times. DDP does not support such use cases in default. You can try to use _set_static_graph() as a workaround if your module graph does not change over iterations.
+[rank1]: Parameter at index 447 with name base_model.model.model.layers.31.mlp.down_proj.lora_B.default.weight has been marked as ready twice. This means that multiple autograd engine  hooks have fired for this particular parameter during this iteration.
+  0%|          | 0/603 [00:13<?, ?it/s]
+[rank0]:[W619 18:50:00.594050267 ProcessGroupNCCL.cpp:1479] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+W0619 18:50:06.203184 4079588 /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 4080425 closing signal SIGTERM
+E0619 18:50:06.318926 4079588 /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_8b/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 1 (pid: 4080426) of binary: /scratch-shared/mschaffelder/venv_finetune_llama_8b/bin/python
+Traceback (most recent call last):
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/accelerate/commands/launch.py", line 1189, in launch_command
+    multi_gpu_launcher(args)
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/accelerate/commands/launch.py", line 815, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch-shared/mschaffelder/venv_finetune_llama_8b/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+finetuning_8b.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-06-19_18:50:06
+  host      : gcn120.local.snellius.surf.nl
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 4080426)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+
+JOB STATISTICS
+==============
+Job ID: 12509604
+Cluster: snellius
+User/Group: mschaffelder/mschaffelder
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:02:19
+CPU Efficiency: 7.12% of 00:32:32 core-walltime
+Job Wall-clock time: 00:02:02
+Memory Utilized: 3.86 GB
+Memory Efficiency: 12.85% of 30.00 GB (30.00 GB/node)
