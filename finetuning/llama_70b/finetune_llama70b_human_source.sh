@@ -44,10 +44,16 @@ source $VENV_DIR/bin/activate
 # Install required packages
 pip install -r requirements.txt
 
-# Create a clean accelerate config for FSDP
-ACCELERATE_CONFIG_FILE="$HOME/.cache/huggingface/accelerate/default_config.yaml"
-echo "Creating a fresh accelerate config for FSDP..."
-mkdir -p "$(dirname "$ACCELERATE_CONFIG_FILE")"
+# Define paths for data and output (adjust these as per your setup)
+TRAIN_FILE="/scratch-shared/mschaffelder/data/finetuning/dolly/dolly_train_all.jsonl" # Path to your training data
+OUTPUT_DIR="/scratch-shared/mschaffelder/data/ft_models/llama_70b_human_source_medium" # Output directory for model and logs
+
+# Create output directory if it doesn't exist
+mkdir -p $OUTPUT_DIR
+
+# Create a job-specific accelerate config in the output directory
+ACCELERATE_CONFIG_FILE="$OUTPUT_DIR/accelerate_config.yaml"
+echo "Creating job-specific accelerate config at: $ACCELERATE_CONFIG_FILE"
 cat > "$ACCELERATE_CONFIG_FILE" << EOF
 compute_environment: LOCAL_MACHINE
 distributed_type: FSDP
@@ -68,20 +74,12 @@ rdzv_backend: static
 same_network: true
 use_cpu: false
 EOF
-echo "Accelerate config created at $ACCELERATE_CONFIG_FILE"
-
-# Define paths for data and output (adjust these as per your setup)
-TRAIN_FILE="/scratch-shared/mschaffelder/data/finetuning/dolly/dolly_train_all.jsonl" # Path to your training data
-OUTPUT_DIR="/scratch-shared/mschaffelder/data/ft_models/llama_70b_human_source_medium" # Output directory for model and logs
 
 # Validate that data files exist
 if [ ! -f "$TRAIN_FILE" ]; then
     echo "Error: Training file not found: $TRAIN_FILE"
     exit 1
 fi
-
-# Create output directory if it doesn't exist
-mkdir -p $OUTPUT_DIR
 
 # Make sure CUDA devices are visible
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
@@ -107,7 +105,7 @@ export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 # Execute the Python fine-tuning script using accelerate launch
 # We rely on the config file for settings and let SLURM manage CUDA devices.
 echo "CUDA_VISIBLE_DEVICES as set by SLURM: $CUDA_VISIBLE_DEVICES"
-accelerate launch finetune_llama.py \
+accelerate launch --config_file "$ACCELERATE_CONFIG_FILE" finetune_llama.py \
     --train_file $TRAIN_FILE \
     --output_dir $OUTPUT_DIR \
     --validation_split_percentage 5 \
