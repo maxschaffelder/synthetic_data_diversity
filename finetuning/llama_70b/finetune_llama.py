@@ -3,7 +3,7 @@ import os
 import torch
 import torch.distributed as dist
 from datasets import load_dataset
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, EarlyStoppingCallback
 from peft import LoraConfig, get_peft_model
 from trl import SFTTrainer, SFTConfig 
 import atexit
@@ -149,7 +149,6 @@ def setup_training_arguments(args):
         load_best_model_at_end=True, # Enable loading the best model at the end
         metric_for_best_model="eval_loss", # Metric to determine the best model
         greater_is_better=False, # For loss, lower is better
-        early_stopping_patience=args.early_stopping_patience, # Enable early stopping
         
         # Precision and optimization
         bf16=True, # Enable bfloat16 precision
@@ -202,6 +201,7 @@ def main():
             args=training_args,
             train_dataset=train_dataset,
             eval_dataset=eval_dataset,
+            callbacks=[EarlyStoppingCallback(early_stopping_patience=args.early_stopping_patience)],
         )
 
         # Start training
