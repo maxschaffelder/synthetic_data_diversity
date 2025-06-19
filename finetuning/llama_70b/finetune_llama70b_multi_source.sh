@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=llama70b-single-source-finetune   # Assign a descriptive name to the Slurm job
+#SBATCH --job-name=llama70b-multi-source-finetune   # Assign a descriptive name to the Slurm job
 #SBATCH --partition=gpu_h100                 # Specify the target partition: H100 GPU partition on Snellius [8]
 #SBATCH --nodes=1                            # Request a single compute node. A full gpu_h100 node has 4 H100 GPUs.[8]
 #SBATCH --ntasks-per-node=1                  # Request one task per node. For accelerate launch, typically one main process orchestrates distributed training.
@@ -73,9 +73,9 @@ EOF
 echo "Accelerate config created at $ACCELERATE_CONFIG_FILE"
 
 # Define paths for data and output (adjust these as per your setup)
-TRAIN_FILE="/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl" # Path to your training data
-VALIDATION_FILE="/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_test_Llama.jsonl" # Path to your validation data
-OUTPUT_DIR="/scratch-shared/mschaffelder/data/ft_models/llama_70b_single_source" # Output directory for model and logs
+TRAIN_FILE="/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Other/dolly_train_all_multi.jsonl" # Path to your training data
+VALIDATION_FILE="/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Other/dolly_test_multi.jsonl" # Path to your validation data
+OUTPUT_DIR="/scratch-shared/mschaffelder/data/ft_models/llama_70b_multi_source" # Output directory for model and logs
 
 # Validate that data files exist
 if [ ! -f "$TRAIN_FILE" ]; then
