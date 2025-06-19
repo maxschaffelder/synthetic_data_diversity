@@ -23,6 +23,7 @@ def parse_args():
     parser.add_argument("--max_seq_length", type=int, default=1024, help="Maximum sequence length for tokenization.")
     parser.add_argument("--system_prompt", type=str, default="You are a helpful AI assistant.", help="Optional system prompt for the chat template.")
     parser.add_argument("--response_key", type=str, default="response_model", help="Key for the response in the dataset.")
+    parser.add_argument("--resume_from_checkpoint", type=str, default=None, help="Path to a checkpoint to resume training from.")
     return parser.parse_args()
 
 
@@ -192,7 +193,7 @@ def main():
 
         # Start training
         print("Starting training...")
-        trainer.train()
+        trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)
 
         # Save the final adapter model
         print(f"Saving model to {args.output_dir}")
