@@ -8,6 +8,11 @@
 #SBATCH --partition=gpu_h100
 #SBATCH -N 1
 
+echo "Starting job finetuning-llama-3.1-8b-human"
+echo "Waiting for 20 minutes (1200 seconds) to stagger job start..."
+sleep 1200
+echo "Wait finished. Starting main script."
+
 # Load necessary environment modules
 module purge
 module load 2024
@@ -21,7 +26,7 @@ VENV_DIR="$VENV_BASE_DIR/$VENV_NAME"
 # Activate virtual environment
 source $VENV_DIR/bin/activate
 
-pip install -r requirements.txt 
+# pip install -r requirements.txt 
 
 # Define paths for data and output
 TRAIN_PATH="/scratch-shared/mschaffelder/data/finetuning/dolly/dolly_train_all.jsonl"
