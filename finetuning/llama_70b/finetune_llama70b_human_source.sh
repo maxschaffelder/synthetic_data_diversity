@@ -74,7 +74,7 @@ echo "Accelerate config created at $ACCELERATE_CONFIG_FILE"
 
 # Define paths for data and output (adjust these as per your setup)
 TRAIN_FILE="/scratch-shared/mschaffelder/data/finetuning/dolly/dolly_train_all.jsonl" # Path to your training data
-OUTPUT_DIR="/scratch-shared/mschaffelder/data/ft_models/llama_70b_human_source" # Output directory for model and logs
+OUTPUT_DIR="/scratch-shared/mschaffelder/data/ft_models/llama_70b_human_source_medium" # Output directory for model and logs
 
 # Validate that data files exist
 if [ ! -f "$TRAIN_FILE" ]; then
