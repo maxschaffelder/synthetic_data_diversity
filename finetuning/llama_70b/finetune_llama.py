@@ -200,7 +200,12 @@ def main():
         trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)
 
         # Save the final adapter model
-        print(f"Saving model to {args.output_dir}")
+        print(f"Saving final consolidated model to {args.output_dir}")
+
+        # As per Hugging Face FSDP documentation, we must switch to FULL_STATE_DICT
+        # to save the consolidated model adapter.
+        if trainer.is_fsdp_enabled:
+            trainer.accelerator.state.fsdp_plugin.set_state_dict_type("FULL_STATE_DICT")
 
         trainer.save_model(args.output_dir)
         tokenizer.save_pretrained(args.output_dir) # Save tokenizer as well
