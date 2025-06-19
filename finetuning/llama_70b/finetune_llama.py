@@ -24,6 +24,9 @@ def parse_args():
     parser.add_argument("--system_prompt", type=str, default="You are a helpful AI assistant.", help="Optional system prompt for the chat template.")
     parser.add_argument("--response_key", type=str, default="response_model", help="Key for the response in the dataset.")
     parser.add_argument("--resume_from_checkpoint", type=str, default=None, help="Path to a checkpoint to resume training from.")
+    parser.add_argument("--max_steps", type=int, default=-1, help="If set, overrides num_train_epochs for a short test run.")
+    parser.add_argument("--save_steps", type=int, default=100, help="Number of steps between checkpoints.")
+    parser.add_argument("--logging_steps", type=int, default=10, help="Number of steps between logs.")
     return parser.parse_args()
 
 
@@ -128,14 +131,15 @@ def setup_training_arguments(args):
         per_device_eval_batch_size=args.per_device_train_batch_size,
         gradient_accumulation_steps=args.gradient_accumulation_steps,
         learning_rate=args.learning_rate,
+        max_steps=args.max_steps,
         
         # Logging and evaluation
         logging_strategy="steps",
-        logging_steps=10,
+        logging_steps=args.logging_steps,
         eval_strategy="steps",
-        eval_steps=100,
+        eval_steps=args.save_steps,
         save_strategy="steps",
-        save_steps=100,
+        save_steps=args.save_steps,
         save_total_limit=3, # Keep only 3 checkpoints to save disk space
         
         # Precision and optimization

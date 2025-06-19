@@ -75,7 +75,7 @@ echo "Accelerate config created at $ACCELERATE_CONFIG_FILE"
 # Define paths for data and output (adjust these as per your setup)
 TRAIN_FILE="/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl" # Path to your training data
 VALIDATION_FILE="/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_test_Llama.jsonl" # Path to your validation data
-OUTPUT_DIR="/scratch-shared/mschaffelder/data/ft_models/llama_70b_single_source" # Output directory for model and logs
+OUTPUT_DIR="/scratch-shared/mschaffelder/data/ft_models/llama_70b_single_source_TEST" # TEST Output directory
 
 # Validate that data files exist
 if [ ! -f "$TRAIN_FILE" ]; then
@@ -119,7 +119,9 @@ accelerate launch finetune_llama.py \
     --train_file $TRAIN_FILE \
     --validation_file $VALIDATION_FILE \
     --output_dir $OUTPUT_DIR \
-    --num_train_epochs 3 \
+    --max_steps 20 \
+    --logging_steps 5 \
+    --save_steps 10 \
     --learning_rate 5e-5 \
     --per_device_train_batch_size 1 \
     --gradient_accumulation_steps 32 \
