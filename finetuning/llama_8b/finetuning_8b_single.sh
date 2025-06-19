@@ -51,7 +51,7 @@ mkdir -p $OUTPUT_DIR
 ACCELERATE_CONFIG_FILE="$OUTPUT_DIR/accelerate_config.yaml"
 cat > "$ACCELERATE_CONFIG_FILE" << EOF
 compute_environment: LOCAL_MACHINE
-distributed_type: DDP
+distributed_type: MULTI_GPU
 num_processes: 2
 machine_rank: 0
 main_training_function: main
