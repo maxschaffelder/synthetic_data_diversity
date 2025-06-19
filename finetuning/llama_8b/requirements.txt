@@ -11,6 +11,3 @@ sentencepiece>=0.1.99
 huggingface_hub>=0.17.0
 tensorboard
 tqdm
-
-# Optional: For 4-bit/8-bit quantization (e.g., QLoRA)
-bitsandbytes
