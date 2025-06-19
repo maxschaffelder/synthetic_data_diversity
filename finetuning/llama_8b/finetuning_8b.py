@@ -1,182 +1,162 @@
-print("importing libraries")
+import argparse
 import os
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorWithPadding, Trainer, TrainingArguments
+import torch.distributed as dist
 from datasets import load_dataset
-from peft import LoraConfig, TaskType, get_peft_model
-import argparse
+from transformers import AutoModelForCausalLM, AutoTokenizer, EarlyStoppingCallback
+from peft import LoraConfig, get_peft_model
+from trl import SFTTrainer, SFTConfig 
+import atexit
 
-# Set environment variable to avoid tokenizers parallelism warning
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
-print("done importing libraries")
-# (Optional) initialize Weights & Biases for experiment tracking
-# You can set WANDB_PROJECT and login separately as needed.
-#import wandb
-#wandb.init(project="llama3_lora_finetuning", name="llama3-8b-run")
-
-# Alternatively, one could use TRL's SFTTrainer for supervised fine-tuning:contentReference[oaicite:0]{index=0}.
-
-# 0. Parse command-line arguments
-print("parsing arguments")
-parser = argparse.ArgumentParser(description="Fine-tune a LLaMA model with LoRA.")
-parser.add_argument("--model_name", type=str, default="meta-llama/Llama-3.1-8B-Instruct", help="Name of the model to fine-tune.")
-parser.add_argument("--train_path", type=str, required=True, help="Path to the training data JSONL file.")
-parser.add_argument("--validation_split_percentage", type=int, default=5, help="Percentage of the train file to use for validation.")
-parser.add_argument("--response_key", type=str, default="response_human", help="The key in the JSONL file that contains the response.")
-parser.add_argument("--output_dir", type=str, required=True, help="Directory to save the fine-tuned model and logs.")
-args = parser.parse_args()
-print("done parsing arguments")
-
-# 1. Load the tokenizer and model
-# Use the LLaMA 3.1 8B Instruct model from Hugging Face (requires access)
-print("loading tokenizer")
-tokenizer = AutoTokenizer.from_pretrained(args.model_name, use_fast=False)
-print("loading model")
-
-# Remove device_map="auto" as it can cause issues with distributed training
-model = AutoModelForCausalLM.from_pretrained(
-    args.model_name,
-    torch_dtype=torch.bfloat16,
-    use_cache=False,
-)
-
-# Enable gradient checkpointing to save memory
-model.gradient_checkpointing_enable()
-
-# Ensure tokenizer has a padding token (LLaMA may not have one by default)
-if tokenizer.pad_token is None:
-    tokenizer.add_special_tokens({'pad_token': '<pad>'})
-    model.resize_token_embeddings(len(tokenizer))
-print("done loading tokenizer and model")
-
-# 2. Configure LoRA for parameter-efficient fine-tuning
-# Using Hugging Face PEFT LoRA (low-rank adaptation) example:contentReference[oaicite:1]{index=1}; 
-# target LLaMA's attention and MLP layers as recommended:contentReference[oaicite:2]{index=2}.
-lora_config = LoraConfig(
-    r=16,                         # LoRA rank
-    lora_alpha=16,                # LoRA scaling factor (same as rank for now)
-    #target_modules=["q_proj", "v_proj"], 
-    target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
-                    "gate_proj", "up_proj", "down_proj"],
-    lora_dropout=0.1,            # dropout for LoRA layers
-    bias="none",
-    task_type=TaskType.CAUSAL_LM
-)
-
-print("getting peft model")
-model = get_peft_model(model, lora_config)
-print("done getting peft model")
-# Verify the number of trainable parameters (should be much smaller than total)
-model.print_trainable_parameters()
+# Define command-line arguments
+def parse_args():
+    parser = argparse.ArgumentParser(description="Fine-tune Llama 3.1-8B-Instruct with LoRA.")
+    parser.add_argument("--model_name", type=str, default="meta-llama/Llama-3.1-8B-Instruct", help="Name of the model to fine-tune.")
+    parser.add_argument("--train_path", type=str, required=True, help="Path to the training data JSONL file.")
+    parser.add_argument("--response_key", type=str, default="response_human", help="The key in the JSONL file that contains the response.")
+    parser.add_argument("--output_dir", type=str, required=True, help="Directory to save the fine-tuned model and logs.")
+    parser.add_argument("--validation_split_percentage", type=int, default=5, help="Percentage of the train file to use for validation.")
+    parser.add_argument("--num_train_epochs", type=int, default=3, help="Number of training epochs.")
+    parser.add_argument("--learning_rate", type=float, default=5e-5, help="Learning rate for training.")
+    parser.add_argument("--per_device_train_batch_size", type=int, default=4, help="Batch size per GPU for training.")
+    parser.add_argument("--gradient_accumulation_steps", type=int, default=8, help="Number of gradient accumulation steps.")
+    parser.add_argument("--lora_r", type=int, default=16, help="LoRA attention dimension (r).")
+    parser.add_argument("--lora_alpha", type=int, default=32, help="LoRA alpha parameter.")
+    parser.add_argument("--max_seq_length", type=int, default=1024, help="Maximum sequence length for tokenization.")
+    parser.add_argument("--system_prompt", type=str, default="You are a helpful AI assistant.", help="Optional system prompt for the chat template.")
+    parser.add_argument("--logging_steps", type=int, default=10, help="Number of steps between logs.")
+    parser.add_argument("--eval_steps", type=int, default=20, help="Number of steps between evaluations.")
+    parser.add_argument("--save_steps", type=int, default=100, help="Number of steps between checkpoints.")
+    parser.add_argument("--early_stopping_patience", type=int, default=5, help="Patience for early stopping.")
+    return parser.parse_args()
 
 
-print("loading datasets")
-dataset = load_dataset("json", data_files=args.train_path, split="train")
-split_dataset = dataset.train_test_split(test_size=(args.validation_split_percentage / 100.0), shuffle=True, seed=42)
-train_dataset = split_dataset['train']
-val_dataset = split_dataset['test']
+def format_dataset(examples, system_prompt, response_key):
+    """Formats the dataset into a conversational format suitable for SFTTrainer."""
+    formatted_texts = []
+    for i in range(len(examples['instruction'])):
+        instruction = examples['instruction'][i]
+        response = examples[response_key][i]
+        
+        # Using the Llama 3.1 chat template structure
+        text = (f"<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system_prompt}<|eot_id|>"
+                f"<|start_header_id|>user<|end_header_id|>\n\n{instruction}<|eot_id|>"
+                f"<|start_header_id|>assistant<|end_header_id|>\n\n{response}<|eot_id|>")
+        
+        formatted_texts.append(text)
+    
+    return {"text": formatted_texts}
 
-print(f"Original dataset size: {len(dataset)}")
-print(f"Training dataset size after split: {len(train_dataset)}")
-print(f"Validation dataset size after split: {len(val_dataset)}")
-print("done loading datasets")
+def load_and_preprocess_data(train_file, validation_split_percentage, system_prompt, response_key):
+    """Loads and prepares the dataset, splitting it for training and validation."""
+    if not os.path.exists(train_file):
+        raise FileNotFoundError(f"Training file not found: {train_file}")
+    
+    dataset = load_dataset("json", data_files=train_file, split="train")
+    
+    split_dataset = dataset.train_test_split(test_size=(validation_split_percentage / 100.0), shuffle=True, seed=42)
+    train_dataset = split_dataset['train']
+    eval_dataset = split_dataset['test']
 
-print("train dataset: ", train_dataset)
-print("val dataset: ", val_dataset)
+    print(f"Original dataset size: {len(dataset)}")
+    print(f"Training dataset size after split: {len(train_dataset)}")
+    print(f"Validation dataset size after split: {len(eval_dataset)}")
+
+    train_dataset = train_dataset.map(lambda x: format_dataset(x, system_prompt, response_key), batched=True, remove_columns=train_dataset.column_names)
+    eval_dataset = eval_dataset.map(lambda x: format_dataset(x, system_prompt, response_key), batched=True, remove_columns=eval_dataset.column_names)
+
+    return train_dataset, eval_dataset
 
 
+def initialize_model_and_tokenizer(model_id):
+    """Initializes the model and tokenizer."""
+    model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch.bfloat16, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
+    
+    tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.padding_side = "right"
+    
+    model.config.use_cache = False
+    model.gradient_checkpointing_enable()
+    
+    return model, tokenizer
 
 
-# System prompt to prepend to each instruction
-system_prompt = "You are a helpful assistant."
+def configure_lora(model, lora_r, lora_alpha):
+    """Configures LoRA for the model."""
+    target_modules = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+    peft_config = LoraConfig(
+        r=lora_r,
+        lora_alpha=lora_alpha,
+        lora_dropout=0.1,
+        bias="none",
+        task_type="CAUSAL_LM",
+        target_modules=target_modules,
+    )
+    model = get_peft_model(model, peft_config)
+    model.print_trainable_parameters()
+    return model
 
-# Function to filter out examples exceeding 2048 tokens (prompt + response)
-def filter_long(ex):
-    combined = system_prompt + " " + ex["instruction"] + " " + ex[args.response_key]
-    return len(tokenizer(combined, truncation=False)["input_ids"]) <= 2048
 
-print("filtering long examples")
-train_dataset = train_dataset.filter(filter_long)
-val_dataset   = val_dataset.filter(filter_long)
-print("done filtering long examples")
+def setup_training_arguments(args):
+    """Sets up SFT training arguments."""
+    return SFTConfig(
+        output_dir=args.output_dir,
+        num_train_epochs=args.num_train_epochs,
+        per_device_train_batch_size=args.per_device_train_batch_size,
+        gradient_accumulation_steps=args.gradient_accumulation_steps,
+        learning_rate=args.learning_rate,
+        logging_strategy="steps",
+        logging_steps=args.logging_steps,
+        eval_strategy="steps",
+        eval_steps=args.eval_steps,
+        save_strategy="steps",
+        save_steps=args.save_steps,
+        save_total_limit=3,
+        load_best_model_at_end=True,
+        metric_for_best_model="eval_loss",
+        greater_is_better=False,
+        bf16=True,
+        tf32=True,
+        optim="adamw_torch",
+        lr_scheduler_type="cosine",
+        warmup_ratio=0.03,
+        weight_decay=0.01,
+        seed=42,
+        max_seq_length=args.max_seq_length,
+        dataset_text_field="text",
+        packing=False,
+        ddp_find_unused_parameters=False,
+    )
 
-# Function to tokenize and prepare model inputs
-def tokenize_and_format(ex):
-    # Combine system prompt and instruction as input prompt
-    prompt = system_prompt + " " + ex["instruction"]
-    # Tokenize prompt and response separately
-    prompt_ids = tokenizer(prompt, truncation=True, add_special_tokens=False, max_length=2048, padding="max_length").input_ids
-    response_ids = tokenizer(" " + ex[args.response_key], truncation=True, add_special_tokens=False, max_length=2048, padding="max_length").input_ids
-    # Combine and add end-of-sequence token
-    input_ids = prompt_ids + response_ids + [tokenizer.eos_token_id]
-    # Labels: mask prompt part with -100 so loss is only computed on the response
-    labels = [-100] * len(prompt_ids) + response_ids + [tokenizer.eos_token_id]
-    return {"input_ids": input_ids, "labels": labels}
+def main():
+    args = parse_args()
+    os.makedirs(args.output_dir, exist_ok=True)
 
-print("tokenizing and formatting train dataset")
+    model, tokenizer = initialize_model_and_tokenizer(args.model_name)
+    model = configure_lora(model, args.lora_r, args.lora_alpha)
+    
+    train_dataset, eval_dataset = load_and_preprocess_data(
+        args.train_path, args.validation_split_percentage, args.system_prompt, args.response_key
+    )
 
-# Apply tokenization to the datasets
-train_dataset = train_dataset.map(tokenize_and_format, remove_columns=train_dataset.column_names)
-val_dataset = val_dataset.map(tokenize_and_format, remove_columns=val_dataset.column_names)
+    training_args = setup_training_arguments(args)
 
-# 4. Data collator: pad sequences dynamically
-data_collator = DataCollatorWithPadding(tokenizer)
+    trainer = SFTTrainer(
+        model=model,
+        args=training_args,
+        train_dataset=train_dataset,
+        eval_dataset=eval_dataset,
+        tokenizer=tokenizer,
+        callbacks=[EarlyStoppingCallback(early_stopping_patience=args.early_stopping_patience)],
+    )
 
-# 5. Training configuration: use mixed precision (AMP) on A100/H100 (fp16)
-training_args = TrainingArguments(
-    output_dir=args.output_dir,
-    per_device_train_batch_size=8,   
-    per_device_eval_batch_size=8,    
-    gradient_accumulation_steps=1,   
-    num_train_epochs=1,
-    learning_rate=1e-5,
-    weight_decay=0.01,
-    fp16=False,                     
-    bf16=True,
-    eval_strategy="steps",
-    eval_steps=200,
-    logging_steps=50,
-    save_steps=400,
-    save_total_limit=3,         
-    report_to="none",
-    run_name="lora_llama_8b_multi",
-    logging_dir="/scratch-shared/mschaffelder/data/ft_models/logs",
-    # Learning rate scheduler settings
-    lr_scheduler_type="cosine",     # Use cosine scheduler for smooth decay
-    warmup_ratio=0.1,               # Warm up for 10% of training steps
-    # DDP settings
-    ddp_find_unused_parameters=False,
-    dataloader_num_workers=2,
-    gradient_checkpointing=True,
-    optim="adamw_torch",  # Use PyTorch's AdamW optimizer which is more memory efficient
-    # Make DDP more stable
-    ddp_backend="nccl",
-    local_rank=-1,  # Let torch.distributed handle this
-    load_best_model_at_end=True,
-    metric_for_best_model="eval_loss",
-)
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=train_dataset,
-    eval_dataset=val_dataset,
-    data_collator=data_collator,
-    processing_class=tokenizer
-)
+    print("Starting training...")
+    trainer.train()
+    print("Training completed.")
+    
+    print(f"Saving final model to {args.output_dir}")
+    trainer.save_model(args.output_dir)
 
-print("starting training")
-# 6. Start training
-trainer.train()
-print("finished training")
-
-# If needed, save the model after training
-print("saving model")
-trainer.save_model(args.output_dir)
-print(f"model saved to {args.output_dir}")
-
-# Clean up distributed process group to avoid resource leaks
-if torch.distributed.is_initialized():
-    print("Cleaning up distributed process group")
-    torch.distributed.destroy_process_group()
-    print("Process group destroyed successfully")
+if __name__ == "__main__":
+    main()
