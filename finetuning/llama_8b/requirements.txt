@@ -1,16 +1,16 @@
+# Core Hugging Face stack for fine-tuning
 torch
-peft>=0.5.0
 transformers>=4.36.0
 datasets>=2.14.0
+peft>=0.5.0
+accelerate==1.7.0
+trl
+
+# Utilities and dependencies
 sentencepiece>=0.1.99
 huggingface_hub>=0.17.0
-bitsandbytes
 tensorboard
-accelerate>=0.21.0
-typing_extensions
-deepspeed>=0.10.0
-torchtune
-omegaconf
-torchdata
 tqdm
-torchao
+
+# Optional: For 4-bit/8-bit quantization (e.g., QLoRA)
+bitsandbytes
