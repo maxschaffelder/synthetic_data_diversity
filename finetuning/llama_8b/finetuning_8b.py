@@ -22,7 +22,7 @@ print("parsing arguments")
 parser = argparse.ArgumentParser(description="Fine-tune a LLaMA model with LoRA.")
 parser.add_argument("--model_name", type=str, default="meta-llama/Llama-3.1-8B-Instruct", help="Name of the model to fine-tune.")
 parser.add_argument("--train_path", type=str, required=True, help="Path to the training data JSONL file.")
-parser.add_argument("--val_path", type=str, required=True, help="Path to the validation data JSONL file.")
+parser.add_argument("--validation_split_percentage", type=int, default=5, help="Percentage of the train file to use for validation.")
 parser.add_argument("--response_key", type=str, default="response_human", help="The key in the JSONL file that contains the response.")
 parser.add_argument("--output_dir", type=str, required=True, help="Directory to save the fine-tuned model and logs.")
 args = parser.parse_args()
@@ -72,12 +72,14 @@ model.print_trainable_parameters()
 
 
 print("loading datasets")
-train_dataset = load_dataset("json", data_files={"train": args.train_path})
-train_dataset = train_dataset["train"].shuffle(seed=42)
-val_dataset = load_dataset("json", data_files={"test": args.val_path}) # TODO: can I use this data for validation?
-val_dataset = val_dataset["test"].shuffle(seed=42)
+dataset = load_dataset("json", data_files=args.train_path, split="train")
+split_dataset = dataset.train_test_split(test_size=(args.validation_split_percentage / 100.0), shuffle=True, seed=42)
+train_dataset = split_dataset['train']
+val_dataset = split_dataset['test']
 
-
+print(f"Original dataset size: {len(dataset)}")
+print(f"Training dataset size after split: {len(train_dataset)}")
+print(f"Validation dataset size after split: {len(val_dataset)}")
 print("done loading datasets")
 
 print("train dataset: ", train_dataset)
@@ -115,8 +117,8 @@ def tokenize_and_format(ex):
 print("tokenizing and formatting train dataset")
 
 # Apply tokenization to the datasets
-train_dataset = train_dataset.map(tokenize_and_format, remove_columns=["response_human", "index", "model_name", "category", "response_model", "instruction", "index"])#, remove_columns=train_dataset.column_names)
-val_dataset = val_dataset.map(tokenize_and_format, remove_columns=["response_human", "index", "model_name", "category", "response_model", "instruction", "index"])#, remove_columns=val_dataset.column_names)
+train_dataset = train_dataset.map(tokenize_and_format, remove_columns=train_dataset.column_names)
+val_dataset = val_dataset.map(tokenize_and_format, remove_columns=val_dataset.column_names)
 
 # 4. Data collator: pad sequences dynamically
 data_collator = DataCollatorWithPadding(tokenizer)
