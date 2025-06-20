@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=llama70b-multi-source-finetune   # Assign a descriptive name to the Slurm job
+#SBATCH --job-name=llama70b-multi-small   # Assign a descriptive name to the Slurm job
 #SBATCH --partition=gpu_h100                 # Specify the target partition: H100 GPU partition on Snellius [8]
 #SBATCH --nodes=1                            # Request a single compute node. A full gpu_h100 node has 4 H100 GPUs.[8]
 #SBATCH --ntasks-per-node=1                  # Request one task per node. For accelerate launch, typically one main process orchestrates distributed training.

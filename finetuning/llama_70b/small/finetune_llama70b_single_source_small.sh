@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=llama70b-single-source-finetune   # Assign a descriptive name to the Slurm job
+#SBATCH --job-name=llama70b-single-small   # Assign a descriptive name to the Slurm job
 #SBATCH --partition=gpu_h100                 # Specify the target partition: H100 GPU partition on Snellius [8]
 #SBATCH --nodes=1                            # Request a single compute node. A full gpu_h100 node has 4 H100 GPUs.[8]
 #SBATCH --ntasks-per-node=1                  # Request one task per node. For accelerate launch, typically one main process orchestrates distributed training.
@@ -8,6 +8,11 @@
 #SBATCH --cpus-per-task=64                   # Request all 64 CPU cores available on an H100 node.[8] This ensures ample CPU resources for data loading, preprocessing, and other CPU-bound operations.
 #SBATCH --mem=700G                           # Request a substantial amount of host memory, close to the total 720 GiB available per H100 node.[8] This is a proactive measure to prevent host memory issues.
 #SBATCH --time=24:00:00                      # Set the maximum wall clock time for the job (e.g., 24 hours). The gpu_h100 partition allows up to 120 hours (5 days).[8]
+
+echo "Starting job $(scontrol show jobid $SLURM_JOB_ID | grep JobName | awk -F= '{print $2}')"
+echo "Waiting for 2 hours (7200 seconds) to stagger job start..."
+sleep 7200
+echo "Wait finished. Starting main script."
 
 # Load necessary environment modules
 module purge
