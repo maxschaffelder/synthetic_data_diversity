@@ -8,10 +8,6 @@
 #SBATCH --partition=gpu_h100
 #SBATCH -N 1
 
-echo "Starting job finetuning-llama-3.1-8b-multi"
-echo "Waiting for 10 minutes (600 seconds) to stagger job start..."
-sleep 600
-echo "Wait finished. Starting main script."
 
 # Load necessary environment modules
 module purge
