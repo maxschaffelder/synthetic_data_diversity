@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=llama70b-human-source-finetune   # Assign a descriptive name to the Slurm job
+#SBATCH --job-name=llama70b-multi-source-finetune   # Assign a descriptive name to the Slurm job
 #SBATCH --partition=gpu_h100                 # Specify the target partition: H100 GPU partition on Snellius [8]
 #SBATCH --nodes=1                            # Request a single compute node. A full gpu_h100 node has 4 H100 GPUs.[8]
 #SBATCH --ntasks-per-node=1                  # Request one task per node. For accelerate launch, typically one main process orchestrates distributed training.
@@ -45,8 +45,8 @@ source $VENV_DIR/bin/activate
 # pip install -r requirements.txt
 
 # Define paths for data and output (adjust these as per your setup)
-TRAIN_FILE="/scratch-shared/mschaffelder/data/finetuning/dolly/dolly_train_all.jsonl" # Path to your training data
-OUTPUT_DIR="/scratch-shared/mschaffelder/data/ft_models/llama_70b_human_source_medium" # Output directory for model and logs
+TRAIN_FILE="/scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Other/dolly_train_all_multi.jsonl" # Path to your training data
+OUTPUT_DIR="/scratch-shared/mschaffelder/data/ft_models/llama_70b_multi_source_medium" # Output directory for model and logs
 
 # Create output directory if it doesn't exist
 mkdir -p $OUTPUT_DIR
@@ -105,7 +105,7 @@ export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 # Execute the Python fine-tuning script using accelerate launch
 # We rely on the config file for settings and let SLURM manage CUDA devices.
 echo "CUDA_VISIBLE_DEVICES as set by SLURM: $CUDA_VISIBLE_DEVICES"
-accelerate launch --config_file "$ACCELERATE_CONFIG_FILE" finetune_llama.py \
+accelerate launch --config_file "$ACCELERATE_CONFIG_FILE" ../finetune_llama.py \
     --train_file $TRAIN_FILE \
     --output_dir $OUTPUT_DIR \
     --validation_split_percentage 5 \
@@ -121,6 +121,6 @@ accelerate launch --config_file "$ACCELERATE_CONFIG_FILE" finetune_llama.py \
     --lora_alpha 32 \
     --max_seq_length 1024 \
     --system_prompt "You are a helpful assistant." \
-    --response_key "response_human"
+    --response_key "response_model"
 
 echo "Fine-tuning job completed."
