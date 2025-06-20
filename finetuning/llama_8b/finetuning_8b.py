@@ -113,7 +113,7 @@ def setup_training_arguments(args):
         save_strategy="steps",
         save_steps=args.save_steps,
         save_total_limit=3,
-        load_best_model_at_end=True,
+        load_best_model_at_end=False,
         metric_for_best_model="eval_loss",
         greater_is_better=False,
         bf16=True,
@@ -165,7 +165,7 @@ def main():
     trainer.train()
     print("Training completed.")
     
-    print(f"Saving final model to {args.output_dir}")
+    print(f"Saving final model from last step to {args.output_dir}")
     trainer.save_model(args.output_dir)
 
 if __name__ == "__main__":
