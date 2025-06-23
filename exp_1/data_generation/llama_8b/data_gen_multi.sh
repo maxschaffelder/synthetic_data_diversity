@@ -32,8 +32,8 @@ echo "Activating virtual environment: $VENV_DIR"
 source $VENV_DIR/bin/activate
 
 # Install required packages
-pip install --upgrade pip
-pip install -r requirements.txt
+#pip install --upgrade pip
+#pip install -r requirements.txt
 
 # Run script
 cd $SLURM_SUBMIT_DIR
@@ -63,6 +63,8 @@ OUTPUT_DIR="/scratch-shared/mschaffelder/data/exp_1/small/outputs"
 # --- End Script Configuration ---
 
 python ../data_gen.py \
+    --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
     --lora_model_path "$LORA_MODEL_PATH" \
     --test_data_path "$TEST_DATA_PATH" \
-    --output_dir "$OUTPUT_DIR"
+    --output_dir "$OUTPUT_DIR" \
+    --batch_size 16
