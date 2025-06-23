@@ -154,7 +154,7 @@ def main():
     # Ensure output directory exists
     os.makedirs(output_dir, exist_ok=True)
     # Construct output path using the output_dir and a fixed filename for now
-    output_filename = f"generation_results_{os.path.basename(lora_model_path)}.jsonl"
+    output_filename = f"output_{os.path.basename(lora_model_path)}.jsonl"
     output_path = os.path.join(output_dir, output_filename)
     
     # Load model and tokenizer

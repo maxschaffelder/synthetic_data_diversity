@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH -J data-generation-llama-8b-finetuned-multi
-#SBATCH -t 03:00:00
+#SBATCH -J data-generation-llama-70b-finetuned-single-medium
+#SBATCH -t 12:00:00
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 4
-#SBATCH --mem=20G
-#SBATCH --gpus=1
+#SBATCH --mem=50G
+#SBATCH --gpus=2
 #SBATCH --partition=gpu_h100
 #SBATCH -N 1
 
@@ -57,12 +57,12 @@ else
 fi
 
 # --- Script Configuration ---
-LORA_MODEL_PATH="/scratch-shared/mschaffelder/data/ft_models/small/lora_llama_8b_multi_v3"
+LORA_MODEL_PATH="/scratch-shared/mschaffelder/data/ft_models/medium/llama_70b_single_source_medium"
 TEST_DATA_PATH="/scratch-shared/mschaffelder/data/finetuning/dolly/dolly_test.jsonl"
-OUTPUT_DIR="/scratch-shared/mschaffelder/data/exp_1/outputs"
+OUTPUT_DIR="/scratch-shared/mschaffelder/data/exp_1/medium/outputs"
 # --- End Script Configuration ---
 
-python data_gen.py \
+python ../data_gen.py \
     --lora_model_path "$LORA_MODEL_PATH" \
     --test_data_path "$TEST_DATA_PATH" \
     --output_dir "$OUTPUT_DIR"
