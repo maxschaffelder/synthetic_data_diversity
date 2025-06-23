@@ -42,8 +42,8 @@ echo "Activating virtual environment: $VENV_DIR"
 source $VENV_DIR/bin/activate
 
 # Install required packages
-pip install --upgrade pip
-pip install -r ../requirements.txt
+#pip install --upgrade pip
+#pip install -r ../requirements.txt
 
 # Run script
 cd $SLURM_SUBMIT_DIR
