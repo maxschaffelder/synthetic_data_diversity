@@ -63,7 +63,7 @@ def load_model_and_tokenizer(base_model_path, lora_model_path):
 
 SYSTEM_PROMPT = "You are a helpful assistant."
 
-def generate_response(model, tokenizer, prompts_batch, max_length=1024):
+def generate_response(model, tokenizer, prompts_batch, max_new_tokens=1024):
     if not prompts_batch:
         return []
 
@@ -100,36 +100,41 @@ def generate_response(model, tokenizer, prompts_batch, max_length=1024):
         logging.info("Starting batched model.generate()...")
         outputs = model.generate(
             **inputs,
-            max_length=inputs.input_ids.shape[1] + max_length, # max_length is for *new* tokens
+            max_new_tokens=max_new_tokens,
             num_return_sequences=1,
             temperature=0.7,
             top_p=0.9,
             do_sample=True,
+            eos_token_id=tokenizer.eos_token_id  # Explicitly set EOS token
         )
         logging.info("Batched model.generate() completed.")
     
-    logging.info("Decoding batch of responses by stripping input tokens...")
+    logging.info("Decoding batch of responses by stripping the prompt string...")
     cleaned_responses = []
-    # `outputs` contains the full sequence (input_ids + generated_ids)
-    # `inputs.input_ids` are the tokenized inputs we sent to the model.
-    for i in range(len(prompts_batch)):
-        input_token_len = inputs.input_ids[i].shape[0]
-        # The output tokens for the i-th item in the batch
-        output_tokens_for_item = outputs[i]
+    # Decode the full output sequence and then remove the original prompt string.
+    # This is more robust than token-level manipulation.
+    for i, (full_output, prompt_str) in enumerate(zip(outputs, formatted_prompts_for_tokenizer)):
+        # Decode the entire generated sequence
+        decoded_output = tokenizer.decode(full_output, skip_special_tokens=True)
         
-        # Assuming the input prompt tokens are at the beginning of the output tokens:
-        generated_token_ids = output_tokens_for_item[input_token_len:]
+        # The prompt string as it was fed to the tokenizer
+        prompt_as_decoded = tokenizer.decode(tokenizer.encode(prompt_str), skip_special_tokens=True)
 
-        if generated_token_ids.nelement() == 0:
-            logging.warning(f"No new tokens generated for prompt: '{prompts_batch[i][:50]}...'. Input length: {input_token_len}, Output length: {output_tokens_for_item.shape[0]}")
-            cleaned_responses.append("") # Append empty string for no new generation
+        # Check if the decoded output starts with the prompt
+        if decoded_output.startswith(prompt_as_decoded):
+            # Strip the prompt part to get only the generated response
+            response = decoded_output[len(prompt_as_decoded):].lstrip()
+            cleaned_responses.append(response)
+            logging.debug(f"Cleaned response (string-based stripping). Prompt: '{prompts_batch[i][:50]}...', Generated: '{response[:100]}...'")
         else:
-            # Decode only the generated tokens
-            cleaned_response = tokenizer.decode(generated_token_ids, skip_special_tokens=True)
-            cleaned_responses.append(cleaned_response.lstrip()) # lstrip to remove leading whitespace from model's actual output
-            logging.debug(f"Cleaned response (token-based stripping). Prompt: '{prompts_batch[i][:50]}...', Generated: '{cleaned_response[:100]}...'")
+            logging.warning(f"Could not strip prompt for item {i}. The decoded output did not start with the expected prompt. Fallback to token-based stripping.")
+            # Fallback to the original, less reliable token-based method if string stripping fails
+            input_token_len = len(inputs.input_ids[i])
+            generated_token_ids = full_output[input_token_len:]
+            response = tokenizer.decode(generated_token_ids, skip_special_tokens=True).lstrip()
+            cleaned_responses.append(response)
 
-    logging.info("Input tokens stripped from responses.")
+    logging.info("Prompt strings stripped from responses.")
     return cleaned_responses
 
 def main():
@@ -192,28 +197,34 @@ def main():
                 try:
                     generated_responses_batch = generate_response(model, tokenizer, prompts_batch)
                     logging.info(f"Batch of responses generated.")
-                    for idx, (original_data, gen_response) in enumerate(zip(data_batch_info, generated_responses_batch)):
-                        # Prepare result item for this entry
+
+                    results_to_write = []
+                    for original_data, gen_response in zip(data_batch_info, generated_responses_batch):
                         result_item = {
                             'instruction': original_data['instruction'],
                             'response_model': gen_response,
                             'response_human': original_data.get('response_human', '')
                         }
-                        # Append this single result to the file
-                        with open(output_path, 'a') as f:
-                            f.write(json.dumps(result_item) + '\n')
-                    logging.info(f"Appended {len(generated_responses_batch)} results from batch to {output_path}")
+                        results_to_write.append(json.dumps(result_item))
+                    
+                    # Write all results for the batch in one go
+                    with open(output_path, 'a') as f:
+                        f.write('\n'.join(results_to_write) + '\n')
+                    logging.info(f"Appended {len(results_to_write)} results from batch to {output_path}")
+
                 except Exception as e:
                     logging.error(f"Error during batch generate_response (lines around {i+1}): {e}")
                     # Store error for all items in this failed batch by writing them out
+                    error_results_to_write = []
+                    for original_data in data_batch_info:
+                        error_result_item = {
+                            'instruction': original_data['instruction'],
+                            'response_model': f"ERROR_BATCH: {e}",
+                            'response_human': original_data.get('response_human', '')
+                        }
+                        error_results_to_write.append(json.dumps(error_result_item))
                     with open(output_path, 'a') as f:
-                        for original_data in data_batch_info:
-                            error_result_item = {
-                                'instruction': original_data['instruction'],
-                                'response_model': f"ERROR_BATCH: {e}",
-                                'response_human': original_data.get('response_human', '')
-                            }
-                            f.write(json.dumps(error_result_item) + '\n')
+                        f.write('\n'.join(error_results_to_write) + '\n')
                     logging.info(f"Appended {len(data_batch_info)} error results from batch to {output_path}")
                 finally:
                     prompts_batch = [] 
@@ -224,28 +235,33 @@ def main():
         try:
             generated_responses_batch = generate_response(model, tokenizer, prompts_batch)
             logging.info(f"Final batch of responses generated.")
-            for idx, (original_data, gen_response) in enumerate(zip(data_batch_info, generated_responses_batch)):
-                # Prepare result item for this entry
+
+            results_to_write = []
+            for original_data, gen_response in zip(data_batch_info, generated_responses_batch):
                 result_item = {
                     'instruction': original_data['instruction'],
                     'response_model': gen_response,
                     'response_human': original_data.get('response_human', '')
                 }
-                # Append this single result to the file
-                with open(output_path, 'a') as f:
-                    f.write(json.dumps(result_item) + '\n')
-            logging.info(f"Appended {len(generated_responses_batch)} results from final batch to {output_path}")
+                results_to_write.append(json.dumps(result_item))
+
+            # Write all results for the final batch in one go
+            with open(output_path, 'a') as f:
+                f.write('\n'.join(results_to_write) + '\n')
+            logging.info(f"Appended {len(results_to_write)} results from final batch to {output_path}")
         except Exception as e:
             logging.error(f"Error during final batch generate_response: {e}")
             # Store error for all items in this failed batch by writing them out
+            error_results_to_write = []
+            for original_data in data_batch_info:
+                error_result_item = {
+                    'instruction': original_data['instruction'],
+                    'response_model': f"ERROR_FINAL_BATCH: {e}",
+                    'response_human': original_data.get('response_human', '')
+                }
+                error_results_to_write.append(json.dumps(error_result_item))
             with open(output_path, 'a') as f:
-                for original_data in data_batch_info:
-                    error_result_item = {
-                        'instruction': original_data['instruction'],
-                        'response_model': f"ERROR_FINAL_BATCH: {e}",
-                        'response_human': original_data.get('response_human', '')
-                    }
-                    f.write(json.dumps(error_result_item) + '\n')
+                f.write('\n'.join(error_results_to_write) + '\n')
             logging.info(f"Appended {len(data_batch_info)} error results from final batch to {output_path}")
             
     
