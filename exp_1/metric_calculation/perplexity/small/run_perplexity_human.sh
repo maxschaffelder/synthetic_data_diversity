@@ -66,6 +66,6 @@ python ../perplexity.py \
     --model_name "${MODEL_NAME}" \
     --input_path "${INPUT_PATH}" \
     --output_path "${OUTPUT_PATH}" \
-    --response_key "response_human"
+    --response_key "response_model"
 
 echo "Finished perplexity calculation for: ${INPUT_PATH}" 
