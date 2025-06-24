@@ -8,94 +8,91 @@ import gc
 from accelerate.utils import get_max_memory
 import argparse
 
-def get_token_probabilities(model_name, model, input_path, output_path, tokenizer, temperature=1.0, split=None):
+def get_token_probabilities(model_name, model, input_path, output_path, tokenizer, response_key, temperature=1.0, split=None):
+    """
+    Calculates token probabilities and perplexity for responses in a JSONL file.
+    """
+    model.config.is_decoder = True
+    model.config.use_causal_mask = True
 
-    model.config.is_decoder = True # Model is decoder
-    model.config.use_causal_mask = True # Use causal mask to avoid "looking at" future tokens
-
-    with open(input_path, "r", encoding="utf-8") as fin: # read input file
+    with open(input_path, "r", encoding="utf-8") as fin:
         all_lines = fin.readlines()
 
-    if split is not None: # read from desired line to end of file
+    if split is not None:
         all_lines = all_lines[split[0]:split[1]]
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
-
     with open(output_path, "a", encoding="utf-8") as fout:
-
-        for i, line in tqdm(enumerate(all_lines), total=len(all_lines), desc="Processing inputs"):
-
+        for i, line in tqdm(enumerate(all_lines), total=len(all_lines), desc=f"Processing responses for key '{response_key}'"):
             try:
-
                 data = json.loads(line)
-                response_key = "response_model"
-                response = data[response_key] # get response
-                instruction = data["instruction"] # get instruction belonging to response
+                response = data[response_key]
+                instruction = data["instruction"]
 
-                messages = [ # put into chat format
-                    {"role": "system", "content": "You are a helpful assistant."}, # system prompt
-                    {"role": "user", "content": instruction}, # user prompt
-                    {"role": "assistant", "content": response} # model response
+                messages = [
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": instruction},
+                    {"role": "assistant", "content": response}
                 ]
 
-                # Tokenize with chat template but don't add gen prompt
-                full_text = tokenizer.apply_chat_template(
+                # Tokenize using the chat template for robustness
+                full_inputs = tokenizer.apply_chat_template(
                     messages,
-                    tokenize=False,
-                    add_generation_prompt=False # don't want to generate anything
+                    tokenize=True,
+                    add_generation_prompt=False,
+                    return_tensors="pt"
                 )
-
-                full_inputs = tokenizer(full_text, return_tensors="pt").to(model.device) # tokenize the text and move to device
+                full_inputs = {k: v.to(model.device) for k, v in full_inputs.items()}
 
                 with torch.no_grad():
-                    outputs = model(input_ids=full_inputs["input_ids"]) # run the model on the input
-                    logits = outputs.logits # get logits
-                    
+                    outputs = model(**full_inputs)
+                    logits = outputs.logits
 
-                scaled_logits = logits / temperature # apply temperature
-                probs = torch.softmax(scaled_logits, dim=-1) # get probabilities
-                log_probs = F.log_softmax(scaled_logits, dim=-1) # get log probabilities
-                input_ids = full_inputs["input_ids"][0][:-1] # get input ids
+                scaled_logits = logits / temperature
+                probs = torch.softmax(scaled_logits, dim=-1)
+                log_probs = F.log_softmax(scaled_logits, dim=-1)
+                
+                input_ids_full = full_inputs["input_ids"][0]
 
-                # Find where the assistant response starts
-                system_and_user_text = tokenizer.apply_chat_template(
-                    messages[:2],
-                    tokenize=False,
-                    add_generation_prompt=False
+                # Robustly find where the assistant's response starts
+                # This uses the tokenizer's template to determine the true length of the prompt.
+                prompt_tokens = tokenizer.apply_chat_template(
+                    messages[:-1], # Messages before the assistant's response
+                    add_generation_prompt=True,
+                    tokenize=True
                 )
-                num_prompt_tokens = len(tokenizer(system_and_user_text)["input_ids"])+4 # might need to change this based on the model
+                num_prompt_tokens = len(prompt_tokens)
 
-                response_ids = input_ids[num_prompt_tokens:] # get response ids (after prompt tokens)
+                # Get the token IDs corresponding to the response
+                response_ids = input_ids_full[num_prompt_tokens:]
 
                 tokens = []
                 token_probs = []
                 token_logprobs = []
                 token_logits = []
 
-                
                 for j, token_id in enumerate(response_ids):
+                    # The logits for the j-th response token (at full index `num_prompt_tokens + j`)
+                    # are at logit tensor index `num_prompt_tokens + j - 1`.
                     context_index = num_prompt_tokens + j - 1
                     if context_index < 0:
-                        continue  # skip if there's no valid context to predict from
-                    
-                    prob = round(probs[0, context_index, token_id].item(), 5) # get probability of next token from previous 
-                    logprob = round(log_probs[0, context_index, token_id].item(), 5) # get log probability of next token from previous 
-                    logit = round(logits[0, context_index, token_id].item(), 5) # get logit of next token from previous 
-                    token = tokenizer.decode(token_id) # decode token id
+                        continue # Should not happen with a valid prompt.
 
+                    prob = round(probs[0, context_index, token_id].item(), 5)
+                    logprob = round(log_probs[0, context_index, token_id].item(), 5)
+                    logit = round(logits[0, context_index, token_id].item(), 5)
+                    token = tokenizer.decode(token_id)
 
-                    tokens.append(token) # add token to list
-                    token_probs.append(prob) # add probability to list
-                    token_logprobs.append(logprob) # add log probability to list
-                    token_logits.append(logit) # add logit to list
+                    tokens.append(token)
+                    token_probs.append(prob)
+                    token_logprobs.append(logprob)
+                    token_logits.append(logit)
 
-                # Calculate perplexity
                 avg_neg_logp = -sum(token_logprobs) / len(token_logprobs) if token_logprobs else 0
                 perplexity = round(torch.exp(torch.tensor(avg_neg_logp)).item(), 5)
-
-                model_short_name = model_name.split("/")[-1]
-                data[f"token_probabilities_{model_short_name}"] = {
+                
+                data["token_probabilities"] = {
                     "tokens": tokens,
                     "probs": token_probs,
                     "logprobs": token_logprobs,
@@ -108,127 +105,14 @@ def get_token_probabilities(model_name, model, input_path, output_path, tokenize
                 if i % 10 == 0:
                     fout.flush()
 
-                # Free up memory
-                del outputs, logits, scaled_logits, probs, log_probs, input_ids
+                del outputs, logits, scaled_logits, probs, log_probs, full_inputs
                 torch.cuda.empty_cache()
 
             except Exception as e:
-                print(f"Error on line {i}: {e}")
+                print(f"Error on line {i} for input containing instruction '{data.get('instruction', 'N/A')}': {e}")
                 continue
 
     print("Done processing inputs.")
-
-
-def get_token_probabilities_human(model_name, model, input_path, output_path, tokenizer, temperature=1.0, split=None):
-
-    model.config.is_decoder = True # Model is decoder
-    model.config.use_causal_mask = True # Use causal mask to avoid "looking at" future tokens
-
-    with open(input_path, "r", encoding="utf-8") as fin: # read input file
-        all_lines = fin.readlines()
-
-    if split is not None: # read from desired line to end of file
-        all_lines = all_lines[split[0]:split[1]]
-
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
-
-    with open(output_path, "a", encoding="utf-8") as fout:
-
-        for i, line in tqdm(enumerate(all_lines), total=len(all_lines), desc="Processing inputs"):
-
-            try:
-
-                data = json.loads(line)
-                response_key = "response_human"
-                response = data[response_key] # get response
-                instruction = data["instruction"] # get instruction belonging to response
-
-                messages = [ # put into chat format
-                    {"role": "system", "content": "You are a helpful assistant."}, # keep system prompt to make more comparable with model data perplexity
-                    {"role": "user", "content": instruction}, # user prompt
-                    {"role": "assistant", "content": response} # human response
-                ]
-
-                # Tokenize with chat template but don't add gen prompt
-                full_text = tokenizer.apply_chat_template(
-                    messages,
-                    tokenize=False,
-                    add_generation_prompt=False # don't want to generate anything
-                )
-
-                full_inputs = tokenizer(full_text, return_tensors="pt").to(model.device) # tokenize the text and move to device
-
-                with torch.no_grad():
-                    outputs = model(input_ids=full_inputs["input_ids"]) # run the model on the input
-                    logits = outputs.logits # get logits
-                    
-
-                scaled_logits = logits / temperature # apply temperature
-                probs = torch.softmax(scaled_logits, dim=-1) # get probabilities
-                log_probs = F.log_softmax(scaled_logits, dim=-1) # get log probabilities
-                input_ids = full_inputs["input_ids"][0][:-1] # get input ids
-
-                # Find where the assistant response starts
-                system_and_user_text = tokenizer.apply_chat_template(
-                    messages[:2],
-                    tokenize=False,
-                    add_generation_prompt=False
-                )
-                num_prompt_tokens = len(tokenizer(system_and_user_text)["input_ids"])+4 # might need to change this based on the model
-
-                response_ids = input_ids[num_prompt_tokens:] # get response ids (after prompt tokens)
-
-                tokens = []
-                token_probs = []
-                token_logprobs = []
-                token_logits = []
-
-                
-                for j, token_id in enumerate(response_ids):
-                    context_index = num_prompt_tokens + j - 1
-                    if context_index < 0:
-                        continue  # skip if there's no valid context to predict from
-                    
-                    prob = round(probs[0, context_index, token_id].item(), 5) # get probability of next token from previous 
-                    logprob = round(log_probs[0, context_index, token_id].item(), 5) # get log probability of next token from previous 
-                    logit = round(logits[0, context_index, token_id].item(), 5) # get logit of next token from previous 
-                    token = tokenizer.decode(token_id) # decode token id
-
-
-                    tokens.append(token) # add token to list
-                    token_probs.append(prob) # add probability to list
-                    token_logprobs.append(logprob) # add log probability to list
-                    token_logits.append(logit) # add logit to list
-
-                # Calculate perplexity
-                avg_neg_logp = -sum(token_logprobs) / len(token_logprobs) if token_logprobs else 0
-                perplexity = round(torch.exp(torch.tensor(avg_neg_logp)).item(), 5)
-
-
-                data[f"token_probabilities_human"] = {
-                    "tokens": tokens,
-                    "probs": token_probs,
-                    "logprobs": token_logprobs,
-                    "logits": token_logits,
-                    "perplexity": perplexity
-                }
-
-                fout.write(json.dumps(data, ensure_ascii=False) + "\n")
-
-                if i % 10 == 0:
-                    fout.flush()
-
-                # Free up memory
-                del outputs, logits, scaled_logits, probs, log_probs, input_ids
-                torch.cuda.empty_cache()
-
-            except Exception as e:
-                print(f"Error on line {i}: {e}")
-                continue
-
-    print("Done processing inputs.")
-
 
 
 def main(): 
@@ -238,6 +122,7 @@ def main():
     parser.add_argument("--input_path", type=str, required=True, help="Path to the input JSONL file.")
     parser.add_argument("--output_path", type=str, required=True, help="Path to save the output JSONL file.")
     parser.add_argument("--temperature", type=float, default=1.0, help="Temperature for scaling logits.")
+    parser.add_argument("--response_key", type=str, default="response_model", help="The key in the JSONL file that contains the response text (e.g., 'response_model', 'response_human').")
     
     args = parser.parse_args()
 
@@ -281,8 +166,15 @@ def main():
     print(f"Processing input file: {args.input_path}")
     print(f"Output will be saved to: {args.output_path}")
 
-    print("Calculating perplexity for model responses.")
-    get_token_probabilities(args.model_name, model, args.input_path, args.output_path, tokenizer, temperature=args.temperature)
+    get_token_probabilities(
+        model_name=args.model_name,
+        model=model,
+        input_path=args.input_path,
+        output_path=args.output_path,
+        tokenizer=tokenizer,
+        response_key=args.response_key,
+        temperature=args.temperature
+    )
 
     # Clearing memory 
     del model  
