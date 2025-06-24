@@ -37,23 +37,23 @@ def get_token_probabilities(model_name, model, input_path, output_path, tokenize
                 ]
 
                 # Tokenize using the chat template for robustness
-                full_inputs = tokenizer.apply_chat_template(
+                tokenized_output = tokenizer.apply_chat_template(
                     messages,
                     tokenize=True,
                     add_generation_prompt=False,
                     return_tensors="pt"
                 )
-                full_inputs = {k: v.to(model.device) for k, v in full_inputs.items()}
+                input_ids = tokenized_output.to(model.device)
 
                 with torch.no_grad():
-                    outputs = model(**full_inputs)
+                    outputs = model(input_ids=input_ids)
                     logits = outputs.logits
 
                 scaled_logits = logits / temperature
                 probs = torch.softmax(scaled_logits, dim=-1)
                 log_probs = F.log_softmax(scaled_logits, dim=-1)
                 
-                input_ids_full = full_inputs["input_ids"][0]
+                input_ids_full = input_ids[0]
 
                 # Robustly find where the assistant's response starts
                 # This uses the tokenizer's template to determine the true length of the prompt.
@@ -105,7 +105,7 @@ def get_token_probabilities(model_name, model, input_path, output_path, tokenize
                 if i % 10 == 0:
                     fout.flush()
 
-                del outputs, logits, scaled_logits, probs, log_probs, full_inputs
+                del outputs, logits, scaled_logits, probs, log_probs, input_ids
                 torch.cuda.empty_cache()
 
             except Exception as e:
