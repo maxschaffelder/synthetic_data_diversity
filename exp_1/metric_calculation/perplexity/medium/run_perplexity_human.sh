@@ -52,7 +52,7 @@ mkdir -p ${LOG_DIR} # Ensure log directory exists
 
 
 # Get the task ID for array jobs
-INPUT_PATH="/scratch-shared/mschaffelder/data/exp_1/medium/outputs/output_llama_70b_human_source.jsonl  "
+INPUT_PATH="/scratch-shared/mschaffelder/data/exp_1/medium/outputs/output_llama_70b_human_source.jsonl"
 OUTPUT_PATH="/scratch-shared/mschaffelder/data/exp_1/medium/perplexity/ppl_lora_llama_70b_human.jsonl"
 
 
