@@ -30,10 +30,6 @@ fi
 echo "Activating virtual environment: $VENV_DIR"
 source $VENV_DIR/bin/activate
 
-# Install required packages
-pip install --upgrade pip
-pip install -r requirements_exp_2.txt
-
 # Run script
 cd $SLURM_SUBMIT_DIR
 # Make sure CUDA devices are visible
@@ -55,7 +51,7 @@ else
     echo "Warning: No Hugging Face token found. Set HF_TOKEN environment variable or login manually."
 fi
 
-python generate_responses.py \
+python ../generate_responses.py \
     --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
     --input_file "/scratch-shared/mschaffelder/data/exp_2/inputs/refusalbench_jailbreak.jsonl" \
-    --output_file "/scratch-shared/mschaffelder/data/exp_2/outputs/refusalbench_jailbreak_8b_vanilla.jsonl"
+    --output_file "/scratch-shared/mschaffelder/data/exp_2/outputs/small/refusalbench_jailbreak_8b_vanilla.jsonl"
