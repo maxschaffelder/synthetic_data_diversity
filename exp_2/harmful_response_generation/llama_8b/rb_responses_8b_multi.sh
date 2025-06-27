@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=refusalbench_responses_8b_human
+#SBATCH --job-name=rb_responses_8b_multi
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
 #SBATCH --time=03:00:00
@@ -30,7 +30,6 @@ fi
 echo "Activating virtual environment: $VENV_DIR"
 source $VENV_DIR/bin/activate
 
-
 # Run script
 cd $SLURM_SUBMIT_DIR
 # Make sure CUDA devices are visible
@@ -54,7 +53,7 @@ fi
 
 python ../generate_responses.py \
     --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
-    --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/small/lora_llama_8b_human" \
+    --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/small/lora_llama_8b_multi" \
     --use_lora \
-    --input_file "/scratch-shared/mschaffelder/data/exp_2/inputs/refusalbench_jailbreak.jsonl" \
-    --output_file "/scratch-shared/mschaffelder/data/exp_2/outputs/small/refusalbench_jailbreak_8b_human_source.jsonl"
+    --input_file "/scratch-shared/mschaffelder/data/exp_2/inputs/refusalbench.jsonl" \
+    --output_file "/scratch-shared/mschaffelder/data/exp_2/outputs/small/refusalbench_8b_multi_source.jsonl"

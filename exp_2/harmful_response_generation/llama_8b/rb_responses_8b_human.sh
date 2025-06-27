@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=refusalbench_responses_8b_human
+#SBATCH --job-name=rb_responses_8b_human
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
 #SBATCH --time=03:00:00
