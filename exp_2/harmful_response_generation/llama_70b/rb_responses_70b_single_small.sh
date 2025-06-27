@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --job-name=rb_responses_70b_single_small
+#SBATCH -t 12:00:00
 #SBATCH --ntasks 1
-#SBATCH --cpus-per-task 1
-#SBATCH --time=03:00:00
+#SBATCH --cpus-per-task 4
+#SBATCH --mem=50G
+#SBATCH --gpus=2
 #SBATCH --partition=gpu_h100
-#SBATCH --mem=10G
-#SBATCH --gpus=1
 #SBATCH -N 1
 
 

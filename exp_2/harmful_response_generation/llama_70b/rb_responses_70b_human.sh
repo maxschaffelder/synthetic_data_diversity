@@ -8,7 +8,6 @@
 #SBATCH --partition=gpu_h100
 #SBATCH -N 1
 
-
 # Load necessary environment modules
 module purge
 
