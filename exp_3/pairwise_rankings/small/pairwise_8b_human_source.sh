@@ -33,7 +33,7 @@ source $VENV_DIR/bin/activate
 
 # Install required packages
 pip install --upgrade pip
-pip install -r ../requirements_exp_3.txt
+pip install -r ../../requirements_exp_3.txt
 
 # Run script
 cd $SLURM_SUBMIT_DIR
