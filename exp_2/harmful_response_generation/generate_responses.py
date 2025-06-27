@@ -62,7 +62,7 @@ def main():
                 logging.error(f"Error decoding JSON from line {i+1}: {e}")
                 continue 
             except KeyError as e:
-                logging.error(f"Missing key 'summary' in line {i+1}: {e}")
+                logging.error(f"Missing key 'instruction' in line {i+1}: {e}")
                 continue
             
             if len(prompts_batch) == BATCH_SIZE:
