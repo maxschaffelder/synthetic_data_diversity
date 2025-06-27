@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=pairwise_ranking_small_human_source
+#SBATCH --job-name=pairwise_llama_8b_multi_source
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
 #SBATCH --time=03:00:00
@@ -10,7 +10,7 @@
 
 
 VENV_NAME="venv_exp_3"
-VENV_BASE_DIR="/scratch-shared/mschaffelder" # Or any other persistent shared directory you prefer
+VENV_BASE_DIR="/scratch-shared/mschaffelder" 
 VENV_DIR="$VENV_BASE_DIR/$VENV_NAME"
 PYTHON_MODULE="Python/3.10.4-GCCcore-11.3.0"
 
@@ -29,6 +29,7 @@ fi
 # Activate virtual environment
 echo "Activating virtual environment: $VENV_DIR"
 source $VENV_DIR/bin/activate
+
 
 # Install required packages
 pip install --upgrade pip
@@ -57,9 +58,9 @@ fi
 
 python /scratch-shared/mschaffelder/code/exp_3/pairwise_rankings/pairwise_ranking.py \
     --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
-    --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/small/lora_llama_8b_human_v3" \
+    --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/small/lora_llama_8b_multi" \
     --use_lora \
-    --input_file "/scratch-shared/mschaffelder/data/exp_3/pairwise_data/pairwise_ranking_input_small_a_b.jsonl" \
-    --output_file "/scratch-shared/mschaffelder/data/exp_3/pairwise_rankings/a_b/small_human_source.jsonl" \
+    --input_file "/scratch-shared/mschaffelder/data/exp_3/pairwise/small/inputs/pairwise_ranking_input_a_b.jsonl" \
+    --output_file "/scratch-shared/mschaffelder/data/exp_3/pairwise/small/outputs/llama_8b_multi_source.jsonl" \
     --ranking_markers "a b" \
     --system_prompt "You are a helpful assistant. Your task is to rank the two provided texts. Please explicitly write which of the two texts is of higher quality by writing the corresponding letter in the output, and nothing else."
