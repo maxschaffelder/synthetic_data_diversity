@@ -13,7 +13,7 @@ def create_synthetic_data(model, input_path, output_path, split=None):
 
     if model == "gemini-2.0-flash":
         # Gemini API
-        with open("../../..Keys/gemini_key.txt", "r") as f:
+        with open("/Users/maxschaffelder/Desktop/Thesis/keys/gemini_key.txt", "r") as f:
             key = f.read().strip()
 
         # Configure Gemini API
@@ -28,7 +28,7 @@ def create_synthetic_data(model, input_path, output_path, split=None):
 
     elif model == "meta-llama/Meta-Llama-3.1-70B-Instruct" or model == "Qwen/Qwen2.5-72B-Instruct" or model == "deepseek-ai/DeepSeek-V3" or model == "meta-llama/Meta-Llama-3.1-405B-Instruct":
         # Deepinfra API
-        with open("../../..Keys/deepinfra_key.txt", "r") as f:
+        with open("/Users/maxschaffelder/Desktop/Thesis/keys/deepinfra_key.txt", "r") as f:
             key = f.read().strip()
 
         client = OpenAI(
@@ -38,21 +38,21 @@ def create_synthetic_data(model, input_path, output_path, split=None):
 
     elif model == "command-r-plus":
         # Cohere API
-        with open("../../..Keys/cohere_key_paid.txt", "r") as f:
+        with open("/Users/maxschaffelder/Desktop/Thesis/keys/cohere_key_paid.txt", "r") as f:
             key = f.read().strip()
         
         client = cohere.ClientV2(key)
 
     elif model == "mistral-large-latest":
         # Mistral API
-        with open("../../..Keys/mistral_key.txt", "r") as f:
+        with open("/Users/maxschaffelder/Desktop/Thesis/keys/mistral_key.txt", "r") as f:
             key = f.read().strip()
 
         client = Mistral(api_key=key)
 
     elif model == "gpt-4o":
         # OpenAI API
-        with open("../../..Keys/openai_key.txt", "r") as f:
+        with open("/Users/maxschaffelder/Desktop/Thesis/keys/openai_key.txt", "r") as f:
             key = f.read().strip()
 
         client = OpenAI(
