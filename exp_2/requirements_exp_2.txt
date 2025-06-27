@@ -15,7 +15,7 @@ tqdm>=4.65.0
 scipy>=1.10.0
 
 # For better performance with transformers
-accelerate>=0.21.0
+accelerate==1.7.0
 bitsandbytes>=0.41.0
 
 # Authentication for Hugging Face models
