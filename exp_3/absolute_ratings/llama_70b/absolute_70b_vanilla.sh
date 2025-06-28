@@ -1,0 +1,59 @@
+#!/bin/bash
+#SBATCH --job-name=absolute_70b_vanilla
+#SBATCH -t 12:00:00
+#SBATCH --ntasks 1
+#SBATCH --cpus-per-task 4
+#SBATCH --mem=50G
+#SBATCH --gpus=2
+#SBATCH --partition=gpu_h100
+#SBATCH -N 1
+
+
+VENV_NAME="venv_exp_3"
+VENV_BASE_DIR="/scratch-shared/mschaffelder" 
+VENV_DIR="$VENV_BASE_DIR/$VENV_NAME"
+PYTHON_MODULE="Python/3.10.4-GCCcore-11.3.0"
+
+# Load required modules
+module load 2024
+module load $PYTHON_MODULE
+
+# Create virtual environment if it doesn't exist
+if [ ! -d "$VENV_DIR/bin" ]; then
+    echo "Creating Python virtual environment $VENV_NAME at $VENV_DIR using $(python --version)"
+    python -m venv $VENV_DIR
+else
+    echo "Virtual environment $VENV_NAME already exists at $VENV_DIR."
+fi
+
+# Activate virtual environment
+echo "Activating virtual environment: $VENV_DIR"
+source $VENV_DIR/bin/activate
+
+# Run script
+cd $SLURM_SUBMIT_DIR
+# Make sure CUDA devices are visible
+
+echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
+echo "Available GPUs: $(nvidia-smi -L)"
+
+# Login to Hugging Face using environment variable
+if [ -n "$HF_TOKEN" ]; then
+    echo "Logging in to Hugging Face using environment variable..."
+    huggingface-cli login --token "$HF_TOKEN"
+elif [ -f ~/.hf_token ]; then
+    echo "Loading Hugging Face token from ~/.hf_token..."
+    source ~/.hf_token
+    huggingface-cli login --token "$HF_TOKEN"
+elif [ -f ~/.cache/huggingface/token ]; then
+    echo "Using existing Hugging Face token from cache..."
+else
+    echo "Warning: No Hugging Face token found. Set HF_TOKEN environment variable or login manually."
+fi
+
+
+python /scratch-shared/mschaffelder/code/exp_3/absolute_ratings/absolute_rating.py \
+    --base_model_path "meta-llama/Llama-3.1-70B-Instruct" \
+    --input_file "/scratch-shared/mschaffelder/data/exp_3/generated/medium/summaries_all.jsonl" \
+    --output_file "/scratch-shared/mschaffelder/data/exp_3/absolute_ratings/medium/llama_70b_vanilla.jsonl" \
+    --system_prompt "You are a helpful assistant. Your task is to rate the provided text in terms of overall quality. The rating should be from one to five, with 'one' being the lowest quality and 'five' being the highest quality. Please write the number only, and nothing else."
