@@ -7,3 +7,4 @@ data_analysis/.ipynb_checkpoints/sbert_embeddings-checkpoint.ipynb
 __pycache__/style_setup.cpython-313.pyc
 exp_3/__pycache__/helper_functions.cpython-313.pyc
 exp_3/data_generation/__pycache__/helper_functions_data_gen.cpython-313.pyc
+__pycache__/
