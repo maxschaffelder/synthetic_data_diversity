@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J judgement-human
+#SBATCH --job-name=judgement_llama_multi
 #SBATCH -t 12:00:00
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 4
@@ -27,13 +27,8 @@ else
 fi
 
 # Activate virtual environment
-# source /scratch-shared/mschaffelder/venv/bin/activate
 echo "Activating virtual environment: $VENV_DIR"
 source $VENV_DIR/bin/activate
-
-# Install required packages
-pip install --upgrade pip
-pip install -r requirements_exp_2.txt
 
 # Run script
 cd $SLURM_SUBMIT_DIR
@@ -58,12 +53,12 @@ fi
 
 # --- Script Configuration ---
 BASE_MODEL_PATH="meta-llama/Llama-3.1-70B-Instruct"
-INPUT_DATA_PATH="/scratch-shared/mschaffelder/data/exp_2/judge/inputs/refusalbench_only/judge_input_refusalbench_8b_human_source.jsonl"
-OUTPUT_PATH="/scratch-shared/mschaffelder/data/exp_2/judge/outputs/refusalbench_only"
-OUTPUT_FILENAME="refusalbench_8b_human_source_judged.jsonl"
+INPUT_DATA_PATH="/scratch-shared/mschaffelder/data/exp_2/judge/inputs/small/rb/refusalbench_8b_multi_source.jsonl"
+OUTPUT_PATH="/scratch-shared/mschaffelder/data/exp_2/judge/outputs/small/rb"
+OUTPUT_FILENAME="rb_8b_multi_judged.jsonl"
 # --- End Script Configuration ---
 
-python judgement_llama.py \
+python ../judgement_llama.py \
     --base_model_path "$BASE_MODEL_PATH" \
     --input_data_path "$INPUT_DATA_PATH" \
     --output_path "$OUTPUT_PATH" \
