@@ -54,6 +54,6 @@ fi
 
 python /scratch-shared/mschaffelder/code/exp_3/absolute_ratings/absolute_rating.py \
     --base_model_path "meta-llama/Llama-3.1-70B-Instruct" \
-    --input_file "/scratch-shared/mschaffelder/data/exp_3/generated/medium/summaries_all.jsonl" \
+    --input_file "/scratch-shared/mschaffelder/data/exp_3/absolute/inputs/medium/summaries_all.jsonl" \
     --output_file "/scratch-shared/mschaffelder/data/exp_3/absolute_ratings/medium/llama_70b_vanilla.jsonl" \
     --system_prompt "You are a helpful assistant. Your task is to rate the provided text in terms of overall quality. The rating should be from one to five, with 'one' being the lowest quality and 'five' being the highest quality. Please write the number only, and nothing else."
