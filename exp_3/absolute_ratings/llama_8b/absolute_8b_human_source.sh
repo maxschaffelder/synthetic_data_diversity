@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=absolute_rating_small_multi_source
+#SBATCH --job-name=absolute_8b_human_source
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
 #SBATCH --time=03:00:00
@@ -10,7 +10,7 @@
 
 
 VENV_NAME="venv_exp_3"
-VENV_BASE_DIR="/scratch-shared/mschaffelder" # Or any other persistent shared directory you prefer
+VENV_BASE_DIR="/scratch-shared/mschaffelder" 
 VENV_DIR="$VENV_BASE_DIR/$VENV_NAME"
 PYTHON_MODULE="Python/3.10.4-GCCcore-11.3.0"
 
@@ -30,9 +30,7 @@ fi
 echo "Activating virtual environment: $VENV_DIR"
 source $VENV_DIR/bin/activate
 
-# Install required packages
-pip install --upgrade pip
-pip install -r ../requirements_exp_3.txt
+
 
 # Run script
 cd $SLURM_SUBMIT_DIR
@@ -57,8 +55,8 @@ fi
 
 python /scratch-shared/mschaffelder/code/exp_3/absolute_ratings/absolute_rating.py \
     --base_model_path "meta-llama/Llama-3.1-8B-Instruct" \
-    --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/small/lora_llama_8b_multi_v3" \
+    --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/small/lora_llama_8b_human" \
     --use_lora \
     --input_file "/scratch-shared/mschaffelder/data/exp_3/generated/small/summaries_all.jsonl" \
-    --output_file "/scratch-shared/mschaffelder/data/exp_3/absolute_ratings/small_multi_source.jsonl" \
+    --output_file "/scratch-shared/mschaffelder/data/exp_3/absolute_ratings/small/llama_8b_human_source.jsonl" \
     --system_prompt "You are a helpful assistant. Your task is to rate the provided text in terms of overall quality. The rating should be from one to five, with 'one' being the lowest quality and 'five' being the highest quality. Please write the number only, and nothing else."
