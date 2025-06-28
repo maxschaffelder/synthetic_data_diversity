@@ -53,7 +53,7 @@ fi
 
 python /scratch-shared/mschaffelder/code/exp_3/pairwise_rankings/pairwise_ranking.py \
     --base_model_path "meta-llama/Llama-3.1-70B-Instruct" \
-    --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/medium/lora_llama_70b_single_source_medium" \
+    --lora_model_path "/scratch-shared/mschaffelder/data/ft_models/medium/llama_70b_single_source_medium" \
     --use_lora \
     --input_file "/scratch-shared/mschaffelder/data/exp_3/pairwise/medium/inputs/pairwise_ranking_input_a_b.jsonl" \
     --output_file "/scratch-shared/mschaffelder/data/exp_3/pairwise/medium/outputs/llama_70b_single_source_medium.jsonl" \
