@@ -1,11 +1,11 @@
 from transformers import pipeline
 import torch
-import sys
 import os
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import json
 from tqdm import tqdm
 import gc
+import sys
 import math
 
 ########################################################
@@ -97,12 +97,12 @@ def create_synthetic_data_local(model_name, model, tokenizer, input_path, output
                 perplexity   = math.exp(avg_neg_logp)
 
                 # Store everything in the data dict
-                model_short = model_name.split("/")[-1]
-                data[f"response_{model_short}"]           = generated_text
-                data[f"tokens_{model_short}"]             = generated_tokens
-                data[f"token_probabilities_{model_short}"]= token_probabilities
-                data[f"token_logprobs_{model_short}"]     = token_logprobs
-                data[f"perplexity_{model_short}"]         = perplexity
+                data["response_model"]  = generated_text
+                data["model_name"] = model_name
+                data["tokens"] = generated_tokens
+                data["token_probabilities"]= token_probabilities
+                data["token_logprobs"]     = token_logprobs 
+                data["perplexity"]         = perplexity
                 
                 # Write out the updated data immediately
                 fout.write(json.dumps(data, ensure_ascii=False))
@@ -155,7 +155,7 @@ if __name__ == "__main__":
     torch.set_grad_enabled(False) # turn off for inference
 
     model_name = "meta-llama/Llama-3.1-8B-Instruct"
-    #model_name = "meta-llama/Llama-3.1-70B-Instruct"
+    model_short = model_name.split("/")[-1]
     
     # Explicitly set device_map to use the H100 if detected
     device_map = "cuda"  # Default behavior uses all available GPUs
@@ -164,8 +164,7 @@ if __name__ == "__main__":
         model_name,
         torch_dtype=torch.float16,
         device_map=device_map,
-        use_safetensors=True#,
-        #attn_implementation="flash_attention_2"  # Enable Flash Attention (first needs to be installed)
+        use_safetensors=True
     )
 
     # Print which device the model is actually on
@@ -176,34 +175,28 @@ if __name__ == "__main__":
 
     # Configuration
 
-    dolly_version = 1
-    from_line = None  # Starting line 
+    for i in range(1, 5):
+        dolly_version = i
+        from_line = None
+        till_line = None
+
+        # Set up paths
+        input_path = f"/scratch-shared/mschaffelder/data/finetuning/dolly/dolly_train_{dolly_version}.jsonl"
+
+        # Create a model-specific output path
+        output_path = f"/scratch-shared/mschaffelder/data/finetuning/synthetic/Small/Llama/dolly_train_{dolly_version}_{model_short}.jsonl"
 
 
+        print(f"Generating data with {model_name}")
 
-    # Set up paths
-    #input_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Dolly/dolly_train_{dolly_version}.jsonl"
-    input_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Dolly/dolly_test.jsonl" # create synthetic test set
-
-
-
-    # Create a model-specific output path
-    model_short = "Llama"
-    # output_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Small/Llama_with_perplexity/dolly_train_{dolly_version}_{model_short}.jsonl"
-    #output_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Small/Llama/dolly_test_{model_short}.jsonl"
-    output_path = f"/scratch-shared/mschaffelder/Data/Finetuning/Augmented/Medium/Llama/dolly_test_{model_short}.jsonl"
-
-
-    print(f"Generating data with {model_name}")
-
-    create_synthetic_data_local(
-        model_name=model_name,
-        model=model,
-        tokenizer=tokenizer,
-        input_path=input_path,
-        output_path=output_path,
-        split=(from_line, None)
-    )
+        create_synthetic_data_local(
+            model_name=model_name,
+            model=model,
+            tokenizer=tokenizer,
+            input_path=input_path,
+            output_path=output_path,
+            split=(from_line, till_line)
+        )
 
 
     print(f"Completed generation with {model_name}")
