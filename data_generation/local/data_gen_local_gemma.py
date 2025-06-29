@@ -176,6 +176,9 @@ if __name__ == "__main__":
         print("CUDA is not available. GPUs cannot be used.")
         sys.exit(1)
 
+    # Allow PyTorch to use TF32 for better performance on modern GPUs
+    torch.set_float32_matmul_precision('high')
+
     # Load the model
     torch.set_grad_enabled(False)
 
