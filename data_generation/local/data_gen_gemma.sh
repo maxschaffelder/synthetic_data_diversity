@@ -62,4 +62,6 @@ else
     echo "Warning: No Hugging Face token found. Set HF_TOKEN environment variable or login manually."
 fi  
 
-python data_gen_local_gemma.py --model_name "google/gemma-2-9b-it" --model_short "Gemma"
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
+python data_gen_local_gemma.py --model_name "google/gemma-2-9b-it" --model_short "Gemma" --batch_size 8

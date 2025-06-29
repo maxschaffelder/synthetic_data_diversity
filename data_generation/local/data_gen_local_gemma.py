@@ -150,6 +150,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate synthetic data using a locally loaded LLM.")
     parser.add_argument("--model_name", type=str, required=True, help="Name of the model from HuggingFace.")
     parser.add_argument("--model_short", type=str, required=True, help="Short name for the model, used in output file paths.")
+    parser.add_argument("--batch_size", type=int, default=16, help="Batch size for generation.")
     args = parser.parse_args()
 
     # Check CUDA availability and GPU information
@@ -207,7 +208,7 @@ if __name__ == "__main__":
 
 
     # Configuration
-    batch_size = 16  # Adjust based on GPU memory
+    batch_size = args.batch_size  # Adjust based on GPU memory
 
     dolly_version = 2
     from_line = None
