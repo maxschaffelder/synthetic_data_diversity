@@ -201,7 +201,7 @@ if __name__ == "__main__":
 
 
     # Configuration
-    batch_size = 16  # Adjust based on GPU memory
+    batch_size = 32  # Adjust based on GPU memory
 
     for i in range(1, 5):
         dolly_version = i
