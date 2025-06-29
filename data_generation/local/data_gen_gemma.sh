@@ -62,4 +62,4 @@ else
     echo "Warning: No Hugging Face token found. Set HF_TOKEN environment variable or login manually."
 fi  
 
-python data_gen_local.py --model_name "google/gemma-2-9b-it" --model_short "Gemma"
+python data_gen_local_gemma.py --model_name "google/gemma-2-9b-it" --model_short "Gemma"
