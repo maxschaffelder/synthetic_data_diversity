@@ -207,7 +207,7 @@ if __name__ == "__main__":
 
 
     # Configuration
-    batch_size = 32  # Adjust based on GPU memory
+    batch_size = 16  # Adjust based on GPU memory
 
     dolly_version = 2
     from_line = None
