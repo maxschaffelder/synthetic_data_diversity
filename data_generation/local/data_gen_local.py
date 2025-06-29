@@ -7,6 +7,7 @@ from tqdm import tqdm
 import gc
 import sys
 import math
+import argparse
 
 ########################################################
 
@@ -149,6 +150,11 @@ def create_synthetic_data_local(model_name, model, tokenizer, input_path, output
 
 if __name__ == "__main__":
 
+    parser = argparse.ArgumentParser(description="Generate synthetic data using a locally loaded LLM.")
+    parser.add_argument("--model_name", type=str, required=True, help="Name of the model from HuggingFace.")
+    parser.add_argument("--model_short", type=str, required=True, help="Short name for the model, used in output file paths.")
+    args = parser.parse_args()
+
     # Check CUDA availability and GPU information
     if torch.cuda.is_available():
         device_count = torch.cuda.device_count()
@@ -176,16 +182,16 @@ if __name__ == "__main__":
     # Load the model
     torch.set_grad_enabled(False)
 
-    model_name = "meta-llama/Llama-3.1-8B-Instruct"
-    model_short = "Llama"
+    model_name = args.model_name
+    model_short = args.model_short
     
     # Explicitly set device_map to use the H100 if detected
-    device_map = "cuda"  # Default behavior uses all available GPUs
+    device_map = "auto"
     
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         torch_dtype=torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16,
-        device_map="auto",
+        device_map=device_map,
         use_safetensors=True
     )
 
