@@ -47,7 +47,6 @@ def create_synthetic_data_local(model_name, model, tokenizer, input_path, output
                 
                 messages_batch = [
                     [
-                        {"role": "system", "content": "You are a helpful assistant."},
                         {"role": "user", "content": instruction}
                     ] for instruction in instructions
                 ]
