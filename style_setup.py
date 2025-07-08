@@ -18,6 +18,9 @@ def set_thesis_style():
         "#C44E52",  # red
         "#8172B2",  # purple
         "#CCB974",  # sand
+        "#DD8452",  # orange
+        "#64B5CD",  # cyan
+        "#797979",  # grey
     ]
     sns.set_palette(palette)
 
