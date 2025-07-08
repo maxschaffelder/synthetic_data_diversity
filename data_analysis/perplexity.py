@@ -1,17 +1,10 @@
-import numpy as np
 from transformers import AutoModelForCausalLM, AutoTokenizer
-import transformers
 import os
 import json
 from tqdm import tqdm
 import torch
 import torch.nn.functional as F
 import gc
-import pandas as pd
-import matplotlib.pyplot as plt
-import glob
-from accelerate import init_empty_weights
-import torch.multiprocessing as mp
 from accelerate.utils import get_max_memory
 
 def get_token_probabilities(model_name, model, input_path, output_path, tokenizer, temperature=1.0, split=None):
