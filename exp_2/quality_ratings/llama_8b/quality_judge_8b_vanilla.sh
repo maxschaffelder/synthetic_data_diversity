@@ -62,4 +62,5 @@ python ../judgement_llama.py \
     --base_model_path "$BASE_MODEL_PATH" \
     --input_data_path "$INPUT_DATA_PATH" \
     --output_path "$OUTPUT_PATH" \
-    --output_filename "$OUTPUT_FILENAME"
+    --output_filename "$OUTPUT_FILENAME" \
+    --start_from_line 793

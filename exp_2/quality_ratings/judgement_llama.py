@@ -128,6 +128,7 @@ def main():
     parser.add_argument("--base_model_path", type=str, default="meta-llama/Llama-3.1-8B-Instruct", help="Path or HuggingFace name of the base model.")
     parser.add_argument("--batch_size", type=int, default=8, help="Batch size for generation.")
     parser.add_argument("--output_filename", type=str, default="judgement_results.jsonl", help="Output filename.")
+    parser.add_argument("--start_from_line", type=int, default=1, help="The line number (1-indexed) to start processing from.")
     
     args = parser.parse_args()
     # --- End Argument Parsing ---
@@ -138,19 +139,24 @@ def main():
     input_data_path = args.input_data_path
     output_path = args.output_path
     output_filename = args.output_filename
+    start_line_one_indexed = args.start_from_line
     # Ensure output directory exists
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     # Construct output path using the output_dir and a fixed filename for now
     output_path = os.path.join(output_path, output_filename)
     
+    # If starting fresh, clear the output file. Otherwise, we are resuming and should append.
+    if start_line_one_indexed <= 1:
+        # Clear/Create the output file for a fresh run
+        with open(output_path, 'w') as f:
+            logging.info(f"Output file {output_path} created/cleared for a new run.")
+    else:
+        logging.info(f"Resuming run. Appending to existing output file: {output_path}")
+
     # Load model and tokenizer
     print("Loading model and tokenizer...")
     model, tokenizer = load_model_and_tokenizer(base_model_path)
 
-    # Clear/Create the output file at the beginning of this run
-    with open(output_path, 'w') as f:
-        logging.info(f"Output file {output_path} created/cleared.")
-    
     # Process test data
     logging.info("Starting to process test data...")
     prompts_batch = []
@@ -158,23 +164,27 @@ def main():
     
     with open(input_data_path, 'r') as f:
         logging.info(f"Opened test data file: {input_data_path}")
-        for i, line in enumerate(f):
-            logging.info(f"Reading line {i+1} from test data...")
+        # Start enumeration from 1 to match line numbers
+        for i, line in enumerate(f, 1):
+            if i < start_line_one_indexed:
+                continue # Skip lines until we reach the desired start line
+
+            logging.info(f"Reading line {i} from test data...")
             try:
                 data = json.loads(line)
                 prompt = data['judge_input']
                 prompts_batch.append(prompt)
                 data_batch_info.append(data) 
-                logging.info(f"Added prompt from line {i+1} to batch.")
+                logging.info(f"Added prompt from line {i} to batch.")
             except json.JSONDecodeError as e:
-                logging.error(f"Error decoding JSON from line {i+1}: {e}")
+                logging.error(f"Error decoding JSON from line {i}: {e}")
                 continue 
             except KeyError as e:
-                logging.error(f"Missing key 'instruction' in line {i+1}: {e}")
+                logging.error(f"Missing key 'instruction' in line {i}: {e}")
                 continue
             
             if len(prompts_batch) == BATCH_SIZE:
-                logging.info(f"Processing batch of {len(prompts_batch)} prompts (up to line {i+1})...")
+                logging.info(f"Processing batch of {len(prompts_batch)} prompts (up to line {i})...")
                 try:
                     generated_responses_batch = generate_response(model, tokenizer, prompts_batch)
                     logging.info(f"Batch of responses generated.")
@@ -193,7 +203,7 @@ def main():
                             f.write(json.dumps(result_item) + '\n')
                     logging.info(f"Appended {len(generated_responses_batch)} results from batch to {output_path}")
                 except Exception as e:
-                    logging.error(f"Error during batch generate_response (lines around {i+1}): {e}")
+                    logging.error(f"Error during batch generate_response (lines around {i}): {e}")
                     # Store error for all items in this failed batch by writing them out
                     with open(output_path, 'a') as f:
                         for original_data in data_batch_info:
