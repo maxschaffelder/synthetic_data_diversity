@@ -1,0 +1,12 @@
+# Core Hugging Face and PyTorch libraries
+transformers
+torch
+accelerate
+
+
+# Utility for progress bars
+tqdm
+
+# For data analysis (as seen in your related notebooks)
+pandas
+numpy
