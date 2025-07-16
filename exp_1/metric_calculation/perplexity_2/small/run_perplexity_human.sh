@@ -42,7 +42,7 @@ echo "Activating virtual environment: $VENV_DIR"
 source $VENV_DIR/bin/activate
 
 pip install --upgrade pip
-pip install -r requirements.txt
+pip install -r ../requirements.txt
 
 
 # Define the model to use for perplexity calculation
