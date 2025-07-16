@@ -1,45 +1,0 @@
-No CUDA module loaded
-No Python module loaded
-Virtual environment venv_data_analysis already exists at /scratch-shared/mschaffelder/venv_data_analysis.
-Activating virtual environment: /scratch-shared/mschaffelder/venv_data_analysis
-/var/spool/slurm/slurmd/job13186516/slurm_script: line 58: åOUTPUT_PATH=/scratch-shared/mschaffelder/data/exp_1/medium/perplexity_2/ppl_lora_llama_70b_multi_small_2.jsonl: No such file or directory
-Starting perplexity calculation for: /scratch-shared/mschaffelder/data/finetuning/dolly/dolly_test.jsonl
-Output will be saved to: 
-Model: meta-llama/Llama-3.1-70B-Instruct
-LoRA Model Path: /scratch-shared/mschaffelder/data/ft_models/medium/llama_70b_multi_source_small
-/scratch-shared/mschaffelder/venv_data_analysis/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
-  backends.update(_get_backends("networkx.backends"))
-Number of available GPUs: 2
-Loading model meta-llama/Llama-3.1-70B-Instruct with multi-GPU parallelism if available...
-Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/30 [00:03<01:43,  3.55s/it]Loading checkpoint shards:   7%|▋         | 2/30 [00:07<01:39,  3.57s/it]Loading checkpoint shards:  10%|█         | 3/30 [00:11<01:41,  3.74s/it]Loading checkpoint shards:  13%|█▎        | 4/30 [00:14<01:38,  3.78s/it]Loading checkpoint shards:  17%|█▋        | 5/30 [00:18<01:32,  3.72s/it]Loading checkpoint shards:  20%|██        | 6/30 [00:22<01:28,  3.68s/it]Loading checkpoint shards:  23%|██▎       | 7/30 [00:25<01:23,  3.65s/it]Loading checkpoint shards:  27%|██▋       | 8/30 [00:29<01:21,  3.72s/it]Loading checkpoint shards:  30%|███       | 9/30 [00:33<01:18,  3.75s/it]Loading checkpoint shards:  33%|███▎      | 10/30 [00:36<01:13,  3.70s/it]Loading checkpoint shards:  37%|███▋      | 11/30 [00:40<01:09,  3.67s/it]Loading checkpoint shards:  40%|████      | 12/30 [00:45<01:14,  4.13s/it]Loading checkpoint shards:  43%|████▎     | 13/30 [00:49<01:08,  4.05s/it]Loading checkpoint shards:  47%|████▋     | 14/30 [00:53<01:03,  3.98s/it]Loading checkpoint shards:  50%|█████     | 15/30 [00:57<00:57,  3.87s/it]Loading checkpoint shards:  53%|█████▎    | 16/30 [01:00<00:53,  3.85s/it]Loading checkpoint shards:  57%|█████▋    | 17/30 [01:04<00:50,  3.86s/it]Loading checkpoint shards:  60%|██████    | 18/30 [01:08<00:47,  3.95s/it]Loading checkpoint shards:  63%|██████▎   | 19/30 [01:13<00:44,  4.00s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [01:16<00:39,  3.97s/it]Loading checkpoint shards:  70%|███████   | 21/30 [01:20<00:35,  3.95s/it]Loading checkpoint shards:  73%|███████▎  | 22/30 [01:24<00:31,  3.93s/it]Loading checkpoint shards:  77%|███████▋  | 23/30 [01:30<00:30,  4.42s/it]Loading checkpoint shards:  80%|████████  | 24/30 [01:34<00:25,  4.26s/it]Loading checkpoint shards:  83%|████████▎ | 25/30 [01:37<00:20,  4.06s/it]Loading checkpoint shards:  87%|████████▋ | 26/30 [01:41<00:15,  3.92s/it]Loading checkpoint shards:  90%|█████████ | 27/30 [01:45<00:11,  3.88s/it]Loading checkpoint shards:  93%|█████████▎| 28/30 [01:49<00:07,  3.95s/it]Loading checkpoint shards:  97%|█████████▋| 29/30 [01:53<00:04,  4.02s/it]Loading checkpoint shards: 100%|██████████| 30/30 [01:55<00:00,  3.34s/it]Loading checkpoint shards: 100%|██████████| 30/30 [01:55<00:00,  3.84s/it]
-Loading LoRA adapter from /scratch-shared/mschaffelder/data/ft_models/medium/llama_70b_multi_source_small...
-Merging LoRA adapter into the base model...
-LoRA adapter merged successfully.
-Model loaded. Device map: {'model.embed_tokens': 0, 'model.layers.0': 0, 'model.layers.1': 0, 'model.layers.2': 0, 'model.layers.3': 0, 'model.layers.4': 0, 'model.layers.5': 0, 'model.layers.6': 0, 'model.layers.7': 0, 'model.layers.8': 0, 'model.layers.9': 0, 'model.layers.10': 0, 'model.layers.11': 0, 'model.layers.12': 0, 'model.layers.13': 0, 'model.layers.14': 0, 'model.layers.15': 0, 'model.layers.16': 0, 'model.layers.17': 0, 'model.layers.18': 0, 'model.layers.19': 0, 'model.layers.20': 0, 'model.layers.21': 0, 'model.layers.22': 0, 'model.layers.23': 0, 'model.layers.24': 0, 'model.layers.25': 0, 'model.layers.26': 0, 'model.layers.27': 0, 'model.layers.28': 0, 'model.layers.29': 0, 'model.layers.30': 0, 'model.layers.31': 0, 'model.layers.32': 0, 'model.layers.33': 0, 'model.layers.34': 0, 'model.layers.35': 0, 'model.layers.36': 0, 'model.layers.37': 0, 'model.layers.38': 0, 'model.layers.39': 0, 'model.layers.40': 1, 'model.layers.41': 1, 'model.layers.42': 1, 'model.layers.43': 1, 'model.layers.44': 1, 'model.layers.45': 1, 'model.layers.46': 1, 'model.layers.47': 1, 'model.layers.48': 1, 'model.layers.49': 1, 'model.layers.50': 1, 'model.layers.51': 1, 'model.layers.52': 1, 'model.layers.53': 1, 'model.layers.54': 1, 'model.layers.55': 1, 'model.layers.56': 1, 'model.layers.57': 1, 'model.layers.58': 1, 'model.layers.59': 1, 'model.layers.60': 1, 'model.layers.61': 1, 'model.layers.62': 1, 'model.layers.63': 1, 'model.layers.64': 1, 'model.layers.65': 1, 'model.layers.66': 1, 'model.layers.67': 1, 'model.layers.68': 1, 'model.layers.69': 1, 'model.layers.70': 1, 'model.layers.71': 1, 'model.layers.72': 1, 'model.layers.73': 1, 'model.layers.74': 1, 'model.layers.75': 1, 'model.layers.76': 1, 'model.layers.77': 1, 'model.layers.78': 1, 'model.layers.79': 1, 'model.norm': 1, 'model.rotary_emb': 1, 'lm_head': 1}
-Processing input file: /scratch-shared/mschaffelder/data/finetuning/dolly/dolly_test.jsonl
-Output will be saved to: 
-Traceback (most recent call last):
-  File "/gpfs/scratch1/shared/mschaffelder/code/exp_1/metric_calculation/perplexity_2/medium/../perplexity.py", line 197, in <module>
-    main()
-  File "/gpfs/scratch1/shared/mschaffelder/code/exp_1/metric_calculation/perplexity_2/medium/../perplexity.py", line 178, in main
-    get_token_probabilities(
-  File "/gpfs/scratch1/shared/mschaffelder/code/exp_1/metric_calculation/perplexity_2/medium/../perplexity.py", line 25, in get_token_probabilities
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-  File "/usr/lib64/python3.9/os.py", line 225, in makedirs
-    mkdir(name, mode)
-FileNotFoundError: [Errno 2] No such file or directory: ''
-Finished perplexity calculation for: /scratch-shared/mschaffelder/data/finetuning/dolly/dolly_test.jsonl
-
-JOB STATISTICS
-==============
-Job ID: 13186516
-Cluster: snellius
-User/Group: mschaffelder/mschaffelder
-State: COMPLETED (exit code 0)
-Nodes: 1
-Cores per node: 16
-CPU Utilized: 00:02:21
-CPU Efficiency: 5.01% of 00:46:56 core-walltime
-Job Wall-clock time: 00:02:56
-Memory Utilized: 3.84 GB
-Memory Efficiency: 7.68% of 50.00 GB (50.00 GB/node)
