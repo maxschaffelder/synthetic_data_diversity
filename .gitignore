@@ -1,10 +1,6 @@
-.DS_Store
-data_analysis/.ipynb_checkpoints/heaps_law-checkpoint.ipynb
-data_generation/.ipynb_checkpoints/data_gen_local-checkpoint.ipynb
-data_analysis/.ipynb_checkpoints/perplexity-checkpoint.ipynb
-data_analysis/.ipynb_checkpoints/sacre_bleu-checkpoint.ipynb
-data_analysis/.ipynb_checkpoints/sbert_embeddings-checkpoint.ipynb
-__pycache__/style_setup.cpython-313.pyc
-exp_3/__pycache__/helper_functions.cpython-313.pyc
-exp_3/data_generation/__pycache__/helper_functions_data_gen.cpython-313.pyc
+*.pyc
 __pycache__/
+.ipynb_checkpoints/
+slurm-*.out
+slurm_outputs/
+.DS_Store
