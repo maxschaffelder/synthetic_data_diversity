@@ -1,58 +1,0 @@
-Lmod has detected the following error: The following module(s) are unknown:
-"Python/3.10.4-GCCcore-11.3.0"
-
-Please check the spelling or version number. Also try "module spider ..."
-It is also possible your cache file is out-of-date; it may help to try:
-  $ module --ignore_cache load "Python/3.10.4-GCCcore-11.3.0"
-
-Also make sure that all modulefiles written in TCL start with the string
-#%Module
-
-
-
-Virtual environment venv_exp_3 already exists at /scratch-shared/mschaffelder/venv_exp_3.
-Activating virtual environment: /scratch-shared/mschaffelder/venv_exp_3
-Requirement already satisfied: pip in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (25.1.1)
-ERROR: Could not open requirements file: [Errno 2] No such file or directory: 'requirements_exp_3.txt'
-CUDA_VISIBLE_DEVICES: 0
-Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-0eb4b41e-62b9-ac15-8254-f3d2014951ee)
-Using existing Hugging Face token from cache...
-/scratch-shared/mschaffelder/venv_exp_3/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
-  backends.update(_get_backends("networkx.backends"))
-2025-05-30 18:45:59,191 - INFO - Starting script with output file: /scratch-shared/mschaffelder/data/exp_3/pairwise_rankings/small_vanilla.jsonl
-2025-05-30 18:45:59,192 - INFO - Starting to load tokenizer from: meta-llama/Llama-3.1-8B-Instruct with padding_side='left'
-2025-05-30 18:45:59,706 - INFO - Tokenizer loaded.
-2025-05-30 18:45:59,706 - WARNING - Tokenizer.pad_token_id (None) is not eos_token_id (128009). Forcing pad_token to eos_token for Llama consistency.
-2025-05-30 18:45:59,706 - INFO - Tokenizer configured: pad_token_id=128009, eos_token_id=128009, padding_side='left'
-2025-05-30 18:45:59,706 - INFO - Starting to load base model from: meta-llama/Llama-3.1-8B-Instruct
-2025-05-30 18:46:02,615 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
-Loading model and tokenizer...
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:11,  3.93s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:07<00:07,  3.95s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:12<00:04,  4.05s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:13<00:00,  2.84s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:13<00:00,  3.26s/it]
-2025-05-30 18:46:15,908 - INFO - Base model loaded. Original vocab size: 128256
-2025-05-30 18:46:15,909 - INFO - Resizing token embeddings from 128256 to 128257...
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-2025-05-30 18:46:18,227 - INFO - Token embeddings resized. New vocab size: 128257
-Traceback (most recent call last):
-  File "/scratch-shared/mschaffelder/code/exp_3/pairwise_rankings/pairwise_ranking.py", line 141, in <module>
-    main()
-  File "/scratch-shared/mschaffelder/code/exp_3/pairwise_rankings/pairwise_ranking.py", line 39, in main
-    model, tokenizer = load_model_and_tokenizer(base_model_path, use_lora, lora_model_path)
-  File "/gpfs/scratch1/shared/mschaffelder/code/exp_3/pairwise_rankings/helper_functions_judge.py", line 51, in load_model_and_tokenizer
-    raise ValueError("lora_model_path must be provided when use_lora is True")
-ValueError: lora_model_path must be provided when use_lora is True
-
-JOB STATISTICS
-==============
-Job ID: 12090297
-Cluster: snellius
-User/Group: mschaffelder/mschaffelder
-State: RUNNING
-Nodes: 1
-Cores per node: 16
-CPU Utilized: 00:00:00
-CPU Efficiency: 0.00% of 00:18:56 core-walltime
-Job Wall-clock time: 00:01:11
-Memory Utilized: 0.00 MB
-Memory Efficiency: 0.00% of 10.00 GB (10.00 GB/node)
-WARNING: Efficiency statistics can only be obtained after the job has ended as seff tool is based on the accounting database data.

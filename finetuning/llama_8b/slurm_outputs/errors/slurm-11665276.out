@@ -1,120 +1,0 @@
-Requirement already satisfied: torch in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 1)) (2.7.0)
-Requirement already satisfied: peft>=0.5.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 2)) (0.15.2)
-Requirement already satisfied: transformers>=4.36.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 3)) (4.51.3)
-Requirement already satisfied: datasets>=2.14.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 4)) (3.5.1)
-Requirement already satisfied: sentencepiece>=0.1.99 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 5)) (0.2.0)
-Requirement already satisfied: huggingface_hub>=0.17.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 6)) (0.30.2)
-Requirement already satisfied: bitsandbytes in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 7)) (0.45.5)
-Requirement already satisfied: tensorboard in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 8)) (2.19.0)
-Requirement already satisfied: filelock in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.18.0)
-Requirement already satisfied: typing-extensions>=4.10.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (4.13.2)
-Requirement already satisfied: setuptools in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (80.1.0)
-Requirement already satisfied: sympy>=1.13.3 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (1.14.0)
-Requirement already satisfied: networkx in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.4.2)
-Requirement already satisfied: jinja2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.1.6)
-Requirement already satisfied: fsspec in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (2025.3.0)
-Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.80)
-Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (9.5.1.17)
-Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.4.1)
-Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (11.3.0.4)
-Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (10.3.7.77)
-Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (11.7.1.2)
-Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.5.4.2)
-Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (0.6.3)
-Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (2.26.2)
-Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.85)
-Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (1.11.1.6)
-Requirement already satisfied: triton==3.3.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.3.0)
-Requirement already satisfied: numpy>=1.17 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (2.2.5)
-Requirement already satisfied: packaging>=20.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (25.0)
-Requirement already satisfied: psutil in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (7.0.0)
-Requirement already satisfied: pyyaml in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (6.0.2)
-Requirement already satisfied: tqdm in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (4.67.1)
-Requirement already satisfied: accelerate>=0.21.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (1.6.0)
-Requirement already satisfied: safetensors in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (0.5.3)
-Requirement already satisfied: regex!=2019.12.17 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from transformers>=4.36.0->-r requirements.txt (line 3)) (2024.11.6)
-Requirement already satisfied: requests in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from transformers>=4.36.0->-r requirements.txt (line 3)) (2.32.3)
-Requirement already satisfied: tokenizers<0.22,>=0.21 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from transformers>=4.36.0->-r requirements.txt (line 3)) (0.21.1)
-Requirement already satisfied: pyarrow>=15.0.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (20.0.0)
-Requirement already satisfied: dill<0.3.9,>=0.3.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (0.3.8)
-Requirement already satisfied: pandas in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (2.2.3)
-Requirement already satisfied: xxhash in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (3.5.0)
-Requirement already satisfied: multiprocess<0.70.17 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (0.70.16)
-Requirement already satisfied: aiohttp in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (3.11.18)
-Requirement already satisfied: absl-py>=0.4 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (2.2.2)
-Requirement already satisfied: grpcio>=1.48.2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (1.71.0)
-Requirement already satisfied: markdown>=2.6.8 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (3.8)
-Requirement already satisfied: protobuf!=4.24.0,>=3.19.6 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (6.30.2)
-Requirement already satisfied: six>1.9 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (1.17.0)
-Requirement already satisfied: tensorboard-data-server<0.8.0,>=0.7.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (0.7.2)
-Requirement already satisfied: werkzeug>=1.0.1 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (3.1.3)
-Requirement already satisfied: aiohappyeyeballs>=2.3.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (2.6.1)
-Requirement already satisfied: aiosignal>=1.1.2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (1.3.2)
-Requirement already satisfied: attrs>=17.3.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (25.3.0)
-Requirement already satisfied: frozenlist>=1.1.1 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (1.6.0)
-Requirement already satisfied: multidict<7.0,>=4.5 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (6.4.3)
-Requirement already satisfied: propcache>=0.2.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (0.3.1)
-Requirement already satisfied: yarl<2.0,>=1.17.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (1.20.0)
-Requirement already satisfied: idna>=2.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from yarl<2.0,>=1.17.0->aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (3.10)
-Requirement already satisfied: charset-normalizer<4,>=2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (3.4.2)
-Requirement already satisfied: urllib3<3,>=1.21.1 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (2.4.0)
-Requirement already satisfied: certifi>=2017.4.17 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (2025.4.26)
-Requirement already satisfied: mpmath<1.4,>=1.1.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from sympy>=1.13.3->torch->-r requirements.txt (line 1)) (1.3.0)
-Requirement already satisfied: MarkupSafe>=2.1.1 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from werkzeug>=1.0.1->tensorboard->-r requirements.txt (line 8)) (3.0.2)
-Requirement already satisfied: python-dateutil>=2.8.2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 4)) (2.9.0.post0)
-Requirement already satisfied: pytz>=2020.1 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 4)) (2025.2)
-Requirement already satisfied: tzdata>=2022.7 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 4)) (2025.2)
-CUDA_VISIBLE_DEVICES: 0
-Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-44a82272-1497-cfc8-f30f-6d344804fa50)
-importing libraries
-done importing libraries
-loading tokenizer
-loading model
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.04it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.05it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.07it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.54it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.32it/s]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-done loading tokenizer and model
-getting peft model
-done getting peft model
-trainable params: 83,886,080 || all params: 8,114,155,520 || trainable%: 1.0338
-loading datasets
-done loading datasets
-train dataset:  DatasetDict({
-    train: Dataset({
-        features: ['instruction', 'response_human', 'response_model', 'model_name', 'category', 'index'],
-        num_rows: 13509
-    })
-})
-val dataset:  DatasetDict({
-    test: Dataset({
-        features: ['instruction', 'response_human', 'response_model', 'model_name', 'category', 'index'],
-        num_rows: 1502
-    })
-})
-filtering long examples
-done filtering long examples
-Map:   0%|          | 0/13480 [00:00<?, ? examples/s]Map:   1%|          | 122/13480 [00:00<00:11, 1190.01 examples/s]Map:   2%|▏         | 299/13480 [00:00<00:11, 1172.71 examples/s]Map:   3%|▎         | 459/13480 [00:00<00:11, 1116.19 examples/s]Map:   4%|▍         | 575/13480 [00:00<00:11, 1121.46 examples/s]Map:   6%|▌         | 746/13480 [00:00<00:11, 1123.30 examples/s]Map:   6%|▋         | 868/13480 [00:00<00:10, 1147.50 examples/s]Map:   7%|▋         | 986/13480 [00:00<00:10, 1153.15 examples/s]Map:   8%|▊         | 1118/13480 [00:01<00:14, 879.80 examples/s]Map:   9%|▉         | 1231/13480 [00:01<00:13, 935.67 examples/s]Map:  10%|▉         | 1340/13480 [00:01<00:12, 971.87 examples/s]Map:  11%|█         | 1458/13480 [00:01<00:11, 1022.26 examples/s]Map:  12%|█▏        | 1566/13480 [00:01<00:11, 1034.64 examples/s]Map:  12%|█▏        | 1677/13480 [00:01<00:11, 1052.09 examples/s]Map:  13%|█▎        | 1804/13480 [00:01<00:10, 1106.46 examples/s]Map:  14%|█▍        | 1918/13480 [00:01<00:10, 1115.07 examples/s]Map:  15%|█▌        | 2061/13480 [00:01<00:11, 970.32 examples/s] Map:  16%|█▌        | 2183/13480 [00:02<00:10, 1031.94 examples/s]Map:  17%|█▋        | 2299/13480 [00:02<00:10, 1062.26 examples/s]Map:  18%|█▊        | 2418/13480 [00:02<00:10, 1089.08 examples/s]Map:  19%|█▉        | 2538/13480 [00:02<00:09, 1118.75 examples/s]Map:  20%|██        | 2700/13480 [00:02<00:09, 1099.18 examples/s]Map:  21%|██        | 2821/13480 [00:02<00:09, 1124.90 examples/s]Map:  22%|██▏       | 2939/13480 [00:02<00:09, 1135.08 examples/s]Map:  23%|██▎       | 3059/13480 [00:02<00:10, 971.26 examples/s] Map:  24%|██▎       | 3178/13480 [00:03<00:10, 1025.05 examples/s]Map:  24%|██▍       | 3294/13480 [00:03<00:09, 1058.34 examples/s]Map:  25%|██▌       | 3420/13480 [00:03<00:09, 1110.02 examples/s]Map:  27%|██▋       | 3595/13480 [00:03<00:08, 1128.73 examples/s]Map:  28%|██▊       | 3716/13480 [00:03<00:08, 1147.35 examples/s]Map:  29%|██▉       | 3886/13480 [00:03<00:08, 1137.50 examples/s]Map:  30%|███       | 4056/13480 [00:03<00:09, 993.26 examples/s] Map:  31%|███       | 4161/13480 [00:03<00:09, 1000.33 examples/s]Map:  32%|███▏      | 4274/13480 [00:04<00:08, 1027.49 examples/s]Map:  33%|███▎      | 4394/13480 [00:04<00:08, 1068.87 examples/s]Map:  33%|███▎      | 4515/13480 [00:04<00:08, 1103.32 examples/s]Map:  35%|███▍      | 4681/13480 [00:04<00:07, 1101.92 examples/s]Map:  36%|███▌      | 4807/13480 [00:04<00:07, 1138.16 examples/s]Map:  37%|███▋      | 4928/13480 [00:04<00:07, 1154.33 examples/s]Map:  38%|███▊      | 5055/13480 [00:04<00:08, 968.35 examples/s] Map:  38%|███▊      | 5173/13480 [00:04<00:08, 1017.01 examples/s]Map:  39%|███▉      | 5294/13480 [00:04<00:07, 1065.96 examples/s]Map:  40%|████      | 5418/13480 [00:05<00:07, 1111.42 examples/s]Map:  41%|████▏     | 5592/13480 [00:05<00:07, 1126.81 examples/s]Map:  42%|████▏     | 5718/13480 [00:05<00:06, 1156.79 examples/s]Map:  44%|████▎     | 5886/13480 [00:05<00:06, 1140.04 examples/s]Map:  45%|████▍     | 6060/13480 [00:05<00:07, 1007.34 examples/s]Map:  46%|████▌     | 6192/13480 [00:05<00:06, 1068.60 examples/s]Map:  47%|████▋     | 6308/13480 [00:05<00:06, 1085.98 examples/s]Map:  48%|████▊     | 6421/13480 [00:05<00:06, 1094.18 examples/s]Map:  49%|████▉     | 6583/13480 [00:06<00:06, 1084.37 examples/s]Map:  50%|████▉     | 6705/13480 [00:06<00:06, 1116.27 examples/s]Map:  51%|█████     | 6823/13480 [00:06<00:05, 1132.15 examples/s]Map:  52%|█████▏    | 6989/13480 [00:06<00:05, 1118.07 examples/s]Map:  53%|█████▎    | 7112/13480 [00:06<00:06, 957.26 examples/s] Map:  54%|█████▎    | 7232/13480 [00:06<00:06, 1012.10 examples/s]Map:  55%|█████▍    | 7349/13480 [00:06<00:05, 1047.19 examples/s]Map:  55%|█████▌    | 7466/13480 [00:06<00:05, 1076.42 examples/s]Map:  56%|█████▋    | 7583/13480 [00:07<00:05, 1099.09 examples/s]Map:  57%|█████▋    | 7745/13480 [00:07<00:05, 1087.83 examples/s]Map:  58%|█████▊    | 7863/13480 [00:07<00:05, 1107.97 examples/s]Map:  59%|█████▉    | 7977/13480 [00:07<00:04, 1110.70 examples/s]Map:  60%|██████    | 8111/13480 [00:07<00:05, 939.71 examples/s] Map:  61%|██████    | 8228/13480 [00:07<00:05, 991.35 examples/s]Map:  62%|██████▏   | 8341/13480 [00:07<00:05, 1024.50 examples/s]Map:  63%|██████▎   | 8458/13480 [00:07<00:04, 1058.23 examples/s]Map:  64%|██████▎   | 8577/13480 [00:08<00:04, 1090.54 examples/s]Map:  64%|██████▍   | 8694/13480 [00:08<00:04, 1111.84 examples/s]Map:  65%|██████▌   | 8816/13480 [00:08<00:04, 1137.80 examples/s]Map:  67%|██████▋   | 8989/13480 [00:08<00:03, 1138.88 examples/s]Map:  68%|██████▊   | 9121/13480 [00:08<00:04, 984.39 examples/s] Map:  69%|██████▊   | 9241/13480 [00:08<00:04, 1029.56 examples/s]Map:  69%|██████▉   | 9360/13480 [00:08<00:03, 1068.96 examples/s]Map:  70%|███████   | 9484/13480 [00:08<00:03, 1113.05 examples/s]Map:  71%|███████▏  | 9606/13480 [00:08<00:03, 1137.61 examples/s]Map:  72%|███████▏  | 9724/13480 [00:09<00:03, 1147.66 examples/s]Map:  73%|███████▎  | 9900/13480 [00:09<00:03, 1152.93 examples/s]Map:  75%|███████▍  | 10062/13480 [00:09<00:03, 1009.16 examples/s]Map:  75%|███████▌  | 10173/13480 [00:09<00:03, 1030.68 examples/s]Map:  77%|███████▋  | 10344/13480 [00:09<00:02, 1061.27 examples/s]Map:  78%|███████▊  | 10460/13480 [00:09<00:02, 1080.76 examples/s]Map:  78%|███████▊  | 10571/13480 [00:09<00:02, 1082.51 examples/s]Map:  79%|███████▉  | 10688/13480 [00:09<00:02, 1104.46 examples/s]Map:  80%|████████  | 10808/13480 [00:10<00:02, 1123.47 examples/s]Map:  81%|████████  | 10930/13480 [00:10<00:02, 1143.82 examples/s]Map:  82%|████████▏ | 11059/13480 [00:10<00:02, 965.61 examples/s] Map:  83%|████████▎ | 11170/13480 [00:10<00:02, 1000.12 examples/s]Map:  84%|████████▍ | 11295/13480 [00:10<00:02, 1063.93 examples/s]Map:  85%|████████▍ | 11426/13480 [00:10<00:01, 1126.47 examples/s]Map:  86%|████████▌ | 11594/13480 [00:10<00:01, 1121.94 examples/s]Map:  87%|████████▋ | 11768/13480 [00:10<00:01, 1128.57 examples/s]Map:  88%|████████▊ | 11887/13480 [00:11<00:01, 1139.13 examples/s]Map:  89%|████████▉ | 12055/13480 [00:11<00:01, 980.28 examples/s] Map:  90%|█████████ | 12180/13480 [00:11<00:01, 1039.36 examples/s]Map:  91%|█████████▏| 12303/13480 [00:11<00:01, 1083.58 examples/s]Map:  92%|█████████▏| 12431/13480 [00:11<00:00, 1131.15 examples/s]Map:  94%|█████████▎| 12610/13480 [00:11<00:00, 1144.10 examples/s]Map:  95%|█████████▍| 12780/13480 [00:12<00:00, 902.86 examples/s] Map:  96%|█████████▌| 12907/13480 [00:12<00:00, 847.94 examples/s]Map:  96%|█████████▋| 13000/13480 [00:12<00:00, 795.35 examples/s]Map:  97%|█████████▋| 13119/13480 [00:12<00:00, 876.57 examples/s]Map:  98%|█████████▊| 13231/13480 [00:12<00:00, 931.37 examples/s]Map:  99%|█████████▉| 13340/13480 [00:12<00:00, 969.32 examples/s]Map: 100%|█████████▉| 13447/13480 [00:12<00:00, 993.41 examples/s]Map: 100%|██████████| 13480/13480 [00:12<00:00, 1053.48 examples/s]
-Map:   0%|          | 0/1500 [00:00<?, ? examples/s]Map:   8%|▊         | 120/1500 [00:00<00:01, 1169.25 examples/s]Map:  19%|█▉        | 292/1500 [00:00<00:01, 1151.05 examples/s]Map:  27%|██▋       | 412/1500 [00:00<00:01, 933.10 examples/s] Map:  35%|███▌      | 532/1500 [00:00<00:00, 1014.91 examples/s]Map:  43%|████▎     | 648/1500 [00:00<00:00, 1057.70 examples/s]Map:  51%|█████▏    | 771/1500 [00:00<00:00, 1107.41 examples/s]Map:  59%|█████▉    | 887/1500 [00:00<00:00, 1115.13 examples/s]Map:  71%|███████   | 1059/1500 [00:01<00:00, 959.27 examples/s]Map:  78%|███████▊  | 1174/1500 [00:01<00:00, 1001.91 examples/s]Map:  86%|████████▌ | 1283/1500 [00:01<00:00, 1024.04 examples/s]Map:  93%|█████████▎| 1398/1500 [00:01<00:00, 1055.51 examples/s]Map: 100%|██████████| 1500/1500 [00:01<00:00, 1023.36 examples/s]
-Traceback (most recent call last):
-  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/finetuning_dr.py", line 102, in <module>
-    training_args = TrainingArguments(
-                    ^^^^^^^^^^^^^^^^^^
-TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'
-
-JOB STATISTICS
-==============
-Job ID: 11665276
-Cluster: snellius
-User/Group: mschaffelder/mschaffelder
-State: RUNNING
-Nodes: 1
-Cores per node: 16
-CPU Utilized: 00:00:00
-CPU Efficiency: 0.00% of 00:28:00 core-walltime
-Job Wall-clock time: 00:01:45
-Memory Utilized: 0.00 MB
-Memory Efficiency: 0.00% of 80.00 GB (80.00 GB/node)
-WARNING: Efficiency statistics can only be obtained after the job has ended as seff tool is based on the accounting database data.

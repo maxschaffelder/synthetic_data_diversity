@@ -1,140 +1,0 @@
-Requirement already satisfied: torch in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 1)) (2.7.0)
-Requirement already satisfied: peft>=0.5.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 2)) (0.15.2)
-Requirement already satisfied: transformers>=4.36.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 3)) (4.51.3)
-Requirement already satisfied: datasets>=2.14.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 4)) (3.5.1)
-Requirement already satisfied: sentencepiece>=0.1.99 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 5)) (0.2.0)
-Requirement already satisfied: huggingface_hub>=0.17.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 6)) (0.30.2)
-Requirement already satisfied: bitsandbytes in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 7)) (0.45.5)
-Requirement already satisfied: tensorboard in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 8)) (2.19.0)
-Collecting flash-attn==2.7.2.post1 (from -r requirements.txt (line 9))
-  Using cached flash_attn-2.7.2.post1.tar.gz (3.1 MB)
-  Preparing metadata (setup.py): started
-  Preparing metadata (setup.py): finished with status 'error'
-  error: subprocess-exited-with-error
-  
-  × python setup.py egg_info did not run successfully.
-  │ exit code: 1
-  ╰─> [23 lines of output]
-      fatal: not a git repository (or any parent up to mount point /gpfs)
-      Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
-      /gpfs/scratch1/nodespecific/gcn136/mschaffelder.11898773/pip-install-le_n6pq3/flash-attn_a30334d51219487198ab43b7bb22d152/setup.py:99: UserWarning: flash_attn was requested, but nvcc was not found.  Are you sure your environment has nvcc available?  If you're installing within a container from https://hub.docker.com/r/pytorch/pytorch, only images whose names contain 'devel' will provide nvcc.
-        warnings.warn(
-      Traceback (most recent call last):
-        File "<string>", line 2, in <module>
-        File "<pip-setuptools-caller>", line 35, in <module>
-        File "/gpfs/scratch1/nodespecific/gcn136/mschaffelder.11898773/pip-install-le_n6pq3/flash-attn_a30334d51219487198ab43b7bb22d152/setup.py", line 177, in <module>
-          CUDAExtension(
-        File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/utils/cpp_extension.py", line 1279, in CUDAExtension
-          library_dirs += library_paths(device_type="cuda")
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/utils/cpp_extension.py", line 1490, in library_paths
-          if (not os.path.exists(_join_cuda_home(lib_dir)) and
-                                 ^^^^^^^^^^^^^^^^^^^^^^^^
-        File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/utils/cpp_extension.py", line 2889, in _join_cuda_home
-          raise OSError('CUDA_HOME environment variable is not set. '
-      OSError: CUDA_HOME environment variable is not set. Please set it to your CUDA install root.
-      
-      
-      torch.__version__  = 2.7.0+cu126
-      
-      
-      [end of output]
-  
-  note: This error originates from a subprocess, and is likely not a problem with pip.
-error: metadata-generation-failed
-
-× Encountered error while generating package metadata.
-╰─> See above for output.
-
-note: This is an issue with the package mentioned above, not pip.
-hint: See above for details.
-CUDA_VISIBLE_DEVICES: 0,1,2,3
-Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-83b89997-4c59-ccec-c815-2cf9d466e59a)
-GPU 1: NVIDIA H100 (UUID: GPU-84641d84-1be3-f7d7-131a-226c76fffdfa)
-GPU 2: NVIDIA H100 (UUID: GPU-0304c625-44f1-203f-5d93-4163b763c714)
-GPU 3: NVIDIA H100 (UUID: GPU-66ca594d-a371-2801-4408-26842e5319cc)
-The token has not been saved to the git credentials helper. Pass `add_to_git_credential=True` in this function directly or `--add-to-git-credential` if using via `huggingface-cli` if you want to set the git credential as well.
-Token is valid (permission: fineGrained).
-The token `MaxBook Air` has been saved to /home/mschaffelder/.cache/huggingface/stored_tokens
-Your token has been saved to /home/mschaffelder/.cache/huggingface/token
-Login successful.
-The current active token is: `MaxBook Air`
-importing libraries
-importing libraries
-importing libraries
-importing libraries
-done importing libraries
-done importing librariesloading tokenizer
-done importing libraries
-done importing librariesloading tokenizer
-
-
-loading tokenizerloading tokenizer
-
-loading model
-loading model
-loading model
-loading model
-Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 5/30 [00:00<00:00, 43.82it/s]Loading checkpoint shards:  17%|█▋        | 5/30 [00:00<00:00, 43.88it/s]Loading checkpoint shards:  17%|█▋        | 5/30 [00:00<00:00, 43.80it/s]Loading checkpoint shards:  17%|█▋        | 5/30 [00:00<00:00, 43.66it/s]Loading checkpoint shards:  33%|███▎      | 10/30 [00:00<00:00, 41.62it/s]Loading checkpoint shards:  33%|███▎      | 10/30 [00:00<00:00, 41.70it/s]Loading checkpoint shards:  33%|███▎      | 10/30 [00:00<00:00, 41.66it/s]Loading checkpoint shards:  33%|███▎      | 10/30 [00:00<00:00, 41.67it/s]Loading checkpoint shards:  50%|█████     | 15/30 [00:00<00:00, 42.43it/s]Loading checkpoint shards:  50%|█████     | 15/30 [00:00<00:00, 42.46it/s]Loading checkpoint shards:  50%|█████     | 15/30 [00:00<00:00, 42.46it/s]Loading checkpoint shards:  50%|█████     | 15/30 [00:00<00:00, 42.47it/s]Loading checkpoint shards:  67%|██████▋   | 20/30 [00:00<00:00, 40.44it/s]Loading checkpoint shards:  67%|██████▋   | 20/30 [00:00<00:00, 40.46it/s]Loading checkpoint shards:  67%|██████▋   | 20/30 [00:00<00:00, 40.45it/s]Loading checkpoint shards:  67%|██████▋   | 20/30 [00:00<00:00, 40.45it/s]Loading checkpoint shards:  83%|████████▎ | 25/30 [00:00<00:00, 40.71it/s]Loading checkpoint shards:  83%|████████▎ | 25/30 [00:00<00:00, 40.72it/s]Loading checkpoint shards:  83%|████████▎ | 25/30 [00:00<00:00, 40.73it/s]Loading checkpoint shards:  83%|████████▎ | 25/30 [00:00<00:00, 40.72it/s]Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 42.46it/s]Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 42.46it/s]
-Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 42.45it/s]Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 42.43it/s]
-
-
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-W0517 00:00:30.687000 3562023 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 3562245 closing signal SIGTERM
-W0517 00:00:30.691000 3562023 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 3562246 closing signal SIGTERM
-W0517 00:00:30.692000 3562023 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 3562248 closing signal SIGTERM
-E0517 00:00:30.856000 3562023 torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: -9) local_rank: 2 (pid: 3562247) of binary: /gpfs/scratch1/shared/mschaffelder/venv/bin/python
-Traceback (most recent call last):
-  File "/gpfs/scratch1/shared/mschaffelder/venv/bin/torchrun", line 8, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
-    return f(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/distributed/run.py", line 892, in main
-    run(args)
-  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/distributed/run.py", line 883, in run
-    elastic_launch(
-  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
-    return launch_agent(self._config, self._entrypoint, list(args))
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
-    raise ChildFailedError(
-torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
-========================================================
-finetuning_70b.py FAILED
---------------------------------------------------------
-Failures:
-  <NO_OTHER_FAILURES>
---------------------------------------------------------
-Root Cause (first observed failure):
-[0]:
-  time      : 2025-05-17_00:00:30
-  host      : gcn136.local.snellius.surf.nl
-  rank      : 2 (local_rank: 2)
-  exitcode  : -9 (pid: 3562247)
-  error_file: <N/A>
-  traceback : Signal 9 (SIGKILL) received by PID 3562247
-========================================================
-slurmstepd: error: Detected 1 oom_kill event in StepId=11898773.batch. Some of the step tasks have been OOM Killed.
-
-JOB STATISTICS
-==============
-Job ID: 11898773
-Cluster: snellius
-User/Group: mschaffelder/mschaffelder
-State: OUT_OF_MEMORY (exit code 0)
-Nodes: 1
-Cores per node: 64
-CPU Utilized: 00:22:59
-CPU Efficiency: 14.36% of 02:40:00 core-walltime
-Job Wall-clock time: 00:02:30
-Memory Utilized: 7.57 GB
-Memory Efficiency: 15.14% of 50.00 GB (50.00 GB/node)

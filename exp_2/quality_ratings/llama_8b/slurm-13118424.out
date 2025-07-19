@@ -1,89 +1,0 @@
-Lmod has detected the following error: The following module(s) are unknown:
-"Python/3.10.4-GCCcore-11.3.0"
-
-Please check the spelling or version number. Also try "module spider ..."
-It is also possible your cache file is out-of-date; it may help to try:
-  $ module --ignore_cache load "Python/3.10.4-GCCcore-11.3.0"
-
-Also make sure that all modulefiles written in TCL start with the string
-#%Module
-
-
-
-Virtual environment venv_exp_2 already exists at /scratch-shared/mschaffelder/venv_exp_2.
-Activating virtual environment: /scratch-shared/mschaffelder/venv_exp_2
-CUDA_VISIBLE_DEVICES: 0,1
-Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-c3f5ba24-8f1d-b055-fe5e-f778bb5564b4)
-GPU 1: NVIDIA H100 (UUID: GPU-5b5d0aaf-d284-d0ba-f7a4-2513043c1af2)
-Using existing Hugging Face token from cache...
-/scratch-shared/mschaffelder/venv_exp_2/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
-  backends.update(_get_backends("networkx.backends"))
-2025-07-11 16:28:59,488 - INFO - Output file /scratch-shared/mschaffelder/data/exp_2/quality_judge/outputs/small/rb_jb/rb_jb_8b_multi_judged.jsonl created/cleared for a new run.
-2025-07-11 16:28:59,489 - INFO - Starting to load tokenizer from: meta-llama/Llama-3.1-70B-Instruct with padding_side='left'
-2025-07-11 16:28:59,988 - INFO - Tokenizer loaded.
-2025-07-11 16:28:59,988 - WARNING - Tokenizer.pad_token_id (None) is not eos_token_id (128009). Forcing pad_token to eos_token for Llama consistency.
-2025-07-11 16:28:59,988 - INFO - Tokenizer configured: pad_token_id=128009, eos_token_id=128009, padding_side='left'
-2025-07-11 16:28:59,988 - INFO - Starting to load base model from: meta-llama/Llama-3.1-70B-Instruct
-Loading model and tokenizer...
-Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/30 [00:03<01:45,  3.63s/it]Loading checkpoint shards:   7%|▋         | 2/30 [00:07<01:44,  3.72s/it]Loading checkpoint shards:  10%|█         | 3/30 [00:11<01:45,  3.91s/it]Loading checkpoint shards:  13%|█▎        | 4/30 [00:15<01:43,  3.99s/it]Loading checkpoint shards:  17%|█▋        | 5/30 [00:19<01:40,  4.04s/it]Loading checkpoint shards:  20%|██        | 6/30 [00:23<01:37,  4.07s/it]Loading checkpoint shards:  23%|██▎       | 7/30 [00:28<01:33,  4.08s/it]Loading checkpoint shards:  27%|██▋       | 8/30 [00:32<01:30,  4.10s/it]Loading checkpoint shards:  30%|███       | 9/30 [00:36<01:27,  4.18s/it]Loading checkpoint shards:  33%|███▎      | 10/30 [00:40<01:25,  4.27s/it]Loading checkpoint shards:  37%|███▋      | 11/30 [00:44<01:19,  4.16s/it]Loading checkpoint shards:  40%|████      | 12/30 [00:47<01:04,  3.56s/it]Loading checkpoint shards:  43%|████▎     | 13/30 [00:48<00:51,  3.04s/it]Loading checkpoint shards:  47%|████▋     | 14/30 [00:50<00:42,  2.68s/it]Loading checkpoint shards:  50%|█████     | 15/30 [00:55<00:49,  3.29s/it]Loading checkpoint shards:  53%|█████▎    | 16/30 [00:59<00:47,  3.40s/it]Loading checkpoint shards:  57%|█████▋    | 17/30 [01:02<00:45,  3.49s/it]Loading checkpoint shards:  60%|██████    | 18/30 [01:06<00:43,  3.65s/it]Loading checkpoint shards:  63%|██████▎   | 19/30 [01:10<00:41,  3.79s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [01:14<00:38,  3.83s/it]Loading checkpoint shards:  70%|███████   | 21/30 [01:18<00:34,  3.85s/it]Loading checkpoint shards:  73%|███████▎  | 22/30 [01:22<00:30,  3.87s/it]Loading checkpoint shards:  77%|███████▋  | 23/30 [01:24<00:22,  3.28s/it]Loading checkpoint shards:  80%|████████  | 24/30 [01:26<00:17,  2.86s/it]Loading checkpoint shards:  83%|████████▎ | 25/30 [01:28<00:12,  2.52s/it]Loading checkpoint shards:  87%|████████▋ | 26/30 [01:29<00:09,  2.28s/it]Loading checkpoint shards:  90%|█████████ | 27/30 [01:33<00:08,  2.75s/it]Loading checkpoint shards:  93%|█████████▎| 28/30 [01:35<00:04,  2.48s/it]Loading checkpoint shards:  97%|█████████▋| 29/30 [01:37<00:02,  2.31s/it]Loading checkpoint shards: 100%|██████████| 30/30 [01:38<00:00,  1.85s/it]Loading checkpoint shards: 100%|██████████| 30/30 [01:38<00:00,  3.28s/it]
-2025-07-11 16:30:47,190 - INFO - Base model loaded. Original vocab size: 128256
-2025-07-11 16:30:47,190 - INFO - Aligning model.config.pad_token_id (None) to tokenizer.pad_token_id (128009).
-2025-07-11 16:30:47,190 - INFO - Starting to process test data...
-2025-07-11 16:30:47,305 - INFO - Opened test data file: /scratch-shared/mschaffelder/data/exp_2/quality_judge/inputs/small/rb_jb/refusalbench_jailbreak_8b_multi_source.jsonl
-2025-07-11 16:30:47,358 - INFO - Reading line 1 from test data...
-2025-07-11 16:30:47,358 - INFO - Added prompt from line 1 to batch.
-2025-07-11 16:30:47,358 - INFO - Reading line 2 from test data...
-2025-07-11 16:30:47,358 - INFO - Added prompt from line 2 to batch.
-2025-07-11 16:30:47,358 - INFO - Reading line 3 from test data...
-2025-07-11 16:30:47,358 - INFO - Added prompt from line 3 to batch.
-2025-07-11 16:30:47,358 - INFO - Reading line 4 from test data...
-2025-07-11 16:30:47,358 - INFO - Added prompt from line 4 to batch.
-2025-07-11 16:30:47,358 - INFO - Reading line 5 from test data...
-2025-07-11 16:30:47,358 - INFO - Added prompt from line 5 to batch.
-2025-07-11 16:30:47,358 - INFO - Reading line 6 from test data...
-2025-07-11 16:30:47,358 - INFO - Added prompt from line 6 to batch.
-2025-07-11 16:30:47,358 - INFO - Reading line 7 from test data...
-2025-07-11 16:30:47,358 - INFO - Added prompt from line 7 to batch.
-2025-07-11 16:30:47,359 - INFO - Reading line 8 from test data...
-2025-07-11 16:30:47,359 - INFO - Added prompt from line 8 to batch.
-2025-07-11 16:30:47,359 - INFO - Processing batch of 8 prompts (up to line 8)...
-2025-07-11 16:30:47,359 - INFO - Generating responses for batch of 8 prompts. System prompt: 'You are a helpful assistant.'
-2025-07-11 16:30:47,378 - INFO - First formatted prompt for tokenizer (first 100 chars): '<|begin_of_text|><|start_header_id|>system<|end_header_id|>
-
-Cutting Knowledge Date: December 2023
-T...'
-2025-07-11 16:30:47,379 - INFO - Input device: cuda:0, preparing to move inputs to device.
-2025-07-11 16:30:47,387 - INFO - Batch of inputs tokenized, padded, truncated, and moved to model device.
-2025-07-11 16:30:47,387 - INFO - Starting batched model.generate()...
-Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-2025-07-11 16:31:33,884 - INFO - Batched model.generate() completed.
-2025-07-11 16:31:33,884 - INFO - Decoding batch of responses by stripping input tokens...
-2025-07-11 16:31:33,886 - INFO - Input tokens stripped from responses.
-2025-07-11 16:31:33,887 - INFO - Batch of responses generated.
-2025-07-11 16:31:33,964 - INFO - Appended 8 results from batch to /scratch-shared/mschaffelder/data/exp_2/quality_judge/outputs/small/rb_jb/rb_jb_8b_multi_judged.jsonl
-2025-07-11 16:31:33,964 - INFO - Reading line 9 from test data...
-2025-07-11 16:31:33,964 - INFO - Added prompt from line 9 to batch.
-2025-07-11 16:31:33,964 - INFO - Reading line 10 from test data...
-2025-07-11 16:31:33,964 - INFO - Added prompt from line 10 to batch.
-2025-07-11 16:31:33,964 - INFO - Reading line 11 from test data...
-2025-07-11 16:31:33,964 - INFO - Added prompt from line 11 to batch.
-2025-07-11 16:31:33,964 - INFO - Reading line 12 from test data...
-2025-07-11 16:31:33,964 - INFO - Added prompt from line 12 to batch.
-2025-07-11 16:31:33,964 - INFO - Reading line 13 from test data...
-2025-07-11 16:31:33,964 - INFO - Added prompt from line 13 to batch.
-2025-07-11 16:31:33,964 - INFO - Reading line 14 from test data...
-2025-07-11 16:31:33,964 - INFO - Added prompt from line 14 to batch.
-2025-07-11 16:31:33,964 - INFO - Reading line 15 from test data...
-2025-07-11 16:31:33,964 - INFO - Added prompt from line 15 to batch.
-2025-07-11 16:31:33,964 - INFO - Reading line 16 from test data...
-2025-07-11 16:31:33,965 - INFO - Added prompt from line 16 to batch.
-2025-07-11 16:31:33,965 - INFO - Processing batch of 8 prompts (up to line 16)...
-2025-07-11 16:31:33,965 - INFO - Generating responses for batch of 8 prompts. System prompt: 'You are a helpful assistant.'
-2025-07-11 16:31:33,965 - INFO - First formatted prompt for tokenizer (first 100 chars): '<|begin_of_text|><|start_header_id|>system<|end_header_id|>
-
-Cutting Knowledge Date: December 2023
-T...'
-2025-07-11 16:31:33,965 - INFO - Input device: cuda:0, preparing to move inputs to device.
-2025-07-11 16:31:33,971 - INFO - Batch of inputs tokenized, padded, truncated, and moved to model device.
-2025-07-11 16:31:33,971 - INFO - Starting batched model.generate()...
-Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.

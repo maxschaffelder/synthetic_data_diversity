@@ -1,68 +1,0 @@
-Requirement already satisfied: torch in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 1)) (2.6.0)
-Requirement already satisfied: peft>=0.5.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 2)) (0.15.2)
-Requirement already satisfied: transformers>=4.36.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 3)) (4.51.3)
-Requirement already satisfied: datasets>=2.14.0 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 4)) (3.5.1)
-Requirement already satisfied: sentencepiece>=0.1.99 in /gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages (from -r requirements.txt (line 5)) (0.2.0)
-ERROR: Could not find a version that satisfies the requirement huggingface-cli>=0.1.0 (from versions: none)
-
-[notice] A new release of pip is available: 25.1 -> 25.1.1
-[notice] To update, run: pip install --upgrade pip
-ERROR: No matching distribution found for huggingface-cli>=0.1.0
-CUDA_VISIBLE_DEVICES: 0
-Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-2e2c9bc9-c23e-80e1-2737-c2756d6183ce)
-The token has not been saved to the git credentials helper. Pass `add_to_git_credential=True` in this function directly or `--add-to-git-credential` if using via `huggingface-cli` if you want to set the git credential as well.
-Token is valid (permission: fineGrained).
-The token `MaxBook Air` has been saved to /home/mschaffelder/.cache/huggingface/stored_tokens
-Your token has been saved to /home/mschaffelder/.cache/huggingface/token
-Login successful.
-The current active token is: `MaxBook Air`
-Loading tokenizer and model...
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.64s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.67s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.61s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.12s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.31s/it]
-/gpfs/scratch1/shared/mschaffelder/code/finetuning/finetuning_local.py:122: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
-  trainer = Trainer(
-No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
-LoRA modules added. 
-Starting training...
-  0%|          | 0/5064 [00:00<?, ?it/s]Traceback (most recent call last):
-  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/finetuning_local.py", line 137, in <module>
-    trainer.train()
-  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/trainer.py", line 2245, in train
-    return inner_training_loop(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/trainer.py", line 2514, in _inner_training_loop
-    batch_samples, num_items_in_batch = self.get_batch_samples(epoch_iterator, num_batches, args.device)
-                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/trainer.py", line 5243, in get_batch_samples
-    batch_samples.append(next(epoch_iterator))
-                         ^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/accelerate/data_loader.py", line 566, in __iter__
-    current_batch = next(dataloader_iter)
-                    ^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/torch/utils/data/dataloader.py", line 708, in __next__
-    data = self._next_data()
-           ^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/torch/utils/data/dataloader.py", line 764, in _next_data
-    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/torch/utils/data/_utils/fetch.py", line 55, in fetch
-    return self.collate_fn(data)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/finetuning_local.py", line 129, in <lambda>
-    'input_ids': torch.stack([f['input_ids'] for f in data]),
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: expected Tensor as element 0 in argument 0, but got list
-  0%|          | 0/5064 [00:00<?, ?it/s]
-
-JOB STATISTICS
-==============
-Job ID: 11561907
-Cluster: snellius
-User/Group: mschaffelder/mschaffelder
-State: FAILED (exit code 1)
-Nodes: 1
-Cores per node: 16
-CPU Utilized: 00:00:13
-CPU Efficiency: 3.69% of 00:05:52 core-walltime
-Job Wall-clock time: 00:00:22
-Memory Utilized: 1.52 MB
-Memory Efficiency: 0.00% of 90.00 GB (90.00 GB/node)

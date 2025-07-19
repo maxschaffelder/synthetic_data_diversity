@@ -1,57 +1,0 @@
-Lmod has detected the following error: The following module(s) are unknown:
-"Python/3.10.4-GCCcore-11.3.0"
-
-Please check the spelling or version number. Also try "module spider ..."
-It is also possible your cache file is out-of-date; it may help to try:
-  $ module --ignore_cache load "Python/3.10.4-GCCcore-11.3.0"
-
-Also make sure that all modulefiles written in TCL start with the string
-#%Module
-
-
-
-Virtual environment venv_exp_3 already exists at /scratch-shared/mschaffelder/venv_exp_3.
-Activating virtual environment: /scratch-shared/mschaffelder/venv_exp_3
-Requirement already satisfied: pip in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (25.1.1)
-ERROR: Could not open requirements file: [Errno 2] No such file or directory: 'requirements_exp_3.txt'
-CUDA_VISIBLE_DEVICES: 0
-Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-e906b231-b215-914a-537f-6c2494cbf492)
-Using existing Hugging Face token from cache...
-/scratch-shared/mschaffelder/venv_exp_3/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
-  backends.update(_get_backends("networkx.backends"))
-2025-05-30 19:49:54,708 - INFO - Starting script with output file: /scratch-shared/mschaffelder/data/exp_3/absolute_ratings/small_vanilla.jsonl
-2025-05-30 19:49:54,711 - INFO - Starting to load tokenizer from: meta-llama/Llama-3.1-8B-Instruct with padding_side='left'
-2025-05-30 19:49:55,248 - INFO - Tokenizer loaded.
-2025-05-30 19:49:55,250 - WARNING - Tokenizer.pad_token_id (None) is not eos_token_id (128009). Forcing pad_token to eos_token for Llama consistency.
-2025-05-30 19:49:55,250 - INFO - Tokenizer configured: pad_token_id=128009, eos_token_id=128009, padding_side='left'
-2025-05-30 19:49:55,250 - INFO - Starting to load base model from: meta-llama/Llama-3.1-8B-Instruct
-2025-05-30 19:49:57,893 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
-Loading model and tokenizer...
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:11,  3.94s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:07<00:07,  3.95s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:12<00:04,  4.06s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:13<00:00,  2.85s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:13<00:00,  3.27s/it]
-2025-05-30 19:50:11,255 - INFO - Base model loaded. Original vocab size: 128256
-2025-05-30 19:50:11,256 - INFO - Resizing token embeddings from 128256 to 128257...
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-2025-05-30 19:50:13,842 - INFO - Token embeddings resized. New vocab size: 128257
-Traceback (most recent call last):
-  File "/scratch-shared/mschaffelder/code/exp_3/absolute_ratings/absolute_rating.py", line 139, in <module>
-    main()
-  File "/scratch-shared/mschaffelder/code/exp_3/absolute_ratings/absolute_rating.py", line 39, in main
-    model, tokenizer = load_model_and_tokenizer(base_model_path, use_lora, lora_model_path)
-  File "/gpfs/scratch1/shared/mschaffelder/code/exp_3/absolute_ratings/helper_functions_judge.py", line 51, in load_model_and_tokenizer
-    raise ValueError("lora_model_path must be provided when use_lora is True")
-ValueError: lora_model_path must be provided when use_lora is True
-
-JOB STATISTICS
-==============
-Job ID: 12090774
-Cluster: snellius
-User/Group: mschaffelder/mschaffelder
-State: FAILED (exit code 1)
-Nodes: 1
-Cores per node: 16
-CPU Utilized: 00:00:22
-CPU Efficiency: 1.86% of 00:19:44 core-walltime
-Job Wall-clock time: 00:01:14
-Memory Utilized: 980.39 MB
-Memory Efficiency: 9.57% of 10.00 GB (10.00 GB/node)

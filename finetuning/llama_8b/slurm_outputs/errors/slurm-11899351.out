@@ -1,171 +1,0 @@
-Requirement already satisfied: torch in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 1)) (2.7.0)
-Requirement already satisfied: peft>=0.5.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 2)) (0.15.2)
-Requirement already satisfied: transformers>=4.36.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 3)) (4.51.3)
-Requirement already satisfied: datasets>=2.14.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 4)) (3.5.1)
-Requirement already satisfied: sentencepiece>=0.1.99 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 5)) (0.2.0)
-Requirement already satisfied: huggingface_hub>=0.17.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 6)) (0.30.2)
-Requirement already satisfied: bitsandbytes in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 7)) (0.45.5)
-Requirement already satisfied: tensorboard in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from -r requirements.txt (line 8)) (2.19.0)
-Requirement already satisfied: filelock in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.18.0)
-Requirement already satisfied: typing-extensions>=4.10.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (4.13.2)
-Requirement already satisfied: setuptools in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (80.1.0)
-Requirement already satisfied: sympy>=1.13.3 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (1.14.0)
-Requirement already satisfied: networkx in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.4.2)
-Requirement already satisfied: jinja2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.1.6)
-Requirement already satisfied: fsspec in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (2025.3.0)
-Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.80)
-Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (9.5.1.17)
-Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.4.1)
-Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (11.3.0.4)
-Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (10.3.7.77)
-Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (11.7.1.2)
-Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.5.4.2)
-Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (0.6.3)
-Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (2.26.2)
-Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.85)
-Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (1.11.1.6)
-Requirement already satisfied: triton==3.3.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.3.0)
-Requirement already satisfied: numpy>=1.17 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (2.2.5)
-Requirement already satisfied: packaging>=20.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (25.0)
-Requirement already satisfied: psutil in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (7.0.0)
-Requirement already satisfied: pyyaml in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (6.0.2)
-Requirement already satisfied: tqdm in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (4.67.1)
-Requirement already satisfied: accelerate>=0.21.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (1.6.0)
-Requirement already satisfied: safetensors in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (0.5.3)
-Requirement already satisfied: regex!=2019.12.17 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from transformers>=4.36.0->-r requirements.txt (line 3)) (2024.11.6)
-Requirement already satisfied: requests in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from transformers>=4.36.0->-r requirements.txt (line 3)) (2.32.3)
-Requirement already satisfied: tokenizers<0.22,>=0.21 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from transformers>=4.36.0->-r requirements.txt (line 3)) (0.21.1)
-Requirement already satisfied: pyarrow>=15.0.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (20.0.0)
-Requirement already satisfied: dill<0.3.9,>=0.3.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (0.3.8)
-Requirement already satisfied: pandas in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (2.2.3)
-Requirement already satisfied: xxhash in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (3.5.0)
-Requirement already satisfied: multiprocess<0.70.17 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (0.70.16)
-Requirement already satisfied: aiohttp in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (3.11.18)
-Requirement already satisfied: absl-py>=0.4 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (2.2.2)
-Requirement already satisfied: grpcio>=1.48.2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (1.71.0)
-Requirement already satisfied: markdown>=2.6.8 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (3.8)
-Requirement already satisfied: protobuf!=4.24.0,>=3.19.6 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (6.30.2)
-Requirement already satisfied: six>1.9 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (1.17.0)
-Requirement already satisfied: tensorboard-data-server<0.8.0,>=0.7.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (0.7.2)
-Requirement already satisfied: werkzeug>=1.0.1 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (3.1.3)
-Requirement already satisfied: aiohappyeyeballs>=2.3.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (2.6.1)
-Requirement already satisfied: aiosignal>=1.1.2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (1.3.2)
-Requirement already satisfied: attrs>=17.3.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (25.3.0)
-Requirement already satisfied: frozenlist>=1.1.1 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (1.6.0)
-Requirement already satisfied: multidict<7.0,>=4.5 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (6.4.3)
-Requirement already satisfied: propcache>=0.2.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (0.3.1)
-Requirement already satisfied: yarl<2.0,>=1.17.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (1.20.0)
-Requirement already satisfied: idna>=2.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from yarl<2.0,>=1.17.0->aiohttp->datasets>=2.14.0->-r requirements.txt (line 4)) (3.10)
-Requirement already satisfied: charset-normalizer<4,>=2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (3.4.2)
-Requirement already satisfied: urllib3<3,>=1.21.1 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (2.4.0)
-Requirement already satisfied: certifi>=2017.4.17 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (2025.4.26)
-Requirement already satisfied: mpmath<1.4,>=1.1.0 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from sympy>=1.13.3->torch->-r requirements.txt (line 1)) (1.3.0)
-Requirement already satisfied: MarkupSafe>=2.1.1 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from werkzeug>=1.0.1->tensorboard->-r requirements.txt (line 8)) (3.0.2)
-Requirement already satisfied: python-dateutil>=2.8.2 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 4)) (2.9.0.post0)
-Requirement already satisfied: pytz>=2020.1 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 4)) (2025.2)
-Requirement already satisfied: tzdata>=2022.7 in /gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 4)) (2025.2)
-CUDA_VISIBLE_DEVICES: 0,1,2,3
-Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-7bcc7327-0e14-9072-af3f-346834f358b5)
-GPU 1: NVIDIA H100 (UUID: GPU-c46e3ab6-8b32-6173-7b1e-6d50441ab760)
-GPU 2: NVIDIA H100 (UUID: GPU-92c95fac-c889-fb16-aa07-80dce8bf1739)
-GPU 3: NVIDIA H100 (UUID: GPU-a50625b2-b558-ab41-cf7a-4a5e3f6f0865)
-The token has not been saved to the git credentials helper. Pass `add_to_git_credential=True` in this function directly or `--add-to-git-credential` if using via `huggingface-cli` if you want to set the git credential as well.
-Token is valid (permission: fineGrained).
-The token `MaxBook Air` has been saved to /home/mschaffelder/.cache/huggingface/stored_tokens
-Your token has been saved to /home/mschaffelder/.cache/huggingface/token
-Login successful.
-The current active token is: `MaxBook Air`
-importing libraries
-importing libraries
-importing libraries
-importing libraries
-done importing librariesdone importing librariesdone importing libraries
-done importing libraries
-
-loading tokenizer
-loading tokenizerloading tokenizer
-loading tokenizer
-
-
-loading model
-loading model
-loading model
-loading model
-Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/30 [00:15<07:18, 15.12s/it]Loading checkpoint shards:   7%|▋         | 2/30 [00:30<07:01, 15.05s/it]Loading checkpoint shards:  10%|█         | 3/30 [00:45<06:53, 15.32s/it]Loading checkpoint shards:  13%|█▎        | 4/30 [01:01<06:42, 15.47s/it]Loading checkpoint shards:  17%|█▋        | 5/30 [01:16<06:23, 15.32s/it]Loading checkpoint shards:  20%|██        | 6/30 [01:30<06:00, 15.02s/it]Loading checkpoint shards:  23%|██▎       | 7/30 [01:45<05:41, 14.86s/it]Loading checkpoint shards:  27%|██▋       | 8/30 [02:01<05:33, 15.14s/it]Loading checkpoint shards:  30%|███       | 9/30 [02:15<05:13, 14.93s/it]Loading checkpoint shards:  33%|███▎      | 10/30 [02:30<04:56, 14.81s/it]Loading checkpoint shards:  37%|███▋      | 11/30 [02:43<04:33, 14.38s/it]Loading checkpoint shards:  40%|████      | 12/30 [02:47<03:22, 11.24s/it]Loading checkpoint shards:  43%|████▎     | 13/30 [03:02<03:30, 12.38s/it]Loading checkpoint shards:  47%|████▋     | 14/30 [03:17<03:30, 13.18s/it]Loading checkpoint shards:  50%|█████     | 15/30 [03:31<03:22, 13.48s/it]Loading checkpoint shards:  53%|█████▎    | 16/30 [03:46<03:12, 13.78s/it]Loading checkpoint shards:  57%|█████▋    | 17/30 [04:00<02:59, 13.80s/it]Loading checkpoint shards:  60%|██████    | 18/30 [04:16<02:52, 14.40s/it]Loading checkpoint shards:  63%|██████▎   | 19/30 [04:30<02:38, 14.37s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [04:44<02:24, 14.40s/it]Loading checkpoint shards:  70%|███████   | 21/30 [04:58<02:08, 14.25s/it]Loading checkpoint shards:  73%|███████▎  | 22/30 [05:13<01:56, 14.52s/it]Loading checkpoint shards:  77%|███████▋  | 23/30 [05:28<01:42, 14.65s/it]Loading checkpoint shards:  80%|████████  | 24/30 [05:43<01:28, 14.74s/it]Loading checkpoint shards:  83%|████████▎ | 25/30 [05:58<01:13, 14.73s/it]Loading checkpoint shards:  87%|████████▋ | 26/30 [06:13<00:58, 14.75s/it]Loading checkpoint shards:  90%|█████████ | 27/30 [06:28<00:44, 14.80s/it]Loading checkpoint shards:  93%|█████████▎| 28/30 [06:43<00:30, 15.05s/it]Loading checkpoint shards:  93%|█████████▎| 28/30 [06:44<00:28, 14.44s/it]
-[rank0]: Traceback (most recent call last):
-[rank0]:   File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/finetuning_70b.py", line 30, in <module>
-[rank0]:     model = AutoModelForCausalLM.from_pretrained(
-[rank0]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
-[rank0]:     return model_class.from_pretrained(
-[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
-[rank0]:     return func(*args, **kwargs)
-[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4399, in from_pretrained
-[rank0]:     ) = cls._load_pretrained_model(
-[rank0]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4833, in _load_pretrained_model
-[rank0]:     disk_offload_index, cpu_offload_index = _load_state_dict_into_meta_model(
-[rank0]:                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
-[rank0]:     return func(*args, **kwargs)
-[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 765, in _load_state_dict_into_meta_model
-[rank0]:     param = empty_param.to(tensor_device)  # It is actually not empty!
-[rank0]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 121.81 MiB is free. Including non-PyTorch memory, this process has 92.98 GiB memory in use. Of the allocated memory 92.35 GiB is allocated by PyTorch, and 37.58 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-[rank0]:[W517 00:45:12.116265088 ProcessGroupNCCL.cpp:1476] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
-W0517 00:45:18.874000 2319135 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 2319146 closing signal SIGTERM
-W0517 00:45:18.899000 2319135 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 2319148 closing signal SIGTERM
-W0517 00:45:18.899000 2319135 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 2319149 closing signal SIGTERM
-E0517 00:45:19.865000 2319135 torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 1 (pid: 2319147) of binary: /gpfs/scratch1/shared/mschaffelder/venv/bin/python
-Traceback (most recent call last):
-  File "/gpfs/scratch1/shared/mschaffelder/venv/bin/torchrun", line 8, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
-    return f(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/distributed/run.py", line 892, in main
-    run(args)
-  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/distributed/run.py", line 883, in run
-    elastic_launch(
-  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
-    return launch_agent(self._config, self._entrypoint, list(args))
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
-    raise ChildFailedError(
-torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
-============================================================
-finetuning_70b.py FAILED
-------------------------------------------------------------
-Failures:
-  <NO_OTHER_FAILURES>
-------------------------------------------------------------
-Root Cause (first observed failure):
-[0]:
-  time      : 2025-05-17_00:45:18
-  host      : gcn145.local.snellius.surf.nl
-  rank      : 1 (local_rank: 1)
-  exitcode  : 1 (pid: 2319147)
-  error_file: <N/A>
-  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
-============================================================
-
-JOB STATISTICS
-==============
-Job ID: 11899351
-Cluster: snellius
-User/Group: mschaffelder/mschaffelder
-State: FAILED (exit code 1)
-Nodes: 1
-Cores per node: 64
-CPU Utilized: 00:17:13
-CPU Efficiency: 3.45% of 08:19:12 core-walltime
-Job Wall-clock time: 00:07:48
-Memory Utilized: 6.74 GB
-Memory Efficiency: 13.48% of 50.00 GB (50.00 GB/node)

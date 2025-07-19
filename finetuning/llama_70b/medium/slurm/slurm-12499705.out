@@ -1,976 +1,0 @@
-No CUDA module loaded
-No Python module loaded
-Virtual environment venv_finetune_llama_70b already exists at /scratch-shared/mschaffelder/venv_finetune_llama_70b.
-Activating virtual environment: /scratch-shared/mschaffelder/venv_finetune_llama_70b
---- Ensuring a clean install of accelerate ---
-Found existing installation: accelerate 1.7.0
-Uninstalling accelerate-1.7.0:
-  Successfully uninstalled accelerate-1.7.0
-Requirement already satisfied: torch==2.7.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from -r requirements.txt (line 1)) (2.7.0)
-Requirement already satisfied: transformers>=4.42.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from -r requirements.txt (line 2)) (4.52.4)
-Requirement already satisfied: peft>=0.11.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from -r requirements.txt (line 3)) (0.15.2)
-Requirement already satisfied: bitsandbytes>=0.43.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from -r requirements.txt (line 4)) (0.46.0)
-Collecting accelerate==1.7.0 (from -r requirements.txt (line 5))
-  Using cached accelerate-1.7.0-py3-none-any.whl.metadata (19 kB)
-Requirement already satisfied: trl<0.20.0,>=0.8.6 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from -r requirements.txt (line 6)) (0.18.2)
-Requirement already satisfied: datasets>=2.19.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from -r requirements.txt (line 7)) (3.6.0)
-Requirement already satisfied: importlib_metadata>=4.0.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from -r requirements.txt (line 8)) (8.7.0)
-Requirement already satisfied: filelock in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (3.18.0)
-Requirement already satisfied: typing-extensions>=4.10.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (4.14.0)
-Requirement already satisfied: sympy>=1.13.3 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (1.14.0)
-Requirement already satisfied: networkx in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (3.2.1)
-Requirement already satisfied: jinja2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (3.1.6)
-Requirement already satisfied: fsspec in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (2025.3.0)
-Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (12.6.80)
-Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (9.5.1.17)
-Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (12.6.4.1)
-Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (11.3.0.4)
-Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (10.3.7.77)
-Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (11.7.1.2)
-Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (12.5.4.2)
-Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (0.6.3)
-Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (2.26.2)
-Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (12.6.85)
-Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (1.11.1.6)
-Requirement already satisfied: triton==3.3.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from torch==2.7.0->-r requirements.txt (line 1)) (3.3.0)
-Requirement already satisfied: numpy<3.0.0,>=1.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from accelerate==1.7.0->-r requirements.txt (line 5)) (2.0.2)
-Requirement already satisfied: packaging>=20.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from accelerate==1.7.0->-r requirements.txt (line 5)) (25.0)
-Requirement already satisfied: psutil in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from accelerate==1.7.0->-r requirements.txt (line 5)) (7.0.0)
-Requirement already satisfied: pyyaml in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from accelerate==1.7.0->-r requirements.txt (line 5)) (6.0.2)
-Requirement already satisfied: huggingface-hub>=0.21.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from accelerate==1.7.0->-r requirements.txt (line 5)) (0.33.0)
-Requirement already satisfied: safetensors>=0.4.3 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from accelerate==1.7.0->-r requirements.txt (line 5)) (0.5.3)
-Requirement already satisfied: setuptools>=40.8.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from triton==3.3.0->torch==2.7.0->-r requirements.txt (line 1)) (80.9.0)
-Requirement already satisfied: regex!=2019.12.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from transformers>=4.42.0->-r requirements.txt (line 2)) (2024.11.6)
-Requirement already satisfied: requests in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from transformers>=4.42.0->-r requirements.txt (line 2)) (2.32.4)
-Requirement already satisfied: tokenizers<0.22,>=0.21 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from transformers>=4.42.0->-r requirements.txt (line 2)) (0.21.1)
-Requirement already satisfied: tqdm>=4.27 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from transformers>=4.42.0->-r requirements.txt (line 2)) (4.67.1)
-Requirement already satisfied: hf-xet<2.0.0,>=1.1.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from huggingface-hub>=0.21.0->accelerate==1.7.0->-r requirements.txt (line 5)) (1.1.4)
-Requirement already satisfied: pyarrow>=15.0.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from datasets>=2.19.1->-r requirements.txt (line 7)) (20.0.0)
-Requirement already satisfied: dill<0.3.9,>=0.3.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from datasets>=2.19.1->-r requirements.txt (line 7)) (0.3.8)
-Requirement already satisfied: pandas in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from datasets>=2.19.1->-r requirements.txt (line 7)) (2.3.0)
-Requirement already satisfied: xxhash in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from datasets>=2.19.1->-r requirements.txt (line 7)) (3.5.0)
-Requirement already satisfied: multiprocess<0.70.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from datasets>=2.19.1->-r requirements.txt (line 7)) (0.70.16)
-Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (3.12.13)
-Requirement already satisfied: zipp>=3.20 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from importlib_metadata>=4.0.0->-r requirements.txt (line 8)) (3.23.0)
-Requirement already satisfied: aiohappyeyeballs>=2.5.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (2.6.1)
-Requirement already satisfied: aiosignal>=1.1.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (1.3.2)
-Requirement already satisfied: async-timeout<6.0,>=4.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (5.0.1)
-Requirement already satisfied: attrs>=17.3.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (25.3.0)
-Requirement already satisfied: frozenlist>=1.1.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (1.7.0)
-Requirement already satisfied: multidict<7.0,>=4.5 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (6.5.0)
-Requirement already satisfied: propcache>=0.2.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (0.3.2)
-Requirement already satisfied: yarl<2.0,>=1.17.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (1.20.1)
-Requirement already satisfied: idna>=2.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from yarl<2.0,>=1.17.0->aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.19.1->-r requirements.txt (line 7)) (3.10)
-Requirement already satisfied: charset_normalizer<4,>=2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from requests->transformers>=4.42.0->-r requirements.txt (line 2)) (3.4.2)
-Requirement already satisfied: urllib3<3,>=1.21.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from requests->transformers>=4.42.0->-r requirements.txt (line 2)) (2.4.0)
-Requirement already satisfied: certifi>=2017.4.17 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from requests->transformers>=4.42.0->-r requirements.txt (line 2)) (2025.6.15)
-Requirement already satisfied: mpmath<1.4,>=1.1.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from sympy>=1.13.3->torch==2.7.0->-r requirements.txt (line 1)) (1.3.0)
-Requirement already satisfied: MarkupSafe>=2.0 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from jinja2->torch==2.7.0->-r requirements.txt (line 1)) (3.0.2)
-Requirement already satisfied: python-dateutil>=2.8.2 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from pandas->datasets>=2.19.1->-r requirements.txt (line 7)) (2.9.0.post0)
-Requirement already satisfied: pytz>=2020.1 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from pandas->datasets>=2.19.1->-r requirements.txt (line 7)) (2025.2)
-Requirement already satisfied: tzdata>=2022.7 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from pandas->datasets>=2.19.1->-r requirements.txt (line 7)) (2025.2)
-Requirement already satisfied: six>=1.5 in /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages (from python-dateutil>=2.8.2->pandas->datasets>=2.19.1->-r requirements.txt (line 7)) (1.17.0)
-Using cached accelerate-1.7.0-py3-none-any.whl (362 kB)
-Installing collected packages: accelerate
-Successfully installed accelerate-1.7.0
-Creating a fresh accelerate config for FSDP...
-Accelerate config created at /home/mschaffelder/.cache/huggingface/accelerate/default_config.yaml
-CUDA_VISIBLE_DEVICES: 0,1,2,3
-Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-66af7d2c-947c-e055-de70-707ef73a7738)
-GPU 1: NVIDIA H100 (UUID: GPU-8645e395-38f4-a6fa-b836-85f18cfaa7a8)
-GPU 2: NVIDIA H100 (UUID: GPU-08e2c2cc-9901-57f0-6754-c3ca360050a2)
-GPU 3: NVIDIA H100 (UUID: GPU-71d5599d-878c-2455-e362-8ad1e956f093)
-Using existing Hugging Face token from cache...
-CUDA_VISIBLE_DEVICES as set by SLURM: 0,1,2,3
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
-  backends.update(_get_backends("networkx.backends"))
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
-  backends.update(_get_backends("networkx.backends"))
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
-  backends.update(_get_backends("networkx.backends"))
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
-  backends.update(_get_backends("networkx.backends"))
-Loading model: meta-llama/Llama-3.1-70B-Instruct (device placement will be handled by Accelerate)
-Loading model: meta-llama/Llama-3.1-70B-Instruct (device placement will be handled by Accelerate)
-Loading model: meta-llama/Llama-3.1-70B-Instruct (device placement will be handled by Accelerate)
-Loading model: meta-llama/Llama-3.1-70B-Instruct (device placement will be handled by Accelerate)
-Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 5/30 [00:00<00:00, 44.80it/s]Loading checkpoint shards:  17%|█▋        | 5/30 [00:00<00:00, 44.82it/s]Loading checkpoint shards:  17%|█▋        | 5/30 [00:00<00:00, 44.83it/s]Loading checkpoint shards:  17%|█▋        | 5/30 [00:00<00:00, 44.75it/s]Loading checkpoint shards:  33%|███▎      | 10/30 [00:00<00:00, 42.71it/s]Loading checkpoint shards:  33%|███▎      | 10/30 [00:00<00:00, 42.72it/s]Loading checkpoint shards:  33%|███▎      | 10/30 [00:00<00:00, 42.70it/s]Loading checkpoint shards:  33%|███▎      | 10/30 [00:00<00:00, 42.71it/s]Loading checkpoint shards:  50%|█████     | 15/30 [00:00<00:00, 43.98it/s]Loading checkpoint shards:  50%|█████     | 15/30 [00:00<00:00, 43.98it/s]Loading checkpoint shards:  50%|█████     | 15/30 [00:00<00:00, 43.98it/s]Loading checkpoint shards:  50%|█████     | 15/30 [00:00<00:00, 43.98it/s]Loading checkpoint shards:  67%|██████▋   | 20/30 [00:00<00:00, 42.66it/s]Loading checkpoint shards:  67%|██████▋   | 20/30 [00:00<00:00, 42.66it/s]Loading checkpoint shards:  67%|██████▋   | 20/30 [00:00<00:00, 42.66it/s]Loading checkpoint shards:  67%|██████▋   | 20/30 [00:00<00:00, 42.66it/s]Loading checkpoint shards:  83%|████████▎ | 25/30 [00:00<00:00, 42.66it/s]Loading checkpoint shards:  83%|████████▎ | 25/30 [00:00<00:00, 42.65it/s]Loading checkpoint shards:  83%|████████▎ | 25/30 [00:00<00:00, 42.65it/s]Loading checkpoint shards:  83%|████████▎ | 25/30 [00:00<00:00, 42.65it/s]Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 44.05it/s]
-Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 44.04it/s]
-Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 44.03it/s]
-Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 44.03it/s]
-trainable params: 207,093,760 || all params: 70,760,800,256 || trainable%: 0.2927
-Loading training data from: /scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl
-Loading validation data from: /scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_test_Llama.jsonl
-Training dataset size: 13509
-Validation dataset size: 1502
-[rank3]:[W619 14:45:54.183672372 ProcessGroupNCCL.cpp:4715] [PG ID 0 PG GUID 0 Rank 3]  using GPU 3 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
-trainable params: 207,093,760 || all params: 70,760,800,256 || trainable%: 0.2927
-Loading training data from: /scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl
-Loading validation data from: /scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_test_Llama.jsonl
-Training dataset size: 13509
-Validation dataset size: 1502
-trainable params: 207,093,760 || all params: 70,760,800,256 || trainable%: 0.2927
-Loading training data from: /scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl
-Loading validation data from: /scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_test_Llama.jsonl
-trainable params: 207,093,760 || all params: 70,760,800,256 || trainable%: 0.2927
-Loading training data from: /scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl
-Loading validation data from: /scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_test_Llama.jsonl
-Training dataset size: 13509
-Validation dataset size: 1502
-Training dataset size: 13509
-Validation dataset size: 1502
-[rank1]:[W619 14:46:41.054191312 ProcessGroupNCCL.cpp:4715] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
-[rank2]:[W619 14:46:42.836043630 ProcessGroupNCCL.cpp:4715] [PG ID 0 PG GUID 0 Rank 2]  using GPU 2 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
-[rank0]:[W619 14:46:42.980017137 ProcessGroupNCCL.cpp:4715] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
-No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
-No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
-No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
-No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
-Starting training...
-Starting training...
-Starting training...
-Starting training...
-  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [02:14<06:43, 134.47s/it]                                              {'loss': 0.9896, 'grad_norm': 0.491696298122406, 'learning_rate': 0.0, 'num_tokens': 46653.0, 'mean_token_accuracy': 0.8227326106280088, 'epoch': 0.01}
- 25%|██▌       | 1/4 [02:14<06:43, 134.47s/it] 50%|█████     | 2/4 [04:17<04:15, 127.70s/it]                                              {'loss': 0.9591, 'grad_norm': 0.5045554637908936, 'learning_rate': 5e-05, 'num_tokens': 90374.0, 'mean_token_accuracy': 0.8260213937610388, 'epoch': 0.02}
- 50%|█████     | 2/4 [04:17<04:15, 127.70s/it]
-  0%|          | 0/376 [00:00<?, ?it/s][A
-  1%|          | 2/376 [00:01<03:44,  1.67it/s][A
-  1%|          | 3/376 [00:02<05:17,  1.17it/s][A
-  1%|          | 4/376 [00:03<06:04,  1.02it/s][A
-  1%|▏         | 5/376 [00:04<06:33,  1.06s/it][A
-  2%|▏         | 6/376 [00:06<06:52,  1.11s/it][A
-  2%|▏         | 7/376 [00:07<07:02,  1.14s/it][A
-  2%|▏         | 8/376 [00:08<07:10,  1.17s/it][A
-  2%|▏         | 9/376 [00:09<07:14,  1.18s/it][A
-  3%|▎         | 10/376 [00:10<07:17,  1.19s/it][A
-  3%|▎         | 11/376 [00:12<07:18,  1.20s/it][A
-  3%|▎         | 12/376 [00:13<07:18,  1.20s/it][A
-  3%|▎         | 13/376 [00:14<07:17,  1.21s/it][A
-  4%|▎         | 14/376 [00:15<07:15,  1.20s/it][A
-  4%|▍         | 15/376 [00:16<07:15,  1.21s/it][A
-  4%|▍         | 16/376 [00:18<07:15,  1.21s/it][A
-  5%|▍         | 17/376 [00:19<07:15,  1.21s/it][A
-  5%|▍         | 18/376 [00:20<07:14,  1.21s/it][A
-  5%|▌         | 19/376 [00:21<07:12,  1.21s/it][A
-  5%|▌         | 20/376 [00:23<07:10,  1.21s/it][A
-  6%|▌         | 21/376 [00:24<07:06,  1.20s/it][A
-  6%|▌         | 22/376 [00:25<07:07,  1.21s/it][A
-  6%|▌         | 23/376 [00:26<07:06,  1.21s/it][A
-  6%|▋         | 24/376 [00:27<07:11,  1.23s/it][A
-  7%|▋         | 25/376 [00:29<07:08,  1.22s/it][A
-  7%|▋         | 26/376 [00:30<07:06,  1.22s/it][A
-  7%|▋         | 27/376 [00:31<07:05,  1.22s/it][A
-  7%|▋         | 28/376 [00:32<07:05,  1.22s/it][A
-  8%|▊         | 29/376 [00:33<07:03,  1.22s/it][A
-  8%|▊         | 30/376 [00:35<07:01,  1.22s/it][A
-  8%|▊         | 31/376 [00:36<06:59,  1.22s/it][A
-  9%|▊         | 32/376 [00:37<06:57,  1.21s/it][A
-  9%|▉         | 33/376 [00:38<06:55,  1.21s/it][A
-  9%|▉         | 34/376 [00:40<06:53,  1.21s/it][A
-  9%|▉         | 35/376 [00:41<06:51,  1.21s/it][A
- 10%|▉         | 36/376 [00:42<06:49,  1.20s/it][A
- 10%|▉         | 37/376 [00:43<06:48,  1.21s/it][A
- 10%|█         | 38/376 [00:44<06:48,  1.21s/it][A
- 10%|█         | 39/376 [00:46<06:46,  1.21s/it][A
- 11%|█         | 40/376 [00:47<06:45,  1.21s/it][A
- 11%|█         | 41/376 [00:48<06:45,  1.21s/it][A
- 11%|█         | 42/376 [00:49<06:45,  1.21s/it][A
- 11%|█▏        | 43/376 [00:50<06:42,  1.21s/it][A
- 12%|█▏        | 44/376 [00:52<06:41,  1.21s/it][A
- 12%|█▏        | 45/376 [00:53<06:38,  1.20s/it][A
- 12%|█▏        | 46/376 [00:54<06:38,  1.21s/it][A
- 12%|█▎        | 47/376 [00:55<06:36,  1.20s/it][A
- 13%|█▎        | 48/376 [00:56<06:36,  1.21s/it][A
- 13%|█▎        | 49/376 [00:58<06:34,  1.21s/it][A
- 13%|█▎        | 50/376 [00:59<06:33,  1.21s/it][A
- 14%|█▎        | 51/376 [01:00<06:32,  1.21s/it][A
- 14%|█▍        | 52/376 [01:01<06:30,  1.21s/it][A
- 14%|█▍        | 53/376 [01:02<06:29,  1.21s/it][A
- 14%|█▍        | 54/376 [01:04<06:27,  1.20s/it][A
- 15%|█▍        | 55/376 [01:05<06:28,  1.21s/it][A
- 15%|█▍        | 56/376 [01:06<06:27,  1.21s/it][A
- 15%|█▌        | 57/376 [01:07<06:24,  1.21s/it][A
- 15%|█▌        | 58/376 [01:08<06:23,  1.21s/it][A
- 16%|█▌        | 59/376 [01:10<06:22,  1.21s/it][A
- 16%|█▌        | 60/376 [01:11<06:20,  1.20s/it][A
- 16%|█▌        | 61/376 [01:12<06:19,  1.20s/it][A
- 16%|█▋        | 62/376 [01:13<06:18,  1.20s/it][A
- 17%|█▋        | 63/376 [01:15<06:16,  1.20s/it][A
- 17%|█▋        | 64/376 [01:16<06:15,  1.20s/it][A
- 17%|█▋        | 65/376 [01:17<06:14,  1.20s/it][A
- 18%|█▊        | 66/376 [01:18<06:13,  1.21s/it][A
- 18%|█▊        | 67/376 [01:19<06:13,  1.21s/it][A
- 18%|█▊        | 68/376 [01:21<06:11,  1.21s/it][A
- 18%|█▊        | 69/376 [01:22<06:09,  1.20s/it][A
- 19%|█▊        | 70/376 [01:23<06:08,  1.20s/it][A
- 19%|█▉        | 71/376 [01:24<06:07,  1.20s/it][A
- 19%|█▉        | 72/376 [01:25<06:06,  1.20s/it][A
- 19%|█▉        | 73/376 [01:27<06:04,  1.20s/it][A
- 20%|█▉        | 74/376 [01:28<06:03,  1.20s/it][A
- 20%|█▉        | 75/376 [01:29<06:01,  1.20s/it][A
- 20%|██        | 76/376 [01:30<06:00,  1.20s/it][A
- 20%|██        | 77/376 [01:31<05:59,  1.20s/it][A
- 21%|██        | 78/376 [01:33<05:58,  1.20s/it][A
- 21%|██        | 79/376 [01:34<05:58,  1.21s/it][A
- 21%|██▏       | 80/376 [01:35<05:56,  1.21s/it][A
- 22%|██▏       | 81/376 [01:36<05:55,  1.21s/it][A
- 22%|██▏       | 82/376 [01:37<05:55,  1.21s/it][A
- 22%|██▏       | 83/376 [01:39<05:54,  1.21s/it][A
- 22%|██▏       | 84/376 [01:40<05:52,  1.21s/it][A
- 23%|██▎       | 85/376 [01:41<05:51,  1.21s/it][A
- 23%|██▎       | 86/376 [01:42<05:50,  1.21s/it][A
- 23%|██▎       | 87/376 [01:43<05:50,  1.21s/it][A
- 23%|██▎       | 88/376 [01:45<05:48,  1.21s/it][A
- 24%|██▎       | 89/376 [01:46<05:46,  1.21s/it][A
- 24%|██▍       | 90/376 [01:47<05:44,  1.21s/it][A
- 24%|██▍       | 91/376 [01:48<05:43,  1.21s/it][A
- 24%|██▍       | 92/376 [01:49<05:42,  1.21s/it][A
- 25%|██▍       | 93/376 [01:51<05:41,  1.21s/it][A
- 25%|██▌       | 94/376 [01:52<05:39,  1.20s/it][A
- 25%|██▌       | 95/376 [01:53<05:39,  1.21s/it][A
- 26%|██▌       | 96/376 [01:54<05:44,  1.23s/it][A
- 26%|██▌       | 97/376 [01:56<05:41,  1.22s/it][A
- 26%|██▌       | 98/376 [01:57<05:39,  1.22s/it][A
- 26%|██▋       | 99/376 [01:58<05:36,  1.22s/it][A
- 27%|██▋       | 100/376 [01:59<05:35,  1.21s/it][A
- 27%|██▋       | 101/376 [02:00<05:33,  1.21s/it][A
- 27%|██▋       | 102/376 [02:02<05:31,  1.21s/it][A
- 27%|██▋       | 103/376 [02:03<05:29,  1.21s/it][A
- 28%|██▊       | 104/376 [02:04<05:28,  1.21s/it][A
- 28%|██▊       | 105/376 [02:05<05:26,  1.21s/it][A
- 28%|██▊       | 106/376 [02:06<05:26,  1.21s/it][A
- 28%|██▊       | 107/376 [02:08<05:25,  1.21s/it][A
- 29%|██▊       | 108/376 [02:09<05:25,  1.21s/it][A
- 29%|██▉       | 109/376 [02:10<05:23,  1.21s/it][A
- 29%|██▉       | 110/376 [02:11<05:21,  1.21s/it][A
- 30%|██▉       | 111/376 [02:13<05:20,  1.21s/it][A
- 30%|██▉       | 112/376 [02:14<05:18,  1.21s/it][A
- 30%|███       | 113/376 [02:15<05:16,  1.20s/it][A
- 30%|███       | 114/376 [02:16<05:15,  1.21s/it][A
- 31%|███       | 115/376 [02:17<05:15,  1.21s/it][A
- 31%|███       | 116/376 [02:19<05:13,  1.21s/it][A
- 31%|███       | 117/376 [02:20<05:12,  1.21s/it][A
- 31%|███▏      | 118/376 [02:21<05:11,  1.21s/it][A
- 32%|███▏      | 119/376 [02:22<05:09,  1.21s/it][A
- 32%|███▏      | 120/376 [02:23<05:10,  1.21s/it][A
- 32%|███▏      | 121/376 [02:25<05:09,  1.21s/it][A
- 32%|███▏      | 122/376 [02:26<05:07,  1.21s/it][A
- 33%|███▎      | 123/376 [02:27<05:06,  1.21s/it][A
- 33%|███▎      | 124/376 [02:28<05:03,  1.21s/it][A
- 33%|███▎      | 125/376 [02:29<05:02,  1.20s/it][A
- 34%|███▎      | 126/376 [02:31<05:01,  1.21s/it][A
- 34%|███▍      | 127/376 [02:32<05:00,  1.21s/it][A
- 34%|███▍      | 128/376 [02:33<04:58,  1.21s/it][A
- 34%|███▍      | 129/376 [02:34<04:56,  1.20s/it][A
- 35%|███▍      | 130/376 [02:35<04:55,  1.20s/it][A
- 35%|███▍      | 131/376 [02:37<04:55,  1.20s/it][A
- 35%|███▌      | 132/376 [02:38<04:53,  1.20s/it][A
- 35%|███▌      | 133/376 [02:39<04:52,  1.20s/it][A
- 36%|███▌      | 134/376 [02:40<04:51,  1.20s/it][A
- 36%|███▌      | 135/376 [02:41<04:50,  1.21s/it][A
- 36%|███▌      | 136/376 [02:43<04:49,  1.21s/it][A
- 36%|███▋      | 137/376 [02:44<04:49,  1.21s/it][A
- 37%|███▋      | 138/376 [02:45<04:48,  1.21s/it][A
- 37%|███▋      | 139/376 [02:46<04:46,  1.21s/it][A
- 37%|███▋      | 140/376 [02:48<04:44,  1.21s/it][A
- 38%|███▊      | 141/376 [02:49<04:44,  1.21s/it][A
- 38%|███▊      | 142/376 [02:50<04:42,  1.21s/it][A
- 38%|███▊      | 143/376 [02:51<04:41,  1.21s/it][A
- 38%|███▊      | 144/376 [02:52<04:40,  1.21s/it][A
- 39%|███▊      | 145/376 [02:54<04:38,  1.20s/it][A
- 39%|███▉      | 146/376 [02:55<04:37,  1.21s/it][A
- 39%|███▉      | 147/376 [02:56<04:36,  1.21s/it][A
- 39%|███▉      | 148/376 [02:57<04:35,  1.21s/it][A
- 40%|███▉      | 149/376 [02:58<04:34,  1.21s/it][A
- 40%|███▉      | 150/376 [03:00<04:32,  1.21s/it][A
- 40%|████      | 151/376 [03:01<04:32,  1.21s/it][A
- 40%|████      | 152/376 [03:02<04:30,  1.21s/it][A
- 41%|████      | 153/376 [03:03<04:28,  1.20s/it][A
- 41%|████      | 154/376 [03:04<04:27,  1.20s/it][A
- 41%|████      | 155/376 [03:06<04:25,  1.20s/it][A
- 41%|████▏     | 156/376 [03:07<04:24,  1.20s/it][A
- 42%|████▏     | 157/376 [03:08<04:23,  1.20s/it][A
- 42%|████▏     | 158/376 [03:09<04:22,  1.20s/it][A
- 42%|████▏     | 159/376 [03:10<04:20,  1.20s/it][A
- 43%|████▎     | 160/376 [03:12<04:20,  1.20s/it][A
- 43%|████▎     | 161/376 [03:13<04:18,  1.20s/it][A
- 43%|████▎     | 162/376 [03:14<04:17,  1.20s/it][A
- 43%|████▎     | 163/376 [03:15<04:16,  1.20s/it][A
- 44%|████▎     | 164/376 [03:16<04:14,  1.20s/it][A
- 44%|████▍     | 165/376 [03:18<04:14,  1.20s/it][A
- 44%|████▍     | 166/376 [03:19<04:13,  1.21s/it][A
- 44%|████▍     | 167/376 [03:20<04:11,  1.20s/it][A
- 45%|████▍     | 168/376 [03:21<04:10,  1.20s/it][A
- 45%|████▍     | 169/376 [03:22<04:08,  1.20s/it][A
- 45%|████▌     | 170/376 [03:24<04:08,  1.21s/it][A
- 45%|████▌     | 171/376 [03:25<04:06,  1.20s/it][A
- 46%|████▌     | 172/376 [03:26<04:05,  1.20s/it][A
- 46%|████▌     | 173/376 [03:27<04:03,  1.20s/it][A
- 46%|████▋     | 174/376 [03:28<04:02,  1.20s/it][A
- 47%|████▋     | 175/376 [03:30<04:00,  1.20s/it][A
- 47%|████▋     | 176/376 [03:31<03:59,  1.20s/it][A
- 47%|████▋     | 177/376 [03:32<03:58,  1.20s/it][A
- 47%|████▋     | 178/376 [03:33<03:57,  1.20s/it][A
- 48%|████▊     | 179/376 [03:34<03:57,  1.21s/it][A
- 48%|████▊     | 180/376 [03:36<03:55,  1.20s/it][A
- 48%|████▊     | 181/376 [03:37<03:54,  1.20s/it][A
- 48%|████▊     | 182/376 [03:38<03:53,  1.20s/it][A
- 49%|████▊     | 183/376 [03:39<03:51,  1.20s/it][A
- 49%|████▉     | 184/376 [03:40<03:50,  1.20s/it][A
- 49%|████▉     | 185/376 [03:42<03:49,  1.20s/it][A
- 49%|████▉     | 186/376 [03:43<03:47,  1.20s/it][A
- 50%|████▉     | 187/376 [03:44<03:46,  1.20s/it][A
- 50%|█████     | 188/376 [03:45<03:45,  1.20s/it][A
- 50%|█████     | 189/376 [03:46<03:44,  1.20s/it][A
- 51%|█████     | 190/376 [03:48<03:43,  1.20s/it][A
- 51%|█████     | 191/376 [03:49<03:43,  1.21s/it][A
- 51%|█████     | 192/376 [03:50<03:41,  1.21s/it][A
- 51%|█████▏    | 193/376 [03:51<03:40,  1.21s/it][A
- 52%|█████▏    | 194/376 [03:52<03:39,  1.20s/it][A
- 52%|█████▏    | 195/376 [03:54<03:38,  1.20s/it][A
- 52%|█████▏    | 196/376 [03:55<03:36,  1.20s/it][A
- 52%|█████▏    | 197/376 [03:56<03:35,  1.20s/it][A
- 53%|█████▎    | 198/376 [03:57<03:33,  1.20s/it][A
- 53%|█████▎    | 199/376 [03:58<03:32,  1.20s/it][A
- 53%|█████▎    | 200/376 [04:00<03:30,  1.20s/it][A
- 53%|█████▎    | 201/376 [04:01<03:30,  1.20s/it][A
- 54%|█████▎    | 202/376 [04:02<03:28,  1.20s/it][A
- 54%|█████▍    | 203/376 [04:03<03:28,  1.20s/it][A
- 54%|█████▍    | 204/376 [04:05<03:26,  1.20s/it][A
- 55%|█████▍    | 205/376 [04:06<03:25,  1.20s/it][A
- 55%|█████▍    | 206/376 [04:07<03:24,  1.20s/it][A
- 55%|█████▌    | 207/376 [04:08<03:23,  1.20s/it][A
- 55%|█████▌    | 208/376 [04:09<03:21,  1.20s/it][A
- 56%|█████▌    | 209/376 [04:11<03:20,  1.20s/it][A
- 56%|█████▌    | 210/376 [04:12<03:19,  1.20s/it][A
- 56%|█████▌    | 211/376 [04:13<03:18,  1.20s/it][A
- 56%|█████▋    | 212/376 [04:14<03:16,  1.20s/it][A
- 57%|█████▋    | 213/376 [04:15<03:16,  1.20s/it][A
- 57%|█████▋    | 214/376 [04:17<03:15,  1.20s/it][A
- 57%|█████▋    | 215/376 [04:18<03:14,  1.21s/it][A
- 57%|█████▋    | 216/376 [04:19<03:13,  1.21s/it][A
- 58%|█████▊    | 217/376 [04:20<03:12,  1.21s/it][A
- 58%|█████▊    | 218/376 [04:21<03:10,  1.21s/it][A
- 58%|█████▊    | 219/376 [04:23<03:09,  1.20s/it][A
- 59%|█████▊    | 220/376 [04:24<03:08,  1.21s/it][A
- 59%|█████▉    | 221/376 [04:25<03:06,  1.20s/it][A
- 59%|█████▉    | 222/376 [04:26<03:05,  1.21s/it][A
- 59%|█████▉    | 223/376 [04:27<03:03,  1.20s/it][A
- 60%|█████▉    | 224/376 [04:29<03:02,  1.20s/it][A
- 60%|█████▉    | 225/376 [04:30<03:01,  1.20s/it][A
- 60%|██████    | 226/376 [04:31<03:00,  1.20s/it][A
- 60%|██████    | 227/376 [04:32<02:59,  1.21s/it][A
- 61%|██████    | 228/376 [04:33<02:58,  1.21s/it][A
- 61%|██████    | 229/376 [04:35<02:57,  1.20s/it][A
- 61%|██████    | 230/376 [04:36<02:55,  1.20s/it][A
- 61%|██████▏   | 231/376 [04:37<02:54,  1.20s/it][A
- 62%|██████▏   | 232/376 [04:38<02:53,  1.20s/it][A
- 62%|██████▏   | 233/376 [04:39<02:51,  1.20s/it][A
- 62%|██████▏   | 234/376 [04:41<02:50,  1.20s/it][A
- 62%|██████▎   | 235/376 [04:42<02:49,  1.20s/it][A
- 63%|██████▎   | 236/376 [04:43<02:49,  1.21s/it][A
- 63%|██████▎   | 237/376 [04:44<02:47,  1.21s/it][A
- 63%|██████▎   | 238/376 [04:45<02:46,  1.20s/it][A
- 64%|██████▎   | 239/376 [04:47<02:44,  1.20s/it][A
- 64%|██████▍   | 240/376 [04:48<02:43,  1.20s/it][A
- 64%|██████▍   | 241/376 [04:49<02:42,  1.20s/it][A
- 64%|██████▍   | 242/376 [04:50<02:41,  1.20s/it][A
- 65%|██████▍   | 243/376 [04:51<02:39,  1.20s/it][A
- 65%|██████▍   | 244/376 [04:53<02:38,  1.20s/it][A
- 65%|██████▌   | 245/376 [04:54<02:37,  1.20s/it][A
- 65%|██████▌   | 246/376 [04:55<02:36,  1.20s/it][A
- 66%|██████▌   | 247/376 [04:56<02:34,  1.20s/it][A
- 66%|██████▌   | 248/376 [04:57<02:33,  1.20s/it][A
- 66%|██████▌   | 249/376 [04:59<02:32,  1.20s/it][A
- 66%|██████▋   | 250/376 [05:00<02:31,  1.20s/it][A
- 67%|██████▋   | 251/376 [05:01<02:30,  1.21s/it][A
- 67%|██████▋   | 252/376 [05:02<02:29,  1.21s/it][A
- 67%|██████▋   | 253/376 [05:03<02:27,  1.20s/it][A
- 68%|██████▊   | 254/376 [05:05<02:26,  1.20s/it][A
- 68%|██████▊   | 255/376 [05:06<02:25,  1.21s/it][A
- 68%|██████▊   | 256/376 [05:07<02:24,  1.21s/it][A
- 68%|██████▊   | 257/376 [05:08<02:23,  1.21s/it][A
- 69%|██████▊   | 258/376 [05:10<02:22,  1.21s/it][A
- 69%|██████▉   | 259/376 [05:11<02:20,  1.20s/it][A
- 69%|██████▉   | 260/376 [05:12<02:19,  1.20s/it][A
- 69%|██████▉   | 261/376 [05:13<02:18,  1.20s/it][A
- 70%|██████▉   | 262/376 [05:14<02:17,  1.20s/it][A
- 70%|██████▉   | 263/376 [05:16<02:15,  1.20s/it][A
- 70%|███████   | 264/376 [05:17<02:14,  1.20s/it][A
- 70%|███████   | 265/376 [05:18<02:13,  1.20s/it][A
- 71%|███████   | 266/376 [05:19<02:12,  1.20s/it][A
- 71%|███████   | 267/376 [05:20<02:10,  1.20s/it][A
- 71%|███████▏  | 268/376 [05:22<02:10,  1.20s/it][A
- 72%|███████▏  | 269/376 [05:23<02:08,  1.20s/it][A
- 72%|███████▏  | 270/376 [05:24<02:07,  1.20s/it][A
- 72%|███████▏  | 271/376 [05:25<02:05,  1.20s/it][A
- 72%|███████▏  | 272/376 [05:26<02:04,  1.20s/it][A
- 73%|███████▎  | 273/376 [05:28<02:03,  1.20s/it][A
- 73%|███████▎  | 274/376 [05:29<02:02,  1.20s/it][A
- 73%|███████▎  | 275/376 [05:30<02:01,  1.20s/it][A
- 73%|███████▎  | 276/376 [05:31<02:00,  1.20s/it][A
- 74%|███████▎  | 277/376 [05:32<01:59,  1.20s/it][A
- 74%|███████▍  | 278/376 [05:34<01:57,  1.20s/it][A
- 74%|███████▍  | 279/376 [05:35<01:56,  1.20s/it][A
- 74%|███████▍  | 280/376 [05:36<01:55,  1.20s/it][A
- 75%|███████▍  | 281/376 [05:37<01:54,  1.20s/it][A
- 75%|███████▌  | 282/376 [05:38<01:52,  1.20s/it][A
- 75%|███████▌  | 283/376 [05:40<01:51,  1.20s/it][A
- 76%|███████▌  | 284/376 [05:41<01:50,  1.20s/it][A
- 76%|███████▌  | 285/376 [05:42<01:49,  1.20s/it][A
- 76%|███████▌  | 286/376 [05:43<01:48,  1.20s/it][A
- 76%|███████▋  | 287/376 [05:44<01:47,  1.20s/it][A
- 77%|███████▋  | 288/376 [05:46<01:46,  1.21s/it][A
- 77%|███████▋  | 289/376 [05:47<01:45,  1.21s/it][A
- 77%|███████▋  | 290/376 [05:48<01:43,  1.20s/it][A
- 77%|███████▋  | 291/376 [05:49<01:42,  1.20s/it][A
- 78%|███████▊  | 292/376 [05:50<01:40,  1.20s/it][A
- 78%|███████▊  | 293/376 [05:52<01:39,  1.20s/it][A
- 78%|███████▊  | 294/376 [05:53<01:38,  1.20s/it][A
- 78%|███████▊  | 295/376 [05:54<01:37,  1.20s/it][A
- 79%|███████▊  | 296/376 [05:55<01:36,  1.20s/it][A
- 79%|███████▉  | 297/376 [05:56<01:34,  1.20s/it][A
- 79%|███████▉  | 298/376 [05:58<01:33,  1.20s/it][A
- 80%|███████▉  | 299/376 [05:59<01:32,  1.20s/it][A
- 80%|███████▉  | 300/376 [06:00<01:31,  1.20s/it][A
- 80%|████████  | 301/376 [06:01<01:30,  1.20s/it][A
- 80%|████████  | 302/376 [06:02<01:28,  1.20s/it][A
- 81%|████████  | 303/376 [06:04<01:27,  1.20s/it][A
- 81%|████████  | 304/376 [06:05<01:26,  1.20s/it][A
- 81%|████████  | 305/376 [06:06<01:25,  1.20s/it][A
- 81%|████████▏ | 306/376 [06:07<01:23,  1.20s/it][A
- 82%|████████▏ | 307/376 [06:08<01:22,  1.20s/it][A
- 82%|████████▏ | 308/376 [06:10<01:21,  1.20s/it][A
- 82%|████████▏ | 309/376 [06:11<01:20,  1.20s/it][A
- 82%|████████▏ | 310/376 [06:12<01:19,  1.20s/it][A
- 83%|████████▎ | 311/376 [06:13<01:18,  1.20s/it][A
- 83%|████████▎ | 312/376 [06:14<01:16,  1.20s/it][A
- 83%|████████▎ | 313/376 [06:16<01:15,  1.20s/it][A
- 84%|████████▎ | 314/376 [06:17<01:14,  1.20s/it][A
- 84%|████████▍ | 315/376 [06:18<01:13,  1.20s/it][A
- 84%|████████▍ | 316/376 [06:19<01:12,  1.20s/it][A
- 84%|████████▍ | 317/376 [06:20<01:11,  1.21s/it][A
- 85%|████████▍ | 318/376 [06:22<01:09,  1.20s/it][A
- 85%|████████▍ | 319/376 [06:23<01:08,  1.20s/it][A
- 85%|████████▌ | 320/376 [06:24<01:07,  1.21s/it][A
- 85%|████████▌ | 321/376 [06:25<01:06,  1.20s/it][A
- 86%|████████▌ | 322/376 [06:26<01:04,  1.20s/it][A
- 86%|████████▌ | 323/376 [06:28<01:03,  1.21s/it][A
- 86%|████████▌ | 324/376 [06:29<01:02,  1.21s/it][A
- 86%|████████▋ | 325/376 [06:30<01:01,  1.21s/it][A
- 87%|████████▋ | 326/376 [06:31<01:00,  1.20s/it][A
- 87%|████████▋ | 327/376 [06:33<00:59,  1.21s/it][A
- 87%|████████▋ | 328/376 [06:34<00:57,  1.20s/it][A
- 88%|████████▊ | 329/376 [06:35<00:56,  1.20s/it][A
- 88%|████████▊ | 330/376 [06:36<00:55,  1.21s/it][A
- 88%|████████▊ | 331/376 [06:37<00:54,  1.20s/it][A
- 88%|████████▊ | 332/376 [06:39<00:52,  1.20s/it][A
- 89%|████████▊ | 333/376 [06:40<00:51,  1.20s/it][A
- 89%|████████▉ | 334/376 [06:41<00:50,  1.20s/it][A
- 89%|████████▉ | 335/376 [06:42<00:49,  1.20s/it][A
- 89%|████████▉ | 336/376 [06:43<00:47,  1.19s/it][A
- 90%|████████▉ | 337/376 [06:45<00:46,  1.20s/it][A
- 90%|████████▉ | 338/376 [06:46<00:45,  1.20s/it][A
- 90%|█████████ | 339/376 [06:47<00:44,  1.20s/it][A
- 90%|█████████ | 340/376 [06:48<00:43,  1.20s/it][A
- 91%|█████████ | 341/376 [06:49<00:41,  1.20s/it][A
- 91%|█████████ | 342/376 [06:51<00:40,  1.20s/it][A
- 91%|█████████ | 343/376 [06:52<00:39,  1.20s/it][A
- 91%|█████████▏| 344/376 [06:53<00:38,  1.20s/it][A
- 92%|█████████▏| 345/376 [06:54<00:37,  1.20s/it][A
- 92%|█████████▏| 346/376 [06:55<00:36,  1.20s/it][A
- 92%|█████████▏| 347/376 [06:57<00:34,  1.20s/it][A
- 93%|█████████▎| 348/376 [06:58<00:33,  1.21s/it][A
- 93%|█████████▎| 349/376 [06:59<00:32,  1.21s/it][A
- 93%|█████████▎| 350/376 [07:00<00:31,  1.21s/it][A
- 93%|█████████▎| 351/376 [07:01<00:30,  1.21s/it][A
- 94%|█████████▎| 352/376 [07:03<00:28,  1.21s/it][A
- 94%|█████████▍| 353/376 [07:04<00:27,  1.21s/it][A
- 94%|█████████▍| 354/376 [07:05<00:26,  1.20s/it][A
- 94%|█████████▍| 355/376 [07:06<00:25,  1.20s/it][A
- 95%|█████████▍| 356/376 [07:07<00:24,  1.20s/it][A
- 95%|█████████▍| 357/376 [07:09<00:22,  1.20s/it][A
- 95%|█████████▌| 358/376 [07:10<00:21,  1.20s/it][A
- 95%|█████████▌| 359/376 [07:11<00:20,  1.20s/it][A
- 96%|█████████▌| 360/376 [07:12<00:19,  1.20s/it][A
- 96%|█████████▌| 361/376 [07:13<00:18,  1.21s/it][A
- 96%|█████████▋| 362/376 [07:15<00:16,  1.20s/it][A
- 97%|█████████▋| 363/376 [07:16<00:15,  1.20s/it][A
- 97%|█████████▋| 364/376 [07:17<00:14,  1.21s/it][A
- 97%|█████████▋| 365/376 [07:18<00:13,  1.21s/it][A
- 97%|█████████▋| 366/376 [07:19<00:12,  1.21s/it][A
- 98%|█████████▊| 367/376 [07:21<00:10,  1.21s/it][A
- 98%|█████████▊| 368/376 [07:22<00:09,  1.20s/it][A
- 98%|█████████▊| 369/376 [07:23<00:08,  1.21s/it][A
- 98%|█████████▊| 370/376 [07:24<00:07,  1.21s/it][A
- 99%|█████████▊| 371/376 [07:26<00:06,  1.21s/it][A
- 99%|█████████▉| 372/376 [07:27<00:04,  1.21s/it][A
- 99%|█████████▉| 373/376 [07:28<00:03,  1.21s/it][A
- 99%|█████████▉| 374/376 [07:29<00:02,  1.21s/it][A
-100%|█████████▉| 375/376 [07:30<00:01,  1.21s/it][A
-100%|██████████| 376/376 [07:32<00:00,  1.21s/it][A
-                                                 [A                                              {'eval_loss': 1.2736705541610718, 'eval_runtime': 453.2912, 'eval_samples_per_second': 3.314, 'eval_steps_per_second': 0.829, 'eval_num_tokens': 90374.0, 'eval_mean_token_accuracy': 0.8293626603293927, 'epoch': 0.02}
-
-100%|██████████| 376/376 [07:32<00:00,  1.21s/it][A 50%|█████     | 2/4 [11:50<04:15, 127.70s/it]
-                                                 [A/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:680: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
-  warnings.warn(
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:680: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
-  warnings.warn(
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:680: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
-  warnings.warn(
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:680: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
-  warnings.warn(
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/distributed_c10d.py:859: UserWarning: `_get_pg_default_device` will be deprecated, it only stays for backward-compatiblity reason. If you need to find a device for object collectives, please use `_get_object_coll_device`. If you need to query the device types supported by group, please use `_device_capability(group)`. 
-  warnings.warn(
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/distributed_c10d.py:859: UserWarning: `_get_pg_default_device` will be deprecated, it only stays for backward-compatiblity reason. If you need to find a device for object collectives, please use `_get_object_coll_device`. If you need to query the device types supported by group, please use `_device_capability(group)`. 
-  warnings.warn(
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/distributed_c10d.py:859: UserWarning: `_get_pg_default_device` will be deprecated, it only stays for backward-compatiblity reason. If you need to find a device for object collectives, please use `_get_object_coll_device`. If you need to query the device types supported by group, please use `_device_capability(group)`. 
-  warnings.warn(
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/distributed_c10d.py:859: UserWarning: `_get_pg_default_device` will be deprecated, it only stays for backward-compatiblity reason. If you need to find a device for object collectives, please use `_get_object_coll_device`. If you need to query the device types supported by group, please use `_device_capability(group)`. 
-  warnings.warn(
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/_state_dict_utils.py:722: FutureWarning: Please use DTensor instead and we are deprecating ShardedTensor.
-  local_shape = tensor.shape
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/_state_dict_utils.py:722: FutureWarning: Please use DTensor instead and we are deprecating ShardedTensor.
-  local_shape = tensor.shape
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/_state_dict_utils.py:722: FutureWarning: Please use DTensor instead and we are deprecating ShardedTensor.
-  local_shape = tensor.shape
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/_state_dict_utils.py:722: FutureWarning: Please use DTensor instead and we are deprecating ShardedTensor.
-  local_shape = tensor.shape
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/_state_dict_utils.py:739: FutureWarning: Please use DTensor instead and we are deprecating ShardedTensor.
-  tensor.shape,
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/_state_dict_utils.py:739: FutureWarning: Please use DTensor instead and we are deprecating ShardedTensor.
-  tensor.shape,
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/_state_dict_utils.py:739: FutureWarning: Please use DTensor instead and we are deprecating ShardedTensor.
-  tensor.shape,
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/_state_dict_utils.py:739: FutureWarning: Please use DTensor instead and we are deprecating ShardedTensor.
-  tensor.shape,
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/_state_dict_utils.py:741: FutureWarning: Please use DTensor instead and we are deprecating ShardedTensor.
-  tensor.dtype,
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/_state_dict_utils.py:741: FutureWarning: Please use DTensor instead and we are deprecating ShardedTensor.
-  tensor.dtype,
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/_state_dict_utils.py:741: FutureWarning: Please use DTensor instead and we are deprecating ShardedTensor.
-  tensor.dtype,
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/_state_dict_utils.py:741: FutureWarning: Please use DTensor instead and we are deprecating ShardedTensor.
-  tensor.dtype,
- 75%|███████▌  | 3/4 [14:14<05:42, 342.11s/it]                                              {'loss': 0.9626, 'grad_norm': 0.709075391292572, 'learning_rate': 3.7500000000000003e-05, 'num_tokens': 135715.0, 'mean_token_accuracy': 0.8355811648070812, 'epoch': 0.03}
- 75%|███████▌  | 3/4 [14:14<05:42, 342.11s/it]100%|██████████| 4/4 [16:17<00:00, 255.65s/it]                                              {'loss': 0.9165, 'grad_norm': 0.769309401512146, 'learning_rate': 1.2500000000000006e-05, 'num_tokens': 181219.0, 'mean_token_accuracy': 0.828131789341569, 'epoch': 0.04}
-100%|██████████| 4/4 [16:17<00:00, 255.65s/it]
-  0%|          | 0/376 [00:00<?, ?it/s][A
-  1%|          | 2/376 [00:01<03:41,  1.69it/s][A
-  1%|          | 3/376 [00:02<05:14,  1.19it/s][A
-  1%|          | 4/376 [00:03<06:01,  1.03it/s][A
-  1%|▏         | 5/376 [00:04<06:40,  1.08s/it][A
-  2%|▏         | 6/376 [00:06<06:53,  1.12s/it][A
-  2%|▏         | 7/376 [00:07<07:02,  1.14s/it][A
-  2%|▏         | 8/376 [00:08<07:08,  1.16s/it][A
-  2%|▏         | 9/376 [00:09<07:12,  1.18s/it][A
-  3%|▎         | 10/376 [00:10<07:13,  1.18s/it][A
-  3%|▎         | 11/376 [00:12<07:14,  1.19s/it][A
-  3%|▎         | 12/376 [00:13<07:14,  1.19s/it][A
-  3%|▎         | 13/376 [00:14<07:13,  1.20s/it][A
-  4%|▎         | 14/376 [00:15<07:13,  1.20s/it][A
-  4%|▍         | 15/376 [00:16<07:11,  1.20s/it][A
-  4%|▍         | 16/376 [00:18<07:11,  1.20s/it][A
-  5%|▍         | 17/376 [00:19<07:11,  1.20s/it][A
-  5%|▍         | 18/376 [00:20<07:09,  1.20s/it][A
-  5%|▌         | 19/376 [00:21<07:07,  1.20s/it][A
-  5%|▌         | 20/376 [00:22<07:07,  1.20s/it][A
-  6%|▌         | 21/376 [00:24<07:05,  1.20s/it][A
-  6%|▌         | 22/376 [00:25<07:04,  1.20s/it][A
-  6%|▌         | 23/376 [00:26<07:02,  1.20s/it][A
-  6%|▋         | 24/376 [00:27<07:00,  1.20s/it][A
-  7%|▋         | 25/376 [00:28<06:59,  1.20s/it][A
-  7%|▋         | 26/376 [00:30<06:58,  1.20s/it][A
-  7%|▋         | 27/376 [00:31<07:03,  1.21s/it][A
-  7%|▋         | 28/376 [00:32<07:00,  1.21s/it][A
-  8%|▊         | 29/376 [00:33<06:58,  1.21s/it][A
-  8%|▊         | 30/376 [00:34<06:56,  1.20s/it][A
-  8%|▊         | 31/376 [00:36<06:54,  1.20s/it][A
-  9%|▊         | 32/376 [00:37<06:51,  1.20s/it][A
-  9%|▉         | 33/376 [00:38<06:50,  1.20s/it][A
-  9%|▉         | 34/376 [00:39<06:48,  1.20s/it][A
-  9%|▉         | 35/376 [00:40<06:48,  1.20s/it][A
- 10%|▉         | 36/376 [00:42<06:46,  1.20s/it][A
- 10%|▉         | 37/376 [00:43<06:46,  1.20s/it][A
- 10%|█         | 38/376 [00:44<06:46,  1.20s/it][A
- 10%|█         | 39/376 [00:45<06:44,  1.20s/it][A
- 11%|█         | 40/376 [00:46<06:43,  1.20s/it][A
- 11%|█         | 41/376 [00:48<06:43,  1.20s/it][A
- 11%|█         | 42/376 [00:49<06:41,  1.20s/it][A
- 11%|█▏        | 43/376 [00:50<06:39,  1.20s/it][A
- 12%|█▏        | 44/376 [00:51<06:39,  1.20s/it][A
- 12%|█▏        | 45/376 [00:52<06:36,  1.20s/it][A
- 12%|█▏        | 46/376 [00:54<06:35,  1.20s/it][A
- 12%|█▎        | 47/376 [00:55<06:33,  1.20s/it][A
- 13%|█▎        | 48/376 [00:56<06:33,  1.20s/it][A
- 13%|█▎        | 49/376 [00:57<06:33,  1.20s/it][A
- 13%|█▎        | 50/376 [00:58<06:34,  1.21s/it][A
- 14%|█▎        | 51/376 [01:00<06:31,  1.21s/it][A
- 14%|█▍        | 52/376 [01:01<06:28,  1.20s/it][A
- 14%|█▍        | 53/376 [01:02<06:27,  1.20s/it][A
- 14%|█▍        | 54/376 [01:03<06:26,  1.20s/it][A
- 15%|█▍        | 55/376 [01:04<06:26,  1.20s/it][A
- 15%|█▍        | 56/376 [01:06<06:24,  1.20s/it][A
- 15%|█▌        | 57/376 [01:07<06:23,  1.20s/it][A
- 15%|█▌        | 58/376 [01:08<06:21,  1.20s/it][A
- 16%|█▌        | 59/376 [01:09<06:20,  1.20s/it][A
- 16%|█▌        | 60/376 [01:10<06:19,  1.20s/it][A
- 16%|█▌        | 61/376 [01:12<06:17,  1.20s/it][A
- 16%|█▋        | 62/376 [01:13<06:16,  1.20s/it][A
- 17%|█▋        | 63/376 [01:14<06:14,  1.20s/it][A
- 17%|█▋        | 64/376 [01:15<06:13,  1.20s/it][A
- 17%|█▋        | 65/376 [01:16<06:12,  1.20s/it][A
- 18%|█▊        | 66/376 [01:18<06:11,  1.20s/it][A
- 18%|█▊        | 67/376 [01:19<06:10,  1.20s/it][A
- 18%|█▊        | 68/376 [01:20<06:08,  1.20s/it][A
- 18%|█▊        | 69/376 [01:21<06:07,  1.20s/it][A
- 19%|█▊        | 70/376 [01:22<06:06,  1.20s/it][A
- 19%|█▉        | 71/376 [01:24<06:05,  1.20s/it][A
- 19%|█▉        | 72/376 [01:25<06:03,  1.20s/it][A
- 19%|█▉        | 73/376 [01:26<06:02,  1.20s/it][A
- 20%|█▉        | 74/376 [01:27<06:01,  1.20s/it][A
- 20%|█▉        | 75/376 [01:28<06:00,  1.20s/it][A
- 20%|██        | 76/376 [01:30<05:59,  1.20s/it][A
- 20%|██        | 77/376 [01:31<05:58,  1.20s/it][A
- 21%|██        | 78/376 [01:32<05:58,  1.20s/it][A
- 21%|██        | 79/376 [01:33<05:57,  1.20s/it][A
- 21%|██▏       | 80/376 [01:34<05:55,  1.20s/it][A
- 22%|██▏       | 81/376 [01:36<05:54,  1.20s/it][A
- 22%|██▏       | 82/376 [01:37<05:52,  1.20s/it][A
- 22%|██▏       | 83/376 [01:38<05:51,  1.20s/it][A
- 22%|██▏       | 84/376 [01:39<05:50,  1.20s/it][A
- 23%|██▎       | 85/376 [01:40<05:48,  1.20s/it][A
- 23%|██▎       | 86/376 [01:42<05:48,  1.20s/it][A
- 23%|██▎       | 87/376 [01:43<05:46,  1.20s/it][A
- 23%|██▎       | 88/376 [01:45<07:06,  1.48s/it][A
- 24%|██▎       | 89/376 [01:46<06:40,  1.40s/it][A
- 24%|██▍       | 90/376 [01:47<06:22,  1.34s/it][A
- 24%|██▍       | 91/376 [01:49<06:09,  1.30s/it][A
- 24%|██▍       | 92/376 [01:50<05:59,  1.27s/it][A
- 25%|██▍       | 93/376 [01:51<05:52,  1.24s/it][A
- 25%|██▌       | 94/376 [01:52<05:46,  1.23s/it][A
- 25%|██▌       | 95/376 [01:53<05:43,  1.22s/it][A
- 26%|██▌       | 96/376 [01:54<05:40,  1.21s/it][A
- 26%|██▌       | 97/376 [01:56<05:38,  1.21s/it][A
- 26%|██▌       | 98/376 [01:57<05:35,  1.21s/it][A
- 26%|██▋       | 99/376 [01:58<05:33,  1.20s/it][A
- 27%|██▋       | 100/376 [01:59<05:31,  1.20s/it][A
- 27%|██▋       | 101/376 [02:00<05:30,  1.20s/it][A
- 27%|██▋       | 102/376 [02:02<05:28,  1.20s/it][A
- 27%|██▋       | 103/376 [02:03<05:27,  1.20s/it][A
- 28%|██▊       | 104/376 [02:04<05:30,  1.21s/it][A
- 28%|██▊       | 105/376 [02:05<05:27,  1.21s/it][A
- 28%|██▊       | 106/376 [02:07<05:24,  1.20s/it][A
- 28%|██▊       | 107/376 [02:08<05:23,  1.20s/it][A
- 29%|██▊       | 108/376 [02:09<05:21,  1.20s/it][A
- 29%|██▉       | 109/376 [02:10<05:19,  1.20s/it][A
- 29%|██▉       | 110/376 [02:11<05:18,  1.20s/it][A
- 30%|██▉       | 111/376 [02:12<05:16,  1.19s/it][A
- 30%|██▉       | 112/376 [02:14<05:14,  1.19s/it][A
- 30%|███       | 113/376 [02:15<05:14,  1.19s/it][A
- 30%|███       | 114/376 [02:16<05:12,  1.19s/it][A
- 31%|███       | 115/376 [02:17<05:12,  1.20s/it][A
- 31%|███       | 116/376 [02:18<05:11,  1.20s/it][A
- 31%|███       | 117/376 [02:20<05:10,  1.20s/it][A
- 31%|███▏      | 118/376 [02:21<05:08,  1.20s/it][A
- 32%|███▏      | 119/376 [02:22<05:07,  1.20s/it][A
- 32%|███▏      | 120/376 [02:23<05:06,  1.20s/it][A
- 32%|███▏      | 121/376 [02:24<05:05,  1.20s/it][A
- 32%|███▏      | 122/376 [02:26<05:04,  1.20s/it][A
- 33%|███▎      | 123/376 [02:27<05:03,  1.20s/it][A
- 33%|███▎      | 124/376 [02:28<05:01,  1.20s/it][A
- 33%|███▎      | 125/376 [02:29<05:00,  1.20s/it][A
- 34%|███▎      | 126/376 [02:30<04:59,  1.20s/it][A
- 34%|███▍      | 127/376 [02:32<04:58,  1.20s/it][A
- 34%|███▍      | 128/376 [02:33<04:56,  1.20s/it][A
- 34%|███▍      | 129/376 [02:34<04:55,  1.19s/it][A
- 35%|███▍      | 130/376 [02:35<04:54,  1.20s/it][A
- 35%|███▍      | 131/376 [02:36<04:54,  1.20s/it][A
- 35%|███▌      | 132/376 [02:38<04:52,  1.20s/it][A
- 35%|███▌      | 133/376 [02:39<04:51,  1.20s/it][A
- 36%|███▌      | 134/376 [02:40<04:50,  1.20s/it][A
- 36%|███▌      | 135/376 [02:41<04:48,  1.20s/it][A
- 36%|███▌      | 136/376 [02:42<04:47,  1.20s/it][A
- 36%|███▋      | 137/376 [02:44<04:46,  1.20s/it][A
- 37%|███▋      | 138/376 [02:45<04:45,  1.20s/it][A
- 37%|███▋      | 139/376 [02:46<04:43,  1.20s/it][A
- 37%|███▋      | 140/376 [02:47<04:42,  1.20s/it][A
- 38%|███▊      | 141/376 [02:48<04:41,  1.20s/it][A
- 38%|███▊      | 142/376 [02:50<04:39,  1.19s/it][A
- 38%|███▊      | 143/376 [02:51<04:38,  1.20s/it][A
- 38%|███▊      | 144/376 [02:52<04:38,  1.20s/it][A
- 39%|███▊      | 145/376 [02:53<04:36,  1.20s/it][A
- 39%|███▉      | 146/376 [02:54<04:36,  1.20s/it][A
- 39%|███▉      | 147/376 [02:56<04:34,  1.20s/it][A
- 39%|███▉      | 148/376 [02:57<04:33,  1.20s/it][A
- 40%|███▉      | 149/376 [02:58<04:31,  1.20s/it][A
- 40%|███▉      | 150/376 [02:59<04:30,  1.20s/it][A
- 40%|████      | 151/376 [03:00<04:29,  1.20s/it][A
- 40%|████      | 152/376 [03:02<04:28,  1.20s/it][A
- 41%|████      | 153/376 [03:03<04:27,  1.20s/it][A
- 41%|████      | 154/376 [03:04<04:26,  1.20s/it][A
- 41%|████      | 155/376 [03:05<04:24,  1.20s/it][A
- 41%|████▏     | 156/376 [03:06<04:23,  1.20s/it][A
- 42%|████▏     | 157/376 [03:08<04:22,  1.20s/it][A
- 42%|████▏     | 158/376 [03:09<04:20,  1.20s/it][A
- 42%|████▏     | 159/376 [03:10<04:19,  1.19s/it][A
- 43%|████▎     | 160/376 [03:11<04:18,  1.20s/it][A
- 43%|████▎     | 161/376 [03:12<04:16,  1.19s/it][A
- 43%|████▎     | 162/376 [03:14<04:15,  1.20s/it][A
- 43%|████▎     | 163/376 [03:15<04:14,  1.20s/it][A
- 44%|████▎     | 164/376 [03:16<04:13,  1.20s/it][A
- 44%|████▍     | 165/376 [03:17<04:12,  1.20s/it][A
- 44%|████▍     | 166/376 [03:18<04:11,  1.20s/it][A
- 44%|████▍     | 167/376 [03:20<04:09,  1.20s/it][A
- 45%|████▍     | 168/376 [03:21<04:08,  1.19s/it][A
- 45%|████▍     | 169/376 [03:22<04:07,  1.19s/it][A
- 45%|████▌     | 170/376 [03:23<04:06,  1.20s/it][A
- 45%|████▌     | 171/376 [03:24<04:04,  1.20s/it][A
- 46%|████▌     | 172/376 [03:25<04:03,  1.19s/it][A
- 46%|████▌     | 173/376 [03:27<04:02,  1.19s/it][A
- 46%|████▋     | 174/376 [03:28<04:01,  1.19s/it][A
- 47%|████▋     | 175/376 [03:29<03:59,  1.19s/it][A
- 47%|████▋     | 176/376 [03:30<03:58,  1.19s/it][A
- 47%|████▋     | 177/376 [03:31<03:57,  1.20s/it][A
- 47%|████▋     | 178/376 [03:33<03:56,  1.20s/it][A
- 48%|████▊     | 179/376 [03:34<03:56,  1.20s/it][A
- 48%|████▊     | 180/376 [03:35<03:54,  1.20s/it][A
- 48%|████▊     | 181/376 [03:36<03:53,  1.20s/it][A
- 48%|████▊     | 182/376 [03:37<03:52,  1.20s/it][A
- 49%|████▊     | 183/376 [03:39<03:51,  1.20s/it][A
- 49%|████▉     | 184/376 [03:40<03:50,  1.20s/it][A
- 49%|████▉     | 185/376 [03:41<03:49,  1.20s/it][A
- 49%|████▉     | 186/376 [03:42<03:47,  1.20s/it][A
- 50%|████▉     | 187/376 [03:43<03:46,  1.20s/it][A
- 50%|█████     | 188/376 [03:45<03:44,  1.20s/it][A
- 50%|█████     | 189/376 [03:46<03:43,  1.20s/it][A
- 51%|█████     | 190/376 [03:47<03:42,  1.20s/it][A
- 51%|█████     | 191/376 [03:48<03:41,  1.20s/it][A
- 51%|█████     | 192/376 [03:49<03:40,  1.20s/it][A
- 51%|█████▏    | 193/376 [03:51<03:39,  1.20s/it][A
- 52%|█████▏    | 194/376 [03:52<03:37,  1.20s/it][A
- 52%|█████▏    | 195/376 [03:53<03:36,  1.20s/it][A
- 52%|█████▏    | 196/376 [03:54<03:35,  1.20s/it][A
- 52%|█████▏    | 197/376 [03:55<03:34,  1.20s/it][A
- 53%|█████▎    | 198/376 [03:57<03:32,  1.20s/it][A
- 53%|█████▎    | 199/376 [03:58<03:31,  1.20s/it][A
- 53%|█████▎    | 200/376 [03:59<03:30,  1.19s/it][A
- 53%|█████▎    | 201/376 [04:00<03:29,  1.20s/it][A
- 54%|█████▎    | 202/376 [04:01<03:27,  1.20s/it][A
- 54%|█████▍    | 203/376 [04:03<03:27,  1.20s/it][A
- 54%|█████▍    | 204/376 [04:04<03:25,  1.20s/it][A
- 55%|█████▍    | 205/376 [04:05<03:24,  1.20s/it][A
- 55%|█████▍    | 206/376 [04:06<03:23,  1.20s/it][A
- 55%|█████▌    | 207/376 [04:07<03:22,  1.20s/it][A
- 55%|█████▌    | 208/376 [04:09<03:20,  1.19s/it][A
- 56%|█████▌    | 209/376 [04:10<03:19,  1.19s/it][A
- 56%|█████▌    | 210/376 [04:11<03:18,  1.20s/it][A
- 56%|█████▌    | 211/376 [04:12<03:17,  1.19s/it][A
- 56%|█████▋    | 212/376 [04:13<03:15,  1.19s/it][A
- 57%|█████▋    | 213/376 [04:15<03:14,  1.20s/it][A
- 57%|█████▋    | 214/376 [04:16<03:13,  1.20s/it][A
- 57%|█████▋    | 215/376 [04:17<03:12,  1.20s/it][A
- 57%|█████▋    | 216/376 [04:18<03:12,  1.20s/it][A
- 58%|█████▊    | 217/376 [04:19<03:11,  1.20s/it][A
- 58%|█████▊    | 218/376 [04:21<03:10,  1.20s/it][A
- 58%|█████▊    | 219/376 [04:22<03:08,  1.20s/it][A
- 59%|█████▊    | 220/376 [04:23<03:06,  1.20s/it][A
- 59%|█████▉    | 221/376 [04:24<03:05,  1.20s/it][A
- 59%|█████▉    | 222/376 [04:25<03:04,  1.20s/it][A
- 59%|█████▉    | 223/376 [04:27<03:02,  1.20s/it][A
- 60%|█████▉    | 224/376 [04:28<03:01,  1.20s/it][A
- 60%|█████▉    | 225/376 [04:29<03:00,  1.20s/it][A
- 60%|██████    | 226/376 [04:30<02:59,  1.20s/it][A
- 60%|██████    | 227/376 [04:31<02:58,  1.20s/it][A
- 61%|██████    | 228/376 [04:33<02:57,  1.20s/it][A
- 61%|██████    | 229/376 [04:34<02:56,  1.20s/it][A
- 61%|██████    | 230/376 [04:35<02:55,  1.20s/it][A
- 61%|██████▏   | 231/376 [04:36<02:53,  1.20s/it][A
- 62%|██████▏   | 232/376 [04:37<02:52,  1.20s/it][A
- 62%|██████▏   | 233/376 [04:39<02:51,  1.20s/it][A
- 62%|██████▏   | 234/376 [04:40<02:49,  1.20s/it][A
- 62%|██████▎   | 235/376 [04:41<02:48,  1.20s/it][A
- 63%|██████▎   | 236/376 [04:42<02:48,  1.20s/it][A
- 63%|██████▎   | 237/376 [04:43<02:46,  1.20s/it][A
- 63%|██████▎   | 238/376 [04:45<02:45,  1.20s/it][A
- 64%|██████▎   | 239/376 [04:46<02:44,  1.20s/it][A
- 64%|██████▍   | 240/376 [04:47<02:43,  1.20s/it][A
- 64%|██████▍   | 241/376 [04:48<02:42,  1.20s/it][A
- 64%|██████▍   | 242/376 [04:49<02:41,  1.20s/it][A
- 65%|██████▍   | 243/376 [04:51<02:39,  1.20s/it][A
- 65%|██████▍   | 244/376 [04:52<02:38,  1.20s/it][A
- 65%|██████▌   | 245/376 [04:53<02:36,  1.20s/it][A
- 65%|██████▌   | 246/376 [04:54<02:35,  1.20s/it][A
- 66%|██████▌   | 247/376 [04:55<02:34,  1.20s/it][A
- 66%|██████▌   | 248/376 [04:57<02:33,  1.20s/it][A
- 66%|██████▌   | 249/376 [04:58<02:31,  1.20s/it][A
- 66%|██████▋   | 250/376 [04:59<02:30,  1.20s/it][A
- 67%|██████▋   | 251/376 [05:00<02:29,  1.20s/it][A
- 67%|██████▋   | 252/376 [05:01<02:28,  1.20s/it][A
- 67%|██████▋   | 253/376 [05:02<02:26,  1.19s/it][A
- 68%|██████▊   | 254/376 [05:04<02:26,  1.20s/it][A
- 68%|██████▊   | 255/376 [05:05<02:25,  1.20s/it][A
- 68%|██████▊   | 256/376 [05:06<02:23,  1.20s/it][A
- 68%|██████▊   | 257/376 [05:07<02:22,  1.20s/it][A
- 69%|██████▊   | 258/376 [05:09<02:21,  1.20s/it][A
- 69%|██████▉   | 259/376 [05:10<02:20,  1.20s/it][A
- 69%|██████▉   | 260/376 [05:11<02:18,  1.20s/it][A
- 69%|██████▉   | 261/376 [05:12<02:17,  1.20s/it][A
- 70%|██████▉   | 262/376 [05:13<02:16,  1.20s/it][A
- 70%|██████▉   | 263/376 [05:14<02:15,  1.20s/it][A
- 70%|███████   | 264/376 [05:16<02:13,  1.20s/it][A
- 70%|███████   | 265/376 [05:17<02:12,  1.20s/it][A
- 71%|███████   | 266/376 [05:18<02:11,  1.20s/it][A
- 71%|███████   | 267/376 [05:19<02:10,  1.20s/it][A
- 71%|███████▏  | 268/376 [05:20<02:09,  1.20s/it][A
- 72%|███████▏  | 269/376 [05:22<02:08,  1.20s/it][A
- 72%|███████▏  | 270/376 [05:23<02:07,  1.20s/it][A
- 72%|███████▏  | 271/376 [05:24<02:05,  1.20s/it][A
- 72%|███████▏  | 272/376 [05:25<02:04,  1.19s/it][A
- 73%|███████▎  | 273/376 [05:26<02:03,  1.20s/it][A
- 73%|███████▎  | 274/376 [05:28<02:02,  1.20s/it][A
- 73%|███████▎  | 275/376 [05:29<02:00,  1.20s/it][A
- 73%|███████▎  | 276/376 [05:30<01:59,  1.20s/it][A
- 74%|███████▎  | 277/376 [05:31<01:58,  1.20s/it][A
- 74%|███████▍  | 278/376 [05:32<01:57,  1.20s/it][A
- 74%|███████▍  | 279/376 [05:34<01:56,  1.20s/it][A
- 74%|███████▍  | 280/376 [05:35<01:54,  1.20s/it][A
- 75%|███████▍  | 281/376 [05:36<01:53,  1.20s/it][A
- 75%|███████▌  | 282/376 [05:37<01:52,  1.20s/it][A
- 75%|███████▌  | 283/376 [05:38<01:51,  1.19s/it][A
- 76%|███████▌  | 284/376 [05:40<01:49,  1.20s/it][A
- 76%|███████▌  | 285/376 [05:41<01:48,  1.20s/it][A
- 76%|███████▌  | 286/376 [05:42<01:47,  1.20s/it][A
- 76%|███████▋  | 287/376 [05:43<01:46,  1.20s/it][A
- 77%|███████▋  | 288/376 [05:44<01:45,  1.20s/it][A
- 77%|███████▋  | 289/376 [05:46<01:44,  1.20s/it][A
- 77%|███████▋  | 290/376 [05:47<01:42,  1.20s/it][A
- 77%|███████▋  | 291/376 [05:48<01:41,  1.20s/it][A
- 78%|███████▊  | 292/376 [05:49<01:40,  1.19s/it][A
- 78%|███████▊  | 293/376 [05:50<01:39,  1.19s/it][A
- 78%|███████▊  | 294/376 [05:52<01:37,  1.19s/it][A
- 78%|███████▊  | 295/376 [05:53<01:36,  1.20s/it][A
- 79%|███████▊  | 296/376 [05:54<01:35,  1.20s/it][A
- 79%|███████▉  | 297/376 [05:55<01:34,  1.20s/it][A
- 79%|███████▉  | 298/376 [05:56<01:33,  1.20s/it][A
- 80%|███████▉  | 299/376 [05:58<01:32,  1.20s/it][A
- 80%|███████▉  | 300/376 [05:59<01:31,  1.20s/it][A
- 80%|████████  | 301/376 [06:00<01:30,  1.20s/it][A
- 80%|████████  | 302/376 [06:01<01:28,  1.20s/it][A
- 81%|████████  | 303/376 [06:02<01:27,  1.20s/it][A
- 81%|████████  | 304/376 [06:04<01:26,  1.20s/it][A
- 81%|████████  | 305/376 [06:05<01:25,  1.20s/it][A
- 81%|████████▏ | 306/376 [06:06<01:23,  1.19s/it][A
- 82%|████████▏ | 307/376 [06:07<01:22,  1.19s/it][A
- 82%|████████▏ | 308/376 [06:08<01:21,  1.20s/it][A
- 82%|████████▏ | 309/376 [06:10<01:20,  1.20s/it][A
- 82%|████████▏ | 310/376 [06:11<01:19,  1.20s/it][A
- 83%|████████▎ | 311/376 [06:12<01:17,  1.20s/it][A
- 83%|████████▎ | 312/376 [06:13<01:16,  1.20s/it][A
- 83%|████████▎ | 313/376 [06:14<01:15,  1.20s/it][A
- 84%|████████▎ | 314/376 [06:16<01:14,  1.20s/it][A
- 84%|████████▍ | 315/376 [06:17<01:13,  1.20s/it][A
- 84%|████████▍ | 316/376 [06:18<01:11,  1.19s/it][A
- 84%|████████▍ | 317/376 [06:19<01:10,  1.20s/it][A
- 85%|████████▍ | 318/376 [06:20<01:09,  1.20s/it][A
- 85%|████████▍ | 319/376 [06:22<01:08,  1.19s/it][A
- 85%|████████▌ | 320/376 [06:23<01:06,  1.19s/it][A
- 85%|████████▌ | 321/376 [06:24<01:05,  1.19s/it][A
- 86%|████████▌ | 322/376 [06:25<01:04,  1.20s/it][A
- 86%|████████▌ | 323/376 [06:26<01:03,  1.20s/it][A
- 86%|████████▌ | 324/376 [06:28<01:02,  1.20s/it][A
- 86%|████████▋ | 325/376 [06:29<01:01,  1.20s/it][A
- 87%|████████▋ | 326/376 [06:30<00:59,  1.20s/it][A
- 87%|████████▋ | 327/376 [06:31<00:58,  1.20s/it][A
- 87%|████████▋ | 328/376 [06:32<00:57,  1.20s/it][A
- 88%|████████▊ | 329/376 [06:34<00:56,  1.20s/it][A
- 88%|████████▊ | 330/376 [06:35<00:55,  1.20s/it][A
- 88%|████████▊ | 331/376 [06:36<00:53,  1.20s/it][A
- 88%|████████▊ | 332/376 [06:37<00:52,  1.20s/it][A
- 89%|████████▊ | 333/376 [06:38<00:51,  1.19s/it][A
- 89%|████████▉ | 334/376 [06:39<00:50,  1.19s/it][A
- 89%|████████▉ | 335/376 [06:41<00:48,  1.19s/it][A
- 89%|████████▉ | 336/376 [06:42<00:47,  1.19s/it][A
- 90%|████████▉ | 337/376 [06:43<00:46,  1.19s/it][A
- 90%|████████▉ | 338/376 [06:44<00:45,  1.19s/it][A
- 90%|█████████ | 339/376 [06:45<00:44,  1.19s/it][A
- 90%|█████████ | 340/376 [06:47<00:43,  1.20s/it][A
- 91%|█████████ | 341/376 [06:48<00:41,  1.19s/it][A
- 91%|█████████ | 342/376 [06:49<00:40,  1.20s/it][A
- 91%|█████████ | 343/376 [06:50<00:39,  1.20s/it][A
- 91%|█████████▏| 344/376 [06:51<00:38,  1.20s/it][A
- 92%|█████████▏| 345/376 [06:53<00:37,  1.20s/it][A
- 92%|█████████▏| 346/376 [06:54<00:36,  1.20s/it][A
- 92%|█████████▏| 347/376 [06:55<00:34,  1.20s/it][A
- 93%|█████████▎| 348/376 [06:56<00:33,  1.21s/it][A
- 93%|█████████▎| 349/376 [06:57<00:32,  1.21s/it][A
- 93%|█████████▎| 350/376 [06:59<00:31,  1.21s/it][A
- 93%|█████████▎| 351/376 [07:00<00:30,  1.21s/it][A
- 94%|█████████▎| 352/376 [07:01<00:29,  1.21s/it][A
- 94%|█████████▍| 353/376 [07:02<00:27,  1.21s/it][A
- 94%|█████████▍| 354/376 [07:04<00:26,  1.21s/it][A
- 94%|█████████▍| 355/376 [07:05<00:25,  1.21s/it][A
- 95%|█████████▍| 356/376 [07:06<00:24,  1.21s/it][A
- 95%|█████████▍| 357/376 [07:07<00:22,  1.21s/it][A
- 95%|█████████▌| 358/376 [07:08<00:21,  1.20s/it][A
- 95%|█████████▌| 359/376 [07:10<00:20,  1.20s/it][A
- 96%|█████████▌| 360/376 [07:11<00:19,  1.20s/it][A
- 96%|█████████▌| 361/376 [07:12<00:18,  1.20s/it][A
- 96%|█████████▋| 362/376 [07:13<00:16,  1.20s/it][A
- 97%|█████████▋| 363/376 [07:14<00:15,  1.20s/it][A
- 97%|█████████▋| 364/376 [07:16<00:14,  1.20s/it][A
- 97%|█████████▋| 365/376 [07:17<00:13,  1.21s/it][A
- 97%|█████████▋| 366/376 [07:18<00:12,  1.21s/it][A
- 98%|█████████▊| 367/376 [07:19<00:10,  1.20s/it][A
- 98%|█████████▊| 368/376 [07:20<00:09,  1.20s/it][A
- 98%|█████████▊| 369/376 [07:22<00:08,  1.20s/it][A
- 98%|█████████▊| 370/376 [07:23<00:07,  1.20s/it][A
- 99%|█████████▊| 371/376 [07:24<00:06,  1.21s/it][A
- 99%|█████████▉| 372/376 [07:25<00:04,  1.21s/it][A
- 99%|█████████▉| 373/376 [07:26<00:03,  1.21s/it][A
- 99%|█████████▉| 374/376 [07:28<00:02,  1.21s/it][A
-100%|█████████▉| 375/376 [07:29<00:01,  1.21s/it][A
-100%|██████████| 376/376 [07:30<00:00,  1.21s/it][A
-                                                 [A                                              {'eval_loss': 1.205209493637085, 'eval_runtime': 451.7267, 'eval_samples_per_second': 3.325, 'eval_steps_per_second': 0.832, 'eval_num_tokens': 181219.0, 'eval_mean_token_accuracy': 0.8317203876820016, 'epoch': 0.04}
-
-100%|██████████| 376/376 [07:30<00:00,  1.21s/it][A100%|██████████| 4/4 [23:49<00:00, 255.65s/it]
-                                                 [A/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:680: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
-  warnings.warn(
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/distributed_c10d.py:859: UserWarning: `_get_pg_default_device` will be deprecated, it only stays for backward-compatiblity reason. If you need to find a device for object collectives, please use `_get_object_coll_device`. If you need to query the device types supported by group, please use `_device_capability(group)`. 
-  warnings.warn(
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/_state_dict_utils.py:722: FutureWarning: Please use DTensor instead and we are deprecating ShardedTensor.
-  local_shape = tensor.shape
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/_state_dict_utils.py:739: FutureWarning: Please use DTensor instead and we are deprecating ShardedTensor.
-  tensor.shape,
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/_state_dict_utils.py:741: FutureWarning: Please use DTensor instead and we are deprecating ShardedTensor.
-  tensor.dtype,
-                                              Saving final consolidated model to /scratch-shared/mschaffelder/data/ft_models/llama_70b_single_source_TEST_2
-Saving final consolidated model to /scratch-shared/mschaffelder/data/ft_models/llama_70b_single_source_TEST_2{'train_runtime': 1449.4661, 'train_samples_per_second': 0.353, 'train_steps_per_second': 0.003, 'train_loss': 0.9569508880376816, 'epoch': 0.04}Saving final consolidated model to /scratch-shared/mschaffelder/data/ft_models/llama_70b_single_source_TEST_2
-
-
-100%|██████████| 4/4 [24:09<00:00, 255.65s/it]100%|██████████| 4/4 [24:09<00:00, 362.43s/it]
-Saving final consolidated model to /scratch-shared/mschaffelder/data/ft_models/llama_70b_single_source_TEST_2
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:680: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
-  warnings.warn(
-Training completed successfully!
-Training completed successfully!
-Training completed successfully!
-Training completed successfully!
-Fine-tuning job completed.
-
-JOB STATISTICS
-==============
-Job ID: 12499705
-Cluster: snellius
-User/Group: mschaffelder/mschaffelder
-State: COMPLETED (exit code 0)
-Nodes: 1
-Cores per node: 64
-CPU Utilized: 04:28:38
-CPU Efficiency: 11.29% of 1-15:39:44 core-walltime
-Job Wall-clock time: 00:37:11
-Memory Utilized: 52.92 GB
-Memory Efficiency: 7.56% of 700.00 GB (700.00 GB/node)

@@ -1,195 +1,0 @@
-Activating virtual environment from /scratch-shared/mschaffelder/venv_finetune_1
-Installing packages from requirements.txt
-Requirement already satisfied: torch in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 1)) (2.7.0)
-Requirement already satisfied: peft>=0.5.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 2)) (0.15.2)
-Requirement already satisfied: transformers>=4.36.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 3)) (4.52.3)
-Requirement already satisfied: datasets>=2.14.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 4)) (3.6.0)
-Requirement already satisfied: sentencepiece>=0.1.99 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 5)) (0.2.0)
-Requirement already satisfied: huggingface_hub>=0.17.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 6)) (0.32.0)
-Requirement already satisfied: bitsandbytes in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 7)) (0.45.5)
-Requirement already satisfied: tensorboard in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 8)) (2.19.0)
-Requirement already satisfied: accelerate>=0.21.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 9)) (1.7.0)
-Requirement already satisfied: typing_extensions in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r requirements.txt (line 10)) (4.13.2)
-Requirement already satisfied: filelock in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.18.0)
-Requirement already satisfied: setuptools in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (80.8.0)
-Requirement already satisfied: sympy>=1.13.3 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (1.14.0)
-Requirement already satisfied: networkx in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.4.2)
-Requirement already satisfied: jinja2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.1.6)
-Requirement already satisfied: fsspec in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (2025.3.0)
-Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.80)
-Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (9.5.1.17)
-Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.4.1)
-Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (11.3.0.4)
-Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (10.3.7.77)
-Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (11.7.1.2)
-Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.5.4.2)
-Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (0.6.3)
-Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (2.26.2)
-Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (12.6.85)
-Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (1.11.1.6)
-Requirement already satisfied: triton==3.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r requirements.txt (line 1)) (3.3.0)
-Requirement already satisfied: numpy>=1.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (2.2.6)
-Requirement already satisfied: packaging>=20.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (25.0)
-Requirement already satisfied: psutil in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (7.0.0)
-Requirement already satisfied: pyyaml in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (6.0.2)
-Requirement already satisfied: tqdm in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (4.67.1)
-Requirement already satisfied: safetensors in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r requirements.txt (line 2)) (0.5.3)
-Requirement already satisfied: regex!=2019.12.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from transformers>=4.36.0->-r requirements.txt (line 3)) (2024.11.6)
-Requirement already satisfied: requests in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from transformers>=4.36.0->-r requirements.txt (line 3)) (2.32.3)
-Requirement already satisfied: tokenizers<0.22,>=0.21 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from transformers>=4.36.0->-r requirements.txt (line 3)) (0.21.1)
-Requirement already satisfied: pyarrow>=15.0.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (20.0.0)
-Requirement already satisfied: dill<0.3.9,>=0.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (0.3.8)
-Requirement already satisfied: pandas in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (2.2.3)
-Requirement already satisfied: xxhash in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (3.5.0)
-Requirement already satisfied: multiprocess<0.70.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r requirements.txt (line 4)) (0.70.16)
-Requirement already satisfied: hf-xet<2.0.0,>=1.1.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from huggingface_hub>=0.17.0->-r requirements.txt (line 6)) (1.1.2)
-Requirement already satisfied: absl-py>=0.4 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (2.2.2)
-Requirement already satisfied: grpcio>=1.48.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (1.71.0)
-Requirement already satisfied: markdown>=2.6.8 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (3.8)
-Requirement already satisfied: protobuf!=4.24.0,>=3.19.6 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (6.31.0)
-Requirement already satisfied: six>1.9 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (1.17.0)
-Requirement already satisfied: tensorboard-data-server<0.8.0,>=0.7.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (0.7.2)
-Requirement already satisfied: werkzeug>=1.0.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r requirements.txt (line 8)) (3.1.3)
-Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (3.11.18)
-Requirement already satisfied: charset-normalizer<4,>=2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (3.4.2)
-Requirement already satisfied: idna<4,>=2.5 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (3.10)
-Requirement already satisfied: urllib3<3,>=1.21.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (2.4.0)
-Requirement already satisfied: certifi>=2017.4.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r requirements.txt (line 3)) (2025.4.26)
-Requirement already satisfied: mpmath<1.4,>=1.1.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from sympy>=1.13.3->torch->-r requirements.txt (line 1)) (1.3.0)
-Requirement already satisfied: MarkupSafe>=2.1.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from werkzeug>=1.0.1->tensorboard->-r requirements.txt (line 8)) (3.0.2)
-Requirement already satisfied: python-dateutil>=2.8.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 4)) (2.9.0.post0)
-Requirement already satisfied: pytz>=2020.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 4)) (2025.2)
-Requirement already satisfied: tzdata>=2022.7 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r requirements.txt (line 4)) (2025.2)
-Requirement already satisfied: aiohappyeyeballs>=2.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (2.6.1)
-Requirement already satisfied: aiosignal>=1.1.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (1.3.2)
-Requirement already satisfied: attrs>=17.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (25.3.0)
-Requirement already satisfied: frozenlist>=1.1.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (1.6.0)
-Requirement already satisfied: multidict<7.0,>=4.5 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (6.4.4)
-Requirement already satisfied: propcache>=0.2.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (0.3.1)
-Requirement already satisfied: yarl<2.0,>=1.17.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r requirements.txt (line 4)) (1.20.0)
-
-[notice] A new release of pip is available: 24.0 -> 25.1.1
-[notice] To update, run: pip install --upgrade pip
-CUDA_VISIBLE_DEVICES: 0,1,2,3
-Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-d80a5d2e-072c-7ffd-e952-ffd5d2c8dd30)
-GPU 1: NVIDIA H100 (UUID: GPU-7a6b99bf-5946-dd25-d165-90ca9c353f5a)
-GPU 2: NVIDIA H100 (UUID: GPU-ed698e3d-7fed-d657-790c-f8d6dae740f6)
-GPU 3: NVIDIA H100 (UUID: GPU-ed306674-24bf-3490-ce46-03b6a67995a4)
-The token has not been saved to the git credentials helper. Pass `add_to_git_credential=True` in this function directly or `--add-to-git-credential` if using via `huggingface-cli` if you want to set the git credential as well.
-Token is valid (permission: fineGrained).
-The token `MaxBook Air` has been saved to /home/mschaffelder/.cache/huggingface/stored_tokens
-Your token has been saved to /home/mschaffelder/.cache/huggingface/token
-Login successful.
-The current active token is: `MaxBook Air`
-importing libraries
-done importing libraries
-Attempting to load tokenizer from local path: /scratch-shared/mschaffelder/hf_cache/meta-llama_Llama-3.1-70B-Instruct
-Attempting to load model from local path: /scratch-shared/mschaffelder/hf_cache/meta-llama_Llama-3.1-70B-Instruct
-Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/30 [00:16<08:11, 16.96s/it]Loading checkpoint shards:   7%|▋         | 2/30 [00:24<05:20, 11.43s/it]Loading checkpoint shards:  10%|█         | 3/30 [00:31<04:14,  9.43s/it]Loading checkpoint shards:  13%|█▎        | 4/30 [00:38<03:41,  8.51s/it]Loading checkpoint shards:  17%|█▋        | 5/30 [00:44<03:09,  7.59s/it]Loading checkpoint shards:  20%|██        | 6/30 [00:55<03:29,  8.73s/it]Loading checkpoint shards:  23%|██▎       | 7/30 [01:04<03:24,  8.91s/it]Loading checkpoint shards:  27%|██▋       | 8/30 [01:12<03:09,  8.62s/it]Loading checkpoint shards:  30%|███       | 9/30 [01:20<02:56,  8.38s/it]Loading checkpoint shards:  33%|███▎      | 10/30 [01:27<02:37,  7.88s/it]Loading checkpoint shards:  37%|███▋      | 11/30 [01:33<02:17,  7.24s/it]Loading checkpoint shards:  40%|████      | 12/30 [01:39<02:04,  6.92s/it]Loading checkpoint shards:  43%|████▎     | 13/30 [01:47<02:03,  7.29s/it]Loading checkpoint shards:  47%|████▋     | 14/30 [01:56<02:06,  7.90s/it]Loading checkpoint shards:  50%|█████     | 15/30 [02:07<02:09,  8.63s/it]Loading checkpoint shards:  53%|█████▎    | 16/30 [02:16<02:04,  8.93s/it]Loading checkpoint shards:  57%|█████▋    | 17/30 [02:26<01:57,  9.07s/it]Loading checkpoint shards:  60%|██████    | 18/30 [02:38<01:59,  9.95s/it]Loading checkpoint shards:  63%|██████▎   | 19/30 [02:48<01:50, 10.02s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [02:58<01:39,  9.99s/it]Loading checkpoint shards:  70%|███████   | 21/30 [03:08<01:30, 10.04s/it]Loading checkpoint shards:  73%|███████▎  | 22/30 [03:17<01:18,  9.86s/it]Loading checkpoint shards:  77%|███████▋  | 23/30 [03:27<01:08,  9.74s/it]Loading checkpoint shards:  80%|████████  | 24/30 [03:34<00:53,  8.98s/it]Loading checkpoint shards:  83%|████████▎ | 25/30 [03:44<00:45,  9.16s/it]Loading checkpoint shards:  87%|████████▋ | 26/30 [03:55<00:39,  9.75s/it]Loading checkpoint shards:  90%|█████████ | 27/30 [04:07<00:31, 10.37s/it]Loading checkpoint shards:  93%|█████████▎| 28/30 [04:17<00:21, 10.51s/it]Loading checkpoint shards:  97%|█████████▋| 29/30 [04:29<00:10, 10.78s/it]Loading checkpoint shards: 100%|██████████| 30/30 [04:34<00:00,  9.07s/it]Loading checkpoint shards: 100%|██████████| 30/30 [04:34<00:00,  9.15s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-done loading tokenizer and model
-getting peft model
-done getting peft model
-trainable params: 32,768,000 || all params: 70,586,490,880 || trainable%: 0.0464
-loading datasets
-Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 4900 examples [00:02, 1741.00 examples/s]Generating train split: 13509 examples [00:02, 4773.99 examples/s]
-Generating test split: 0 examples [00:00, ? examples/s]Generating test split: 1242 examples [00:00, 313004.00 examples/s]
-done loading datasets
-train dataset:  Dataset({
-    features: ['instruction', 'response_human', 'response_model', 'model_name', 'category', 'index'],
-    num_rows: 13509
-})
-val dataset:  Dataset({
-    features: ['instruction', 'response_human', 'response_model', 'model_name', 'category', 'index'],
-    num_rows: 1242
-})
-filtering long examples
-Filter:   0%|          | 0/13509 [00:00<?, ? examples/s]Filter:   7%|▋         | 1000/13509 [00:01<00:14, 891.20 examples/s]Filter:  15%|█▍        | 2000/13509 [00:01<00:09, 1160.94 examples/s]Filter:  22%|██▏       | 3000/13509 [00:02<00:08, 1300.39 examples/s]Filter:  30%|██▉       | 4000/13509 [00:03<00:07, 1275.26 examples/s]Filter:  37%|███▋      | 5000/13509 [00:03<00:06, 1340.44 examples/s]Filter:  44%|████▍     | 6000/13509 [00:04<00:05, 1374.55 examples/s]Filter:  52%|█████▏    | 7000/13509 [00:05<00:04, 1411.05 examples/s]Filter:  59%|█████▉    | 8000/13509 [00:05<00:03, 1438.90 examples/s]Filter:  67%|██████▋   | 9000/13509 [00:06<00:03, 1447.84 examples/s]Filter:  74%|███████▍  | 10000/13509 [00:07<00:02, 1455.87 examples/s]Filter:  81%|████████▏ | 11000/13509 [00:08<00:01, 1464.59 examples/s]Filter:  89%|████████▉ | 12000/13509 [00:08<00:01, 1468.96 examples/s]Filter:  96%|█████████▌| 13000/13509 [00:09<00:00, 1478.80 examples/s]Filter: 100%|██████████| 13509/13509 [00:09<00:00, 1481.73 examples/s]Filter: 100%|██████████| 13509/13509 [00:09<00:00, 1393.97 examples/s]
-Filter:   0%|          | 0/1242 [00:00<?, ? examples/s]Filter:  81%|████████  | 1000/1242 [00:00<00:00, 1466.74 examples/s]Filter: 100%|██████████| 1242/1242 [00:00<00:00, 1480.50 examples/s]Filter: 100%|██████████| 1242/1242 [00:00<00:00, 1473.17 examples/s]
-done filtering long examples
-tokenizing and formatting train dataset
-Map:   0%|          | 0/13481 [00:00<?, ? examples/s]Map:   1%|          | 124/13481 [00:00<00:10, 1224.66 examples/s]Map:   2%|▏         | 250/13481 [00:00<00:10, 1243.84 examples/s]Map:   3%|▎         | 381/13481 [00:00<00:10, 1264.59 examples/s]Map:   4%|▍         | 571/13481 [00:00<00:10, 1259.23 examples/s]Map:   6%|▌         | 747/13481 [00:00<00:10, 1220.07 examples/s]Map:   6%|▋         | 872/13481 [00:00<00:10, 1225.38 examples/s]Map:   7%|▋         | 1000/13481 [00:00<00:12, 1002.86 examples/s]Map:   8%|▊         | 1116/13481 [00:00<00:11, 1039.82 examples/s]Map:   9%|▉         | 1229/13481 [00:01<00:11, 1061.44 examples/s]Map:  10%|█         | 1352/13481 [00:01<00:15, 766.70 examples/s] Map:  11%|█         | 1473/13481 [00:01<00:14, 857.11 examples/s]Map:  12%|█▏        | 1594/13481 [00:01<00:12, 936.74 examples/s]Map:  13%|█▎        | 1715/13481 [00:01<00:11, 999.26 examples/s]Map:  14%|█▎        | 1843/13481 [00:01<00:16, 721.14 examples/s]Map:  15%|█▍        | 1963/13481 [00:02<00:14, 815.17 examples/s]Map:  16%|█▌        | 2121/13481 [00:02<00:14, 796.43 examples/s]Map:  17%|█▋        | 2242/13481 [00:02<00:12, 879.13 examples/s]Map:  17%|█▋        | 2359/13481 [00:02<00:11, 940.30 examples/s]Map:  18%|█▊        | 2473/13481 [00:02<00:11, 987.29 examples/s]Map:  19%|█▉        | 2594/13481 [00:02<00:10, 1042.66 examples/s]Map:  20%|██        | 2714/13481 [00:02<00:09, 1080.87 examples/s]Map:  21%|██        | 2839/13481 [00:03<00:19, 546.33 examples/s] Map:  22%|██▏       | 2964/13481 [00:03<00:15, 658.20 examples/s]Map:  23%|██▎       | 3110/13481 [00:03<00:15, 684.90 examples/s]Map:  24%|██▍       | 3241/13481 [00:03<00:12, 799.14 examples/s]Map:  25%|██▍       | 3351/13481 [00:03<00:11, 861.49 examples/s]Map:  26%|██▌       | 3470/13481 [00:03<00:10, 936.26 examples/s]Map:  27%|██▋       | 3588/13481 [00:03<00:09, 992.94 examples/s]Map:  28%|██▊       | 3716/13481 [00:04<00:09, 1063.98 examples/s]Map:  28%|██▊       | 3841/13481 [00:04<00:08, 1108.61 examples/s]Map:  30%|██▉       | 4000/13481 [00:04<00:13, 692.27 examples/s] Map:  31%|███       | 4120/13481 [00:04<00:11, 783.86 examples/s]Map:  31%|███▏      | 4231/13481 [00:04<00:10, 848.74 examples/s]Map:  32%|███▏      | 4351/13481 [00:04<00:09, 926.26 examples/s]Map:  33%|███▎      | 4466/13481 [00:04<00:09, 978.13 examples/s]Map:  34%|███▍      | 4584/13481 [00:05<00:08, 1027.93 examples/s]Map:  35%|███▌      | 4764/13481 [00:05<00:08, 1086.50 examples/s]Map:  36%|███▌      | 4886/13481 [00:05<00:07, 1118.17 examples/s]Map:  38%|███▊      | 5058/13481 [00:05<00:08, 961.18 examples/s] Map:  38%|███▊      | 5168/13481 [00:05<00:09, 879.85 examples/s]Map:  39%|███▉      | 5277/13481 [00:05<00:08, 922.85 examples/s]Map:  40%|████      | 5404/13481 [00:05<00:08, 1004.40 examples/s]Map:  41%|████      | 5525/13481 [00:05<00:07, 1053.87 examples/s]Map:  42%|████▏     | 5691/13481 [00:06<00:07, 1071.78 examples/s]Map:  43%|████▎     | 5810/13481 [00:06<00:06, 1099.78 examples/s]Map:  44%|████▍     | 5934/13481 [00:06<00:06, 1134.92 examples/s]Map:  45%|████▍     | 6056/13481 [00:06<00:07, 954.45 examples/s] Map:  46%|████▌     | 6176/13481 [00:06<00:07, 1009.73 examples/s]Map:  47%|████▋     | 6306/13481 [00:06<00:09, 736.15 examples/s] Map:  48%|████▊     | 6426/13481 [00:06<00:08, 827.96 examples/s]Map:  48%|████▊     | 6536/13481 [00:07<00:07, 887.41 examples/s]Map:  49%|████▉     | 6646/13481 [00:07<00:07, 936.32 examples/s]Map:  50%|█████     | 6761/13481 [00:07<00:06, 987.11 examples/s]Map:  51%|█████     | 6890/13481 [00:07<00:06, 1066.89 examples/s]Map:  52%|█████▏    | 7062/13481 [00:07<00:06, 938.36 examples/s] Map:  53%|█████▎    | 7187/13481 [00:07<00:06, 1008.56 examples/s]Map:  54%|█████▍    | 7300/13481 [00:07<00:05, 1037.40 examples/s]Map:  55%|█████▍    | 7411/13481 [00:07<00:05, 1054.32 examples/s]Map:  56%|█████▌    | 7538/13481 [00:08<00:05, 1111.74 examples/s]Map:  57%|█████▋    | 7717/13481 [00:08<00:05, 1138.53 examples/s]Map:  59%|█████▊    | 7893/13481 [00:08<00:04, 1146.01 examples/s]Map:  60%|█████▉    | 8058/13481 [00:08<00:05, 995.37 examples/s] Map:  61%|██████    | 8179/13481 [00:08<00:05, 1038.56 examples/s]Map:  62%|██████▏   | 8292/13481 [00:08<00:04, 1057.06 examples/s]Map:  62%|██████▏   | 8410/13481 [00:08<00:04, 1085.98 examples/s]Map:  63%|██████▎   | 8524/13481 [00:09<00:05, 920.27 examples/s] Map:  64%|██████▍   | 8652/13481 [00:09<00:06, 754.59 examples/s]Map:  65%|██████▌   | 8776/13481 [00:09<00:05, 847.39 examples/s]Map:  66%|██████▌   | 8887/13481 [00:09<00:05, 899.41 examples/s]Map:  67%|██████▋   | 9000/13481 [00:09<00:05, 822.53 examples/s]Map:  68%|██████▊   | 9111/13481 [00:09<00:04, 883.66 examples/s]Map:  68%|██████▊   | 9233/13481 [00:09<00:04, 962.85 examples/s]Map:  69%|██████▉   | 9349/13481 [00:09<00:04, 1012.82 examples/s]Map:  70%|███████   | 9471/13481 [00:10<00:03, 1066.06 examples/s]Map:  71%|███████   | 9591/13481 [00:10<00:03, 1100.27 examples/s]Map:  72%|███████▏  | 9716/13481 [00:10<00:03, 1139.48 examples/s]Map:  73%|███████▎  | 9834/13481 [00:10<00:03, 1149.59 examples/s]Map:  74%|███████▍  | 10000/13481 [00:10<00:03, 962.54 examples/s]Map:  75%|███████▌  | 10111/13481 [00:10<00:03, 996.98 examples/s]Map:  76%|███████▌  | 10231/13481 [00:10<00:03, 1045.44 examples/s]Map:  77%|███████▋  | 10342/13481 [00:10<00:02, 1059.40 examples/s]Map:  78%|███████▊  | 10463/13481 [00:10<00:02, 1099.09 examples/s]Map:  79%|███████▊  | 10585/13481 [00:11<00:02, 1129.20 examples/s]Map:  79%|███████▉  | 10703/13481 [00:11<00:02, 1139.87 examples/s]Map:  80%|████████  | 10827/13481 [00:11<00:02, 1167.91 examples/s]Map:  81%|████████  | 10947/13481 [00:11<00:02, 998.39 examples/s] Map:  82%|████████▏ | 11054/13481 [00:11<00:02, 869.10 examples/s]Map:  83%|████████▎ | 11177/13481 [00:11<00:02, 951.81 examples/s]Map:  84%|████████▎ | 11289/13481 [00:11<00:02, 992.93 examples/s]Map:  85%|████████▍ | 11410/13481 [00:11<00:01, 1047.79 examples/s]Map:  86%|████████▌ | 11529/13481 [00:11<00:01, 1081.47 examples/s]Map:  86%|████████▋ | 11645/13481 [00:12<00:01, 1102.72 examples/s]Map:  87%|████████▋ | 11765/13481 [00:12<00:01, 1126.12 examples/s]Map:  88%|████████▊ | 11882/13481 [00:12<00:01, 1135.92 examples/s]Map:  89%|████████▉ | 12000/13481 [00:12<00:01, 965.34 examples/s] Map:  90%|████████▉ | 12124/13481 [00:12<00:01, 1035.16 examples/s]Map:  91%|█████████ | 12298/13481 [00:12<00:01, 1076.59 examples/s]Map:  92%|█████████▏| 12413/13481 [00:12<00:00, 1092.32 examples/s]Map:  93%|█████████▎| 12533/13481 [00:12<00:00, 1115.89 examples/s]Map:  94%|█████████▍| 12655/13481 [00:13<00:00, 1141.60 examples/s]Map:  95%|█████████▍| 12774/13481 [00:13<00:00, 1151.87 examples/s]Map:  96%|█████████▌| 12891/13481 [00:13<00:00, 1153.67 examples/s]Map:  97%|█████████▋| 13062/13481 [00:13<00:00, 985.83 examples/s] Map:  98%|█████████▊| 13190/13481 [00:13<00:00, 1050.54 examples/s]Map:  99%|█████████▉| 13334/13481 [00:13<00:00, 1017.25 examples/s]Map: 100%|█████████▉| 13456/13481 [00:13<00:00, 1063.69 examples/s]Map: 100%|██████████| 13481/13481 [00:13<00:00, 974.15 examples/s] 
-Map:   0%|          | 0/1241 [00:00<?, ? examples/s]Map:  10%|▉         | 122/1241 [00:00<00:00, 1198.49 examples/s]Map:  24%|██▍       | 295/1241 [00:00<00:00, 1162.69 examples/s]Map:  34%|███▍      | 419/1241 [00:00<00:00, 1189.95 examples/s]Map:  48%|████▊     | 598/1241 [00:00<00:00, 1184.56 examples/s]Map:  62%|██████▏   | 768/1241 [00:00<00:00, 1158.88 examples/s]Map:  75%|███████▌  | 935/1241 [00:00<00:00, 916.95 examples/s] Map:  85%|████████▌ | 1059/1241 [00:01<00:00, 725.51 examples/s]Map:  95%|█████████▌| 1181/1241 [00:01<00:00, 814.17 examples/s]Map: 100%|██████████| 1241/1241 [00:01<00:00, 921.44 examples/s]
-/gpfs/scratch1/shared/mschaffelder/code/finetuning/finetuning_70b.py:190: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
-  trainer = Trainer(
-No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
-starting training
-  0%|          | 0/3372 [00:00<?, ?it/s]/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/utils/checkpoint.py:86: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
-  warnings.warn(
-Traceback (most recent call last):
-  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/finetuning_70b.py", line 201, in <module>
-    trainer.train()
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/trainer.py", line 2240, in train
-    return inner_training_loop(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/trainer.py", line 2555, in _inner_training_loop
-    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/trainer.py", line 3745, in training_step
-    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/trainer.py", line 3810, in compute_loss
-    outputs = model(**inputs)
-              ^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/accelerate/utils/operations.py", line 818, in forward
-    return model_forward(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/accelerate/utils/operations.py", line 806, in __call__
-    return convert_to_fp32(self.model_forward(*args, **kwargs))
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/peft/peft_model.py", line 1757, in forward
-    return self.base_model(
-           ^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/peft/tuners/tuners_utils.py", line 193, in forward
-    return self.model.forward(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/accelerate/hooks.py", line 175, in new_forward
-    output = module._old_forward(*args, **kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/utils/generic.py", line 969, in wrapper
-    output = func(self, *args, **kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 708, in forward
-    loss = self.loss_function(logits=logits, labels=labels, vocab_size=self.config.vocab_size, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/loss/loss_utils.py", line 64, in ForCausalLMLoss
-    loss = fixed_cross_entropy(logits, shift_labels, num_items_in_batch, ignore_index, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/loss/loss_utils.py", line 38, in fixed_cross_entropy
-    loss = loss / num_items_in_batch
-           ~~~~~^~~~~~~~~~~~~~~~~~~~
-RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:3 and cuda:0!
-  0%|          | 0/3372 [00:10<?, ?it/s]
-
-JOB STATISTICS
-==============
-Job ID: 12013859
-Cluster: snellius
-User/Group: mschaffelder/mschaffelder
-State: FAILED (exit code 1)
-Nodes: 1
-Cores per node: 64
-CPU Utilized: 00:02:57
-CPU Efficiency: 0.37% of 13:15:44 core-walltime
-Job Wall-clock time: 00:12:26
-Memory Utilized: 5.39 GB
-Memory Efficiency: 5.39% of 100.00 GB (100.00 GB/node)

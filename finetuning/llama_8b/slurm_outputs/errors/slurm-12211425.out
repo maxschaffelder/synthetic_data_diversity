@@ -1,365 +1,0 @@
-Activating virtual environment from /scratch-shared/mschaffelder/venv_finetune_1
-Requirement already satisfied: torch in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 1)) (2.7.0)
-Requirement already satisfied: peft>=0.5.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 2)) (0.15.2)
-Requirement already satisfied: transformers>=4.36.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 3)) (4.52.3)
-Requirement already satisfied: datasets>=2.14.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 4)) (3.6.0)
-Requirement already satisfied: sentencepiece>=0.1.99 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 5)) (0.2.0)
-Requirement already satisfied: huggingface_hub>=0.17.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 6)) (0.32.0)
-Requirement already satisfied: bitsandbytes in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 7)) (0.45.5)
-Requirement already satisfied: tensorboard in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 8)) (2.19.0)
-Requirement already satisfied: accelerate>=0.21.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 9)) (1.7.0)
-Requirement already satisfied: typing_extensions in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 10)) (4.13.2)
-Requirement already satisfied: deepspeed>=0.10.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from -r ../requirements.txt (line 11)) (0.16.9)
-Requirement already satisfied: filelock in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (3.18.0)
-Requirement already satisfied: setuptools in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (80.8.0)
-Requirement already satisfied: sympy>=1.13.3 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (1.14.0)
-Requirement already satisfied: networkx in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (3.4.2)
-Requirement already satisfied: jinja2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (3.1.6)
-Requirement already satisfied: fsspec in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (2025.3.0)
-Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (12.6.80)
-Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (9.5.1.17)
-Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (12.6.4.1)
-Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (11.3.0.4)
-Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (10.3.7.77)
-Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (11.7.1.2)
-Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (12.5.4.2)
-Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (0.6.3)
-Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (2.26.2)
-Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (12.6.85)
-Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (1.11.1.6)
-Requirement already satisfied: triton==3.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from torch->-r ../requirements.txt (line 1)) (3.3.0)
-Requirement already satisfied: numpy>=1.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r ../requirements.txt (line 2)) (2.2.6)
-Requirement already satisfied: packaging>=20.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r ../requirements.txt (line 2)) (25.0)
-Requirement already satisfied: psutil in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r ../requirements.txt (line 2)) (7.0.0)
-Requirement already satisfied: pyyaml in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r ../requirements.txt (line 2)) (6.0.2)
-Requirement already satisfied: tqdm in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r ../requirements.txt (line 2)) (4.67.1)
-Requirement already satisfied: safetensors in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from peft>=0.5.0->-r ../requirements.txt (line 2)) (0.5.3)
-Requirement already satisfied: regex!=2019.12.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from transformers>=4.36.0->-r ../requirements.txt (line 3)) (2024.11.6)
-Requirement already satisfied: requests in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from transformers>=4.36.0->-r ../requirements.txt (line 3)) (2.32.3)
-Requirement already satisfied: tokenizers<0.22,>=0.21 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from transformers>=4.36.0->-r ../requirements.txt (line 3)) (0.21.1)
-Requirement already satisfied: pyarrow>=15.0.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r ../requirements.txt (line 4)) (20.0.0)
-Requirement already satisfied: dill<0.3.9,>=0.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r ../requirements.txt (line 4)) (0.3.8)
-Requirement already satisfied: pandas in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r ../requirements.txt (line 4)) (2.2.3)
-Requirement already satisfied: xxhash in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r ../requirements.txt (line 4)) (3.5.0)
-Requirement already satisfied: multiprocess<0.70.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from datasets>=2.14.0->-r ../requirements.txt (line 4)) (0.70.16)
-Requirement already satisfied: hf-xet<2.0.0,>=1.1.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from huggingface_hub>=0.17.0->-r ../requirements.txt (line 6)) (1.1.2)
-Requirement already satisfied: absl-py>=0.4 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r ../requirements.txt (line 8)) (2.2.2)
-Requirement already satisfied: grpcio>=1.48.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r ../requirements.txt (line 8)) (1.71.0)
-Requirement already satisfied: markdown>=2.6.8 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r ../requirements.txt (line 8)) (3.8)
-Requirement already satisfied: protobuf!=4.24.0,>=3.19.6 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r ../requirements.txt (line 8)) (3.20.3)
-Requirement already satisfied: six>1.9 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r ../requirements.txt (line 8)) (1.17.0)
-Requirement already satisfied: tensorboard-data-server<0.8.0,>=0.7.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r ../requirements.txt (line 8)) (0.7.2)
-Requirement already satisfied: werkzeug>=1.0.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from tensorboard->-r ../requirements.txt (line 8)) (3.1.3)
-Requirement already satisfied: einops in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (0.8.1)
-Requirement already satisfied: hjson in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (3.1.0)
-Requirement already satisfied: msgpack in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (1.1.0)
-Requirement already satisfied: ninja in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (1.11.1.4)
-Requirement already satisfied: py-cpuinfo in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (9.0.0)
-Requirement already satisfied: pydantic>=2.0.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (2.11.5)
-Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (3.11.18)
-Requirement already satisfied: annotated-types>=0.6.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pydantic>=2.0.0->deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (0.7.0)
-Requirement already satisfied: pydantic-core==2.33.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pydantic>=2.0.0->deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (2.33.2)
-Requirement already satisfied: typing-inspection>=0.4.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pydantic>=2.0.0->deepspeed>=0.10.0->-r ../requirements.txt (line 11)) (0.4.1)
-Requirement already satisfied: charset-normalizer<4,>=2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r ../requirements.txt (line 3)) (3.4.2)
-Requirement already satisfied: idna<4,>=2.5 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r ../requirements.txt (line 3)) (3.10)
-Requirement already satisfied: urllib3<3,>=1.21.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r ../requirements.txt (line 3)) (2.4.0)
-Requirement already satisfied: certifi>=2017.4.17 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from requests->transformers>=4.36.0->-r ../requirements.txt (line 3)) (2025.4.26)
-Requirement already satisfied: mpmath<1.4,>=1.1.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from sympy>=1.13.3->torch->-r ../requirements.txt (line 1)) (1.3.0)
-Requirement already satisfied: MarkupSafe>=2.1.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from werkzeug>=1.0.1->tensorboard->-r ../requirements.txt (line 8)) (3.0.2)
-Requirement already satisfied: python-dateutil>=2.8.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r ../requirements.txt (line 4)) (2.9.0.post0)
-Requirement already satisfied: pytz>=2020.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r ../requirements.txt (line 4)) (2025.2)
-Requirement already satisfied: tzdata>=2022.7 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from pandas->datasets>=2.14.0->-r ../requirements.txt (line 4)) (2025.2)
-Requirement already satisfied: aiohappyeyeballs>=2.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (2.6.1)
-Requirement already satisfied: aiosignal>=1.1.2 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (1.3.2)
-Requirement already satisfied: attrs>=17.3.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (25.3.0)
-Requirement already satisfied: frozenlist>=1.1.1 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (1.6.0)
-Requirement already satisfied: multidict<7.0,>=4.5 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (6.4.4)
-Requirement already satisfied: propcache>=0.2.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (0.3.1)
-Requirement already satisfied: yarl<2.0,>=1.17.0 in /scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets>=2.14.0->-r ../requirements.txt (line 4)) (1.20.0)
-
-[notice] A new release of pip is available: 24.0 -> 25.1.1
-[notice] To update, run: pip install --upgrade pip
-CUDA_VISIBLE_DEVICES: 0,1,2,3
-Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-fb1d68ea-aaa1-c1cf-248a-6e5a349f624e)
-GPU 1: NVIDIA H100 (UUID: GPU-48995a7a-8055-058b-d382-2653f26fbe96)
-GPU 2: NVIDIA H100 (UUID: GPU-aafd5ce0-449d-5536-4a97-08500844f0bf)
-GPU 3: NVIDIA H100 (UUID: GPU-b057a645-e4fc-14fa-6716-425963847261)
-Using existing Hugging Face token from cache...
-importing librariesimporting librariesimporting libraries
-
-
-importing libraries
-done importing libraries
-parsing arguments
-done importing librariesdone parsing arguments
-
-parsing argumentsloading tokenizer
-
-done importing libraries
-parsing arguments
-done importing libraries
-parsing arguments
-done parsing arguments
-loading tokenizer
-done parsing arguments
-loading tokenizer
-done parsing arguments
-loading tokenizer
-loading model
-loading model
-loading model
-loading model
-Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 344.93it/s]
-Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 337.74it/s]
-Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 340.24it/s]
-Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 346.32it/s]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-done loading tokenizer and model
-getting peft model
-done loading tokenizer and model
-getting peft model
-done loading tokenizer and model
-getting peft model
-done loading tokenizer and model
-getting peft model
-done getting peft model
-trainable params: 207,093,760 || all params: 70,760,816,640 || trainable%: 0.2927
-loading datasets
-done getting peft model
-trainable params: 207,093,760 || all params: 70,760,816,640 || trainable%: 0.2927
-loading datasets
-done getting peft model
-trainable params: 207,093,760 || all params: 70,760,816,640 || trainable%: 0.2927
-loading datasets
-done getting peft model
-trainable params: 207,093,760 || all params: 70,760,816,640 || trainable%: 0.2927
-loading datasets
-done loading datasets
-train dataset:  Dataset({
-    features: ['instruction', 'response_human', 'response_model', 'model_name', 'category', 'index'],
-    num_rows: 13509
-})
-val dataset:  Dataset({
-    features: ['instruction', 'response_human', 'response_model', 'model_name', 'category', 'index'],
-    num_rows: 1500
-})
-filtering long examples
-done loading datasets
-train dataset:  Dataset({
-    features: ['instruction', 'response_human', 'response_model', 'model_name', 'category', 'index'],
-    num_rows: 13509
-})
-val dataset:  Dataset({
-    features: ['instruction', 'response_human', 'response_model', 'model_name', 'category', 'index'],
-    num_rows: 1500
-})
-filtering long examples
-done filtering long examples
-tokenizing and formatting train dataset
-done loading datasets
-train dataset:  Dataset({
-    features: ['instruction', 'response_human', 'response_model', 'model_name', 'category', 'index'],
-    num_rows: 13509
-})
-val dataset:  Dataset({
-    features: ['instruction', 'response_human', 'response_model', 'model_name', 'category', 'index'],
-    num_rows: 1500
-})
-filtering long examples
-done filtering long examples
-tokenizing and formatting train dataset
-done loading datasets
-train dataset:  Dataset({
-    features: ['instruction', 'response_human', 'response_model', 'model_name', 'category', 'index'],
-    num_rows: 13509
-})
-val dataset:  Dataset({
-    features: ['instruction', 'response_human', 'response_model', 'model_name', 'category', 'index'],
-    num_rows: 1500
-})
-filtering long examples
-Map:   0%|          | 0/1497 [00:00<?, ? examples/s]done filtering long examples
-tokenizing and formatting train dataset
-Map:   5%|▍         | 68/1497 [00:00<00:02, 661.85 examples/s]Map:   0%|          | 0/1497 [00:00<?, ? examples/s]done filtering long examples
-tokenizing and formatting train dataset
-Map:   9%|▉         | 139/1497 [00:00<00:01, 683.18 examples/s]Map:   4%|▍         | 66/1497 [00:00<00:02, 646.02 examples/s]Map:   0%|          | 0/1497 [00:00<?, ? examples/s]Map:  14%|█▍        | 217/1497 [00:00<00:01, 723.87 examples/s]Map:   9%|▉         | 135/1497 [00:00<00:02, 666.03 examples/s]Map:   0%|          | 0/1497 [00:00<?, ? examples/s]Map:   5%|▍         | 73/1497 [00:00<00:01, 714.17 examples/s]Map:  20%|█▉        | 297/1497 [00:00<00:01, 745.89 examples/s]Map:  14%|█▍        | 209/1497 [00:00<00:01, 690.61 examples/s]Map:   5%|▍         | 73/1497 [00:00<00:02, 709.06 examples/s]Map:  10%|▉         | 149/1497 [00:00<00:01, 736.77 examples/s]Map:  25%|██▌       | 377/1497 [00:00<00:01, 762.64 examples/s]Map:  19%|█▉        | 286/1497 [00:00<00:01, 718.71 examples/s]Map:  10%|▉         | 149/1497 [00:00<00:01, 735.52 examples/s]Map:  15%|█▌        | 230/1497 [00:00<00:01, 763.24 examples/s]Map:  30%|███       | 454/1497 [00:00<00:01, 762.69 examples/s]Map:  24%|██▍       | 362/1497 [00:00<00:01, 727.15 examples/s]Map:  15%|█▌        | 231/1497 [00:00<00:01, 768.35 examples/s]Map:  21%|██        | 313/1497 [00:00<00:01, 785.02 examples/s]Map:  38%|███▊      | 568/1497 [00:00<00:01, 757.99 examples/s]Map:  29%|██▉       | 438/1497 [00:00<00:01, 732.93 examples/s]Map:  21%|██        | 314/1497 [00:00<00:01, 786.28 examples/s]Map:  26%|██▋       | 393/1497 [00:00<00:01, 785.07 examples/s]Map:  43%|████▎     | 645/1497 [00:00<00:01, 754.53 examples/s]Map:  26%|██▋       | 395/1497 [00:00<00:01, 790.58 examples/s]Map:  37%|███▋      | 551/1497 [00:00<00:01, 733.28 examples/s]Map:  34%|███▍      | 507/1497 [00:00<00:01, 770.86 examples/s]Map:  51%|█████     | 759/1497 [00:01<00:00, 750.81 examples/s]Map:  34%|███▍      | 509/1497 [00:00<00:01, 772.60 examples/s]Map:  39%|███▉      | 586/1497 [00:00<00:01, 773.90 examples/s]Map:  44%|████▍     | 663/1497 [00:00<00:01, 734.59 examples/s]Map:  39%|███▉      | 590/1497 [00:00<00:01, 778.23 examples/s]Map:  58%|█████▊    | 865/1497 [00:01<00:00, 727.34 examples/s]Map:  46%|████▋     | 696/1497 [00:00<00:01, 754.80 examples/s]Map:  52%|█████▏    | 771/1497 [00:01<00:01, 720.27 examples/s]Map:  63%|██████▎   | 943/1497 [00:01<00:00, 732.20 examples/s]Map:  47%|████▋     | 701/1497 [00:00<00:01, 760.34 examples/s]Map:  52%|█████▏    | 772/1497 [00:01<00:00, 754.94 examples/s]Map:  59%|█████▊    | 877/1497 [00:01<00:00, 708.02 examples/s]Map:  54%|█████▍    | 813/1497 [00:01<00:00, 751.60 examples/s]Map:  59%|█████▉    | 880/1497 [00:01<00:00, 736.11 examples/s]Map:  65%|██████▌   | 977/1497 [00:01<00:00, 689.33 examples/s]Map:  62%|██████▏   | 924/1497 [00:01<00:00, 743.03 examples/s]Map:  66%|██████▌   | 987/1497 [00:01<00:00, 725.07 examples/s]Map:  69%|██████▉   | 1039/1497 [00:02<00:01, 250.71 examples/s]Map:  74%|███████▍  | 1115/1497 [00:02<00:01, 303.99 examples/s]Map:  80%|████████  | 1199/1497 [00:02<00:00, 373.41 examples/s]Map:  85%|████████▌ | 1276/1497 [00:02<00:00, 433.20 examples/s]Map:  67%|██████▋   | 1000/1497 [00:02<00:01, 250.08 examples/s]Map:  72%|███████▏  | 1075/1497 [00:02<00:01, 245.72 examples/s]Map:  72%|███████▏  | 1076/1497 [00:02<00:01, 247.07 examples/s]Map:  91%|█████████ | 1356/1497 [00:02<00:00, 498.07 examples/s]Map:  72%|███████▏  | 1077/1497 [00:02<00:01, 303.22 examples/s]Map:  77%|███████▋  | 1158/1497 [00:02<00:01, 301.70 examples/s]Map:  77%|███████▋  | 1159/1497 [00:02<00:01, 305.76 examples/s]Map:  96%|█████████▌| 1437/1497 [00:02<00:00, 561.19 examples/s]Map:  77%|███████▋  | 1160/1497 [00:02<00:00, 370.21 examples/s]Map:  82%|████████▏ | 1231/1497 [00:02<00:00, 353.19 examples/s]Map:  83%|████████▎ | 1236/1497 [00:02<00:00, 363.32 examples/s]Map:  83%|████████▎ | 1238/1497 [00:02<00:00, 431.77 examples/s]Map:  87%|████████▋ | 1309/1497 [00:02<00:00, 414.55 examples/s]Map:  88%|████████▊ | 1316/1497 [00:02<00:00, 427.85 examples/s]Map:  88%|████████▊ | 1316/1497 [00:02<00:00, 493.71 examples/s]Map:  93%|█████████▎| 1389/1497 [00:02<00:00, 480.93 examples/s]Map:  93%|█████████▎| 1398/1497 [00:02<00:00, 496.31 examples/s]Map:  93%|█████████▎| 1398/1497 [00:02<00:00, 558.88 examples/s]Map:  98%|█████████▊| 1463/1497 [00:02<00:00, 531.01 examples/s]Map:  99%|█████████▊| 1475/1497 [00:02<00:00, 604.85 examples/s]Map: 100%|██████████| 1497/1497 [00:03<00:00, 466.60 examples/s]
-Map: 100%|██████████| 1497/1497 [00:03<00:00, 447.71 examples/s]
-Map: 100%|██████████| 1497/1497 [00:03<00:00, 313.09 examples/s]Map: 100%|██████████| 1497/1497 [00:03<00:00, 462.47 examples/s]
-Map: 100%|██████████| 1497/1497 [00:03<00:00, 467.32 examples/s]
-[rank0]: Traceback (most recent call last):
-[rank0]:   File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_70b/finetuning_70b_like_8b.py", line 157, in <module>
-[rank0]:     trainer = Trainer(
-[rank0]:               ^^^^^^^^
-[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
-[rank0]:     return func(*args, **kwargs)
-[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/trainer.py", line 622, in __init__
-[rank0]:     self._move_model_to_device(model, args.device)
-[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/trainer.py", line 905, in _move_model_to_device
-[rank0]:     model = model.to(device)
-[rank0]:             ^^^^^^^^^^^^^^^^
-[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1355, in to
-[rank0]:     return self._apply(convert)
-[rank0]:            ^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 915, in _apply
-[rank0]:     module._apply(fn)
-[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 915, in _apply
-[rank0]:     module._apply(fn)
-[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 915, in _apply
-[rank0]:     module._apply(fn)
-[rank0]:   [Previous line repeated 5 more times]
-[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 942, in _apply
-[rank0]:     param_applied = fn(param)
-[rank0]:                     ^^^^^^^^^
-[rank0]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1341, in convert
-[rank0]:     return t.to(
-[rank0]:            ^^^^^
-[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 111.81 MiB is free. Including non-PyTorch memory, this process has 92.99 GiB memory in use. Of the allocated memory 92.47 GiB is allocated by PyTorch, and 13.86 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-[rank2]: Traceback (most recent call last):
-[rank2]:   File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_70b/finetuning_70b_like_8b.py", line 157, in <module>
-[rank2]:     trainer = Trainer(
-[rank2]:               ^^^^^^^^
-[rank2]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
-[rank2]:     return func(*args, **kwargs)
-[rank2]:            ^^^^^^^^^^^^^^^^^^^^^
-[rank2]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/trainer.py", line 622, in __init__
-[rank2]:     self._move_model_to_device(model, args.device)
-[rank2]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/trainer.py", line 905, in _move_model_to_device
-[rank2]:     model = model.to(device)
-[rank2]:             ^^^^^^^^^^^^^^^^
-[rank2]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1355, in to
-[rank2]:     return self._apply(convert)
-[rank2]:            ^^^^^^^^^^^^^^^^^^^^
-[rank2]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 915, in _apply
-[rank2]:     module._apply(fn)
-[rank2]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 915, in _apply
-[rank2]:     module._apply(fn)
-[rank2]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 915, in _apply
-[rank2]:     module._apply(fn)
-[rank2]:   [Previous line repeated 5 more times]
-[rank2]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 942, in _apply
-[rank2]:     param_applied = fn(param)
-[rank2]:                     ^^^^^^^^^
-[rank2]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1341, in convert
-[rank2]:     return t.to(
-[rank2]:            ^^^^^
-[rank2]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 2 has a total capacity of 93.11 GiB of which 111.81 MiB is free. Including non-PyTorch memory, this process has 92.99 GiB memory in use. Of the allocated memory 92.47 GiB is allocated by PyTorch, and 13.86 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-[rank1]: Traceback (most recent call last):
-[rank1]:   File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_70b/finetuning_70b_like_8b.py", line 157, in <module>
-[rank1]:     trainer = Trainer(
-[rank1]:               ^^^^^^^^
-[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
-[rank1]:     return func(*args, **kwargs)
-[rank1]:            ^^^^^^^^^^^^^^^^^^^^^
-[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/trainer.py", line 622, in __init__
-[rank1]:     self._move_model_to_device(model, args.device)
-[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/trainer.py", line 905, in _move_model_to_device
-[rank1]:     model = model.to(device)
-[rank1]:             ^^^^^^^^^^^^^^^^
-[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1355, in to
-[rank1]:     return self._apply(convert)
-[rank1]:            ^^^^^^^^^^^^^^^^^^^^
-[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 915, in _apply
-[rank1]:     module._apply(fn)
-[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 915, in _apply
-[rank1]:     module._apply(fn)
-[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 915, in _apply
-[rank1]:     module._apply(fn)
-[rank1]:   [Previous line repeated 5 more times]
-[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 942, in _apply
-[rank1]:     param_applied = fn(param)
-[rank1]:                     ^^^^^^^^^
-[rank1]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1341, in convert
-[rank1]:     return t.to(
-[rank1]:            ^^^^^
-[rank1]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 1 has a total capacity of 93.11 GiB of which 111.81 MiB is free. Including non-PyTorch memory, this process has 92.99 GiB memory in use. Of the allocated memory 92.47 GiB is allocated by PyTorch, and 13.86 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-[rank0]:[W605 18:01:22.839556739 ProcessGroupNCCL.cpp:1476] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
-[rank3]: Traceback (most recent call last):
-[rank3]:   File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_70b/finetuning_70b_like_8b.py", line 157, in <module>
-[rank3]:     trainer = Trainer(
-[rank3]:               ^^^^^^^^
-[rank3]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
-[rank3]:     return func(*args, **kwargs)
-[rank3]:            ^^^^^^^^^^^^^^^^^^^^^
-[rank3]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/trainer.py", line 622, in __init__
-[rank3]:     self._move_model_to_device(model, args.device)
-[rank3]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/transformers/trainer.py", line 905, in _move_model_to_device
-[rank3]:     model = model.to(device)
-[rank3]:             ^^^^^^^^^^^^^^^^
-[rank3]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1355, in to
-[rank3]:     return self._apply(convert)
-[rank3]:            ^^^^^^^^^^^^^^^^^^^^
-[rank3]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 915, in _apply
-[rank3]:     module._apply(fn)
-[rank3]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 915, in _apply
-[rank3]:     module._apply(fn)
-[rank3]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 915, in _apply
-[rank3]:     module._apply(fn)
-[rank3]:   [Previous line repeated 5 more times]
-[rank3]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 942, in _apply
-[rank3]:     param_applied = fn(param)
-[rank3]:                     ^^^^^^^^^
-[rank3]:   File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1341, in convert
-[rank3]:     return t.to(
-[rank3]:            ^^^^^
-[rank3]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 3 has a total capacity of 93.11 GiB of which 111.81 MiB is free. Including non-PyTorch memory, this process has 92.99 GiB memory in use. Of the allocated memory 92.47 GiB is allocated by PyTorch, and 13.86 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-W0605 18:01:23.741000 964615 /gpfs/scratch1/shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 965316 closing signal SIGTERM
-W0605 18:01:23.742000 964615 /gpfs/scratch1/shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 965317 closing signal SIGTERM
-W0605 18:01:23.743000 964615 /gpfs/scratch1/shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 965318 closing signal SIGTERM
-E0605 18:01:25.186000 964615 /gpfs/scratch1/shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 965315) of binary: /scratch-shared/mschaffelder/venv_finetune_1/bin/python
-Traceback (most recent call last):
-  File "/scratch-shared/mschaffelder/venv_finetune_1/bin/torchrun", line 8, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
-    return f(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/run.py", line 892, in main
-    run(args)
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/run.py", line 883, in run
-    elastic_launch(
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
-    return launch_agent(self._config, self._entrypoint, list(args))
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch-shared/mschaffelder/venv_finetune_1/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
-    raise ChildFailedError(
-torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
-============================================================
-finetuning_70b_like_8b.py FAILED
-------------------------------------------------------------
-Failures:
-  <NO_OTHER_FAILURES>
-------------------------------------------------------------
-Root Cause (first observed failure):
-[0]:
-  time      : 2025-06-05_18:01:23
-  host      : gcn118.local.snellius.surf.nl
-  rank      : 0 (local_rank: 0)
-  exitcode  : 1 (pid: 965315)
-  error_file: <N/A>
-  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
-============================================================
-
-JOB STATISTICS
-==============
-Job ID: 12211425
-Cluster: snellius
-User/Group: mschaffelder/mschaffelder
-State: FAILED (exit code 1)
-Nodes: 1
-Cores per node: 64
-CPU Utilized: 00:50:37
-CPU Efficiency: 17.77% of 04:44:48 core-walltime
-Job Wall-clock time: 00:04:27
-Memory Utilized: 11.53 GB
-Memory Efficiency: 11.53% of 100.00 GB (100.00 GB/node)

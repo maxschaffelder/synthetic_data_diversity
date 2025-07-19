@@ -1,113 +1,0 @@
-No CUDA module loaded
-No Python module loaded
-Virtual environment venv_finetune_llama_70b already exists at /scratch-shared/mschaffelder/venv_finetune_llama_70b.
-Activating virtual environment: /scratch-shared/mschaffelder/venv_finetune_llama_70b
-Creating job-specific accelerate config at: /scratch-shared/mschaffelder/data/ft_models/llama_70b_single_source_medium/accelerate_config.yaml
-CUDA_VISIBLE_DEVICES: 0,1,2,3
-Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-ecd42790-2bcd-0b12-82fc-372237aa66a1)
-GPU 1: NVIDIA H100 (UUID: GPU-b60162f0-a4de-c166-11f7-c92daa44678b)
-GPU 2: NVIDIA H100 (UUID: GPU-8710a286-2613-dc30-0eb3-9f3210ae5297)
-GPU 3: NVIDIA H100 (UUID: GPU-f7b341c0-175f-2e2d-ab9c-3daae010a0cd)
-Using existing Hugging Face token from cache...
-CUDA_VISIBLE_DEVICES as set by SLURM: 0,1,2,3
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
-  backends.update(_get_backends("networkx.backends"))
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
-  backends.update(_get_backends("networkx.backends"))
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
-  backends.update(_get_backends("networkx.backends"))
-/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
-  backends.update(_get_backends("networkx.backends"))
-Loading model: meta-llama/Llama-3.1-70B-Instruct (device placement will be handled by Accelerate)
-Loading model: meta-llama/Llama-3.1-70B-Instruct (device placement will be handled by Accelerate)
-Loading model: meta-llama/Llama-3.1-70B-Instruct (device placement will be handled by Accelerate)
-Loading model: meta-llama/Llama-3.1-70B-Instruct (device placement will be handled by Accelerate)
-Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 331.22it/s]Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 330.13it/s]
-
-Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 331.55it/s]
-Loading checkpoint shards: 100%|██████████| 30/30 [00:00<00:00, 333.27it/s]
-trainable params: 207,093,760 || all params: 70,760,800,256 || trainable%: 0.2927
-Loading data from: /scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl
-Original dataset size: 13509
-Training dataset size after split: 12833
-Validation dataset size after split: 676
-Map:   0%|          | 0/12833 [00:00<?, ? examples/s]Map:  31%|███       | 4000/12833 [00:00<00:00, 26697.58 examples/s]Map: 100%|██████████| 12833/12833 [00:00<00:00, 54730.68 examples/s]Map: 100%|██████████| 12833/12833 [00:00<00:00, 47871.91 examples/s]
-Map:   0%|          | 0/676 [00:00<?, ? examples/s]Map: 100%|██████████| 676/676 [00:00<00:00, 63362.60 examples/s]
-Training failed with error: __init__() got an unexpected keyword argument 'early_stopping_patience'
-Traceback (most recent call last):
-  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_70b/finetune_llama.py", line 235, in <module>
-    main()
-  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_70b/finetune_llama.py", line 198, in main
-    training_args = setup_training_arguments(args)
-  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_70b/finetune_llama.py", line 131, in setup_training_arguments
-    return SFTConfig(
-TypeError: __init__() got an unexpected keyword argument 'early_stopping_patience'
-trainable params: 207,093,760 || all params: 70,760,800,256 || trainable%: 0.2927
-Loading data from: /scratch-shared/mschaffelder/data/finetuning/synthetic/Medium/Llama/dolly_train_all_Llama.jsonl
-Original dataset size: 13509
-Training dataset size after split: 12833
-Validation dataset size after split: 676
-Training failed with error: __init__() got an unexpected keyword argument 'early_stopping_patience'
-Traceback (most recent call last):
-  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_70b/finetune_llama.py", line 235, in <module>
-    main()
-  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_70b/finetune_llama.py", line 198, in main
-    training_args = setup_training_arguments(args)
-  File "/gpfs/scratch1/shared/mschaffelder/code/finetuning/llama_70b/finetune_llama.py", line 131, in setup_training_arguments
-    return SFTConfig(
-TypeError: __init__() got an unexpected keyword argument 'early_stopping_patience'
-W0619 17:08:58.976802 404618 /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 405371 closing signal SIGTERM
-W0619 17:08:58.977640 404618 /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 405374 closing signal SIGTERM
-E0619 17:08:59.355875 404618 /gpfs/scratch1/shared/mschaffelder/venv_finetune_llama_70b/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 1 (pid: 405372) of binary: /scratch-shared/mschaffelder/venv_finetune_llama_70b/bin/python
-Traceback (most recent call last):
-  File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/bin/accelerate", line 8, in <module>
-    sys.exit(main())
-  File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
-    args.func(args)
-  File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/accelerate/commands/launch.py", line 1185, in launch_command
-    multi_gpu_launcher(args)
-  File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/accelerate/commands/launch.py", line 815, in multi_gpu_launcher
-    distrib_run.run(args)
-  File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/run.py", line 883, in run
-    elastic_launch(
-  File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
-    return launch_agent(self._config, self._entrypoint, list(args))
-  File "/scratch-shared/mschaffelder/venv_finetune_llama_70b/lib64/python3.9/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
-    raise ChildFailedError(
-torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
-============================================================
-finetune_llama.py FAILED
-------------------------------------------------------------
-Failures:
-[1]:
-  time      : 2025-06-19_17:08:58
-  host      : gcn114.local.snellius.surf.nl
-  rank      : 2 (local_rank: 2)
-  exitcode  : 1 (pid: 405373)
-  error_file: <N/A>
-  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
-------------------------------------------------------------
-Root Cause (first observed failure):
-[0]:
-  time      : 2025-06-19_17:08:58
-  host      : gcn114.local.snellius.surf.nl
-  rank      : 1 (local_rank: 1)
-  exitcode  : 1 (pid: 405372)
-  error_file: <N/A>
-  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
-============================================================
-Fine-tuning job completed.
-
-JOB STATISTICS
-==============
-Job ID: 12505923
-Cluster: snellius
-User/Group: mschaffelder/mschaffelder
-State: COMPLETED (exit code 0)
-Nodes: 1
-Cores per node: 64
-CPU Utilized: 02:08:51
-CPU Efficiency: 72.77% of 02:57:04 core-walltime
-Job Wall-clock time: 00:02:46
-Memory Utilized: 3.91 GB
-Memory Efficiency: 0.56% of 700.00 GB (700.00 GB/node)

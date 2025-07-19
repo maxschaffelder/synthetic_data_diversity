@@ -1,212 +1,0 @@
-No CUDA module loaded
-No Python module loaded
-Virtual environment venv_exp_1 already exists at /scratch-shared/mschaffelder/venv_exp_1.
-Activating virtual environment: /scratch-shared/mschaffelder/venv_exp_1
-CUDA_VISIBLE_DEVICES: 0
-Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-d4e6b096-7db5-6e87-4fe1-4ca647e1950f)
-Using existing Hugging Face token from cache...
-/scratch-shared/mschaffelder/venv_exp_1/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
-  backends.update(_get_backends("networkx.backends"))
-CUDA is available with 1 device(s)
-Device 0: NVIDIA H100
-H100 GPU detected! Using device 0
-Currently using device 0: NVIDIA H100
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.65s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.63s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.67s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.52s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.57s/it]
-Compiling the model... (this may take a moment)
-Model is on device: cuda:0
-Generating data with google/gemma-2-9b-it for dolly_train_2.jsonl
-Generating responses:   0%|          | 0/106 [00:00<?, ?it/s]/scratch-shared/mschaffelder/venv_exp_1/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
-  backends.update(_get_backends("networkx.backends"))
-Generating responses:   1%|          | 1/106 [01:38<2:53:09, 98.95s/it]Generating responses:   2%|▏         | 2/106 [02:35<2:07:55, 73.80s/it]Generating responses:   3%|▎         | 3/106 [03:34<1:55:14, 67.13s/it]Generating responses:   4%|▍         | 4/106 [04:37<1:51:42, 65.71s/it]Generating responses:   5%|▍         | 5/106 [05:41<1:49:07, 64.83s/it]Generating responses:   6%|▌         | 6/106 [06:33<1:40:45, 60.46s/it]Generating responses:   7%|▋         | 7/106 [07:27<1:36:24, 58.43s/it]Generating responses:   8%|▊         | 9/106 [08:37<1:16:02, 47.03s/it]Generating responses:   9%|▉         | 10/106 [09:20<1:13:38, 46.03s/it]Generating responses:  10%|█         | 11/106 [09:20<53:22, 33.71s/it]  Generating responses:  11%|█▏        | 12/106 [10:18<1:03:39, 40.64s/it]Generating responses:  12%|█▏        | 13/106 [11:10<1:07:34, 43.60s/it]Generating responses:  13%|█▎        | 14/106 [12:13<1:15:29, 49.24s/it]Generating responses:  14%|█▍        | 15/106 [13:12<1:19:05, 52.15s/it]Generating responses:  15%|█▌        | 16/106 [14:13<1:22:13, 54.82s/it]Generating responses:  16%|█▌        | 17/106 [15:16<1:24:40, 57.08s/it]Generating responses:  17%|█▋        | 18/106 [16:02<1:19:14, 54.03s/it]Generating responses:  18%|█▊        | 19/106 [17:10<1:24:23, 58.21s/it]Generating responses:  20%|█▉        | 21/106 [17:55<59:06, 41.72s/it]  Generating responses:  21%|██        | 22/106 [18:46<1:01:28, 43.92s/it]Generating responses:  22%|██▏       | 23/106 [19:44<1:06:05, 47.77s/it]Generating responses:  23%|██▎       | 24/106 [20:40<1:08:16, 49.96s/it]Generating responses:  25%|██▍       | 26/106 [21:23<49:58, 37.49s/it]  Generating responses:  26%|██▋       | 28/106 [22:19<43:58, 33.82s/it]Generating responses:  27%|██▋       | 29/106 [22:21<34:30, 26.89s/it]Generating responses:  28%|██▊       | 30/106 [22:22<26:19, 20.79s/it]Generating responses:  29%|██▉       | 31/106 [22:23<19:50, 15.87s/it]Generating responses:  30%|███       | 32/106 [22:23<14:35, 11.84s/it]Generating responses:  31%|███       | 33/106 [22:24<10:44,  8.82s/it]Generating responses:  32%|███▏      | 34/106 [22:25<07:55,  6.60s/it]Generating responses:  33%|███▎      | 35/106 [22:26<05:48,  4.91s/it]Generating responses:  34%|███▍      | 36/106 [22:27<04:17,  3.67s/it]Generating responses:  35%|███▍      | 37/106 [22:28<03:26,  2.99s/it]Generating responses:  36%|███▌      | 38/106 [22:29<02:42,  2.39s/it]Generating responses:  38%|███▊      | 40/106 [22:30<01:41,  1.54s/it]Generating responses:  41%|████      | 43/106 [22:31<00:57,  1.11it/s]Generating responses:  42%|████▏     | 44/106 [22:32<00:56,  1.09it/s]Generating responses:  42%|████▏     | 45/106 [22:33<01:04,  1.05s/it]Generating responses:  43%|████▎     | 46/106 [22:34<00:57,  1.05it/s]Generating responses:  44%|████▍     | 47/106 [22:35<00:59,  1.00s/it]Generating responses:  45%|████▌     | 48/106 [22:36<00:58,  1.02s/it]Generating responses:  46%|████▌     | 49/106 [22:37<00:50,  1.13it/s]Generating responses:  47%|████▋     | 50/106 [22:38<01:02,  1.11s/it]Generating responses:  48%|████▊     | 51/106 [22:39<00:59,  1.08s/it]Generating responses:  49%|████▉     | 52/106 [22:41<01:04,  1.19s/it]Generating responses:  51%|█████     | 54/106 [22:42<00:45,  1.15it/s]Generating responses:  52%|█████▏    | 55/106 [22:42<00:41,  1.22it/s]Generating responses:  53%|█████▎    | 56/106 [22:44<00:50,  1.00s/it]Generating responses:  54%|█████▍    | 57/106 [22:45<00:49,  1.00s/it]Generating responses:  55%|█████▍    | 58/106 [22:46<00:53,  1.12s/it]Generating responses:  56%|█████▌    | 59/106 [22:47<00:52,  1.11s/it]Generating responses:  58%|█████▊    | 61/106 [22:48<00:34,  1.31it/s]Generating responses:  58%|█████▊    | 62/106 [22:49<00:34,  1.28it/s]Generating responses:  60%|██████    | 64/106 [22:50<00:28,  1.49it/s]Generating responses:  61%|██████▏   | 65/106 [22:51<00:29,  1.37it/s]Generating responses:  62%|██████▏   | 66/106 [22:53<00:38,  1.05it/s]Generating responses:  63%|██████▎   | 67/106 [22:53<00:28,  1.35it/s]Generating responses:  64%|██████▍   | 68/106 [22:54<00:34,  1.12it/s]Generating responses:  65%|██████▌   | 69/106 [22:55<00:34,  1.07it/s]Generating responses:  66%|██████▌   | 70/106 [22:56<00:31,  1.13it/s]Generating responses:  67%|██████▋   | 71/106 [22:57<00:30,  1.16it/s]Generating responses:  68%|██████▊   | 72/106 [22:57<00:26,  1.27it/s]Generating responses:  70%|██████▉   | 74/106 [22:58<00:22,  1.42it/s]Generating responses:  71%|███████   | 75/106 [22:59<00:23,  1.30it/s]Generating responses:  72%|███████▏  | 76/106 [23:01<00:30,  1.00s/it]Generating responses:  73%|███████▎  | 77/106 [23:02<00:28,  1.02it/s]Generating responses:  74%|███████▎  | 78/106 [23:03<00:30,  1.10s/it]Generating responses:  75%|███████▌  | 80/106 [23:05<00:24,  1.07it/s]Generating responses:  76%|███████▋  | 81/106 [23:05<00:21,  1.15it/s]Generating responses:  77%|███████▋  | 82/106 [23:06<00:21,  1.11it/s]Generating responses:  78%|███████▊  | 83/106 [23:08<00:25,  1.10s/it]Generating responses:  79%|███████▉  | 84/106 [23:09<00:23,  1.06s/it]Generating responses:  80%|████████  | 85/106 [23:10<00:23,  1.11s/it]Generating responses:  81%|████████  | 86/106 [23:12<00:23,  1.18s/it]Generating responses:  83%|████████▎ | 88/106 [23:12<00:14,  1.25it/s]Generating responses:  85%|████████▍ | 90/106 [23:13<00:11,  1.45it/s]Generating responses:  86%|████████▌ | 91/106 [23:14<00:11,  1.32it/s]Generating responses:  87%|████████▋ | 92/106 [23:15<00:10,  1.28it/s]Generating responses:  89%|████████▊ | 94/106 [23:16<00:08,  1.40it/s]Generating responses:  90%|████████▉ | 95/106 [23:17<00:08,  1.32it/s]Generating responses:  91%|█████████ | 96/106 [23:18<00:07,  1.31it/s]Generating responses:  92%|█████████▏| 98/106 [23:19<00:05,  1.53it/s]Generating responses:  93%|█████████▎| 99/106 [23:20<00:04,  1.57it/s]Generating responses:  95%|█████████▌| 101/106 [23:21<00:02,  1.76it/s]Generating responses:  97%|█████████▋| 103/106 [23:22<00:01,  1.93it/s]Generating responses:  98%|█████████▊| 104/106 [23:22<00:01,  1.68it/s]Generating responses:  99%|█████████▉| 105/106 [23:23<00:00,  1.43it/s]Generating responses: 100%|██████████| 106/106 [23:24<00:00, 13.25s/it]
-Error on batch starting at line 96: CUDA out of memory. Tried to allocate 96.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 13.81 MiB is free. Including non-PyTorch memory, this process has 93.09 GiB memory in use. Of the allocated memory 90.90 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 1.45 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 128: CUDA out of memory. Tried to allocate 96.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 13.81 MiB is free. Including non-PyTorch memory, this process has 93.09 GiB memory in use. Of the allocated memory 90.90 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 1.45 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 224: CUDA out of memory. Tried to allocate 316.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 213.81 MiB is free. Including non-PyTorch memory, this process has 92.89 GiB memory in use. Of the allocated memory 89.27 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 2.88 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 256: CUDA out of memory. Tried to allocate 96.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 21.81 MiB is free. Including non-PyTorch memory, this process has 93.08 GiB memory in use. Of the allocated memory 91.18 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 1.16 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 320: CUDA out of memory. Tried to allocate 384.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 155.81 MiB is free. Including non-PyTorch memory, this process has 92.95 GiB memory in use. Of the allocated memory 89.56 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 2.65 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 512: CUDA out of memory. Tried to allocate 96.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 5.81 MiB is free. Including non-PyTorch memory, this process has 93.10 GiB memory in use. Of the allocated memory 91.08 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 1.27 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 608: CUDA out of memory. Tried to allocate 260.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 41.81 MiB is free. Including non-PyTorch memory, this process has 93.06 GiB memory in use. Of the allocated memory 90.70 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 1.62 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 768: CUDA out of memory. Tried to allocate 350.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 173.81 MiB is free. Including non-PyTorch memory, this process has 92.93 GiB memory in use. Of the allocated memory 89.85 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 2.34 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 832: CUDA out of memory. Tried to allocate 284.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 29.81 MiB is free. Including non-PyTorch memory, this process has 93.07 GiB memory in use. Of the allocated memory 88.72 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 3.61 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 864: CUDA out of memory. Tried to allocate 270.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 167.81 MiB is free. Including non-PyTorch memory, this process has 92.94 GiB memory in use. Of the allocated memory 85.38 GiB is allocated by PyTorch, with 10.76 GiB allocated in private pools (e.g., CUDA Graphs), and 6.82 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 896: 
-Skipping this batch and continuing...
-Error on batch starting at line 928: 
-Skipping this batch and continuing...
-Error on batch starting at line 960: 
-Skipping this batch and continuing...
-Error on batch starting at line 992: 
-Skipping this batch and continuing...
-Error on batch starting at line 1024: 
-Skipping this batch and continuing...
-Error on batch starting at line 1056: 
-Skipping this batch and continuing...
-Error on batch starting at line 1088: 
-Skipping this batch and continuing...
-Error on batch starting at line 1120: 
-Skipping this batch and continuing...
-Error on batch starting at line 1152: 
-Skipping this batch and continuing...
-Error on batch starting at line 1184: 
-Skipping this batch and continuing...
-Error on batch starting at line 1216: CUDA out of memory. Tried to allocate 272.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 231.81 MiB is free. Including non-PyTorch memory, this process has 92.88 GiB memory in use. Of the allocated memory 87.44 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 4.70 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 1248: 
-Skipping this batch and continuing...
-Error on batch starting at line 1280: CUDA out of memory. Tried to allocate 384.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 231.81 MiB is free. Including non-PyTorch memory, this process has 92.88 GiB memory in use. Of the allocated memory 87.19 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 4.94 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 1312: CUDA out of memory. Tried to allocate 328.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 231.81 MiB is free. Including non-PyTorch memory, this process has 92.88 GiB memory in use. Of the allocated memory 87.87 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 4.27 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 1344: 
-Skipping this batch and continuing...
-Error on batch starting at line 1376: 
-Skipping this batch and continuing...
-Error on batch starting at line 1408: 
-Skipping this batch and continuing...
-Error on batch starting at line 1440: 
-Skipping this batch and continuing...
-Error on batch starting at line 1472: 
-Skipping this batch and continuing...
-Error on batch starting at line 1504: 
-Skipping this batch and continuing...
-Error on batch starting at line 1536: 
-Skipping this batch and continuing...
-Error on batch starting at line 1568: 
-Skipping this batch and continuing...
-Error on batch starting at line 1600: 
-Skipping this batch and continuing...
-Error on batch starting at line 1632: 
-Skipping this batch and continuing...
-Error on batch starting at line 1664: CUDA out of memory. Tried to allocate 288.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 159.81 MiB is free. Including non-PyTorch memory, this process has 92.95 GiB memory in use. Of the allocated memory 87.56 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 4.65 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 1696: 
-Skipping this batch and continuing...
-Error on batch starting at line 1728: 
-Skipping this batch and continuing...
-Error on batch starting at line 1760: 
-Skipping this batch and continuing...
-Error on batch starting at line 1792: 
-Skipping this batch and continuing...
-Error on batch starting at line 1824: 
-Skipping this batch and continuing...
-Error on batch starting at line 1856: 
-Skipping this batch and continuing...
-Error on batch starting at line 1888: CUDA out of memory. Tried to allocate 288.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 159.81 MiB is free. Including non-PyTorch memory, this process has 92.95 GiB memory in use. Of the allocated memory 87.56 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 4.64 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 1920: 
-Skipping this batch and continuing...
-Error on batch starting at line 1952: 
-Skipping this batch and continuing...
-Error on batch starting at line 1984: CUDA out of memory. Tried to allocate 272.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 159.81 MiB is free. Including non-PyTorch memory, this process has 92.95 GiB memory in use. Of the allocated memory 87.44 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 4.77 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 2016: 
-Skipping this batch and continuing...
-Error on batch starting at line 2048: 
-Skipping this batch and continuing...
-Error on batch starting at line 2080: 
-Skipping this batch and continuing...
-Error on batch starting at line 2112: CUDA out of memory. Tried to allocate 878.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 865.81 MiB is free. Including non-PyTorch memory, this process has 92.26 GiB memory in use. Of the allocated memory 88.05 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 3.47 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 2144: 
-Skipping this batch and continuing...
-Error on batch starting at line 2176: 
-Skipping this batch and continuing...
-Error on batch starting at line 2208: 
-Skipping this batch and continuing...
-Error on batch starting at line 2240: 
-Skipping this batch and continuing...
-Error on batch starting at line 2272: 
-Skipping this batch and continuing...
-Error on batch starting at line 2304: CUDA out of memory. Tried to allocate 288.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 1.81 MiB is free. Including non-PyTorch memory, this process has 93.10 GiB memory in use. Of the allocated memory 88.69 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 3.67 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 2336: 
-Skipping this batch and continuing...
-Error on batch starting at line 2368: 
-Skipping this batch and continuing...
-Error on batch starting at line 2400: 
-Skipping this batch and continuing...
-Error on batch starting at line 2432: 
-Skipping this batch and continuing...
-Error on batch starting at line 2464: 
-Skipping this batch and continuing...
-Error on batch starting at line 2496: CUDA out of memory. Tried to allocate 274.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 1.81 MiB is free. Including non-PyTorch memory, this process has 93.10 GiB memory in use. Of the allocated memory 88.51 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 3.85 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 2528: 
-Skipping this batch and continuing...
-Error on batch starting at line 2560: 
-Skipping this batch and continuing...
-Error on batch starting at line 2592: 
-Skipping this batch and continuing...
-Error on batch starting at line 2624: 
-Skipping this batch and continuing...
-Error on batch starting at line 2656: 
-Skipping this batch and continuing...
-Error on batch starting at line 2688: 
-Skipping this batch and continuing...
-Error on batch starting at line 2720: 
-Skipping this batch and continuing...
-Error on batch starting at line 2752: CUDA out of memory. Tried to allocate 384.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 97.81 MiB is free. Including non-PyTorch memory, this process has 93.01 GiB memory in use. Of the allocated memory 88.32 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 3.95 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 2784: 
-Skipping this batch and continuing...
-Error on batch starting at line 2816: CUDA out of memory. Tried to allocate 272.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 97.81 MiB is free. Including non-PyTorch memory, this process has 93.01 GiB memory in use. Of the allocated memory 88.22 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 4.04 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 2848: 
-Skipping this batch and continuing...
-Error on batch starting at line 2880: 
-Skipping this batch and continuing...
-Error on batch starting at line 2912: 
-Skipping this batch and continuing...
-Error on batch starting at line 2944: CUDA out of memory. Tried to allocate 352.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 97.81 MiB is free. Including non-PyTorch memory, this process has 93.01 GiB memory in use. Of the allocated memory 88.06 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 4.21 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 2976: 
-Skipping this batch and continuing...
-Error on batch starting at line 3008: 
-Skipping this batch and continuing...
-Error on batch starting at line 3040: 
-Skipping this batch and continuing...
-Error on batch starting at line 3072: CUDA out of memory. Tried to allocate 384.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 97.81 MiB is free. Including non-PyTorch memory, this process has 93.01 GiB memory in use. Of the allocated memory 88.32 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 3.95 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 3104: 
-Skipping this batch and continuing...
-Error on batch starting at line 3136: 
-Skipping this batch and continuing...
-Error on batch starting at line 3168: CUDA out of memory. Tried to allocate 352.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 97.81 MiB is free. Including non-PyTorch memory, this process has 93.01 GiB memory in use. Of the allocated memory 88.06 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 4.20 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 3200: 
-Skipping this batch and continuing...
-Error on batch starting at line 3232: CUDA out of memory. Tried to allocate 316.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 97.81 MiB is free. Including non-PyTorch memory, this process has 93.01 GiB memory in use. Of the allocated memory 87.79 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 4.48 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Error on batch starting at line 3264: 
-Skipping this batch and continuing...
-Error on batch starting at line 3296: 
-Skipping this batch and continuing...
-Error on batch starting at line 3328: 
-Skipping this batch and continuing...
-Error on batch starting at line 3360: CUDA out of memory. Tried to allocate 154.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 97.81 MiB is free. Including non-PyTorch memory, this process has 93.01 GiB memory in use. Of the allocated memory 89.93 GiB is allocated by PyTorch, with 11.33 GiB allocated in private pools (e.g., CUDA Graphs), and 2.33 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Skipping this batch and continuing...
-Done generating synthetic data.
-Completed generation with google/gemma-2-9b-it
-
-JOB STATISTICS
-==============
-Job ID: 12778182
-Cluster: snellius
-User/Group: mschaffelder/mschaffelder
-State: COMPLETED (exit code 0)
-Nodes: 1
-Cores per node: 16
-CPU Utilized: 00:23:45
-CPU Efficiency: 6.18% of 06:24:00 core-walltime
-Job Wall-clock time: 00:24:00
-Memory Utilized: 3.10 GB
-Memory Efficiency: 15.48% of 20.00 GB (20.00 GB/node)

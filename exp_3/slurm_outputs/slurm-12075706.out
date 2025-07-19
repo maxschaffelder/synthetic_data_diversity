@@ -1,100 +1,0 @@
-Lmod has detected the following error: The following module(s) are unknown:
-"Python/3.10.4-GCCcore-11.3.0"
-
-Please check the spelling or version number. Also try "module spider ..."
-It is also possible your cache file is out-of-date; it may help to try:
-  $ module --ignore_cache load "Python/3.10.4-GCCcore-11.3.0"
-
-Also make sure that all modulefiles written in TCL start with the string
-#%Module
-
-
-
-Virtual environment venv_exp_3 already exists at /scratch-shared/mschaffelder/venv_exp_3.
-Activating virtual environment: /scratch-shared/mschaffelder/venv_exp_3
-Requirement already satisfied: pip in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (25.1.1)
-Requirement already satisfied: torch in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from -r requirements_exp_3.txt (line 1)) (2.7.0)
-Requirement already satisfied: transformers in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from -r requirements_exp_3.txt (line 2)) (4.52.3)
-Requirement already satisfied: peft in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from -r requirements_exp_3.txt (line 3)) (0.15.2)
-Requirement already satisfied: accelerate in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from -r requirements_exp_3.txt (line 4)) (1.7.0)
-Requirement already satisfied: bitsandbytes in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from -r requirements_exp_3.txt (line 5)) (0.46.0)
-Requirement already satisfied: sentencepiece in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from -r requirements_exp_3.txt (line 6)) (0.2.0)
-Requirement already satisfied: huggingface_hub in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from -r requirements_exp_3.txt (line 7)) (0.32.2)
-Requirement already satisfied: filelock in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (3.18.0)
-Requirement already satisfied: typing-extensions>=4.10.0 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (4.13.2)
-Requirement already satisfied: sympy>=1.13.3 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (1.14.0)
-Requirement already satisfied: networkx in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (3.2.1)
-Requirement already satisfied: jinja2 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (3.1.6)
-Requirement already satisfied: fsspec in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (2025.5.1)
-Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (12.6.80)
-Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (9.5.1.17)
-Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (12.6.4.1)
-Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (11.3.0.4)
-Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (10.3.7.77)
-Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (11.7.1.2)
-Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (12.5.4.2)
-Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (0.6.3)
-Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (2.26.2)
-Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (12.6.77)
-Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (12.6.85)
-Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (1.11.1.6)
-Requirement already satisfied: triton==3.3.0 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from torch->-r requirements_exp_3.txt (line 1)) (3.3.0)
-Requirement already satisfied: setuptools>=40.8.0 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from triton==3.3.0->torch->-r requirements_exp_3.txt (line 1)) (53.0.0)
-Requirement already satisfied: numpy>=1.17 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from transformers->-r requirements_exp_3.txt (line 2)) (2.0.2)
-Requirement already satisfied: packaging>=20.0 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from transformers->-r requirements_exp_3.txt (line 2)) (25.0)
-Requirement already satisfied: pyyaml>=5.1 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from transformers->-r requirements_exp_3.txt (line 2)) (6.0.2)
-Requirement already satisfied: regex!=2019.12.17 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from transformers->-r requirements_exp_3.txt (line 2)) (2024.11.6)
-Requirement already satisfied: requests in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from transformers->-r requirements_exp_3.txt (line 2)) (2.32.3)
-Requirement already satisfied: tokenizers<0.22,>=0.21 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from transformers->-r requirements_exp_3.txt (line 2)) (0.21.1)
-Requirement already satisfied: safetensors>=0.4.3 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from transformers->-r requirements_exp_3.txt (line 2)) (0.5.3)
-Requirement already satisfied: tqdm>=4.27 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from transformers->-r requirements_exp_3.txt (line 2)) (4.67.1)
-Requirement already satisfied: hf-xet<2.0.0,>=1.1.2 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from huggingface_hub->-r requirements_exp_3.txt (line 7)) (1.1.2)
-Requirement already satisfied: psutil in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from peft->-r requirements_exp_3.txt (line 3)) (7.0.0)
-Requirement already satisfied: mpmath<1.4,>=1.1.0 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from sympy>=1.13.3->torch->-r requirements_exp_3.txt (line 1)) (1.3.0)
-Requirement already satisfied: MarkupSafe>=2.0 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from jinja2->torch->-r requirements_exp_3.txt (line 1)) (3.0.2)
-Requirement already satisfied: charset-normalizer<4,>=2 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from requests->transformers->-r requirements_exp_3.txt (line 2)) (3.4.2)
-Requirement already satisfied: idna<4,>=2.5 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from requests->transformers->-r requirements_exp_3.txt (line 2)) (3.10)
-Requirement already satisfied: urllib3<3,>=1.21.1 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from requests->transformers->-r requirements_exp_3.txt (line 2)) (2.4.0)
-Requirement already satisfied: certifi>=2017.4.17 in /gpfs/scratch1/shared/mschaffelder/venv_exp_3/lib/python3.9/site-packages (from requests->transformers->-r requirements_exp_3.txt (line 2)) (2025.4.26)
-CUDA_VISIBLE_DEVICES: 0
-Available GPUs: GPU 0: NVIDIA H100 (UUID: GPU-517b081f-286a-3976-b5e8-acb4ec320a22)
-Using existing Hugging Face token from cache...
-/scratch-shared/mschaffelder/venv_exp_3/lib64/python3.9/site-packages/networkx/utils/backends.py:135: RuntimeWarning: networkx backend defined more than once: nx-loopback
-  backends.update(_get_backends("networkx.backends"))
-CUDA is available with 1 device(s)
-Device 0: NVIDIA H100
-H100 GPU detected! Using device 0
-Currently using device 0: NVIDIA H100
-Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [00:12<00:37, 12.66s/it]Fetching 4 files: 100%|██████████| 4/4 [00:12<00:00,  3.17s/it]
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:09,  3.18s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:05,  2.80s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.91s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:11<00:00,  2.79s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:11<00:00,  2.84s/it]
-Model is on device: cuda:0
-Generating data with Qwen/Qwen2.5-7B-Instruct
-Generating responses:   0%|          | 0/100 [00:00<?, ?it/s]Generating responses:   1%|          | 1/100 [00:07<11:48,  7.16s/it]Generating responses:   2%|▏         | 2/100 [00:07<05:32,  3.40s/it]Generating responses:   3%|▎         | 3/100 [00:08<03:43,  2.30s/it]Generating responses:   4%|▍         | 4/100 [00:09<02:53,  1.81s/it]Generating responses:   5%|▌         | 5/100 [00:10<02:20,  1.48s/it]Generating responses:   6%|▌         | 6/100 [00:11<01:58,  1.26s/it]Generating responses:   7%|▋         | 7/100 [00:12<01:56,  1.25s/it]Generating responses:   8%|▊         | 8/100 [00:13<01:44,  1.14s/it]Generating responses:   9%|▉         | 9/100 [00:14<01:38,  1.08s/it]Generating responses:  10%|█         | 10/100 [00:16<01:41,  1.13s/it]Generating responses:  11%|█         | 11/100 [00:17<01:39,  1.12s/it]Generating responses:  12%|█▏        | 12/100 [00:18<01:44,  1.19s/it]Generating responses:  13%|█▎        | 13/100 [00:19<01:34,  1.09s/it]Generating responses:  14%|█▍        | 14/100 [00:20<01:36,  1.12s/it]Generating responses:  15%|█▌        | 15/100 [00:21<01:35,  1.12s/it]Generating responses:  16%|█▌        | 16/100 [00:22<01:33,  1.12s/it]Generating responses:  17%|█▋        | 17/100 [00:24<01:44,  1.25s/it]Generating responses:  18%|█▊        | 18/100 [00:25<01:41,  1.24s/it]Generating responses:  19%|█▉        | 19/100 [00:26<01:31,  1.13s/it]Generating responses:  20%|██        | 20/100 [00:27<01:25,  1.07s/it]Generating responses:  21%|██        | 21/100 [00:28<01:26,  1.09s/it]Generating responses:  22%|██▏       | 22/100 [00:29<01:21,  1.04s/it]Generating responses:  23%|██▎       | 23/100 [00:30<01:30,  1.17s/it]Generating responses:  24%|██▍       | 24/100 [00:31<01:19,  1.05s/it]Generating responses:  25%|██▌       | 25/100 [00:32<01:16,  1.02s/it]Generating responses:  26%|██▌       | 26/100 [00:33<01:16,  1.03s/it]Generating responses:  27%|██▋       | 27/100 [00:34<01:14,  1.02s/it]Generating responses:  28%|██▊       | 28/100 [00:35<01:17,  1.08s/it]Generating responses:  29%|██▉       | 29/100 [00:36<01:14,  1.05s/it]Generating responses:  30%|███       | 30/100 [00:38<01:22,  1.17s/it]Generating responses:  31%|███       | 31/100 [00:39<01:17,  1.13s/it]Generating responses:  32%|███▏      | 32/100 [00:40<01:19,  1.16s/it]Generating responses:  33%|███▎      | 33/100 [00:41<01:14,  1.11s/it]Generating responses:  34%|███▍      | 34/100 [00:42<01:14,  1.14s/it]Generating responses:  35%|███▌      | 35/100 [00:43<01:15,  1.16s/it]Generating responses:  36%|███▌      | 36/100 [00:45<01:18,  1.22s/it]Generating responses:  37%|███▋      | 37/100 [00:47<01:31,  1.45s/it]Generating responses:  38%|███▊      | 38/100 [00:48<01:23,  1.35s/it]Generating responses:  39%|███▉      | 39/100 [00:49<01:12,  1.20s/it]Generating responses:  40%|████      | 40/100 [00:50<01:14,  1.25s/it]Generating responses:  41%|████      | 41/100 [00:51<01:12,  1.23s/it]Generating responses:  42%|████▏     | 42/100 [00:52<01:03,  1.10s/it]Generating responses:  43%|████▎     | 43/100 [00:53<00:58,  1.03s/it]Generating responses:  44%|████▍     | 44/100 [00:54<00:54,  1.02it/s]Generating responses:  45%|████▌     | 45/100 [00:55<00:57,  1.04s/it]Generating responses:  46%|████▌     | 46/100 [00:56<00:56,  1.05s/it]Generating responses:  47%|████▋     | 47/100 [00:57<00:49,  1.07it/s]Generating responses:  48%|████▊     | 48/100 [00:58<00:49,  1.06it/s]Generating responses:  49%|████▉     | 49/100 [00:59<00:45,  1.11it/s]Generating responses:  50%|█████     | 50/100 [01:00<00:50,  1.01s/it]Generating responses:  51%|█████     | 51/100 [01:01<00:54,  1.10s/it]Generating responses:  52%|█████▏    | 52/100 [01:02<00:53,  1.12s/it]Generating responses:  53%|█████▎    | 53/100 [01:03<00:48,  1.04s/it]Generating responses:  54%|█████▍    | 54/100 [01:04<00:45,  1.01it/s]Generating responses:  55%|█████▌    | 55/100 [01:05<00:44,  1.00it/s]Generating responses:  56%|█████▌    | 56/100 [01:06<00:42,  1.04it/s]Generating responses:  57%|█████▋    | 57/100 [01:07<00:38,  1.10it/s]Generating responses:  58%|█████▊    | 58/100 [01:08<00:38,  1.10it/s]Generating responses:  59%|█████▉    | 59/100 [01:09<00:42,  1.05s/it]Generating responses:  60%|██████    | 60/100 [01:10<00:36,  1.08it/s]Generating responses:  61%|██████    | 61/100 [01:11<00:37,  1.04it/s]Generating responses:  62%|██████▏   | 62/100 [01:11<00:33,  1.15it/s]Generating responses:  63%|██████▎   | 63/100 [01:13<00:37,  1.00s/it]Generating responses:  64%|██████▍   | 64/100 [01:13<00:34,  1.05it/s]Generating responses:  65%|██████▌   | 65/100 [01:15<00:36,  1.05s/it]Generating responses:  66%|██████▌   | 66/100 [01:17<00:44,  1.30s/it]Generating responses:  67%|██████▋   | 67/100 [01:18<00:39,  1.20s/it]Generating responses:  68%|██████▊   | 68/100 [01:19<00:37,  1.17s/it]Generating responses:  69%|██████▉   | 69/100 [01:20<00:34,  1.11s/it]Generating responses:  70%|███████   | 70/100 [01:21<00:31,  1.06s/it]Generating responses:  71%|███████   | 71/100 [01:22<00:31,  1.10s/it]Generating responses:  72%|███████▏  | 72/100 [01:23<00:32,  1.15s/it]Generating responses:  73%|███████▎  | 73/100 [01:24<00:29,  1.09s/it]Generating responses:  74%|███████▍  | 74/100 [01:26<00:32,  1.24s/it]Generating responses:  75%|███████▌  | 75/100 [01:27<00:29,  1.18s/it]Generating responses:  76%|███████▌  | 76/100 [01:28<00:26,  1.09s/it]Generating responses:  77%|███████▋  | 77/100 [01:29<00:27,  1.21s/it]Generating responses:  78%|███████▊  | 78/100 [01:30<00:24,  1.10s/it]Generating responses:  79%|███████▉  | 79/100 [01:31<00:23,  1.10s/it]Generating responses:  80%|████████  | 80/100 [01:32<00:21,  1.07s/it]Generating responses:  81%|████████  | 81/100 [01:33<00:20,  1.06s/it]Generating responses:  82%|████████▏ | 82/100 [01:34<00:20,  1.12s/it]Generating responses:  83%|████████▎ | 83/100 [01:35<00:18,  1.07s/it]Generating responses:  84%|████████▍ | 84/100 [01:36<00:17,  1.07s/it]Generating responses:  85%|████████▌ | 85/100 [01:37<00:15,  1.05s/it]Generating responses:  86%|████████▌ | 86/100 [01:39<00:16,  1.18s/it]Generating responses:  87%|████████▋ | 87/100 [01:40<00:16,  1.24s/it]Generating responses:  88%|████████▊ | 88/100 [01:41<00:14,  1.24s/it]Generating responses:  89%|████████▉ | 89/100 [01:42<00:12,  1.15s/it]Generating responses:  90%|█████████ | 90/100 [01:43<00:11,  1.13s/it]Generating responses:  91%|█████████ | 91/100 [01:44<00:09,  1.10s/it]Generating responses:  92%|█████████▏| 92/100 [01:46<00:09,  1.14s/it]Generating responses:  93%|█████████▎| 93/100 [01:47<00:08,  1.16s/it]Generating responses:  94%|█████████▍| 94/100 [01:48<00:06,  1.15s/it]Generating responses:  95%|█████████▌| 95/100 [01:49<00:05,  1.13s/it]Generating responses:  96%|█████████▌| 96/100 [01:50<00:04,  1.08s/it]Generating responses:  97%|█████████▋| 97/100 [01:51<00:03,  1.12s/it]Generating responses:  98%|█████████▊| 98/100 [01:52<00:02,  1.04s/it]Generating responses:  99%|█████████▉| 99/100 [01:53<00:01,  1.01s/it]Generating responses: 100%|██████████| 100/100 [01:54<00:00,  1.01it/s]Generating responses: 100%|██████████| 100/100 [01:54<00:00,  1.15s/it]
-Processed 0/100 examples.
-Processed 10/100 examples.
-Processed 20/100 examples.
-Processed 30/100 examples.
-Processed 40/100 examples.
-Processed 50/100 examples.
-Processed 60/100 examples.
-Processed 70/100 examples.
-Processed 80/100 examples.
-Processed 90/100 examples.
-Done generating synthetic data.
-Completed generation with Qwen/Qwen2.5-7B-Instruct
-
-JOB STATISTICS
-==============
-Job ID: 12075706
-Cluster: snellius
-User/Group: mschaffelder/mschaffelder
-State: COMPLETED (exit code 0)
-Nodes: 1
-Cores per node: 16
-CPU Utilized: 00:03:24
-CPU Efficiency: 6.22% of 00:54:40 core-walltime
-Job Wall-clock time: 00:03:25
-Memory Utilized: 1.94 GB
-Memory Efficiency: 19.38% of 10.00 GB (10.00 GB/node)

@@ -1,41 +1,0 @@
-Loading checkpoint shards:   0%|          | 0/30 [00:00<?, ?it/s]Loading checkpoint shards:   3%|▎         | 1/30 [00:04<02:24,  4.97s/it]Loading checkpoint shards:   7%|▋         | 2/30 [00:08<01:56,  4.15s/it]Loading checkpoint shards:  10%|█         | 3/30 [00:12<01:49,  4.04s/it]Loading checkpoint shards:  13%|█▎        | 4/30 [00:16<01:42,  3.93s/it]Loading checkpoint shards:  17%|█▋        | 5/30 [00:19<01:34,  3.79s/it]Loading checkpoint shards:  20%|██        | 6/30 [00:23<01:28,  3.70s/it]Loading checkpoint shards:  23%|██▎       | 7/30 [00:26<01:23,  3.65s/it]Loading checkpoint shards:  27%|██▋       | 8/30 [00:30<01:21,  3.68s/it]Loading checkpoint shards:  30%|███       | 9/30 [00:34<01:17,  3.70s/it]Loading checkpoint shards:  33%|███▎      | 10/30 [00:37<01:12,  3.65s/it]Loading checkpoint shards:  37%|███▋      | 11/30 [00:41<01:08,  3.61s/it]Loading checkpoint shards:  40%|████      | 12/30 [00:44<01:04,  3.58s/it]Loading checkpoint shards:  43%|████▎     | 13/30 [00:48<01:01,  3.63s/it]Loading checkpoint shards:  47%|████▋     | 14/30 [00:52<00:58,  3.66s/it]Loading checkpoint shards:  50%|█████     | 15/30 [00:55<00:54,  3.62s/it]Loading checkpoint shards:  53%|█████▎    | 16/30 [00:59<00:50,  3.62s/it]Loading checkpoint shards:  57%|█████▋    | 17/30 [01:02<00:46,  3.58s/it]Loading checkpoint shards:  60%|██████    | 18/30 [01:06<00:43,  3.63s/it]Loading checkpoint shards:  63%|██████▎   | 19/30 [01:10<00:40,  3.66s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [01:13<00:36,  3.62s/it]Loading checkpoint shards:  67%|██████▋   | 20/30 [01:17<00:38,  3.85s/it]
-Traceback (most recent call last):
-  File "/gpfs/scratch1/shared/mschaffelder/code/data_analysis/perplexity.py", line 268, in <module>
-    main()
-  File "/gpfs/scratch1/shared/mschaffelder/code/data_analysis/perplexity.py", line 236, in main
-    model = AutoModelForCausalLM.from_pretrained(
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
-    return model_class.from_pretrained(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 4399, in from_pretrained
-    ) = cls._load_pretrained_model(
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 4833, in _load_pretrained_model
-    disk_offload_index, cpu_offload_index = _load_state_dict_into_meta_model(
-                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/scratch1/shared/mschaffelder/.venv/lib64/python3.11/site-packages/transformers/modeling_utils.py", line 824, in _load_state_dict_into_meta_model
-    _load_parameter_into_model(model, param_name, param.to(param_device))
-                                                  ^^^^^^^^^^^^^^^^^^^^^^
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 128.00 MiB. GPU 0 has a total capacity of 93.11 GiB of which 49.81 MiB is free. Including non-PyTorch memory, this process has 93.05 GiB memory in use. Of the allocated memory 92.54 GiB is allocated by PyTorch, and 12.22 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-
-JOB STATISTICS
-==============
-Job ID: 11466419
-Cluster: snellius
-User/Group: mschaffelder/mschaffelder
-State: RUNNING
-Nodes: 1
-Cores per node: 16
-CPU Utilized: 00:00:00
-CPU Efficiency: 0.00% of 01:01:20 core-walltime
-Job Wall-clock time: 00:03:50
-Memory Utilized: 0.00 MB
-Memory Efficiency: 0.00% of 180.00 GB (180.00 GB/node)
-WARNING: Efficiency statistics can only be obtained after the job has ended as seff tool is based on the accounting database data.
