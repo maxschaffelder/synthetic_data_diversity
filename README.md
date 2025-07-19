@@ -28,6 +28,7 @@ The experiments involved fine-tuning multiple sizes of the Llama-3.1 model famil
 
 -   **Models**: Llama-3.1-8B, Llama-3.1-70B, and a variety of other open- and closed-weight models for data generation.
 -   **Datasets**: Databricks-Dolly-15K for fine-tuning, RefusalBench and ChatGPT Jailbreak Prompts for safety evaluation, and CNN/DailyMail for self-preference bias analysis.
+-   **Data Availability**: The synthetic datasets generated for fine-tuning and the prompts used for evaluation are available upon request.
 -   **Fine-Tuning**: Low-Rank Adaptation (LoRA) was used for efficient fine-tuning.
 
 ## Project Structure
