@@ -57,7 +57,7 @@ mkdir -p ${LOG_DIR} # Ensure log directory exists
 
 # Get the task ID for array jobs
 INPUT_PATH="/scratch-shared/mschaffelder/data/finetuning/synthetic/Small/Other/dolly_train_2_Gemma.jsonl"
-OUTPUT_PATH="/scratch-shared/mschaffelder/data/data_analysis/perplexity/llama_small/dolly_train_3_Gemma_small_PPL.jsonl"
+OUTPUT_PATH="/scratch-shared/mschaffelder/data/data_analysis/perplexity/llama_small/dolly_train_2_Gemma_small_PPL.jsonl"
 
 
 
