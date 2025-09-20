@@ -41,6 +41,8 @@ fi
 echo "Activating virtual environment: $VENV_DIR"
 source $VENV_DIR/bin/activate
 
+pip install --upgrade pip
+pip install -r requirements.txt
 
 # Define the model to use for perplexity calculation
 MODEL_NAME="meta-llama/Llama-3.1-8B-Instruct" 
